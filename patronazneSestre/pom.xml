@@ -1,0 +1,92 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>si.fri.tpo</groupId>
+	<artifactId>tpo-patronazneSestre</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<name>patronazne_sestre</name>
+	<description>aplikacija za podporo delu patronažnih sester</description>
+	<dependencyManagement>
+
+		<dependencies>
+			<!-- Dependencies for other libraries -->
+			<!-- Dependency for java ee -->
+			<dependency>
+				<groupId>javax</groupId>
+				<artifactId>javaee-api</artifactId>
+				<version>7.0</version>
+				<scope>provided</scope>
+			</dependency>
+			<!-- Dependency for wildfly -->
+			<dependency>
+				<groupId>org.wildfly.bom</groupId>
+				<artifactId>wildfly-javaee7</artifactId>
+				<version>10.1.0.Final</version>
+				<scope>import</scope>
+				<type>pom</type>
+			</dependency>
+			<dependency>
+				<groupId>org.hibernate</groupId>
+				<artifactId>hibernate-core</artifactId>
+				<version>5.2.3.Final</version>
+				<scope>provided</scope>
+			</dependency>
+			<dependency>
+                <groupId>si.fri.tpo</groupId>
+                <artifactId>JPA</artifactId>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>si.fri.tpo</groupId>
+                <artifactId>EAR</artifactId>
+                <type>ear</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>si.fri.tpo</groupId>
+                <artifactId>REST</artifactId>
+                <type>war</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>si.fri.tpo</groupId>
+                <artifactId>vmesniki-ws</artifactId>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>si.fri.tpo</groupId>
+                <artifactId>vmesnikiEJB</artifactId>
+                <type>pom</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>si.fri.tpo</groupId>
+                <artifactId>storitveEJB</artifactId>
+                <type>ejb</type>
+                <scope>compile</scope>
+            </dependency>
+            <dependency>
+                <groupId>si.fri.tpo</groupId>
+                <artifactId>vmesniki-ejb</artifactId>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
+		</dependencies>
+	</dependencyManagement>
+	<modules>
+		<module>JPA</module>
+		<module>EAR</module>
+		<module>REST</module>
+		<module>vmesniki-ws</module>
+		<module>vmesnikiEJB</module>
+		<module>storitveEJB</module>
+	</modules>
+</project>
