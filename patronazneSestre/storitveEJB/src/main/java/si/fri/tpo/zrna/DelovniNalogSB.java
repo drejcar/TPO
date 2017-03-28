@@ -7,23 +7,23 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import si.fri.tpo.entitete.DelovniNalog;
-import si.fri.tpo.vmesnikiSB.delovniNalogSBLocal;
-import si.fri.tpo.vmesnikiSB.delovniNalogSBRemote;
+import si.fri.tpo.vmesnikiSB.DelovniNalogSBLocal;
+import si.fri.tpo.vmesnikiSB.DelovniNalogSBRemote;
 
 /**
  * Session Bean implementation class delovniNalogSB
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
-public class delovniNalogSB implements delovniNalogSBRemote, delovniNalogSBLocal {
+public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal {
 	@PersistenceContext
 	private EntityManager em;
 	
     /**
      * Default constructor. 
      */
-    public delovniNalogSB() {
-        // TODO Auto-generated constructor stub
+    public DelovniNalogSB() {
+        
     }
     
     /*
@@ -32,7 +32,7 @@ public class delovniNalogSB implements delovniNalogSBRemote, delovniNalogSBLocal
      */
 	@Override
 	public void dodajDelovniNalog(DelovniNalog dn) {
-		// TODO Auto-generated method stub
+		
 		em.persist(dn);
 	}
 	
@@ -42,7 +42,7 @@ public class delovniNalogSB implements delovniNalogSBRemote, delovniNalogSBLocal
 	 */
 	@Override
 	public void updateDelovniNalog(DelovniNalog dn) {
-		// TODO Auto-generated method stub
+		
 		em.merge(dn);
 	}
 	
@@ -52,7 +52,7 @@ public class delovniNalogSB implements delovniNalogSBRemote, delovniNalogSBLocal
 	 */
 	@Override
 	public void deleteDelovniNalog(int id) {
-		// TODO Auto-generated method stub
+		
 		em.createNamedQuery("DelovniNalog.deleteOne").setParameter("id", id).executeUpdate();
 	}
 	
@@ -62,7 +62,7 @@ public class delovniNalogSB implements delovniNalogSBRemote, delovniNalogSBLocal
 	 */
 	@Override
 	public void odstraniZrno() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

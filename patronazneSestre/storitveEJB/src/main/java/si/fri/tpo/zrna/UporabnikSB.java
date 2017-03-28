@@ -7,22 +7,22 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import si.fri.tpo.entitete.*;
-import si.fri.tpo.vmesnikiSB.uporabnikSBLocal;
-import si.fri.tpo.vmesnikiSB.uporabnikSBRemote;
+import si.fri.tpo.vmesnikiSB.UporabnikSBLocal;
+import si.fri.tpo.vmesnikiSB.UporabnikSBRemote;
 
 /**
  * Session Bean implementation class uporabnikSB
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
-public class uporabnikSB implements uporabnikSBRemote, uporabnikSBLocal {
+public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
 	@PersistenceContext
 	private EntityManager em;
     /**
      * Default constructor. 
      */
-    public uporabnikSB() {
-        // TODO Auto-generated constructor stub
+    public UporabnikSB() {
+        
     }
 
     /*
@@ -31,7 +31,7 @@ public class uporabnikSB implements uporabnikSBRemote, uporabnikSBLocal {
      */
 	@Override
 	public void shraniNovegaUporabnika(Uporabnik u) {
-		// TODO Auto-generated method stub
+		
 		em.persist(u);
 	}
 	
@@ -41,7 +41,7 @@ public class uporabnikSB implements uporabnikSBRemote, uporabnikSBLocal {
 	 */
 	@Override
 	public void updateUporabnika(Uporabnik u) {
-		// TODO Auto-generated method stub
+		
 		em.merge(u);
 	}
 	
@@ -52,7 +52,7 @@ public class uporabnikSB implements uporabnikSBRemote, uporabnikSBLocal {
 	 */
 	@Override
 	public void odstraniZrno() {
-		// TODO Auto-generated method stub
+		
 		
 	}
 
@@ -62,7 +62,7 @@ public class uporabnikSB implements uporabnikSBRemote, uporabnikSBLocal {
 	 */
 	@Override
 	public void odstraniUporabnik(int id) {
-		// TODO Auto-generated method stub
+		
 		em.createNamedQuery("Uporabnik.deleteOne").setParameter("id", id).executeUpdate();
 	}
 

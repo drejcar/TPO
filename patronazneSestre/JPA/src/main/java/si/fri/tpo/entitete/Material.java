@@ -11,7 +11,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="material")
-@NamedQuery(name="Material.findAll", query="SELECT m FROM Material m")
+@NamedQueries({
+	@NamedQuery(name="Material.findAll", query="SELECT m FROM Material m"),
+	@NamedQuery(name="Material.findOne", query="SELECT m FROM Material m WHERE m.idmaterial = :id"),
+	@NamedQuery(name="Material.deleteOne", query="DELETE FROM Material m WHERE m.idmaterial = :id")
+})
 public class Material implements Serializable {
 	private static final long serialVersionUID = 1L;
 

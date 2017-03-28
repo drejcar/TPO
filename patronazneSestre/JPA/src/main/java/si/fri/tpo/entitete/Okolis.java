@@ -11,7 +11,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="okolis")
-@NamedQuery(name="Okolis.findAll", query="SELECT o FROM Okolis o")
+@NamedQueries({
+	@NamedQuery(name="Okolis.findAll", query="SELECT o FROM Okolis o"),
+	@NamedQuery(name="Okolis.findOne", query="SELECT o FROM Okolis o WHERE o.idokolis = :id"),
+	@NamedQuery(name="Okolis.deleteOne", query="DELETE FROM Okolis o WHERE o.idokolis = :id")
+})
 public class Okolis implements Serializable {
 	private static final long serialVersionUID = 1L;
 
