@@ -38,7 +38,7 @@ public class ZdravstveniDelavec implements Serializable {
 	//bi-directional many-to-one association to Okoli
 	@ManyToOne
 	@JoinColumn(name="idokolis", nullable=false)
-	private Okoli okoli;
+	private Okolis okolis;
 
 	//bi-directional many-to-one association to Uporabnik
 	@ManyToOne
@@ -102,12 +102,12 @@ public class ZdravstveniDelavec implements Serializable {
 		this.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
 	}
 
-	public Okoli getOkoli() {
-		return this.okoli;
+	public Okolis getOkolis() {
+		return this.okolis;
 	}
 
-	public void setOkoli(Okoli okoli) {
-		this.okoli = okoli;
+	public void setOkolis(Okolis okolis) {
+		this.okolis = okolis;
 	}
 
 	public Uporabnik getUporabnik() {
