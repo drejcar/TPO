@@ -37,3 +37,4 @@ id_rsa
 .springBeans
 # Code Recommenders
 .recommenders/
+/build/

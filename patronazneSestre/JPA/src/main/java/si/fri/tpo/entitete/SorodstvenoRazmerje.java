@@ -11,7 +11,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="sorodstveno_razmerje")
-@NamedQuery(name="SorodstvenoRazmerje.findAll", query="SELECT s FROM SorodstvenoRazmerje s")
+@NamedQueries({
+	@NamedQuery(name="SorodstvenoRazmerje.findAll", query="SELECT s FROM SorodstvenoRazmerje s"),
+	@NamedQuery(name="SorodstvenoRazmerje.findOne", query="SELECT s FROM SorodstvenoRazmerje s WHERE s.idsorodstvenoRazmerje = :id"),
+	@NamedQuery(name="SorodstvenoRazmerje.deleteOne", query="DELETE FROM SorodstvenoRazmerje s WHERE s.idsorodstvenoRazmerje = :id")
+})
 public class SorodstvenoRazmerje implements Serializable {
 	private static final long serialVersionUID = 1L;
 
