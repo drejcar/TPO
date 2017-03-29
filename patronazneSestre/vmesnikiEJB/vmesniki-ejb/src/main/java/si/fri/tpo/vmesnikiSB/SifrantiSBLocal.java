@@ -22,14 +22,14 @@ public interface SifrantiSBLocal {
 	void createSorodstvenoRazmerje(SorodstvenoRazmerje sr);
 	
 	//klici za pridobivanje sifrantov (list)
-	List<Zdravilo> returnZdravilas();
-	List<Material> returnMaterials();
-	List<Spol> returnSpols();
-	List<Okolis> returnOkoliss();
-	List<Posta> returnPostas();
-	List<Vloga> returnVlogas();
-	List<VrstaObiska> returnVrstaObiskas();
-	List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes();
+	public List<Zdravilo> returnZdravilas();
+	public List<Material> returnMaterials();
+	public List<Spol> returnSpols();
+	public List<Okolis> returnOkoliss();
+	public List<Posta> returnPostas();
+	public List<Vloga> returnVlogas();
+	public List<VrstaObiska> returnVrstaObiskas();
+	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes();
 	
 	//klici za odstranjevanje
 	void deleteZdravilo(int id);
@@ -42,14 +42,14 @@ public interface SifrantiSBLocal {
 	void deleteSorodstvenoRazmerje(int id);
 	
 	//klici za pridobivanje enega sifranta
-	Zdravilo returnZdravila(int id);
-	Material returnMaterial(int id);
-	Spol returnSpol(int id);
-	Okolis returnOkolis(int id);
-	Posta returnPosta(int id);
-	Vloga returnVloga(int id);
-	VrstaObiska returnVrstaObiska(int id);
-	SorodstvenoRazmerje returnSorodstvenoRazmerje(int id);
+	public Zdravilo returnZdravila(int id);
+	public Material returnMaterial(int id);
+	public Spol returnSpol(int id);
+	public Okolis returnOkolis(int id);
+	public Posta returnPosta(int id);
+	public Vloga returnVloga(int id);
+	public VrstaObiska returnVrstaObiska(int id);
+	public SorodstvenoRazmerje returnSorodstvenoRazmerje(int id);
 	
 	//klici za updatanje sifrantov
 	void updateZdravilo(Zdravilo z);

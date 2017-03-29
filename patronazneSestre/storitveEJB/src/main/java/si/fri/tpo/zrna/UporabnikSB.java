@@ -1,5 +1,7 @@
 package si.fri.tpo.zrna;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -64,6 +66,26 @@ public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
 	public void odstraniUporabnik(int id) {
 		
 		em.createNamedQuery("Uporabnik.deleteOne").setParameter("id", id).executeUpdate();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.UporabnikSBLocal#najdiUporabnik(int)
+	 */
+	@Override
+	public Uporabnik najdiUporabnik(int id) {
+		return (Uporabnik) em.createNamedQuery("Uporabnik.findOne").setParameter("id", id).getSingleResult();
+		
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.UporabnikSBLocal#najdiUporabniks()
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Uporabnik> najdiUporabniks() {
+		return em.createNamedQuery("Uporabnik.findAll").getResultList();
 	}
 
 }

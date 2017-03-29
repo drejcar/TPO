@@ -1,5 +1,7 @@
 package si.fri.tpo.zrna;
 
+import java.util.List;
+
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -64,6 +66,27 @@ public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal
 	public void odstraniZrno() {
 		
 		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.DelovniNalogSBLocal#vrniDelovniNalog(int)
+	 */
+	@Override
+	public DelovniNalog vrniDelovniNalog(int id) {
+		
+		return (DelovniNalog) em.createNamedQuery("DelovniNalog.findOne").setParameter("id", id).getSingleResult();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.DelovniNalogSBLocal#vrniDelovniNalogs()
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DelovniNalog> vrniDelovniNalogs() {
+		
+		return em.createNamedQuery("DelovniNalog.findAll").getResultList();
 	}
 
 }
