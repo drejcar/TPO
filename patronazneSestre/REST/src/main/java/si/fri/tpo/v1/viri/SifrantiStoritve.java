@@ -23,7 +23,7 @@ import si.fri.tpo.vmesniki_ws.SifrantiREST;
 @RequestScoped
 @Path("sifranti")
 @Produces({ "application/json" })
-@Consumes({ MediaType.APPLICATION_JSON })
+@Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
 public class SifrantiStoritve implements SifrantiREST {
 
 	@EJB
@@ -35,7 +35,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/zdravilo")
 	public void createZdravilo(Zdravilo zdravilo) {
 		fasada.createZdravilo(zdravilo);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -43,7 +43,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/material")
 	public void createMaterial(Material material) {
 		fasada.createMaterial(material);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -51,7 +51,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/spol")
 	public void createSpol(Spol spol) {
 		fasada.createSpol(spol);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -59,7 +59,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/okolis")
 	public void createOkolis(Okolis okolis) {
 		fasada.createOkolis(okolis);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -67,7 +67,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/posta")
 	public void createPosta(Posta posta) {
 		fasada.createPosta(posta);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -75,7 +75,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/vloga")
 	public void createVloga(Vloga vloga) {
 		fasada.createVloga(vloga);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -83,7 +83,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/vrstaObiska")
 	public void createVrstaObiska(VrstaObiska vrstaObiska) {
 		fasada.createVrstaObiska(vrstaObiska);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -91,7 +91,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/sorodstvenoRazmerje")
 	public void createSorodstvenoRazmerje(SorodstvenoRazmerje sorodstvenoRazmerje) {
 		fasada.createSorodstvenoRazmerje(sorodstvenoRazmerje);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -100,65 +100,64 @@ public class SifrantiStoritve implements SifrantiREST {
 	@GET
 	@Path("/zdravilo")
 	public List<Zdravilo> returnZdravilas() {
-		List<Zdravilo> list = fasada.returnZdravilas();
-		fasada.odstraniZrno();
-		return list;
+		
+		
+		return fasada.returnZdravilas();
 	}
 
 	@GET
 	@Path("/material")
 	public List<Material> returnMaterials() {
-		List<Material> list = fasada.returnMaterials();
-		fasada.odstraniZrno();
-		return list;
+		
+		
+		return fasada.returnMaterials();
 	}
 
 	@GET
 	@Path("/spol")
 	public List<Spol> returnSpols() {
-		List<Spol> list = fasada.returnSpols();
-		fasada.odstraniZrno();
-		return list;
+		
+		
+		return fasada.returnSpols();
 	}
 
 	@GET
 	@Path("/okolis")
 	public List<Okolis> returnOkoliss() {
-		List<Okolis> list = fasada.returnOkoliss();
-		fasada.odstraniZrno();
-		return list;
+		
+		
+		return fasada.returnOkoliss();
 	}
 
 	@GET
 	@Path("/posta")
 	public List<Posta> returnPostas() {
-		List<Posta> list = fasada.returnPostas();
-		fasada.odstraniZrno();
-		return list;
+		
+		
+		return fasada.returnPostas();
 	}
 
 	@GET
 	@Path("/vloga")
 	public List<Vloga> returnVlogas() {
-		List<Vloga> list = fasada.returnVlogas();
-		fasada.odstraniZrno();
-		return list;
+		return fasada.returnVlogas();
+		
 	}
 
 	@GET
 	@Path("/vrstaObiska")
 	public List<VrstaObiska> returnVrstaObiskas() {
-		List<VrstaObiska> list = fasada.returnVrstaObiskas();
-		fasada.odstraniZrno();
-		return list;
+		
+		
+		return fasada.returnVrstaObiskas();
 	}
 
 	@GET
 	@Path("/sorodstvenoRazmerje")
 	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes() {
-		List<SorodstvenoRazmerje> list = fasada.returnSorodstvenoRazmerjes();
-		fasada.odstraniZrno();
-		return list;
+		
+		
+		return fasada.returnSorodstvenoRazmerjes();
 	}
 
 	// *** brisanje specificnega sifranta ***
@@ -167,7 +166,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/zdravilo/{id}")
 	public void deleteZdravilo(@PathParam("id")int id) {
 		fasada.deleteZdravilo(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -175,7 +174,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/material/{id}")
 	public void deleteMaterial(@PathParam("id")int id) {
 		fasada.deleteMaterial(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -183,7 +182,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/spol/{id}")
 	public void deleteSpol(@PathParam("id")int id) {
 		fasada.deleteSpol(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -191,7 +190,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/okolis/{id}")
 	public void deleteOkolis(@PathParam("id")int id) {
 		fasada.deleteOkolis(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -199,7 +198,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/posta/{id}")
 	public void deletePosta(@PathParam("id")int id) {
 		fasada.deletePosta(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -207,7 +206,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/vloga/{id}")
 	public void deleteVloga(@PathParam("id")int id) {
 		fasada.deleteVloga(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -215,7 +214,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/vrstaObiska/{id}")
 	public void deleteVrstaObiska(@PathParam("id")int id) {
 		fasada.deleteVrstaObiska(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -223,7 +222,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/sorodstvenoRazmerje/{id}")
 	public void deleteSorodstvenoRazmerje(@PathParam("id")int id) {
 		fasada.deleteSorodstvenoRazmerje(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -233,7 +232,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/zdravilo")
 	public void updateZdravilo(Zdravilo zdravilo) {
 		fasada.updateZdravilo(zdravilo);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -241,14 +240,14 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/material")
 	public void updateMaterial(Material material) {
 		fasada.updateMaterial(material);
-		fasada.odstraniZrno();
+		
 	}
 
 	@PUT
 	@Path("/spol")
 	public void updateSpol(Spol spol) {
 		fasada.updateSpol(spol);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -256,7 +255,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/okolis")
 	public void updateOkolis(Okolis okolis) {
 		fasada.updateOkolis(okolis);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -264,7 +263,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/posta")
 	public void updatePosta(Posta posta) {
 		fasada.updatePosta(posta);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -272,7 +271,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/vloga")
 	public void updateVloga(Vloga vloga) {
 		fasada.updateVloga(vloga);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -280,7 +279,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/vrstaObiska")
 	public void updateVrstaObiska(VrstaObiska vrstaObiska) {
 		fasada.updateVrstaObiska(vrstaObiska);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -288,7 +287,7 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/sorodstvenoRazmerje")
 	public void updateSorodstvenoRazmerje(SorodstvenoRazmerje sorodstvenoRazmerje) {
 		fasada.updateSorodstvenoRazmerje(sorodstvenoRazmerje);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -297,65 +296,63 @@ public class SifrantiStoritve implements SifrantiREST {
 	@GET
 	@Path("/zdravilo/{id}")
 	public Zdravilo returnZdravila(@PathParam("id")int id) {
-		Zdravilo nov = fasada.returnZdravila(id);
-		fasada.odstraniZrno();
-		return nov;
+		
+		return fasada.returnZdravila(id);
 	}
 
 	@GET
 	@Path("/material/{id}")
 	public Material returnMaterial(@PathParam("id")int id) {
-		Material nov = fasada.returnMaterial(id);
-		fasada.odstraniZrno();
-		return nov;
+		
+		return fasada.returnMaterial(id);
 	}
 
 	@GET
 	@Path("/spol/{id}")
 	public Spol returnSpol(@PathParam("id")int id) {
-		Spol nov = fasada.returnSpol(id);
-		fasada.odstraniZrno();
-		return nov;
+		
+		
+		return fasada.returnSpol(id);
 	}
 
 	@GET
 	@Path("/okolis/{id}")
 	public Okolis returnOkolis(@PathParam("id")int id) {
-		Okolis nov = fasada.returnOkolis(id);
-		fasada.odstraniZrno();
-		return nov;
+		
+		
+		return fasada.returnOkolis(id);
 	}
 
 	@GET
 	@Path("/posta/{id}")
 	public Posta returnPosta(@PathParam("id")int id) {
-		Posta nov = fasada.returnPosta(id);
-		fasada.odstraniZrno();
-		return nov;
+		
+		
+		return fasada.returnPosta(id);
 	}
 
 	@GET
 	@Path("/vloga/{id}")
 	public Vloga returnVloga(@PathParam("id")int id) {
-		Vloga nov = fasada.returnVloga(id);
-		fasada.odstraniZrno();
-		return nov;
+		
+		
+		return fasada.returnVloga(id);
 	}
 
 	@GET
 	@Path("/vrstaObiska/{id}")
 	public VrstaObiska returnVrstaObiska(@PathParam("id")int id) {
-		VrstaObiska nov = fasada.returnVrstaObiska(id);
-		fasada.odstraniZrno();
-		return nov;
+		
+		
+		return fasada.returnVrstaObiska(id);
 	}
 
 	@GET
 	@Path("/sorodstvenoRazmerje/{id}")
 	public SorodstvenoRazmerje returnSorodstvenoRazmerje(@PathParam("id")int id) {
-		SorodstvenoRazmerje nov = fasada.returnSorodstvenoRazmerje(id);
-		fasada.odstraniZrno();
-		return nov;
+		
+		
+		return fasada.returnSorodstvenoRazmerje(id);
 	}
 
 }

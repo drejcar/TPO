@@ -31,7 +31,7 @@ public class Posta implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to IzvajalecZdravstvenihStoritev
-	@OneToMany(mappedBy="posta")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="posta")
 	private List<IzvajalecZdravstvenihStoritev> izvajalecZdravstvenihStoritevs;
 
 	//bi-directional many-to-one association to Pacient

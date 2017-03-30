@@ -16,7 +16,7 @@ import si.fri.tpo.vmesniki_ws.IzvajalecZdravstvenihStoritevREST;
 @RequestScoped
 @Path("izvajalecZdravstvenihStoritev")
 @Produces({ "application/json" })
-@Consumes({ MediaType.APPLICATION_JSON })
+@Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
 public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstvenihStoritevREST {
 
 	@EJB
@@ -26,23 +26,23 @@ public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstve
 	@Path("")
 	public void createIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
 		fasada.createIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
-		fasada.odstraniZrno();
+		
 
 	}
 
 	@GET
 	@Path("")
 	public List<IzvajalecZdravstvenihStoritev> returnIzvajalecZdravstvenihStoritevs() {
-		List<IzvajalecZdravstvenihStoritev> list = fasada.returnIzvajalecZdravstvenihStoritevs();
-		fasada.odstraniZrno();
-		return list;
+		
+		
+		return fasada.returnIzvajalecZdravstvenihStoritevs();
 	}
 
 	@DELETE
 	@Path("{id}")
 	public void deleteIzvajalecZdravstvenihStoritev(@PathParam("id") int id) {
 		fasada.deleteIzvajalecZdravstvenihStoritev(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -50,16 +50,16 @@ public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstve
 	@Path("")
 	public void updateIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
 		fasada.updateIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
-		fasada.odstraniZrno();
+		
 
 	}
 
 	@GET
 	@Path("{id}")
 	public IzvajalecZdravstvenihStoritev returnIzvajalecZdravstvenihStoritev(@PathParam("id") int id) {
-		IzvajalecZdravstvenihStoritev izs = fasada.returnIzvajalecZdravstvenihStoritev(id);
-		fasada.odstraniZrno();
-		return izs;
+		
+		
+		return fasada.returnIzvajalecZdravstvenihStoritev(id);
 	}
 
 }

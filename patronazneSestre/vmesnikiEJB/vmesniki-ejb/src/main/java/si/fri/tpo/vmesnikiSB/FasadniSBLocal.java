@@ -116,8 +116,5 @@ public interface FasadniSBLocal {
 		void createIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev); //klic za kreiranje novega izvajalca 
 		void updateIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev); //klic za updatanje izvajalca
 		void deleteIzvajalecZdravstvenihStoritev(int id); //klic za brisanje specificnega izvajalca
-		
-	//funkcija za odstranjevanje fasadnega zrna
-	void odstraniZrno();
 	
 }

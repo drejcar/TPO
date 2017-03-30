@@ -6,6 +6,7 @@ import javax.ejb.Local;
 
 //uporabljena entiteta Uporabanik
 import si.fri.tpo.entitete.Uporabnik;
+import si.fri.tpo.entitete.Vloga;
 
 //interface-i za session bean uporabnik
 @Local

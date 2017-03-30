@@ -32,7 +32,7 @@ public class Spol implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to Pacient
-	@OneToMany(mappedBy="spol")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="spol")
 	private List<Pacient> pacients;
 
 	public Spol() {

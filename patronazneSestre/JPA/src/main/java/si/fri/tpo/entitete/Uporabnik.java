@@ -17,7 +17,8 @@ import java.util.List;
 @NamedQueries({
 	@NamedQuery(name="Uporabnik.findAll", query="SELECT u FROM Uporabnik u"),
 	@NamedQuery(name="Uporabnik.findOne",query="SELECT u FROM Uporabnik u WHERE u.iduporabnik = :id"),
-	@NamedQuery(name="Uporabnik.deleteOne",query="DELETE FROM Uporabnik u WHERE u.iduporabnik = :id")
+	@NamedQuery(name="Uporabnik.deleteOne",query="DELETE FROM Uporabnik u WHERE u.iduporabnik = :id"),
+	@NamedQuery(name="Uporabnik.findUsr",query="SELECT u FROM Uporabnik u WHERE u.email = :email")
 })
 public class Uporabnik implements Serializable {
 	private static final long serialVersionUID = 1L;

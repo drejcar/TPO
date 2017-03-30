@@ -16,7 +16,7 @@ import si.fri.tpo.vmesniki_ws.DelovniNalogREST;
 @RequestScoped
 @Path("delovniNalog")
 @Produces({ "application/json" })
-@Consumes({ MediaType.APPLICATION_JSON })
+@Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
 public class DelovniNalogStoritve implements DelovniNalogREST {
 
 	@EJB
@@ -26,23 +26,21 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 	@Path("")
 	public void createDelovniNalog(DelovniNalog delovniNalog) {
 		fasada.dodajDelovniNalog(delovniNalog);
-		fasada.odstraniZrno();
+		
 
 	}
 
 	@GET
 	@Path("")
 	public List<DelovniNalog> returnDelovniNalogs() {
-		List<DelovniNalog> list = fasada.vrniDelovniNalogs();
-		fasada.odstraniZrno();
-		return list;
+		return fasada.vrniDelovniNalogs();
 	}
 
 	@DELETE
 	@Path("{id}")
 	public void deleteDelovniNalog(@PathParam("id") int id) {
 		fasada.deleteDelovniNalog(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -50,16 +48,16 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 	@Path("")
 	public void updateDelovniNalog(DelovniNalog delovniNalog) {
 		fasada.updateDelovniNalog(delovniNalog);
-		fasada.odstraniZrno();
+		
 
 	}
 
 	@GET
 	@Path("{id}")
 	public DelovniNalog returnDelovniNalog(@PathParam("id") int id) {
-		DelovniNalog dn = fasada.vrniDelovniNalog(id);
-		fasada.odstraniZrno();
-		return dn;
+		
+		
+		return fasada.vrniDelovniNalog(id);
 	}
 
 }

@@ -92,7 +92,8 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		uporabnik.odstraniZrno();
 
 	}
-
+	
+	
 	// *** klici za delovni nalog ***
 
 	@Override
@@ -607,11 +608,4 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		
 	}
 	
-	
-	// klic za odstranjevanje zrna
-	
-	@Override
-	public void odstraniZrno() {
-
-	}
 }

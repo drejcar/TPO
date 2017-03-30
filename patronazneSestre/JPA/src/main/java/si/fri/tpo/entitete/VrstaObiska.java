@@ -31,7 +31,7 @@ public class VrstaObiska implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to DelovniNalog
-	@OneToMany(mappedBy="vrstaObiska")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="vrstaObiska")
 	private List<DelovniNalog> delovniNalogs;
 
 	public VrstaObiska() {

@@ -31,7 +31,7 @@ public class Vloga implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to Uporabnik
-	@OneToMany(mappedBy="vloga")
+	@OneToMany(fetch = FetchType.EAGER, mappedBy="vloga")
 	private List<Uporabnik> uporabniks;
 
 	public Vloga() {

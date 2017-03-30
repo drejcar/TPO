@@ -16,7 +16,7 @@ import si.fri.tpo.vmesniki_ws.PacientREST;
 @RequestScoped
 @Path("pacient")
 @Produces({ "application/json" })
-@Consumes({ MediaType.APPLICATION_JSON })
+@Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
 public class PacientStoritve implements PacientREST {
 
 	@EJB
@@ -26,23 +26,21 @@ public class PacientStoritve implements PacientREST {
 	@Path("")
 	public void createPacient(Pacient pacient) {
 		fasada.createPacient(pacient);
-		fasada.odstraniZrno();
+		
 
 	}
 
 	@GET
 	@Path("")
 	public List<Pacient> returnPacients() {
-		List<Pacient> list = fasada.returnPacients();
-		fasada.odstraniZrno();
-		return list;
+		return fasada.returnPacients();
 	}
 
 	@DELETE
 	@Path("{id}")
 	public void deletePacient(@PathParam("id") int id) {
 		fasada.deletePacient(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -50,16 +48,14 @@ public class PacientStoritve implements PacientREST {
 	@Path("")
 	public void updatePacient(Pacient pacient) {
 		fasada.updatePacient(pacient);
-		fasada.odstraniZrno();
+		
 
 	}
 
 	@GET
 	@Path("{id}")
 	public Pacient returnPacient(@PathParam("id") int id) {
-		Pacient pc = fasada.returnPacient(id);
-		fasada.odstraniZrno();
-		return pc;
+		return fasada.returnPacient(id);
 	}
 
 }

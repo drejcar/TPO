@@ -16,7 +16,7 @@ import si.fri.tpo.vmesniki_ws.ZdravstveniDelavecREST;
 @RequestScoped
 @Path("zdravstveniDelavec")
 @Produces({ "application/json" })
-@Consumes({ MediaType.APPLICATION_JSON })
+@Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
 public class ZdravstveniDelavecStortve implements ZdravstveniDelavecREST {
 
 	@EJB
@@ -25,32 +25,30 @@ public class ZdravstveniDelavecStortve implements ZdravstveniDelavecREST {
 	@GET
 	@Path("{id}")
 	public ZdravstveniDelavec returnZdravstveniDelavec(@PathParam("id") int id) {
-		ZdravstveniDelavec zd = fasada.returnZdravstveniDelavec(id);
-		fasada.odstraniZrno();
-		return zd;
+		
+		return fasada.returnZdravstveniDelavec(id);
 	}
 
 	@DELETE
 	@Path("{id}")
 	public void deleteZdravstveniDelavec(@PathParam("id") int id) {
 		fasada.deleteZdravstveniDelavec(id);
-		fasada.odstraniZrno();
+		
 
 	}
 
 	@GET
 	@Path("")
 	public List<ZdravstveniDelavec> returnZdravstveniDelavecs() {
-		List<ZdravstveniDelavec> list = fasada.returnZdravstveniDelavecs();
-		fasada.odstraniZrno();
-		return list;
+		
+		return fasada.returnZdravstveniDelavecs();
 	}
 
 	@PUT
 	@Path("")
 	public void updateZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		fasada.updateZdravstveniDelavec(zdravstveniDelavec);
-		fasada.odstraniZrno();
+		
 
 	}
 
@@ -58,7 +56,7 @@ public class ZdravstveniDelavecStortve implements ZdravstveniDelavecREST {
 	@Path("")
 	public void createZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		fasada.createZdravstveniDelavec(zdravstveniDelavec);
-		fasada.odstraniZrno();
+		
 
 	}
 

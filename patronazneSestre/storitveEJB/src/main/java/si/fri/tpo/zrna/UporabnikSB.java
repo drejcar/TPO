@@ -87,5 +87,5 @@ public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
 	public List<Uporabnik> najdiUporabniks() {
 		return em.createNamedQuery("Uporabnik.findAll").getResultList();
 	}
-
+	
 }

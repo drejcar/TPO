@@ -31,7 +31,7 @@ public class SorodstvenoRazmerje implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to Kontakt
-	@OneToMany(mappedBy="sorodstvenoRazmerje")
+	@OneToMany(fetch = FetchType.EAGER,mappedBy="sorodstvenoRazmerje")
 	private List<Kontakt> kontakts;
 
 	//bi-directional many-to-one association to Pacient

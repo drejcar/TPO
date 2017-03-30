@@ -3,6 +3,8 @@ package si.fri.tpo.zrna;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
@@ -170,7 +172,7 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Posta> returnPostas() {
-		
+	
 		return em.createNamedQuery("Posta.findAll").getResultList();
 	}
 
