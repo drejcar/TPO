@@ -28,7 +28,7 @@ public interface FasadniSBLocal {
 	public List<Uporabnik> najdiUporabniks(); //vrni seznam uporabnikov
 	void shraniNovegaUporabnika(Uporabnik u); //kreiranje novega uporabnika
 	void updateUporabnika(Uporabnik u); //za updatanje gesla
-	void odstraniUporabnik(int id); //odstranjevanje uporabnika po id-ju
+	void deleteUporabnik(int id); //odstranjevanje uporabnika po id-ju
 	
 	//funkcije za DelovniNalog
 	public DelovniNalog vrniDelovniNalog(int id); //vrni specificni delovni nalog

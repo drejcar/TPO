@@ -87,7 +87,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
-	public void odstraniUporabnik(int id) {
+	public void deleteUporabnik(int id) {
 		uporabnik.odstraniUporabnik(id);
 		uporabnik.odstraniZrno();
 

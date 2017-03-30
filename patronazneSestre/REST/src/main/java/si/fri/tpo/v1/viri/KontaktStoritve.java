@@ -2,39 +2,63 @@ package si.fri.tpo.v1.viri;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.*;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import si.fri.tpo.entitete.Kontakt;
+import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.KontaktREST;
 
+@RequestScoped
+@Path("kontakt")
+@Produces({ "application/json" })
+@Consumes({ MediaType.APPLICATION_JSON })
 public class KontaktStoritve implements KontaktREST {
 
-	@Override
+	@EJB
+	private FasadniSBLocal fasada;
+	
+	@POST
+	@Path("")
 	public void createKontakt(Kontakt kontakt) {
-		// TODO Auto-generated method stub
-
+		fasada.createKontakt(kontakt);
+		fasada.odstraniZrno();
 	}
 
-	@Override
+	@GET
+	@Path("")
 	public List<Kontakt> returnKontakts() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Kontakt> list = fasada.returnKontakts();
+		fasada.odstraniZrno();
+		return list;
 	}
 
-	@Override
-	public void deleteKontakt(int id) {
-		// TODO Auto-generated method stub
+	@DELETE
+	@Path("{id}")
+	public void deleteKontakt(@PathParam("id") int id) {
+		fasada.deleteKontakt(id);
+		fasada.odstraniZrno();
 
 	}
 
-	@Override
+	@PUT
+	@Path("")
 	public void updateKontakt(Kontakt kontakt) {
-		// TODO Auto-generated method stub
+		fasada.updateKontakt(kontakt);
+		fasada.odstraniZrno();
 
 	}
 
-	@Override
-	public Kontakt returnKontakt(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("{id}")
+	public Kontakt returnKontakt(@PathParam("id") int id) {
+		Kontakt kt = fasada.returnKontakt(id);
+		fasada.odstraniZrno();
+		return kt;
 	}
 
 }

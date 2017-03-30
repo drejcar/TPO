@@ -2,38 +2,63 @@ package si.fri.tpo.v1.viri;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.*;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import si.fri.tpo.entitete.ZdravstveniDelavec;
+import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.ZdravstveniDelavecREST;
 
+@RequestScoped
+@Path("zdravstveniDelavec")
+@Produces({ "application/json" })
+@Consumes({ MediaType.APPLICATION_JSON })
 public class ZdravstveniDelavecStortve implements ZdravstveniDelavecREST {
 
-	@Override
-	public ZdravstveniDelavec returnZdravstveniDelavec(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@EJB
+	private FasadniSBLocal fasada;
+	
+	@GET
+	@Path("{id}")
+	public ZdravstveniDelavec returnZdravstveniDelavec(@PathParam("id") int id) {
+		ZdravstveniDelavec zd = fasada.returnZdravstveniDelavec(id);
+		fasada.odstraniZrno();
+		return zd;
 	}
 
-	@Override
-	public void deleteZdravstveniDelavec(int id) {
-		// TODO Auto-generated method stub
+	@DELETE
+	@Path("{id}")
+	public void deleteZdravstveniDelavec(@PathParam("id") int id) {
+		fasada.deleteZdravstveniDelavec(id);
+		fasada.odstraniZrno();
 
 	}
 
-	@Override
+	@GET
+	@Path("")
 	public List<ZdravstveniDelavec> returnZdravstveniDelavecs() {
-		// TODO Auto-generated method stub
-		return null;
+		List<ZdravstveniDelavec> list = fasada.returnZdravstveniDelavecs();
+		fasada.odstraniZrno();
+		return list;
 	}
 
-	@Override
+	@PUT
+	@Path("")
 	public void updateZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
-		// TODO Auto-generated method stub
+		fasada.updateZdravstveniDelavec(zdravstveniDelavec);
+		fasada.odstraniZrno();
 
 	}
 
-	@Override
+	@POST
+	@Path("")
 	public void createZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
-		// TODO Auto-generated method stub
+		fasada.createZdravstveniDelavec(zdravstveniDelavec);
+		fasada.odstraniZrno();
 
 	}
 
