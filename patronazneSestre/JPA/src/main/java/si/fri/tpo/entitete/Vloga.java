@@ -2,8 +2,6 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.List;
 
 
@@ -12,13 +10,8 @@ import java.util.List;
  * 
  */
 @Entity
-@XmlRootElement
 @Table(name="vloga")
-@NamedQueries({
-	@NamedQuery(name="Vloga.findAll", query="SELECT v FROM Vloga v"),
-	@NamedQuery(name="Vloga.findOne", query="SELECT v FROM Vloga v WHERE v.idvloga = :id"),
-	@NamedQuery(name="Vloga.deleteOne",query="DELETE FROM Vloga v WHERE v.idvloga = :id")
-})
+@NamedQuery(name="Vloga.findAll", query="SELECT v FROM Vloga v")
 public class Vloga implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +24,7 @@ public class Vloga implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to Uporabnik
-	@OneToMany(fetch = FetchType.EAGER, mappedBy="vloga")
+	@OneToMany(mappedBy="vloga")
 	private List<Uporabnik> uporabniks;
 
 	public Vloga() {

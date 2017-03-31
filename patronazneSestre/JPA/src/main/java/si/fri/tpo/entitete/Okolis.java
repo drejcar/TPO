@@ -31,7 +31,7 @@ public class Okolis implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to ZdravstveniDelavec
-	@OneToMany(fetch = FetchType.EAGER,mappedBy="okolis")
+	@OneToMany(mappedBy="okoli")
 	private List<ZdravstveniDelavec> zdravstveniDelavecs;
 
 	public Okolis() {
@@ -63,14 +63,14 @@ public class Okolis implements Serializable {
 
 	public ZdravstveniDelavec addZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		getZdravstveniDelavecs().add(zdravstveniDelavec);
-		zdravstveniDelavec.setOkolis(this);
+		zdravstveniDelavec.setOkoli(this);
 
 		return zdravstveniDelavec;
 	}
 
 	public ZdravstveniDelavec removeZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		getZdravstveniDelavecs().remove(zdravstveniDelavec);
-		zdravstveniDelavec.setOkolis(null);
+		zdravstveniDelavec.setOkoli(null);
 
 		return zdravstveniDelavec;
 	}

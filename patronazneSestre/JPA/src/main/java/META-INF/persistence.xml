@@ -9,7 +9,6 @@
 		<class>si.fri.tpo.entitete.Kontakt</class>
 		<class>si.fri.tpo.entitete.Material</class>
 		<class>si.fri.tpo.entitete.Obisk</class>
-		<class>si.fri.tpo.entitete.Okolis</class>
 		<class>si.fri.tpo.entitete.Pacient</class>
 		<class>si.fri.tpo.entitete.Posta</class>
 		<class>si.fri.tpo.entitete.SorodstvenoRazmerje</class>
@@ -19,5 +18,7 @@
 		<class>si.fri.tpo.entitete.VrstaObiska</class>
 		<class>si.fri.tpo.entitete.Zdravilo</class>
 		<class>si.fri.tpo.entitete.ZdravstveniDelavec</class>
+		<class>si.fri.tpo.entitete.Bolezen</class>
+		<class>si.fri.tpo.entitete.Okolis</class>
 	</persistence-unit>
 </persistence>

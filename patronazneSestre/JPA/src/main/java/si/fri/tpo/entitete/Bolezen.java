@@ -6,36 +6,36 @@ import java.util.List;
 
 
 /**
- * The persistent class for the vrsta_obiska database table.
+ * The persistent class for the bolezen database table.
  * 
  */
 @Entity
-@Table(name="vrsta_obiska")
-@NamedQuery(name="VrstaObiska.findAll", query="SELECT v FROM VrstaObiska v")
-public class VrstaObiska implements Serializable {
+@Table(name="bolezen")
+@NamedQuery(name="Bolezen.findAll", query="SELECT b FROM Bolezen b")
+public class Bolezen implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="idvrsta_obiska", unique=true, nullable=false)
-	private int idvrstaObiska;
+	@Column(unique=true, nullable=false)
+	private int idbolezen;
 
-	@Column(nullable=false, length=45)
+	@Column(length=45)
 	private String opis;
 
 	//bi-directional many-to-one association to DelovniNalog
-	@OneToMany(mappedBy="vrstaObiska")
+	@OneToMany(mappedBy="bolezen")
 	private List<DelovniNalog> delovniNalogs;
 
-	public VrstaObiska() {
+	public Bolezen() {
 	}
 
-	public int getIdvrstaObiska() {
-		return this.idvrstaObiska;
+	public int getIdbolezen() {
+		return this.idbolezen;
 	}
 
-	public void setIdvrstaObiska(int idvrstaObiska) {
-		this.idvrstaObiska = idvrstaObiska;
+	public void setIdbolezen(int idbolezen) {
+		this.idbolezen = idbolezen;
 	}
 
 	public String getOpis() {
@@ -56,14 +56,14 @@ public class VrstaObiska implements Serializable {
 
 	public DelovniNalog addDelovniNalog(DelovniNalog delovniNalog) {
 		getDelovniNalogs().add(delovniNalog);
-		delovniNalog.setVrstaObiska(this);
+		delovniNalog.setBolezen(this);
 
 		return delovniNalog;
 	}
 
 	public DelovniNalog removeDelovniNalog(DelovniNalog delovniNalog) {
 		getDelovniNalogs().remove(delovniNalog);
-		delovniNalog.setVrstaObiska(null);
+		delovniNalog.setBolezen(null);
 
 		return delovniNalog;
 	}

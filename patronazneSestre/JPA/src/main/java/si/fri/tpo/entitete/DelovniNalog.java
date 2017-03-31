@@ -2,8 +2,6 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.List;
 
 
@@ -12,13 +10,8 @@ import java.util.List;
  * 
  */
 @Entity
-@XmlRootElement
 @Table(name="delovni_nalog")
-@NamedQueries({
-	@NamedQuery(name="DelovniNalog.findAll", query="SELECT d FROM DelovniNalog d"),
-	@NamedQuery(name="DelovniNalog.findOne",query="SELECT d FROM DelovniNalog d WHERE d.iddelovniNalog = :id"),
-	@NamedQuery(name="DelovniNalog.deleteOne",query="DELETE FROM DelovniNalog d WHERE d.iddelovniNalog = :id")
-})
+@NamedQuery(name="DelovniNalog.findAll", query="SELECT d FROM DelovniNalog d")
 public class DelovniNalog implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +19,11 @@ public class DelovniNalog implements Serializable {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="iddelovni_nalog", unique=true, nullable=false)
 	private int iddelovniNalog;
+
+	//bi-directional many-to-one association to Bolezen
+	@ManyToOne
+	@JoinColumn(name="idbolezen", nullable=false)
+	private Bolezen bolezen;
 
 	//bi-directional many-to-one association to IzvajalecZdravstvenihStoritev
 	@ManyToOne
@@ -47,13 +45,13 @@ public class DelovniNalog implements Serializable {
 	@JoinColumn(name="idzdravstveni_delavec", nullable=false)
 	private ZdravstveniDelavec zdravstveniDelavec;
 
-	//bi-directional many-to-many association to Pacient
-	@ManyToMany(mappedBy="delovniNalogs")
-	private List<Pacient> pacients;
-
 	//bi-directional many-to-many association to Material
 	@ManyToMany(mappedBy="delovniNalogs")
 	private List<Material> materials;
+
+	//bi-directional many-to-many association to Pacient
+	@ManyToMany(mappedBy="delovniNalogs")
+	private List<Pacient> pacients;
 
 	//bi-directional many-to-many association to Zdravilo
 	@ManyToMany(mappedBy="delovniNalogs")
@@ -68,6 +66,14 @@ public class DelovniNalog implements Serializable {
 
 	public void setIddelovniNalog(int iddelovniNalog) {
 		this.iddelovniNalog = iddelovniNalog;
+	}
+
+	public Bolezen getBolezen() {
+		return this.bolezen;
+	}
+
+	public void setBolezen(Bolezen bolezen) {
+		this.bolezen = bolezen;
 	}
 
 	public IzvajalecZdravstvenihStoritev getIzvajalecZdravstvenihStoritev() {
@@ -102,20 +108,20 @@ public class DelovniNalog implements Serializable {
 		this.zdravstveniDelavec = zdravstveniDelavec;
 	}
 
-	public List<Pacient> getPacients() {
-		return this.pacients;
-	}
-
-	public void setPacients(List<Pacient> pacients) {
-		this.pacients = pacients;
-	}
-
 	public List<Material> getMaterials() {
 		return this.materials;
 	}
 
 	public void setMaterials(List<Material> materials) {
 		this.materials = materials;
+	}
+
+	public List<Pacient> getPacients() {
+		return this.pacients;
+	}
+
+	public void setPacients(List<Pacient> pacients) {
+		this.pacients = pacients;
 	}
 
 	public List<Zdravilo> getZdravilos() {

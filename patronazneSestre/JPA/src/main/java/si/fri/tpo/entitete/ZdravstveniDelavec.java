@@ -2,8 +2,6 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.List;
 
 
@@ -12,13 +10,8 @@ import java.util.List;
  * 
  */
 @Entity
-@XmlRootElement
 @Table(name="zdravstveni_delavec")
-@NamedQueries({
-	@NamedQuery(name="ZdravstveniDelavec.findAll", query="SELECT z FROM ZdravstveniDelavec z"),
-	@NamedQuery(name="ZdravstveniDelavec.findOne", query="SELECT z FROM ZdravstveniDelavec z WHERE z.idzdravstveniDelavec = :id"),
-	@NamedQuery(name="ZdravstveniDelavec.deleteOne", query="DELETE FROM ZdravstveniDelavec z WHERE z.idzdravstveniDelavec = :id")
-})
+@NamedQuery(name="ZdravstveniDelavec.findAll", query="SELECT z FROM ZdravstveniDelavec z")
 public class ZdravstveniDelavec implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -45,7 +38,7 @@ public class ZdravstveniDelavec implements Serializable {
 	//bi-directional many-to-one association to Okoli
 	@ManyToOne
 	@JoinColumn(name="idokolis", nullable=false)
-	private Okolis okolis;
+	private Okolis okoli;
 
 	//bi-directional many-to-one association to Uporabnik
 	@ManyToOne
@@ -109,12 +102,12 @@ public class ZdravstveniDelavec implements Serializable {
 		this.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
 	}
 
-	public Okolis getOkolis() {
-		return this.okolis;
+	public Okolis getOkoli() {
+		return this.okoli;
 	}
 
-	public void setOkolis(Okolis okolis) {
-		this.okolis = okolis;
+	public void setOkoli(Okolis okoli) {
+		this.okoli = okoli;
 	}
 
 	public Uporabnik getUporabnik() {
