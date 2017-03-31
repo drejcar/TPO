@@ -2,8 +2,6 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.List;
 
 
@@ -12,13 +10,8 @@ import java.util.List;
  * 
  */
 @Entity
-@XmlRootElement
 @Table(name="sorodstveno_razmerje")
-@NamedQueries({
-	@NamedQuery(name="SorodstvenoRazmerje.findAll", query="SELECT s FROM SorodstvenoRazmerje s"),
-	@NamedQuery(name="SorodstvenoRazmerje.findOne", query="SELECT s FROM SorodstvenoRazmerje s WHERE s.idsorodstvenoRazmerje = :id"),
-	@NamedQuery(name="SorodstvenoRazmerje.deleteOne", query="DELETE FROM SorodstvenoRazmerje s WHERE s.idsorodstvenoRazmerje = :id")
-})
+@NamedQuery(name="SorodstvenoRazmerje.findAll", query="SELECT s FROM SorodstvenoRazmerje s")
 public class SorodstvenoRazmerje implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +24,7 @@ public class SorodstvenoRazmerje implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to Kontakt
-	@OneToMany(fetch = FetchType.EAGER,mappedBy="sorodstvenoRazmerje")
+	@OneToMany(mappedBy="sorodstvenoRazmerje")
 	private List<Kontakt> kontakts;
 
 	//bi-directional many-to-one association to Pacient

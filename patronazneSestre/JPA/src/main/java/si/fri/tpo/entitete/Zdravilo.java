@@ -2,8 +2,6 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import javax.xml.bind.annotation.XmlRootElement;
-
 import java.util.List;
 
 
@@ -12,13 +10,8 @@ import java.util.List;
  * 
  */
 @Entity
-@XmlRootElement
 @Table(name="zdravilo")
-@NamedQueries({
-	@NamedQuery(name="Zdravilo.findAll", query="SELECT z FROM Zdravilo z"),
-	@NamedQuery(name="Zdravilo.findOne", query="SELECT z FROM Zdravilo z WHERE z.idzdravilo = :id"),
-	@NamedQuery(name="Zdravilo.deleteOne", query="DELETE FROM Zdravilo z WHERE z.idzdravilo = :id")
-})
+@NamedQuery(name="Zdravilo.findAll", query="SELECT z FROM Zdravilo z")
 public class Zdravilo implements Serializable {
 	private static final long serialVersionUID = 1L;
 
