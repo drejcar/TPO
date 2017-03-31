@@ -14,6 +14,7 @@ public interface SifrantiREST {
 	void createVloga(Vloga vloga);
 	void createVrstaObiska(VrstaObiska vrstaObiska);
 	void createSorodstvenoRazmerje(SorodstvenoRazmerje sorodstvenoRazmerje);
+	void createBolezen(Bolezen bolezen);
 	
 	public List<Zdravilo> returnZdravilas();
 	public List<Material> returnMaterials();
@@ -23,6 +24,7 @@ public interface SifrantiREST {
 	public List<Vloga> returnVlogas();
 	public List<VrstaObiska> returnVrstaObiskas();
 	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes();
+	public List<Bolezen> returnBolezens();
 	
 	void deleteZdravilo(int id);
 	void deleteMaterial(int id);
@@ -32,6 +34,7 @@ public interface SifrantiREST {
 	void deleteVloga(int id);
 	void deleteVrstaObiska(int id);
 	void deleteSorodstvenoRazmerje(int id);
+	void deleteBolezen(int id);
 	
 	void updateZdravilo(Zdravilo zdravilo);
 	void updateMaterial(Material material);
@@ -41,6 +44,7 @@ public interface SifrantiREST {
 	void updateVloga(Vloga vloga);
 	void updateVrstaObiska(VrstaObiska vrstaObiska);
 	void updateSorodstvenoRazmerje(SorodstvenoRazmerje sorodstvenoRazmerje);
+	void updateBolezen(Bolezen bolezen);
 	
 	public Zdravilo returnZdravila(int id);
 	public Material returnMaterial(int id);
@@ -50,5 +54,6 @@ public interface SifrantiREST {
 	public Vloga returnVloga(int id);
 	public VrstaObiska returnVrstaObiska(int id);
 	public SorodstvenoRazmerje returnSorodstvenoRazmerje(int id);
+	public Bolezen returnBolezen(int id);
 	
 }
