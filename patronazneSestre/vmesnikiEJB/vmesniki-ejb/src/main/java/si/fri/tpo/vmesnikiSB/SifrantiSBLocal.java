@@ -20,6 +20,7 @@ public interface SifrantiSBLocal {
 	void createVloga(Vloga v);
 	void createVrstaObiska(VrstaObiska vo);
 	void createSorodstvenoRazmerje(SorodstvenoRazmerje sr);
+	void createBolezen(Bolezen bolezen);
 	
 	//klici za pridobivanje sifrantov (list)
 	public List<Zdravilo> returnZdravilas();
@@ -30,6 +31,7 @@ public interface SifrantiSBLocal {
 	public List<Vloga> returnVlogas();
 	public List<VrstaObiska> returnVrstaObiskas();
 	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes();
+	public List<Bolezen>returnBolezens(); 
 	
 	//klici za odstranjevanje
 	void deleteZdravilo(int id);
@@ -40,6 +42,7 @@ public interface SifrantiSBLocal {
 	void deleteVloga(int id);
 	void deleteVrstaObiska(int id);
 	void deleteSorodstvenoRazmerje(int id);
+	void deleteBolezen(int id); 
 	
 	//klici za pridobivanje enega sifranta
 	public Zdravilo returnZdravila(int id);
@@ -50,6 +53,7 @@ public interface SifrantiSBLocal {
 	public Vloga returnVloga(int id);
 	public VrstaObiska returnVrstaObiska(int id);
 	public SorodstvenoRazmerje returnSorodstvenoRazmerje(int id);
+	public Bolezen returnBolezen(int id); 
 	
 	//klici za updatanje sifrantov
 	void updateZdravilo(Zdravilo z);
@@ -60,6 +64,7 @@ public interface SifrantiSBLocal {
 	void updateVloga(Vloga v);
 	void updateVrstaObiska(VrstaObiska vo);
 	void updateSorodstvenoRazmerje(SorodstvenoRazmerje sr);
+	void updateBolezen(Bolezen bolezen); 
 	
 	void odstraniZrno();
 		

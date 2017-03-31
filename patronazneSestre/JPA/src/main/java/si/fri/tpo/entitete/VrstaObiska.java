@@ -11,7 +11,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="vrsta_obiska")
-@NamedQuery(name="VrstaObiska.findAll", query="SELECT v FROM VrstaObiska v")
+@NamedQueries({
+	@NamedQuery(name="VrstaObiska.findAll", query="SELECT v FROM VrstaObiska v"),
+	@NamedQuery(name="VrstaObiska.findOne",query="SELECT v FROM VrstaObiska v WHERE v.idvrstaObiska = :id"),
+	@NamedQuery(name="VrstaObiska.deleteOne",query="DELETE FROM VrstaObiska v WHERE v.idvrstaObiska = :id")
+})
 public class VrstaObiska implements Serializable {
 	private static final long serialVersionUID = 1L;
 
