@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import si.fri.tpo.entitete.Bolezen;
 import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.IzvajalecZdravstvenihStoritev;
 import si.fri.tpo.entitete.Kontakt;
@@ -48,6 +49,7 @@ public interface FasadniSBLocal {
 		void createVloga(Vloga v);
 		void createVrstaObiska(VrstaObiska vo);
 		void createSorodstvenoRazmerje(SorodstvenoRazmerje sr);
+		void createBolezen(Bolezen bolezen);
 		
 		//klici za pridobivanje sifrantov (list)
 		public List<Zdravilo> returnZdravilas();
@@ -58,6 +60,7 @@ public interface FasadniSBLocal {
 		public List<Vloga> returnVlogas();
 		public List<VrstaObiska> returnVrstaObiskas();
 		public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes();
+		public List<Bolezen>returnBolezens(); 
 		
 		//klici za odstranjevanje
 		void deleteZdravilo(int id);
@@ -68,6 +71,7 @@ public interface FasadniSBLocal {
 		void deleteVloga(int id);
 		void deleteVrstaObiska(int id);
 		void deleteSorodstvenoRazmerje(int id);
+		void deleteBolezen(int id); 
 		
 		//klici za pridobivanje enega sifranta
 		public Zdravilo returnZdravila(int id);
@@ -78,6 +82,7 @@ public interface FasadniSBLocal {
 		public Vloga returnVloga(int id);
 		public VrstaObiska returnVrstaObiska(int id);
 		public SorodstvenoRazmerje returnSorodstvenoRazmerje(int id);
+		public Bolezen returnBolezen(int id); 
 		
 		//klici za updatanje sifrantov
 		void updateZdravilo(Zdravilo z);
@@ -88,6 +93,7 @@ public interface FasadniSBLocal {
 		void updateVloga(Vloga v);
 		void updateVrstaObiska(VrstaObiska vo);
 		void updateSorodstvenoRazmerje(SorodstvenoRazmerje sr);
+		void updateBolezen(Bolezen bolezen);
 	
 		//klici za zdravstvene delavce
 		public ZdravstveniDelavec returnZdravstveniDelavec(int id);

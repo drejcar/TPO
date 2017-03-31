@@ -10,6 +10,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import si.fri.tpo.entitete.Bolezen;
 import si.fri.tpo.entitete.Material;
 import si.fri.tpo.entitete.Okolis;
 import si.fri.tpo.entitete.Posta;
@@ -117,6 +118,17 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		em.persist(sr);
 		
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#createBolezen(si.fri.tpo.entitete.Bolezen)
+	 */
+	@Override
+	public void createBolezen(Bolezen bolezen) {
+		em.persist(bolezen);
+		
+	}
+	
 	// *** klici za vracanje seznama sifrantov ***
 	
 	/*
@@ -209,6 +221,17 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		return em.createNamedQuery("SorodstvenoRazmerje.findAll").getResultList();
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#returnBolezens()
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Bolezen> returnBolezens() {
+		
+		return em.createNamedQuery("Bolezen.findAll").getResultList();
+	}
+	
 	// *** klici za brisanje specificnega sifranta ***
 	
 	/*
@@ -289,6 +312,16 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	@Override
 	public void deleteSorodstvenoRazmerje(int id) {
 		em.createNamedQuery("SorodstvenoRazmerje.deleteOne").setParameter("id", id).executeUpdate();
+		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#deleteBolezen(int)
+	 */
+	@Override
+	public void deleteBolezen(int id) {
+		em.createNamedQuery("Bolezen.deleteOne").setParameter("id", id).executeUpdate();
 		
 	}
 	
@@ -375,6 +408,16 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		return (SorodstvenoRazmerje) em.createNamedQuery("SorodstvenoRazmerje.findOne").setParameter("id", id).getSingleResult();
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#returnBolezen(int)
+	 */
+	@Override
+	public Bolezen returnBolezen(int id) {
+		
+		return (Bolezen) em.createNamedQuery("Bolezen.findOne").setParameter("id", id).getSingleResult();
+	}
+	
 	// *** klici za updatanje sifrantov ***
 	
 	/*
@@ -457,6 +500,17 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#updateBolezen(si.fri.tpo.entitete.Bolezen)
+	 */
+	@Override
+	public void updateBolezen(Bolezen bolezen) {
+		em.merge(bolezen);
+		
+	}
+	
+	// ***klic za odstranjevanje zrna***
 
 	/*
 	 * (non-Javadoc)

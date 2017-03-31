@@ -5,6 +5,7 @@ import java.util.List;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import si.fri.tpo.entitete.Bolezen;
 import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.IzvajalecZdravstvenihStoritev;
 import si.fri.tpo.entitete.Kontakt;
@@ -49,6 +50,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	private KontaktSBLocal kontakti;
 	@EJB
 	private IzvajalecZdravstvenihStoritevSBLocal izs;
+
 	/**
 	 * Default constructor.
 	 */
@@ -92,8 +94,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		uporabnik.odstraniZrno();
 
 	}
-	
-	
+
 	// *** klici za delovni nalog ***
 
 	@Override
@@ -197,6 +198,14 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	}
 
+	// bolezen
+	@Override
+	public void createBolezen(Bolezen bolezen) {
+		sifranti.createBolezen(bolezen);
+		sifranti.odstraniZrno();
+
+	}
+
 	// *** klici za vracanje seznama sifrantov ***
 
 	// zdravilo
@@ -259,6 +268,14 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	@Override
 	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes() {
 		List<SorodstvenoRazmerje> list = sifranti.returnSorodstvenoRazmerjes();
+		sifranti.odstraniZrno();
+		return list;
+	}
+
+	// bolezen
+	@Override
+	public List<Bolezen> returnBolezens() {
+		List<Bolezen> list = sifranti.returnBolezens();
 		sifranti.odstraniZrno();
 		return list;
 	}
@@ -329,6 +346,13 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	}
 
+	// bolezen
+	@Override
+	public void deleteBolezen(int id) {
+		sifranti.deleteBolezen(id);
+		sifranti.odstraniZrno();
+	}
+
 	// *** klici za vracanje specificnega sifranta ***
 
 	// zdravilo
@@ -395,6 +419,14 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		return eno;
 	}
 
+	// bolezen
+	@Override
+	public Bolezen returnBolezen(int id) {
+		Bolezen nova = sifranti.returnBolezen(id);
+		sifranti.odstraniZrno();
+		return nova;
+	}
+
 	// *** klici za updatanje sifrantov ***
 
 	// zdravilo
@@ -457,6 +489,14 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	@Override
 	public void updateSorodstvenoRazmerje(SorodstvenoRazmerje sr) {
 		sifranti.updateSorodstvenoRazmerje(sr);
+		sifranti.odstraniZrno();
+
+	}
+
+	// bolezen
+	@Override
+	public void updateBolezen(Bolezen bolezen) {
+		sifranti.updateBolezen(bolezen);
 		sifranti.odstraniZrno();
 
 	}
@@ -537,7 +577,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	// *** klici za kontakt ***
-	
+
 	@Override
 	public Kontakt returnKontakt(int id) {
 		Kontakt nov = kontakti.returnKontakt(id);
@@ -591,21 +631,21 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	public void createIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
 		izs.createIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
 		izs.odstraniZrno();
-		
+
 	}
 
 	@Override
 	public void updateIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
 		izs.updateIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
 		izs.odstraniZrno();
-		
+
 	}
 
 	@Override
 	public void deleteIzvajalecZdravstvenihStoritev(int id) {
 		izs.deleteIzvajalecZdravstvenihStoritev(id);
 		izs.odstraniZrno();
-		
+
 	}
-	
+
 }

@@ -11,7 +11,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="obisk")
-@NamedQuery(name="Obisk.findAll", query="SELECT o FROM Obisk o")
+@NamedQueries({
+	@NamedQuery(name="Obisk.findAll", query="SELECT o FROM Obisk o"),
+	@NamedQuery(name="Obisk.findOne",query="SELECT o FROM Obisk o WHERE o.idobisk = :id"),
+	@NamedQuery(name="Obisk.deleteOne",query="DELETE FROM Obisk o WHERE o.idobisk = :id")
+})
 public class Obisk implements Serializable {
 	private static final long serialVersionUID = 1L;
 

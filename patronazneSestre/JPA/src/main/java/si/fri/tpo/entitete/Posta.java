@@ -11,7 +11,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="posta")
-@NamedQuery(name="Posta.findAll", query="SELECT p FROM Posta p")
+@NamedQueries({
+	@NamedQuery(name="Posta.findAll", query="SELECT p FROM Posta p"),
+	@NamedQuery(name="Posta.findOne",query="SELECT p FROM Posta p WHERE p.idposta = :idposta"),
+	@NamedQuery(name="Posta.deleteOne",query="DELETE FROM Posta p WHERE p.idposta = :idposta")
+})
 public class Posta implements Serializable {
 	private static final long serialVersionUID = 1L;
 

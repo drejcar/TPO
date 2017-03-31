@@ -11,7 +11,11 @@ import java.util.List;
  */
 @Entity
 @Table(name="vloga")
-@NamedQuery(name="Vloga.findAll", query="SELECT v FROM Vloga v")
+@NamedQueries({
+@NamedQuery(name="Vloga.findAll", query="SELECT v FROM Vloga v"),
+	@NamedQuery(name="Vloga.findOne",query="SELECT v FROM Vloga v WHERE v.idvloga = :id"),
+	@NamedQuery(name="Vloga.deleteOne",query="DELETE FROM Vloga v WHERE v.idvloga = :id")
+})
 public class Vloga implements Serializable {
 	private static final long serialVersionUID = 1L;
 
