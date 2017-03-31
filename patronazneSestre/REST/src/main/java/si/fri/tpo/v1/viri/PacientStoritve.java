@@ -2,39 +2,60 @@ package si.fri.tpo.v1.viri;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.*;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import si.fri.tpo.entitete.Pacient;
+import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.PacientREST;
 
+@RequestScoped
+@Path("pacient")
+@Produces({ "application/json" })
+@Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
 public class PacientStoritve implements PacientREST {
 
-	@Override
+	@EJB
+	private FasadniSBLocal fasada;
+	
+	@POST
+	@Path("")
 	public void createPacient(Pacient pacient) {
-		// TODO Auto-generated method stub
+		fasada.createPacient(pacient);
+		
 
 	}
 
-	@Override
+	@GET
+	@Path("")
 	public List<Pacient> returnPacients() {
-		// TODO Auto-generated method stub
-		return null;
+		return fasada.returnPacients();
 	}
 
-	@Override
-	public void deletePacient(int id) {
-		// TODO Auto-generated method stub
+	@DELETE
+	@Path("{id}")
+	public void deletePacient(@PathParam("id") int id) {
+		fasada.deletePacient(id);
+		
 
 	}
 
-	@Override
+	@PUT
+	@Path("")
 	public void updatePacient(Pacient pacient) {
-		// TODO Auto-generated method stub
+		fasada.updatePacient(pacient);
+		
 
 	}
 
-	@Override
-	public Pacient returnPacient(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("{id}")
+	public Pacient returnPacient(@PathParam("id") int id) {
+		return fasada.returnPacient(id);
 	}
 
 }

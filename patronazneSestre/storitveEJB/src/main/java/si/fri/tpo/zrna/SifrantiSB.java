@@ -3,6 +3,8 @@ package si.fri.tpo.zrna;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
@@ -34,7 +36,9 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 
     }
     
-    /*
+    // *** klici za kreiranje sifrantov ***
+    
+    /* 
      * (non-Javadoc)
      * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#createZdravilo(si.fri.tpo.entitete.Zdravilo)
      */
@@ -103,7 +107,18 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		em.persist(vo);
 		
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#createSorodstvenoRazmerje(si.fri.tpo.entitete.SorodstvenoRazmerje)
+	 */
+	@Override
+	public void createSorodstvenoRazmerje(SorodstvenoRazmerje sr) {
+		em.persist(sr);
+		
+	}
+	// *** klici za vracanje seznama sifrantov ***
+	
 	/*
 	 * (non-Javadoc)
 	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#returnZdravilas()
@@ -157,7 +172,7 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Posta> returnPostas() {
-		
+	
 		return em.createNamedQuery("Posta.findAll").getResultList();
 	}
 
@@ -182,12 +197,24 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		
 		return em.createNamedQuery("VrstaObiska.findAll").getResultList();
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#returnSorodstvenoRazmerjes()
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes() {
+		
+		return em.createNamedQuery("SorodstvenoRazmerje.findAll").getResultList();
+	}
+	
+	// *** klici za brisanje specificnega sifranta ***
+	
 	/*
 	 * (non-Javadoc)
 	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#deleteZdravilo(int)
 	 */
-	
 	@Override
 	public void deleteZdravilo(int id) {
 		em.createNamedQuery("Zdravilo.deleteOne").setParameter("id", id).executeUpdate();
@@ -254,6 +281,18 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		em.createNamedQuery("VrstaObiska.deleteOne").setParameter("id", id).executeUpdate();
 		
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#deleteSorodstvenoRazmerje(int)
+	 */
+	@Override
+	public void deleteSorodstvenoRazmerje(int id) {
+		em.createNamedQuery("SorodstvenoRazmerje.deleteOne").setParameter("id", id).executeUpdate();
+		
+	}
+	
+	// *** klici za vracanje specificnega sifranta ***
 	
 	/*
 	 * (non-Javadoc)
@@ -325,7 +364,19 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		
 		return (VrstaObiska) em.createNamedQuery("VrstaObiska.findOne").setParameter("id", id).getSingleResult(); 
 	}
-
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#returnSorodstvenoRazmerje(int)
+	 */
+	@Override
+	public SorodstvenoRazmerje returnSorodstvenoRazmerje(int id) {
+		
+		return (SorodstvenoRazmerje) em.createNamedQuery("SorodstvenoRazmerje.findOne").setParameter("id", id).getSingleResult();
+	}
+	
+	// *** klici za updatanje sifrantov ***
+	
 	/*
 	 * (non-Javadoc)
 	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#updateZdravilo(si.fri.tpo.entitete.Zdravilo)
@@ -395,6 +446,17 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		em.merge(vo);
 		
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#updateSorodstvenoRazmerje(si.fri.tpo.entitete.SorodstvenoRazmerje)
+	 */
+	@Override
+	public void updateSorodstvenoRazmerje(SorodstvenoRazmerje sr) {
+		em.merge(sr);
+		
+	}
+	
 
 	/*
 	 * (non-Javadoc)
@@ -405,37 +467,4 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		
 		
 	}
-
-	@Override
-	public void createSorodstvenoRazmerje(SorodstvenoRazmerje sr) {
-		em.persist(sr);
-		
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes() {
-		
-		return em.createNamedQuery("SorodstvenoRazmerje.findAll").getResultList();
-	}
-
-	@Override
-	public void deleteSorodstvenoRazmerje(int id) {
-		em.createNamedQuery("SorodstvenoRazmerje.deleteOne").setParameter("id", id).executeUpdate();
-		
-		
-	}
-
-	@Override
-	public SorodstvenoRazmerje returnSorodstvenoRazmerje(int id) {
-		
-		return (SorodstvenoRazmerje) em.createNamedQuery("SorodstvenoRazmerje.findOne").setParameter("id", id).getSingleResult();
-	}
-
-	@Override
-	public void updateSorodstvenoRazmerje(SorodstvenoRazmerje sr) {
-		em.merge(sr);
-		
-	}
-
 }

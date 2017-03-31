@@ -2,39 +2,64 @@ package si.fri.tpo.v1.viri;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.*;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import si.fri.tpo.entitete.IzvajalecZdravstvenihStoritev;
+import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.IzvajalecZdravstvenihStoritevREST;
 
+@RequestScoped
+@Path("izvajalecZdravstvenihStoritev")
+@Produces({ "application/json" })
+@Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
 public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstvenihStoritevREST {
 
-	@Override
+	@EJB
+	private FasadniSBLocal fasada;
+	
+	@POST
+	@Path("")
 	public void createIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
-		// TODO Auto-generated method stub
+		fasada.createIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
+		
 
 	}
 
-	@Override
+	@GET
+	@Path("")
 	public List<IzvajalecZdravstvenihStoritev> returnIzvajalecZdravstvenihStoritevs() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return fasada.returnIzvajalecZdravstvenihStoritevs();
 	}
 
-	@Override
-	public void deleteIzvajalecZdravstvenihStoritev(int id) {
-		// TODO Auto-generated method stub
+	@DELETE
+	@Path("{id}")
+	public void deleteIzvajalecZdravstvenihStoritev(@PathParam("id") int id) {
+		fasada.deleteIzvajalecZdravstvenihStoritev(id);
+		
 
 	}
 
-	@Override
+	@PUT
+	@Path("")
 	public void updateIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
-		// TODO Auto-generated method stub
+		fasada.updateIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
+		
 
 	}
 
-	@Override
-	public IzvajalecZdravstvenihStoritev returnIzvajalecZdravstvenihStoritev(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("{id}")
+	public IzvajalecZdravstvenihStoritev returnIzvajalecZdravstvenihStoritev(@PathParam("id") int id) {
+		
+		
+		return fasada.returnIzvajalecZdravstvenihStoritev(id);
 	}
 
 }

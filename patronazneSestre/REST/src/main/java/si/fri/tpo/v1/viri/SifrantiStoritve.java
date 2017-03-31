@@ -2,6 +2,13 @@ package si.fri.tpo.v1.viri;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.*;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import si.fri.tpo.entitete.Material;
 import si.fri.tpo.entitete.Okolis;
 import si.fri.tpo.entitete.Posta;
@@ -10,248 +17,342 @@ import si.fri.tpo.entitete.Spol;
 import si.fri.tpo.entitete.Vloga;
 import si.fri.tpo.entitete.VrstaObiska;
 import si.fri.tpo.entitete.Zdravilo;
+import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.SifrantiREST;
 
+@RequestScoped
+@Path("sifranti")
+@Produces({ "application/json" })
+@Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
 public class SifrantiStoritve implements SifrantiREST {
 
-	@Override
+	@EJB
+	private FasadniSBLocal fasada;
+	
+	// *** create sifrante ***
+	
+	@POST
+	@Path("/zdravilo")
 	public void createZdravilo(Zdravilo zdravilo) {
-		// TODO Auto-generated method stub
+		fasada.createZdravilo(zdravilo);
+		
 
 	}
 
-	@Override
+	@POST
+	@Path("/material")
 	public void createMaterial(Material material) {
-		// TODO Auto-generated method stub
+		fasada.createMaterial(material);
+		
 
 	}
 
-	@Override
+	@POST
+	@Path("/spol")
 	public void createSpol(Spol spol) {
-		// TODO Auto-generated method stub
+		fasada.createSpol(spol);
+		
 
 	}
 
-	@Override
+	@POST
+	@Path("/okolis")
 	public void createOkolis(Okolis okolis) {
-		// TODO Auto-generated method stub
+		fasada.createOkolis(okolis);
+		
 
 	}
 
-	@Override
+	@POST
+	@Path("/posta")
 	public void createPosta(Posta posta) {
-		// TODO Auto-generated method stub
+		fasada.createPosta(posta);
+		
 
 	}
 
-	@Override
+	@POST
+	@Path("/vloga")
 	public void createVloga(Vloga vloga) {
-		// TODO Auto-generated method stub
+		fasada.createVloga(vloga);
+		
 
 	}
 
-	@Override
+	@POST
+	@Path("/vrstaObiska")
 	public void createVrstaObiska(VrstaObiska vrstaObiska) {
-		// TODO Auto-generated method stub
+		fasada.createVrstaObiska(vrstaObiska);
+		
 
 	}
 
-	@Override
+	@POST
+	@Path("/sorodstvenoRazmerje")
 	public void createSorodstvenoRazmerje(SorodstvenoRazmerje sorodstvenoRazmerje) {
-		// TODO Auto-generated method stub
+		fasada.createSorodstvenoRazmerje(sorodstvenoRazmerje);
+		
 
 	}
 
-	@Override
+	// *** vracanje seznama sifrantov ***
+	
+	@GET
+	@Path("/zdravilo")
 	public List<Zdravilo> returnZdravilas() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return fasada.returnZdravilas();
 	}
 
-	@Override
+	@GET
+	@Path("/material")
 	public List<Material> returnMaterials() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return fasada.returnMaterials();
 	}
 
-	@Override
+	@GET
+	@Path("/spol")
 	public List<Spol> returnSpols() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return fasada.returnSpols();
 	}
 
-	@Override
+	@GET
+	@Path("/okolis")
 	public List<Okolis> returnOkoliss() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return fasada.returnOkoliss();
 	}
 
-	@Override
+	@GET
+	@Path("/posta")
 	public List<Posta> returnPostas() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return fasada.returnPostas();
 	}
 
-	@Override
+	@GET
+	@Path("/vloga")
 	public List<Vloga> returnVlogas() {
-		// TODO Auto-generated method stub
-		return null;
+		return fasada.returnVlogas();
+		
 	}
 
-	@Override
+	@GET
+	@Path("/vrstaObiska")
 	public List<VrstaObiska> returnVrstaObiskas() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return fasada.returnVrstaObiskas();
 	}
 
-	@Override
+	@GET
+	@Path("/sorodstvenoRazmerje")
 	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		
+		return fasada.returnSorodstvenoRazmerjes();
 	}
 
-	@Override
-	public void deleteZdravilo(int id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteMaterial(int id) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void deleteSpol(int id) {
-		// TODO Auto-generated method stub
+	// *** brisanje specificnega sifranta ***
+	
+	@DELETE
+	@Path("/zdravilo/{id}")
+	public void deleteZdravilo(@PathParam("id")int id) {
+		fasada.deleteZdravilo(id);
+		
 
 	}
 
-	@Override
-	public void deleteOkolis(int id) {
-		// TODO Auto-generated method stub
+	@DELETE
+	@Path("/material/{id}")
+	public void deleteMaterial(@PathParam("id")int id) {
+		fasada.deleteMaterial(id);
+		
 
 	}
 
-	@Override
-	public void deletePosta(int id) {
-		// TODO Auto-generated method stub
+	@DELETE
+	@Path("/spol/{id}")
+	public void deleteSpol(@PathParam("id")int id) {
+		fasada.deleteSpol(id);
+		
 
 	}
 
-	@Override
-	public void deleteVloga(int id) {
-		// TODO Auto-generated method stub
+	@DELETE
+	@Path("/okolis/{id}")
+	public void deleteOkolis(@PathParam("id")int id) {
+		fasada.deleteOkolis(id);
+		
 
 	}
 
-	@Override
-	public void deleteVrstaObiska(int id) {
-		// TODO Auto-generated method stub
+	@DELETE
+	@Path("/posta/{id}")
+	public void deletePosta(@PathParam("id")int id) {
+		fasada.deletePosta(id);
+		
 
 	}
 
-	@Override
-	public void deleteSorodstvenoRazmerje(int id) {
-		// TODO Auto-generated method stub
+	@DELETE
+	@Path("/vloga/{id}")
+	public void deleteVloga(@PathParam("id")int id) {
+		fasada.deleteVloga(id);
+		
 
 	}
 
-	@Override
+	@DELETE
+	@Path("/vrstaObiska/{id}")
+	public void deleteVrstaObiska(@PathParam("id")int id) {
+		fasada.deleteVrstaObiska(id);
+		
+
+	}
+
+	@DELETE
+	@Path("/sorodstvenoRazmerje/{id}")
+	public void deleteSorodstvenoRazmerje(@PathParam("id")int id) {
+		fasada.deleteSorodstvenoRazmerje(id);
+		
+
+	}
+
+	// *** update sifrant ***
+	
+	@PUT
+	@Path("/zdravilo")
 	public void updateZdravilo(Zdravilo zdravilo) {
-		// TODO Auto-generated method stub
+		fasada.updateZdravilo(zdravilo);
+		
 
 	}
 
-	@Override
+	@PUT
+	@Path("/material")
 	public void updateMaterial(Material material) {
-		// TODO Auto-generated method stub
-
+		fasada.updateMaterial(material);
+		
 	}
 
-	@Override
+	@PUT
+	@Path("/spol")
 	public void updateSpol(Spol spol) {
-		// TODO Auto-generated method stub
+		fasada.updateSpol(spol);
+		
 
 	}
 
-	@Override
+	@PUT
+	@Path("/okolis")
 	public void updateOkolis(Okolis okolis) {
-		// TODO Auto-generated method stub
+		fasada.updateOkolis(okolis);
+		
 
 	}
 
-	@Override
+	@PUT
+	@Path("/posta")
 	public void updatePosta(Posta posta) {
-		// TODO Auto-generated method stub
+		fasada.updatePosta(posta);
+		
 
 	}
 
-	@Override
+	@PUT
+	@Path("/vloga")
 	public void updateVloga(Vloga vloga) {
-		// TODO Auto-generated method stub
+		fasada.updateVloga(vloga);
+		
 
 	}
 
-	@Override
+	@PUT
+	@Path("/vrstaObiska")
 	public void updateVrstaObiska(VrstaObiska vrstaObiska) {
-		// TODO Auto-generated method stub
+		fasada.updateVrstaObiska(vrstaObiska);
+		
 
 	}
 
-	@Override
+	@PUT
+	@Path("/sorodstvenoRazmerje")
 	public void updateSorodstvenoRazmerje(SorodstvenoRazmerje sorodstvenoRazmerje) {
-		// TODO Auto-generated method stub
+		fasada.updateSorodstvenoRazmerje(sorodstvenoRazmerje);
+		
 
 	}
 
-	@Override
-	public Zdravilo returnZdravila(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	// *** vracanje specificnega sifranta ***
+	
+	@GET
+	@Path("/zdravilo/{id}")
+	public Zdravilo returnZdravila(@PathParam("id")int id) {
+		
+		return fasada.returnZdravila(id);
 	}
 
-	@Override
-	public Material returnMaterial(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("/material/{id}")
+	public Material returnMaterial(@PathParam("id")int id) {
+		
+		return fasada.returnMaterial(id);
 	}
 
-	@Override
-	public Spol returnSpol(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("/spol/{id}")
+	public Spol returnSpol(@PathParam("id")int id) {
+		
+		
+		return fasada.returnSpol(id);
 	}
 
-	@Override
-	public Okolis returnOkolis(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("/okolis/{id}")
+	public Okolis returnOkolis(@PathParam("id")int id) {
+		
+		
+		return fasada.returnOkolis(id);
 	}
 
-	@Override
-	public Posta returnPosta(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("/posta/{id}")
+	public Posta returnPosta(@PathParam("id")int id) {
+		
+		
+		return fasada.returnPosta(id);
 	}
 
-	@Override
-	public Vloga returnVloga(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("/vloga/{id}")
+	public Vloga returnVloga(@PathParam("id")int id) {
+		
+		
+		return fasada.returnVloga(id);
 	}
 
-	@Override
-	public VrstaObiska returnVrstaObiska(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("/vrstaObiska/{id}")
+	public VrstaObiska returnVrstaObiska(@PathParam("id")int id) {
+		
+		
+		return fasada.returnVrstaObiska(id);
 	}
 
-	@Override
-	public SorodstvenoRazmerje returnSorodstvenoRazmerje(int id) {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("/sorodstvenoRazmerje/{id}")
+	public SorodstvenoRazmerje returnSorodstvenoRazmerje(@PathParam("id")int id) {
+		
+		
+		return fasada.returnSorodstvenoRazmerje(id);
 	}
 
 }

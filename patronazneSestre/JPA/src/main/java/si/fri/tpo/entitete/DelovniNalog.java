@@ -2,6 +2,8 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
 
@@ -10,6 +12,7 @@ import java.util.List;
  * 
  */
 @Entity
+@XmlRootElement
 @Table(name="delovni_nalog")
 @NamedQueries({
 	@NamedQuery(name="DelovniNalog.findAll", query="SELECT d FROM DelovniNalog d"),

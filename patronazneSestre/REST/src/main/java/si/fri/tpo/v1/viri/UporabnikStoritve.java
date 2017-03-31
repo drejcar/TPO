@@ -2,39 +2,62 @@ package si.fri.tpo.v1.viri;
 
 import java.util.List;
 
+import javax.ejb.EJB;
+import javax.enterprise.context.RequestScoped;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.*;
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+
 import si.fri.tpo.entitete.Uporabnik;
+import si.fri.tpo.entitete.Vloga;
+import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.UporabnikREST;
 
+@RequestScoped
+@Path("uporabnik")
+@Produces({ "application/json" })
+@Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
 public class UporabnikStoritve implements UporabnikREST {
-
-	@Override
+	@EJB
+	private FasadniSBLocal fasada;
+	
+	
+	@POST
+	@Path("")
 	public void createUporabnik(Uporabnik uporabnik) {
-		// TODO Auto-generated method stub
-
+		fasada.shraniNovegaUporabnika(uporabnik);
+		
 	}
 
-	@Override
+	@GET
+	@Path("")
 	public List<Uporabnik> returnUporabniks() {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return fasada.najdiUporabniks();
 	}
 
-	@Override
-	public void deleteUporabnik(int id) {
-		// TODO Auto-generated method stub
-
+	@DELETE
+	@Path("{id}")
+	public void deleteUporabnik(@PathParam("id") int id) {
+		fasada.deleteUporabnik(id);
+		
+		
 	}
 
-	@Override
+	@PUT
+	@Path("")
 	public void updateUporabnik(Uporabnik uporabnik) {
-		// TODO Auto-generated method stub
+		fasada.updateUporabnika(uporabnik);
+		
 
 	}
 
-	@Override
-	public Uporabnik returnUporabnik() {
-		// TODO Auto-generated method stub
-		return null;
+	@GET
+	@Path("{id}")
+	public Uporabnik returnUporabnik(@PathParam("id") int id) {
+		return fasada.najdiUporabnik(id);
 	}
+	
 
 }

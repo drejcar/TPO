@@ -14,6 +14,6 @@ public interface UporabnikREST {
 	
 	void updateUporabnik(Uporabnik uporabnik);
 	
-	public Uporabnik returnUporabnik();
+	public Uporabnik returnUporabnik(int id);
 	
 }
