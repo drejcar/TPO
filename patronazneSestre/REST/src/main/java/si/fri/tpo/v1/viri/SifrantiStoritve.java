@@ -9,6 +9,7 @@ import javax.ws.rs.*;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import si.fri.tpo.entitete.Bolezen;
 import si.fri.tpo.entitete.Material;
 import si.fri.tpo.entitete.Okolis;
 import si.fri.tpo.entitete.Posta;
@@ -353,6 +354,36 @@ public class SifrantiStoritve implements SifrantiREST {
 		
 		
 		return fasada.returnSorodstvenoRazmerje(id);
+	}
+
+	@Override
+	public void createBolezen(Bolezen bolezen) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<Bolezen> returnBolezens() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteBolezen(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void updateBolezen(Bolezen bolezen) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Bolezen returnBolezen(int id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }
