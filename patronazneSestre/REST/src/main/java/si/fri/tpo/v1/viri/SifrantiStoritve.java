@@ -96,6 +96,13 @@ public class SifrantiStoritve implements SifrantiREST {
 
 	}
 
+	@POST
+	@Path("/bolezen")
+	public void createBolezen(Bolezen bolezen) {
+		fasada.createBolezen(bolezen);
+		
+	}
+	
 	// *** vracanje seznama sifrantov ***
 	
 	@GET
@@ -161,6 +168,13 @@ public class SifrantiStoritve implements SifrantiREST {
 		return fasada.returnSorodstvenoRazmerjes();
 	}
 
+	@GET
+	@Path("/bolezen/")
+	public List<Bolezen> returnBolezens() {
+		
+		return fasada.returnBolezens();
+	}
+	
 	// *** brisanje specificnega sifranta ***
 	
 	@DELETE
@@ -227,6 +241,13 @@ public class SifrantiStoritve implements SifrantiREST {
 
 	}
 
+	@DELETE
+	@Path("/bolezen/{id}")
+	public void deleteBolezen(@PathParam("id")int id) {
+		fasada.deleteBolezen(id);
+		
+	}
+	
 	// *** update sifrant ***
 	
 	@PUT
@@ -290,6 +311,13 @@ public class SifrantiStoritve implements SifrantiREST {
 		fasada.updateSorodstvenoRazmerje(sorodstvenoRazmerje);
 		
 
+	}
+	
+	@PUT
+	@Path("/bolezen/")
+	public void updateBolezen(Bolezen bolezen) {
+		fasada.updateBolezen(bolezen);
+		
 	}
 
 	// *** vracanje specificnega sifranta ***
@@ -356,34 +384,10 @@ public class SifrantiStoritve implements SifrantiREST {
 		return fasada.returnSorodstvenoRazmerje(id);
 	}
 
-	@Override
-	public void createBolezen(Bolezen bolezen) {
-		// TODO Auto-generated method stub
+	@GET
+	@Path("/bolezen/{id}")
+	public Bolezen returnBolezen(@PathParam("id")int id) {
 		
+		return fasada.returnBolezen(id);
 	}
-
-	@Override
-	public List<Bolezen> returnBolezens() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void deleteBolezen(int id) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void updateBolezen(Bolezen bolezen) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public Bolezen returnBolezen(int id) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
 }
