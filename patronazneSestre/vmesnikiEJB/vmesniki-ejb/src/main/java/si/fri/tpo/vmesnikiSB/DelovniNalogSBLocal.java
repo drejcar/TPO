@@ -6,7 +6,7 @@ import javax.ejb.Local;
 
 //import entitete delovni nalog
 import si.fri.tpo.entitete.DelovniNalog;
-//interface-i za session beane
+//interface za session bean (delovni nalog)
 @Local
 public interface DelovniNalogSBLocal {
 	
