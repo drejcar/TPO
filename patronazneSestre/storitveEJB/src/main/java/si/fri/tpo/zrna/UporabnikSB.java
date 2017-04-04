@@ -2,6 +2,7 @@ package si.fri.tpo.zrna;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -11,12 +12,16 @@ import javax.persistence.PersistenceContext;
 import si.fri.tpo.entitete.*;
 import si.fri.tpo.vmesnikiSB.UporabnikSBLocal;
 import si.fri.tpo.vmesnikiSB.UporabnikSBRemote;
+/*
+import org.jboss.crypto.CryptoUtil;
+import org.picketbox.util.*;
 
 /**
  * Session Bean implementation class uporabnikSB
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
+@PermitAll
 public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
 	@PersistenceContext
 	private EntityManager em;
@@ -33,6 +38,10 @@ public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
      */
 	@Override
 	public void shraniNovegaUporabnika(Uporabnik u) {
+		
+		//String geslo =  CryptoUtil.createPasswordHash("SHA-256", "BASE64", "UTF-8", u.getEmail().trim(), u.getGeslo().trim());
+		
+		//u.setGeslo(geslo);
 		
 		em.persist(u);
 	}

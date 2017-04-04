@@ -2,6 +2,7 @@ package si.fri.tpo.zrna;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -17,6 +18,7 @@ import si.fri.tpo.vmesnikiSB.DelovniNalogSBRemote;
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
+@PermitAll
 public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal {
 	@PersistenceContext
 	private EntityManager em;

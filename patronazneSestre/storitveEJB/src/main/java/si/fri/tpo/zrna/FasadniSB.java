@@ -2,8 +2,12 @@ package si.fri.tpo.zrna;
 
 import java.util.List;
 
+import javax.annotation.security.DeclareRoles;
+import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
+import javax.interceptor.ExcludeDefaultInterceptors;
 
 import si.fri.tpo.entitete.Bolezen;
 import si.fri.tpo.entitete.DelovniNalog;
@@ -34,6 +38,8 @@ import si.fri.tpo.vmesnikiSB.ZdravstveniDelavecSBLocal;
  * Session Bean implementation class FasadniSB
  */
 @Stateless
+@DeclareRoles({"Administrator","guest"})
+@PermitAll
 public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	@EJB
@@ -226,6 +232,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// spol
 	@Override
+	@RolesAllowed({"Administrator","guest"})
 	public List<Spol> returnSpols() {
 		List<Spol> list = sifranti.returnSpols();
 		sifranti.odstraniZrno();

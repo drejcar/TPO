@@ -2,6 +2,8 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
 
@@ -10,6 +12,7 @@ import java.util.List;
  * 
  */
 @Entity
+@XmlRootElement
 @Table(name="uporabnik")
 @NamedQueries({
 	@NamedQuery(name="Uporabnik.findAll", query="SELECT u FROM Uporabnik u"),
@@ -27,7 +30,7 @@ public class Uporabnik implements Serializable {
 	@Column(length=45)
 	private String email;
 
-	@Column(nullable=false, length=80)
+	@Column(nullable=false, length=255)
 	private String geslo;
 
 	//bi-directional many-to-one association to Pacient
