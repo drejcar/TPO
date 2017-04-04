@@ -2,6 +2,8 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.util.List;
 
 
@@ -10,6 +12,7 @@ import java.util.List;
  * 
  */
 @Entity
+@XmlRootElement
 @Table(name="spol")
 @NamedQueries({
 	@NamedQuery(name="Spol.findAll", query="SELECT s FROM Spol s"),
@@ -28,7 +31,7 @@ public class Spol implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to Pacient
-	@OneToMany(mappedBy="spol")
+	@OneToMany(mappedBy="spol", fetch=FetchType.EAGER)
 	private List<Pacient> pacients;
 
 	public Spol() {

@@ -2,6 +2,7 @@ package si.fri.tpo.zrna;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -27,6 +28,7 @@ import si.fri.tpo.vmesnikiSB.SifrantiSBRemote;
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
+@PermitAll
 public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	@PersistenceContext
 	private EntityManager em;
@@ -161,6 +163,7 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
+	@PermitAll
 	public List<Spol> returnSpols() {
 		
 		return em.createNamedQuery("Spol.findAll").getResultList();
