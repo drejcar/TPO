@@ -3,6 +3,8 @@ package si.fri.tpo.zrna;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.annotation.security.RolesAllowed;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
@@ -28,7 +30,7 @@ import si.fri.tpo.vmesnikiSB.SifrantiSBRemote;
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
-@PermitAll
+
 public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	@PersistenceContext
 	private EntityManager em;
@@ -163,7 +165,8 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	@PermitAll
+	@RolesAllowed({"Administrator"})
+	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public List<Spol> returnSpols() {
 		
 		return em.createNamedQuery("Spol.findAll").getResultList();
@@ -519,7 +522,10 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	 * (non-Javadoc)
 	 * @see si.fri.tpo.vmesnikiSB.SifrantiSBLocal#odstraniZrno()
 	 */
-	@Override
+	
+	
+	@Remove
+	@PermitAll
 	public void odstraniZrno() {
 		
 		

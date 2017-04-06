@@ -3,6 +3,7 @@ package si.fri.tpo.zrna;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -84,7 +85,7 @@ public class IzvajalecZdravstvenihStoritevSB implements IzvajalecZdravstvenihSto
 	 * (non-Javadoc)
 	 * @see si.fri.tpo.vmesnikiSB.IzvajalecZdravstvenihStoritevSBLocal#odstraniZrno()
 	 */
-	@Override
+	@Remove
 	public void odstraniZrno() {
 		
 	}

@@ -18,19 +18,35 @@
 			<http-method>POST</http-method>
 			<http-method>DELETE</http-method>
 		</web-resource-collection>
-		<auth-constraint>
+		  <auth-constraint>
 			<role-name>Administrator</role-name>
-			<role-name>guest</role-name>
+			<role-name>Pacient</role-name>
+			<role-name>PatronaznaSestra</role-name>
+			<role-name>PatronaznaSluzba</role-name>
+			<role-name>SodelavecIZS</role-name>
+			<role-name>Zdravnik</role-name>
 		</auth-constraint>
-	</security-constraint>
-	<login-config>
-		<auth-method>BASIC</auth-method>
-		<realm-name>tpoAuth</realm-name>
-	</login-config>
-	<security-role>
-		<role-name>Administrator</role-name>
+ </security-constraint>  
+ 	<login-config>
+ 		<auth-method>BASIC</auth-method>
+ 		<realm-name>tpoAuth</realm-name>
+ 	</login-config>
+ 	  <security-role>
+ 		<role-name>Administrator</role-name>
+ 	</security-role>
+ 	<security-role>
+ 		<role-name>Pacient</role-name>
+ 	</security-role>
+ 	<security-role>
+ 		<role-name>PatronaznaSestra</role-name>
+ 	</security-role>
+ 	<security-role>
+		<role-name>PatronaznaSluzba</role-name>
 	</security-role>
 	<security-role>
-		<role-name>guest</role-name>
+		<role-name>SodelavecIZS</role-name>
+	</security-role>
+	<security-role>
+		<role-name>Zdravnik</role-name>
 	</security-role>
 </web-app>

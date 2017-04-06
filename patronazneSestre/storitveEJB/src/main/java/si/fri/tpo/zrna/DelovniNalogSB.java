@@ -3,6 +3,7 @@ package si.fri.tpo.zrna;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -64,7 +65,7 @@ public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal
 	 * (non-Javadoc)
 	 * @see si.fri.tpo.vmesnikiSB.delovniNalogSBLocal#odstraniZrno()
 	 */
-	@Override
+	@Remove
 	public void odstraniZrno() {
 		
 		

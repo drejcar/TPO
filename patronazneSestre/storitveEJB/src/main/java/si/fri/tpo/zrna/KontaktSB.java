@@ -3,6 +3,7 @@ package si.fri.tpo.zrna;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -85,7 +86,7 @@ public class KontaktSB implements KontaktSBRemote, KontaktSBLocal {
 	 * (non-Javadoc)
 	 * @see si.fri.tpo.vmesnikiSB.KontaktSBLocal#odstraniZrno()
 	 */
-	@Override
+	@Remove
 	public void odstraniZrno() {
 		
 	}
