@@ -3,6 +3,7 @@ package si.fri.tpo.zrna;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -18,7 +19,7 @@ import si.fri.tpo.vmesnikiSB.IzvajalecZdravstvenihStoritevSBRemote;
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
-@PermitAll
+
 public class IzvajalecZdravstvenihStoritevSB implements IzvajalecZdravstvenihStoritevSBRemote, IzvajalecZdravstvenihStoritevSBLocal {
 	@PersistenceContext
 	private EntityManager em;
@@ -84,7 +85,7 @@ public class IzvajalecZdravstvenihStoritevSB implements IzvajalecZdravstvenihSto
 	 * (non-Javadoc)
 	 * @see si.fri.tpo.vmesnikiSB.IzvajalecZdravstvenihStoritevSBLocal#odstraniZrno()
 	 */
-	@Override
+	@Remove
 	public void odstraniZrno() {
 		
 	}

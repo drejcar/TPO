@@ -1,8 +1,11 @@
 package si.fri.tpo.zrna;
 
+import java.security.MessageDigest;
+
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.ejb.TransactionManagement;
 import javax.ejb.TransactionManagementType;
@@ -21,7 +24,6 @@ import org.picketbox.util.*;
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
-@PermitAll
 public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
 	@PersistenceContext
 	private EntityManager em;
@@ -38,11 +40,7 @@ public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
      */
 	@Override
 	public void shraniNovegaUporabnika(Uporabnik u) {
-		
-		//String geslo =  CryptoUtil.createPasswordHash("SHA-256", "BASE64", "UTF-8", u.getEmail().trim(), u.getGeslo().trim());
-		
-		//u.setGeslo(geslo);
-		
+		u.setGeslo(vrniShaHash(u.getGeslo()));
 		em.persist(u);
 	}
 	
@@ -61,7 +59,7 @@ public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
 	 * (non-Javadoc)
 	 * @see si.fri.tpo.vmesnikiSB.uporabnikSBLocal#odstraniZrno()
 	 */
-	@Override
+	@Remove
 	public void odstraniZrno() {
 		
 		
@@ -95,6 +93,21 @@ public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
 	@Override
 	public List<Uporabnik> najdiUporabniks() {
 		return em.createNamedQuery("Uporabnik.findAll").getResultList();
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.UporabnikSBLocal#vrniShaHash(java.lang.String)
+	 */
+	@Override
+	public String vrniShaHash(String pass) {
+		try{
+			MessageDigest digest = MessageDigest.getInstance("SHA-256");
+			byte[] hash = digest.digest(pass.getBytes("UTF-8"));
+			return hash.toString();
+		}catch(Exception ex){
+			throw new RuntimeException(ex);
+		}
 	}
 	
 }

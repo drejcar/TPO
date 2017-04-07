@@ -17,4 +17,5 @@ public interface UporabnikSBLocal {
 	void updateUporabnika(Uporabnik u); //za updatanje gesla
 	void odstraniUporabnik(int id); //odstranjevanje uporabnika po id-ju
 	void odstraniZrno(); //za odstranjevanje zrna
+	public String vrniShaHash(String pass); //funkcija za hashiranje passwordov v SHA-256
 }

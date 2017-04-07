@@ -1,11 +1,17 @@
 package si.fri.tpo.zrna;
 
+import java.io.UnsupportedEncodingException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.PermitAll;
 import javax.annotation.security.RolesAllowed;
+import javax.annotation.security.RunAs;
+import javax.annotation.*;
 import javax.ejb.EJB;
+import javax.ejb.Remove;
 import javax.ejb.Stateless;
 import javax.interceptor.ExcludeDefaultInterceptors;
 
@@ -38,7 +44,11 @@ import si.fri.tpo.vmesnikiSB.ZdravstveniDelavecSBLocal;
  * Session Bean implementation class FasadniSB
  */
 @Stateless
+<<<<<<< HEAD
 @DeclareRoles({"Administrator"})
+=======
+@DeclareRoles({"Administrator","Pacient","PatronaznaSestra","PatronaznaSluzba","SodelavecIZS","Zdravnik","Guest"})
+>>>>>>> afee0f0155e631830e31eae67b1874caceb87773
 @PermitAll
 public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
@@ -65,8 +75,8 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	// *** klici za Uporabnika **
-
 	@Override
+	@RolesAllowed({"Pacient"})
 	public Uporabnik najdiUporabnik(int id) {
 		Uporabnik nov = uporabnik.najdiUporabnik(id);
 		uporabnik.odstraniZrno();
@@ -74,6 +84,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<Uporabnik> najdiUporabniks() {
 		List<Uporabnik> list = uporabnik.najdiUporabniks();
 		uporabnik.odstraniZrno();
@@ -81,6 +92,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Guest"})
 	public void shraniNovegaUporabnika(Uporabnik u) {
 		uporabnik.shraniNovegaUporabnika(u);
 		uporabnik.odstraniZrno();
@@ -88,6 +100,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator","Pacient"})
 	public void updateUporabnika(Uporabnik u) {
 		uporabnik.updateUporabnika(u);
 		uporabnik.odstraniZrno();
@@ -95,6 +108,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator","Pacient"})
 	public void deleteUporabnik(int id) {
 		uporabnik.odstraniUporabnik(id);
 		uporabnik.odstraniZrno();
@@ -104,6 +118,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	// *** klici za delovni nalog ***
 
 	@Override
+	@RolesAllowed({"Zdravnik","PatronaznaSluzba"})
 	public DelovniNalog vrniDelovniNalog(int id) {
 		DelovniNalog nov = delovniNalog.vrniDelovniNalog(id);
 		delovniNalog.odstraniZrno();
@@ -111,6 +126,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Zdravnik","PatronaznaSluzba"})
 	public List<DelovniNalog> vrniDelovniNalogs() {
 		List<DelovniNalog> list = delovniNalog.vrniDelovniNalogs();
 		delovniNalog.odstraniZrno();
@@ -118,6 +134,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Zdravnik","PatronaznaSluzba"})
 	public void dodajDelovniNalog(DelovniNalog dn) {
 		delovniNalog.dodajDelovniNalog(dn);
 		delovniNalog.odstraniZrno();
@@ -125,6 +142,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Zdravnik","PatronaznaSluzba"})
 	public void updateDelovniNalog(DelovniNalog dn) {
 		delovniNalog.updateDelovniNalog(dn);
 		delovniNalog.odstraniZrno();
@@ -132,6 +150,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Zdravnik","PatronaznaSluzba"})
 	public void deleteDelovniNalog(int id) {
 		delovniNalog.deleteDelovniNalog(id);
 		delovniNalog.odstraniZrno();
@@ -142,6 +161,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// zdravilo
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createZdravilo(Zdravilo z) {
 		sifranti.createZdravilo(z);
 		sifranti.odstraniZrno();
@@ -150,6 +170,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// material
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createMaterial(Material m) {
 		sifranti.createMaterial(m);
 		sifranti.odstraniZrno();
@@ -158,6 +179,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// spol
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createSpol(Spol s) {
 		sifranti.createSpol(s);
 		sifranti.odstraniZrno();
@@ -166,6 +188,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// okolis
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createOkolis(Okolis o) {
 		sifranti.createOkolis(o);
 		sifranti.odstraniZrno();
@@ -174,6 +197,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// posta
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createPosta(Posta p) {
 		sifranti.createPosta(p);
 		sifranti.odstraniZrno();
@@ -182,6 +206,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vloga
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createVloga(Vloga v) {
 		sifranti.createVloga(v);
 		sifranti.odstraniZrno();
@@ -190,6 +215,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vrsta obiska
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createVrstaObiska(VrstaObiska vo) {
 		sifranti.createVrstaObiska(vo);
 		sifranti.odstraniZrno();
@@ -198,6 +224,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// sorodstvenoRazmerje
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createSorodstvenoRazmerje(SorodstvenoRazmerje sr) {
 		sifranti.createSorodstvenoRazmerje(sr);
 		sifranti.odstraniZrno();
@@ -206,6 +233,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// bolezen
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createBolezen(Bolezen bolezen) {
 		sifranti.createBolezen(bolezen);
 		sifranti.odstraniZrno();
@@ -216,6 +244,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// zdravilo
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<Zdravilo> returnZdravilas() {
 		List<Zdravilo> list = sifranti.returnZdravilas();
 		sifranti.odstraniZrno();
@@ -224,6 +253,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// material
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<Material> returnMaterials() {
 		List<Material> list = sifranti.returnMaterials();
 		sifranti.odstraniZrno();
@@ -232,7 +262,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// spol
 	@Override
-	@RolesAllowed({"Administrator","guest"})
+	@RolesAllowed({"Administrator"})
 	public List<Spol> returnSpols() {
 		List<Spol> list = sifranti.returnSpols();
 		sifranti.odstraniZrno();
@@ -242,6 +272,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// okolis
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<Okolis> returnOkoliss() {
 		List<Okolis> list = sifranti.returnOkoliss();
 		sifranti.odstraniZrno();
@@ -250,6 +281,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// posta
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<Posta> returnPostas() {
 		List<Posta> list = sifranti.returnPostas();
 		sifranti.odstraniZrno();
@@ -258,6 +290,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vloga
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<Vloga> returnVlogas() {
 		List<Vloga> list = sifranti.returnVlogas();
 		sifranti.odstraniZrno();
@@ -266,6 +299,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vrstaObiska
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<VrstaObiska> returnVrstaObiskas() {
 		List<VrstaObiska> list = sifranti.returnVrstaObiskas();
 		sifranti.odstraniZrno();
@@ -274,6 +308,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// sorodstvenoRazmerje
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes() {
 		List<SorodstvenoRazmerje> list = sifranti.returnSorodstvenoRazmerjes();
 		sifranti.odstraniZrno();
@@ -282,6 +317,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// bolezen
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<Bolezen> returnBolezens() {
 		List<Bolezen> list = sifranti.returnBolezens();
 		sifranti.odstraniZrno();
@@ -292,6 +328,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// zdravilo
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteZdravilo(int id) {
 		sifranti.deleteZdravilo(id);
 		sifranti.odstraniZrno();
@@ -300,6 +337,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// material
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteMaterial(int id) {
 		sifranti.deleteMaterial(id);
 		sifranti.odstraniZrno();
@@ -308,6 +346,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// spol
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteSpol(int id) {
 		sifranti.deleteSpol(id);
 		sifranti.odstraniZrno();
@@ -316,6 +355,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// okolis
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteOkolis(int id) {
 		sifranti.deleteOkolis(id);
 		sifranti.odstraniZrno();
@@ -324,6 +364,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// posta
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deletePosta(int id) {
 		sifranti.deletePosta(id);
 		sifranti.odstraniZrno();
@@ -332,6 +373,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vloga
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteVloga(int id) {
 		sifranti.deleteVloga(id);
 		sifranti.odstraniZrno();
@@ -340,6 +382,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vrstaObiska
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteVrstaObiska(int id) {
 		sifranti.deleteVrstaObiska(id);
 		sifranti.odstraniZrno();
@@ -348,6 +391,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// sorodstvenoRazmerje
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteSorodstvenoRazmerje(int id) {
 		sifranti.deleteSorodstvenoRazmerje(id);
 		sifranti.odstraniZrno();
@@ -356,6 +400,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// bolezen
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteBolezen(int id) {
 		sifranti.deleteBolezen(id);
 		sifranti.odstraniZrno();
@@ -365,6 +410,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// zdravilo
 	@Override
+	@RolesAllowed({"Administrator"})
 	public Zdravilo returnZdravila(int id) {
 		Zdravilo zdr = sifranti.returnZdravila(id);
 		sifranti.odstraniZrno();
@@ -373,6 +419,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// material
 	@Override
+	@RolesAllowed({"Administrator"})
 	public Material returnMaterial(int id) {
 		Material eno = sifranti.returnMaterial(id);
 		sifranti.odstraniZrno();
@@ -381,6 +428,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// spol
 	@Override
+	@RolesAllowed({"Administrator"})
 	public Spol returnSpol(int id) {
 		Spol eno = sifranti.returnSpol(id);
 		sifranti.odstraniZrno();
@@ -389,6 +437,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// okolis
 	@Override
+	@RolesAllowed({"Administrator"})
 	public Okolis returnOkolis(int id) {
 		Okolis eno = sifranti.returnOkolis(id);
 		sifranti.odstraniZrno();
@@ -397,6 +446,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// posta
 	@Override
+	@RolesAllowed({"Administrator"})
 	public Posta returnPosta(int id) {
 		Posta eno = sifranti.returnPosta(id);
 		sifranti.odstraniZrno();
@@ -405,6 +455,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vloga
 	@Override
+	@RolesAllowed({"Administrator"})
 	public Vloga returnVloga(int id) {
 		Vloga eno = sifranti.returnVloga(id);
 		sifranti.odstraniZrno();
@@ -413,6 +464,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vrstaObiska
 	@Override
+	@RolesAllowed({"Administrator"})
 	public VrstaObiska returnVrstaObiska(int id) {
 		VrstaObiska eno = sifranti.returnVrstaObiska(id);
 		sifranti.odstraniZrno();
@@ -421,6 +473,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// sorodstvenoRazmerje
 	@Override
+	@RolesAllowed({"Administrator"})
 	public SorodstvenoRazmerje returnSorodstvenoRazmerje(int id) {
 		SorodstvenoRazmerje eno = sifranti.returnSorodstvenoRazmerje(id);
 		sifranti.odstraniZrno();
@@ -429,6 +482,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// bolezen
 	@Override
+	@RolesAllowed({"Administrator"})
 	public Bolezen returnBolezen(int id) {
 		Bolezen nova = sifranti.returnBolezen(id);
 		sifranti.odstraniZrno();
@@ -439,6 +493,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// zdravilo
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updateZdravilo(Zdravilo z) {
 		sifranti.updateZdravilo(z);
 		sifranti.odstraniZrno();
@@ -447,6 +502,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// material
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updateMaterial(Material m) {
 		sifranti.updateMaterial(m);
 		sifranti.odstraniZrno();
@@ -455,6 +511,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// spol
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updateSpol(Spol s) {
 		sifranti.updateSpol(s);
 		sifranti.odstraniZrno();
@@ -463,6 +520,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// okolis
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updateOkolis(Okolis o) {
 		sifranti.updateOkolis(o);
 		sifranti.odstraniZrno();
@@ -471,6 +529,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// posta
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updatePosta(Posta p) {
 		sifranti.updatePosta(p);
 		sifranti.odstraniZrno();
@@ -479,6 +538,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vloga
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updateVloga(Vloga v) {
 		sifranti.updateVloga(v);
 		sifranti.odstraniZrno();
@@ -487,6 +547,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vrstaObiska
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updateVrstaObiska(VrstaObiska vo) {
 		sifranti.updateVrstaObiska(vo);
 		sifranti.odstraniZrno();
@@ -495,6 +556,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// sorodstvenoRazmerje
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updateSorodstvenoRazmerje(SorodstvenoRazmerje sr) {
 		sifranti.updateSorodstvenoRazmerje(sr);
 		sifranti.odstraniZrno();
@@ -503,6 +565,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// bolezen
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updateBolezen(Bolezen bolezen) {
 		sifranti.updateBolezen(bolezen);
 		sifranti.odstraniZrno();
@@ -512,6 +575,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	// *** klici za ZdravstveneDelavce ***
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteZdravstveniDelavec(int id) {
 		zdravstveniDelavc.deleteZdravstveniDelavec(id);
 		zdravstveniDelavc.odstraniZrno();
@@ -519,6 +583,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<ZdravstveniDelavec> returnZdravstveniDelavecs() {
 		List<ZdravstveniDelavec> list = zdravstveniDelavc.returnZdravstveniDelavecs();
 		zdravstveniDelavc.odstraniZrno();
@@ -527,6 +592,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","SodelavecIZS","Zdravnik"})
 	public void updateZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		zdravstveniDelavc.updateZdravstveniDelavec(zdravstveniDelavec);
 		zdravstveniDelavc.odstraniZrno();
@@ -534,6 +600,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		zdravstveniDelavc.createZdravstveniDelavec(zdravstveniDelavec);
 		zdravstveniDelavc.odstraniZrno();
@@ -541,6 +608,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","SodelavecIZS","Zdravnik"})
 	public ZdravstveniDelavec returnZdravstveniDelavec(int id) {
 		ZdravstveniDelavec nov = zdravstveniDelavc.returnZdravstveniDelavec(id);
 		zdravstveniDelavc.odstraniZrno();
@@ -550,6 +618,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	// *** klici za Pacient ***
 
 	@Override
+	@RolesAllowed({"Administrator","Pacient"})
 	public Pacient returnPacient(int id) {
 		Pacient nov = pacienti.returnPacient(id);
 		pacienti.odstraniZrno();
@@ -557,6 +626,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<Pacient> returnPacients() {
 		List<Pacient> list = pacienti.returnPacients();
 		pacienti.odstraniZrno();
@@ -564,6 +634,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator","Pacient"})
 	public void createPacient(Pacient pacient) {
 		pacienti.createPacient(pacient);
 		pacienti.odstraniZrno();
@@ -571,6 +642,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator","Pacient"})
 	public void updatePacient(Pacient pacient) {
 		pacienti.updatePacient(pacient);
 		pacienti.odstraniZrno();
@@ -578,6 +650,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deletePacient(int id) {
 		pacienti.deletePacient(id);
 		pacienti.odstraniZrno();
@@ -587,6 +660,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	// *** klici za kontakt ***
 
 	@Override
+	@RolesAllowed({"Pacient"})
 	public Kontakt returnKontakt(int id) {
 		Kontakt nov = kontakti.returnKontakt(id);
 		kontakti.odstraniZrno();
@@ -594,6 +668,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Pacient"})
 	public List<Kontakt> returnKontakts() {
 		List<Kontakt> list = kontakti.returnKontakts();
 		kontakti.odstraniZrno();
@@ -601,18 +676,21 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Pacient"})
 	public void createKontakt(Kontakt kontakt) {
 		kontakti.createKontakt(kontakt);
 		kontakti.odstraniZrno();
 	}
 
 	@Override
+	@RolesAllowed({"Pacient"})
 	public void updateKontakt(Kontakt kontakt) {
 		kontakti.updateKontakt(kontakt);
 		kontakti.odstraniZrno();
 	}
 
 	@Override
+	@RolesAllowed({"Pacient"})
 	public void deleteKontakt(int id) {
 		kontakti.deleteKontakt(id);
 		kontakti.odstraniZrno();
@@ -622,6 +700,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	// *** klici za Izvajalca zdravstvenih storitev ***
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public IzvajalecZdravstvenihStoritev returnIzvajalecZdravstvenihStoritev(int id) {
 		IzvajalecZdravstvenihStoritev nov = izs.returnIzvajalecZdravstvenihStoritev(id);
 		izs.odstraniZrno();
@@ -629,6 +708,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public List<IzvajalecZdravstvenihStoritev> returnIzvajalecZdravstvenihStoritevs() {
 		List<IzvajalecZdravstvenihStoritev> list = izs.returnIzvajalecZdravstvenihStoritevs();
 		izs.odstraniZrno();
@@ -636,6 +716,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void createIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
 		izs.createIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
 		izs.odstraniZrno();
@@ -643,6 +724,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void updateIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
 		izs.updateIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
 		izs.odstraniZrno();
@@ -650,10 +732,20 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator"})
 	public void deleteIzvajalecZdravstvenihStoritev(int id) {
 		izs.deleteIzvajalecZdravstvenihStoritev(id);
 		izs.odstraniZrno();
 
+	}
+
+	
+	//klic za odstranjevanje zrna
+	@Remove
+	@PermitAll
+	public void odstraniZrno() {
+		
+		
 	}
 
 }

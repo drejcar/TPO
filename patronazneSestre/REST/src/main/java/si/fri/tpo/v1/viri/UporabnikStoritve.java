@@ -2,6 +2,7 @@ package si.fri.tpo.v1.viri;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
 import javax.ejb.EJB;
 import javax.enterprise.context.RequestScoped;
 import javax.ws.rs.Consumes;
