@@ -19,7 +19,7 @@ import si.fri.tpo.vmesnikiSB.KontaktSBRemote;
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
-@PermitAll
+
 public class KontaktSB implements KontaktSBRemote, KontaktSBLocal {
 	@PersistenceContext
 	private EntityManager em;

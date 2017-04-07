@@ -19,7 +19,7 @@ import si.fri.tpo.vmesnikiSB.ZdravstveniDelavecSBRemote;
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
-@PermitAll
+
 public class ZdravstveniDelavecSB implements ZdravstveniDelavecSBRemote, ZdravstveniDelavecSBLocal {
 	@PersistenceContext
 	private EntityManager em;

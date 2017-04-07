@@ -424,7 +424,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// spol
 	@Override
-	@PermitAll
+	@RolesAllowed({ "PatronaznaSestra" })
 	public Spol returnSpol(int id) {
 		Spol eno = sifranti.returnSpol(id);
 		sifranti.odstraniZrno();

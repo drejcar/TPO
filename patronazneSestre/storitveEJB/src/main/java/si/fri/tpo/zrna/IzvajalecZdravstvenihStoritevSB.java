@@ -19,7 +19,7 @@ import si.fri.tpo.vmesnikiSB.IzvajalecZdravstvenihStoritevSBRemote;
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
-@PermitAll
+
 public class IzvajalecZdravstvenihStoritevSB implements IzvajalecZdravstvenihStoritevSBRemote, IzvajalecZdravstvenihStoritevSBLocal {
 	@PersistenceContext
 	private EntityManager em;

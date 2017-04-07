@@ -28,9 +28,8 @@ import si.fri.tpo.vmesnikiSB.SifrantiSBRemote;
 /**
  * Session Bean implementation class sifrantiSB
  */
-@TransactionManagement(value=TransactionManagementType.CONTAINER)
-@Stateless
 
+@Stateless
 public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	@PersistenceContext
 	private EntityManager em;
@@ -165,8 +164,6 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
-	@RolesAllowed({"Administrator"})
-	@TransactionAttribute(TransactionAttributeType.REQUIRES_NEW)
 	public List<Spol> returnSpols() {
 		
 		return em.createNamedQuery("Spol.findAll").getResultList();
@@ -525,7 +522,6 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 	
 	
 	@Remove
-	@PermitAll
 	public void odstraniZrno() {
 		
 		

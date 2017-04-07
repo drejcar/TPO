@@ -19,7 +19,7 @@ import si.fri.tpo.vmesnikiSB.DelovniNalogSBRemote;
  */
 @TransactionManagement(value=TransactionManagementType.CONTAINER)
 @Stateless
-@PermitAll
+
 public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal {
 	@PersistenceContext
 	private EntityManager em;
