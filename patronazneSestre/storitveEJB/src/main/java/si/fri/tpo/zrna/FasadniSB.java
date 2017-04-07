@@ -38,7 +38,7 @@ import si.fri.tpo.vmesnikiSB.ZdravstveniDelavecSBLocal;
  * Session Bean implementation class FasadniSB
  */
 @Stateless
-@DeclareRoles({"Administrator","guest"})
+@DeclareRoles({"Administrator"})
 @PermitAll
 public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
@@ -237,6 +237,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		List<Spol> list = sifranti.returnSpols();
 		sifranti.odstraniZrno();
 		return list;
+		
 	}
 
 	// okolis
