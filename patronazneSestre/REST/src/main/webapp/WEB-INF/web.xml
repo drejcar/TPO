@@ -24,15 +24,12 @@
 		</web-resource-collection>
 		  <auth-constraint>
 			<role-name>Administrator</role-name>
-<<<<<<< HEAD
-=======
 			<role-name>Pacient</role-name>
 			<role-name>PatronaznaSestra</role-name>
 			<role-name>PatronaznaSluzba</role-name>
 			<role-name>SodelavecIZS</role-name>
 			<role-name>Zdravnik</role-name>
 			<role-name>Guest</role-name>
->>>>>>> afee0f0155e631830e31eae67b1874caceb87773
 		</auth-constraint>
  </security-constraint>  
  	<login-config>
@@ -57,10 +54,7 @@
 	<security-role>
 		<role-name>Zdravnik</role-name>
 	</security-role>
-<<<<<<< HEAD
-=======
 	<security-role>
 		<role-name>Guest</role-name>
 	</security-role>
->>>>>>> afee0f0155e631830e31eae67b1874caceb87773
 </web-app>

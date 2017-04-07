@@ -44,11 +44,7 @@ import si.fri.tpo.vmesnikiSB.ZdravstveniDelavecSBLocal;
  * Session Bean implementation class FasadniSB
  */
 @Stateless
-<<<<<<< HEAD
-@DeclareRoles({"Administrator"})
-=======
 @DeclareRoles({"Administrator","Pacient","PatronaznaSestra","PatronaznaSluzba","SodelavecIZS","Zdravnik","Guest"})
->>>>>>> afee0f0155e631830e31eae67b1874caceb87773
 @PermitAll
 public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 

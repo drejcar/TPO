@@ -11,10 +11,7 @@ impl-version="2.0">
   <assembly-descriptor>
     <s:security>
       <ejb-name>*</ejb-name>
-<<<<<<< HEAD
-=======
       	<s:security-domain>tpoAuth</s:security-domain>
->>>>>>> afee0f0155e631830e31eae67b1874caceb87773
         <s:missing-method-permissions-deny-access>true</s:missing-method-permissions-deny-access>
       </s:security>
     </assembly-descriptor>
