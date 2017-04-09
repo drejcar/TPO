@@ -1,0 +1,100 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Registracija</h1>
+    <form (ngSubmit)="onSubmit()" #prijavaForm="ngForm">
+      <div class="form-group">
+        <label for="mail">E-mail</label>
+        <input type="text" class="form-control" id="mail"
+               required
+               [(ngModel)]="model.mail" name="mail"
+               #name="ngModel">
+        <div [hidden]="mail.valid || mail.pristine"
+             class="alert alert-danger">
+          Vnesite e-mail
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ime">Ime</label>
+        <input type="text" class="form-control" id="ime"
+               required
+               [(ngModel)]="model.ime" name="ime"
+               #name="ngModel">
+        <div [hidden]="ime.valid || ime.pristine"
+             class="alert alert-danger">
+          Vnesite ime
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="priimek">Priimek</label>
+        <input type="text" class="form-control" id="priimek"
+               required
+               [(ngModel)]="model.priimek" name="priimek"
+               #name="ngModel">
+        <div [hidden]="priimek.valid || priimek.pristine"
+             class="alert alert-danger">
+          Vnesite priimek
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pwd">Željeno geslo</label>
+        <input type="password" class="form-control" id="pwd"
+               required
+               [(ngModel)]="model.pwd" name="pwd"
+               #name="ngModel">
+        <div [hidden]="pwd.valid || pwd.pristine"
+             class="alert alert-danger">
+          Vnesite željeno geslo
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="stKartice">Številka zdravstvene kartice</label>
+        <input type="text" class="form-control" id="stKartice"
+               required
+               [(ngModel)]="model.stKartice" name="stKartice"
+               #name="ngModel">
+        <div [hidden]="stKartice.valid || stKartice.pristine"
+             class="alert alert-danger">
+          Vnesite številko vaše zdravstvene kartice
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="datumRojstva">Datum rojstva</label>
+        <input type="date" class="form-control" id="datumRojstva"
+               required
+               [(ngModel)]="model.datumRojstva" name="datumRojstva"
+               #name="ngModel">
+        <div [hidden]="datumRojstva.valid || datumRojstva.pristine"
+             class="alert alert-danger">
+          Vnesite datum rojstva
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="spol">Spol</label>
+        <select class="form-control" id="spol"
+                required
+                [(ngModel)]="model.power" name="spol"
+                #power="ngModel">
+          <option *ngFor="let spol of spoli" [value]="spol">{{spol}}</option>
+        </select>
+        <div [hidden]="spol.valid || spol.pristine" class="alert alert-danger">
+          Izberite spol
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="okolis">Okoliš</label>
+        <select class="form-control" id="okolis"
+                required
+                [(ngModel)]="model.okolis" name="okolis"
+                #power="ngModel">
+          <option *ngFor="let okolis of okolisi" [value]="okolis">{{okolis}}</option>
+        </select>
+        <div [hidden]="okolis.valid || okolis.pristine" class="alert alert-danger">
+          Izberite okoliš
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!prijavaForm.form.valid">Prijava</button>
+    </form>
+  </div>
+</div>
+
