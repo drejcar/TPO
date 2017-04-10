@@ -8,10 +8,12 @@ import { PrijavaComponent } from './prijava.component';
 import { RegistracijaFormComponent } from './registracija.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
+import { EqualValidator } from './equal-validator.directive';
+//import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule ],
-  declarations: [ AppComponent,DashboardComponent,PrijavaComponent,RegistracijaFormComponent ],
+  declarations: [ AppComponent,DashboardComponent,PrijavaComponent,RegistracijaFormComponent,EqualValidator ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }
