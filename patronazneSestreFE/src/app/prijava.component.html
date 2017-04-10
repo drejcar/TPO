@@ -1,0 +1,22 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Prijava</h1>
+    <form (ngSubmit)="onSubmit()" #prijavaForm="ngForm">
+      <div class="form-group">
+        <label for="name">ime</label>
+        <input type="text" class="form-control" id="name"
+               required
+               [(ngModel)]="model.name" name="name"
+               #ime="ngModel">
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Vnesite Uporabniško ime
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-success" [disabled]="!prijavaForm.form.valid">Prijava</button>
+    </form>
+  </div>
+
+</div>
+
