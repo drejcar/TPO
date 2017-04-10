@@ -31,14 +31,14 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 	private String hisnaStevilka;
 
 	@Column(nullable=false, length=45)
+	private String naziv;
+
+	@Column(name="stevilka_izvajalca", nullable=false, length=45)
+	private String stevilkaIzvajalca;
+
+	@Column(nullable=false, length=45)
 	private String ulica;
 
-	@Column(name="stevilka_izvajalca",nullable=false, length=45)
-	private String stevilkaIzvajalca;
-	
-	@Column(nullable=false, length=45)
-	private String naziv;
-	
 	//bi-directional many-to-one association to DelovniNalog
 	@OneToMany(mappedBy="izvajalecZdravstvenihStoritev")
 	private List<DelovniNalog> delovniNalogs;
@@ -63,14 +63,6 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 		this.idizvajalecZdravstvenihStoritev = idizvajalecZdravstvenihStoritev;
 	}
 
-	public String getStevilkaIzvajalca(){
-		return this.stevilkaIzvajalca;
-	}
-	
-	public void setStevilkaIzvajalca(String stevilkaIzvajalca){
-		this.stevilkaIzvajalca = stevilkaIzvajalca;
-	}
-	
 	public String getHisnaStevilka() {
 		return this.hisnaStevilka;
 	}
@@ -86,7 +78,15 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 	public void setNaziv(String naziv) {
 		this.naziv = naziv;
 	}
-	
+
+	public String getStevilkaIzvajalca() {
+		return this.stevilkaIzvajalca;
+	}
+
+	public void setStevilkaIzvajalca(String stevilkaIzvajalca) {
+		this.stevilkaIzvajalca = stevilkaIzvajalca;
+	}
+
 	public String getUlica() {
 		return this.ulica;
 	}
@@ -146,5 +146,5 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 
 		return zdravstveniDelavec;
 	}
-	
+
 }

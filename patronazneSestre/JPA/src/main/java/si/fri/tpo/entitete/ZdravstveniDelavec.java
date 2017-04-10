@@ -109,11 +109,11 @@ public class ZdravstveniDelavec implements Serializable {
 		this.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
 	}
 
-	public Okolis getOkoli() {
+	public Okolis getOkolis() {
 		return this.okoli;
 	}
 
-	public void setOkoli(Okolis okoli) {
+	public void setOkolis(Okolis okoli) {
 		this.okoli = okoli;
 	}
 

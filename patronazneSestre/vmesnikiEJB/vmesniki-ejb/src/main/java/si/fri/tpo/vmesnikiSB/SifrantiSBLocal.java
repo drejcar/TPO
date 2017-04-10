@@ -67,5 +67,6 @@ public interface SifrantiSBLocal {
 	void updateBolezen(Bolezen bolezen); 
 	
 	void odstraniZrno();
+	List<Okolis> returnOkolissByPosta(int id);
 		
 }

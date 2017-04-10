@@ -15,8 +15,9 @@ import java.util.List;
 @XmlRootElement
 @Table(name="okolis")
 @NamedQueries({
-	@NamedQuery(name="Okolis.findAll", query="SELECT o FROM Okolis o"),
+	@NamedQuery(name="Okolis.findAll", query="SELECT o.idokolis, o.opis FROM Okolis o"),
 	@NamedQuery(name="Okolis.findOne", query="SELECT o FROM Okolis o WHERE o.idokolis = :id"),
+	@NamedQuery(name="Okolis.findByPosta", query="SELECT o.idokolis, o.opis FROM Okolis o WHERE o.posta.idposta = :id"),
 	@NamedQuery(name="Okolis.deleteOne", query="DELETE FROM Okolis o WHERE o.idokolis = :id")
 })
 public class Okolis implements Serializable {
@@ -29,6 +30,11 @@ public class Okolis implements Serializable {
 
 	@Column(length=45)
 	private String opis;
+
+	//bi-directional many-to-one association to Posta
+	@ManyToOne
+	@JoinColumn(name="idposta", nullable=false)
+	private Posta posta;
 
 	//bi-directional many-to-one association to ZdravstveniDelavec
 	@OneToMany(mappedBy="okoli")
@@ -53,6 +59,14 @@ public class Okolis implements Serializable {
 		this.opis = opis;
 	}
 
+	public Posta getPosta() {
+		return this.posta;
+	}
+
+	public void setPosta(Posta posta) {
+		this.posta = posta;
+	}
+
 	public List<ZdravstveniDelavec> getZdravstveniDelavecs() {
 		return this.zdravstveniDelavecs;
 	}
@@ -63,14 +77,14 @@ public class Okolis implements Serializable {
 
 	public ZdravstveniDelavec addZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		getZdravstveniDelavecs().add(zdravstveniDelavec);
-		zdravstveniDelavec.setOkoli(this);
+		zdravstveniDelavec.setOkolis(this);
 
 		return zdravstveniDelavec;
 	}
 
 	public ZdravstveniDelavec removeZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		getZdravstveniDelavecs().remove(zdravstveniDelavec);
-		zdravstveniDelavec.setOkoli(null);
+		zdravstveniDelavec.setOkolis(null);
 
 		return zdravstveniDelavec;
 	}

@@ -526,4 +526,10 @@ public class SifrantiSB implements SifrantiSBRemote, SifrantiSBLocal {
 		
 		
 	}
+
+	@Override
+	public List<Okolis> returnOkolissByPosta(int id) {
+		// TODO Auto-generated method stub
+		return em.createNamedQuery("Okolis.findByPosta").setParameter("id", id).getResultList();
+	}
 }

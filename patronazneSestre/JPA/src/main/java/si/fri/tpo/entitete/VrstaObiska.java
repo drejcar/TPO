@@ -30,6 +30,10 @@ public class VrstaObiska implements Serializable {
 	@Column(nullable=false, length=45)
 	private String opis;
 
+	//bi-directional many-to-one association to Aktivnost
+	@OneToMany(mappedBy="vrstaObiska")
+	private List<Aktivnost> aktivnosts;
+
 	//bi-directional many-to-one association to DelovniNalog
 	@OneToMany(mappedBy="vrstaObiska")
 	private List<DelovniNalog> delovniNalogs;
@@ -51,6 +55,28 @@ public class VrstaObiska implements Serializable {
 
 	public void setOpis(String opis) {
 		this.opis = opis;
+	}
+
+	public List<Aktivnost> getAktivnosts() {
+		return this.aktivnosts;
+	}
+
+	public void setAktivnosts(List<Aktivnost> aktivnosts) {
+		this.aktivnosts = aktivnosts;
+	}
+
+	public Aktivnost addAktivnost(Aktivnost aktivnost) {
+		getAktivnosts().add(aktivnost);
+		aktivnost.setVrstaObiska(this);
+
+		return aktivnost;
+	}
+
+	public Aktivnost removeAktivnost(Aktivnost aktivnost) {
+		getAktivnosts().remove(aktivnost);
+		aktivnost.setVrstaObiska(null);
+
+		return aktivnost;
 	}
 
 	public List<DelovniNalog> getDelovniNalogs() {
