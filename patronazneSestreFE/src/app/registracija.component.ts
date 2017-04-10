@@ -24,12 +24,12 @@ export class RegistracijaFormComponent {
   pwd='';
   datumRojstva='';
   stKartice='';
-  okolis=['1','2','3','4'];
-  model=new Uporabnik(this.ime,this.priimek,this.mail,this.pwd,this.stKartice,this.okolis[0],this.datumRojstva,this.spoli[0]);
+  okolisi=['Ljubljana','Maribor','Koper','Kranj','Novo Mesto'];
+  model=new Uporabnik(this.ime,this.priimek,this.mail,this.pwd,this.stKartice,this.okolisi[0],this.datumRojstva,this.spoli[0]);
   submitted=false;
   onSubmit(){this.submitted=true;}
   novUporabnik(){
-    this.model=new Uporabnik(this.ime,this.priimek,this.mail,this.pwd,this.stKartice,this.okolis[0],this.datumRojstva,this.spoli[0]);
+    this.model=new Uporabnik(this.ime,this.priimek,this.mail,this.pwd,this.stKartice,this.okolisi[0],this.datumRojstva,this.spoli[0]);
   }
   //ne potrebujes
   get diagnostic() { return JSON.stringify(this.model); }

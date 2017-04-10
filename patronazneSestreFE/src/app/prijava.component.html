@@ -7,7 +7,7 @@
         <input type="text" class="form-control" id="name"
                required
                [(ngModel)]="model.name" name="name"
-               #name="ngModel">
+               #ime="ngModel">
         <div [hidden]="name.valid || name.pristine"
              class="alert alert-danger">
           Vnesite Uporabniško ime
