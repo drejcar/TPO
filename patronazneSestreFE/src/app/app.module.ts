@@ -13,7 +13,9 @@ import { EqualValidator } from './equal-validator.directive';
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule ],
-  declarations: [ AppComponent,DashboardComponent,PrijavaComponent,RegistracijaFormComponent,EqualValidator ],
+  declarations: [ AppComponent,DashboardComponent,PrijavaComponent,RegistracijaFormComponent,EqualValidator
+                  //,CustomFormsModule
+                ],
   bootstrap:    [ AppComponent ]
 })
 export class AppModule { }

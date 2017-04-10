@@ -73,7 +73,7 @@
       <div class="form-group">
         <label for="datumRojstva">Datum rojstva</label>
         <input type="date" class="form-control" id="datumRojstva"
-               placeholder="01-01-1900" min="01-01-1900" max="14-04-2017" required
+               placeholder="01-01-1900" minDate="01-01-1900" maxDate="14-04-2017" required
                [(ngModel)]="model.datumRojstva" name="datumRojstva"
                #datumRojstva="ngModel">
         <div [hidden]="datumRojstva.valid || datumRojstva.pristine"
