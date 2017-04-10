@@ -1,5 +1,6 @@
 /**
  * Created by Andrej on 7.4.2017.
+ * Kva se pa vn mečeš no :D On 10.4.2017
  */
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';

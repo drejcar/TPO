@@ -5,11 +5,20 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'my-app',
   template: `
-  <h1>Hello motherfucking {{name}}</h1>
-  <nav>
-    <a routerLink="/dashboard" routerLinkActive="active">Domov</a>
-  </nav>
-  <router-outlet></router-outlet>
+  
+	  <header>
+		<nav>
+			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
+			<a routerLink="/prijava" routerLinkActive="active">Prijava</a>
+		</nav>
+	  </header>
+	  
+	  <!-- <h1>Hello motherfucking {{name}}</h1> -->
+	  
+	  <router-outlet></router-outlet>
+	  
+	  <footer>@ 2017</footer>
   `,
+	styleUrls: [ './app.component.css' ]
 })
 export class AppComponent  { name = 'Angular'; }

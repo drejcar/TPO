@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'registracija',
-  templateUrl: './registracija.component.html'
+  templateUrl: './registracija.component.html',
+  styleUrls: [ './registracija.component.css' ]
 })
 
 export class RegistracijaFormComponent {
