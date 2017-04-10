@@ -139,6 +139,14 @@ public class SifrantiStoritve implements SifrantiREST {
 	}
 
 	@GET
+	@Path("/okolisByPosta/{id}")
+	public List<Okolis> returnOkolissByPosta(@PathParam("id")int id) {
+		
+		
+		return fasada.returnOkolissByPosta(id);
+	}
+	
+	@GET
 	@Path("/posta")
 	public List<Posta> returnPostas() {
 		

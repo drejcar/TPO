@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.List;
 
 
@@ -15,7 +18,7 @@ import java.util.List;
 @XmlRootElement
 @Table(name="posta")
 @NamedQueries({
-	@NamedQuery(name="Posta.findAll", query="SELECT p FROM Posta p"),
+	@NamedQuery(name="Posta.findAll", query="SELECT p.idposta, p.opis FROM Posta p"),
 	@NamedQuery(name="Posta.findOne",query="SELECT p FROM Posta p WHERE p.idposta = :idposta"),
 	@NamedQuery(name="Posta.deleteOne",query="DELETE FROM Posta p WHERE p.idposta = :idposta")
 })
@@ -33,6 +36,10 @@ public class Posta implements Serializable {
 	//bi-directional many-to-one association to IzvajalecZdravstvenihStoritev
 	@OneToMany(mappedBy="posta")
 	private List<IzvajalecZdravstvenihStoritev> izvajalecZdravstvenihStoritevs;
+
+	//bi-directional many-to-one association to Okoli
+	@OneToMany(mappedBy="posta")
+	private List<Okolis> okolis;
 
 	//bi-directional many-to-one association to Pacient
 	@OneToMany(mappedBy="posta")
@@ -77,6 +84,28 @@ public class Posta implements Serializable {
 		izvajalecZdravstvenihStoritev.setPosta(null);
 
 		return izvajalecZdravstvenihStoritev;
+	}
+
+	public List<Okolis> getOkolis() {
+		return this.okolis;
+	}
+
+	public void setOkolis(List<Okolis> okolis) {
+		this.okolis = okolis;
+	}
+
+	public Okolis addOkoli(Okolis okoli) {
+		getOkolis().add(okoli);
+		okoli.setPosta(this);
+
+		return okoli;
+	}
+
+	public Okolis removeOkoli(Okolis okoli) {
+		getOkolis().remove(okoli);
+		okoli.setPosta(null);
+
+		return okoli;
 	}
 
 	public List<Pacient> getPacients() {

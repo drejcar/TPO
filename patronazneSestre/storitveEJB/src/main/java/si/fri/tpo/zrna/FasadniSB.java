@@ -735,6 +735,13 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	}
 
+	@Override
+	@RolesAllowed({"Administrator"})
+	public List<Okolis> returnOkolissByPosta(int id) {
+		List<Okolis> list = sifranti.returnOkolissByPosta(id);
+		sifranti.odstraniZrno();
+		return list;
+	}
 	
 	//klic za odstranjevanje zrna
 	@Remove
