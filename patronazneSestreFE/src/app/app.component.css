@@ -1,0 +1,22 @@
+header {
+	background: blue;
+	width: 100vw;
+	height: 20vh;
+	position: relative;
+	color: black;
+}
+
+nav {
+	position: absolute;
+	bottom: 0;
+	width: 200px;
+	color: black;
+}
+
+footer {
+	bottom: 0;
+	position: fixed;
+}
+
+a:link {color:black; }
+a:visited  {color:black;}

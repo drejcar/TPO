@@ -3,18 +3,21 @@
     <h1>Prijava</h1>
     <form (ngSubmit)="onSubmit()" #prijavaForm="ngForm">
       <div class="form-group">
-        <label for="name">ime</label>
-        <input type="text" class="form-control" id="name"
-               required
-               [(ngModel)]="model.name" name="name"
-               #ime="ngModel">
-        <div [hidden]="name.valid || name.pristine"
-             class="alert alert-danger">
-          Vnesite Uporabniško ime
-        </div>
+        <label for="mail">Elektronska pošta:</label>
+        <input type="email" class="form-control" id="mail"
+               maxlength="45" placeholder="elektronska pošta" required
+               [(ngModel)]="model.mail" name="mail"
+               #mail="ngModel">
       </div>
-
+      <div class="form-group">
+        <label for="pwd">Geslo:</label>
+        <input type="password" class="form-control" id="pwd"
+               required placeholder="Geslo"
+               [(ngModel)]="model.pwd" name="pwd"
+               #pwd="ngModel">
+      </div>
       <button type="submit" class="btn btn-success" [disabled]="!prijavaForm.form.valid">Prijava</button>
+      <button (click)="gotoRegistracija()" class="btn btn-default" >Registracija</button>
     </form>
   </div>
 

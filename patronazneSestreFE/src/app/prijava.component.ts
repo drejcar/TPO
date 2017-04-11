@@ -1,16 +1,14 @@
-/**
- * Created by Andrej on 7.4.2017.
- */
 import { NgModule,Component } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 import { HttpModule }    from '@angular/http';
-import { Router } from '@angular/router'
+import { Router } from '@angular/router';
+import { Prijava } from './prijava';
 
 @Component({
   selector: 'prijava',
   templateUrl: './prijava.component.html',
-  //styleUrls: [ './prijava.component.css' ]
+  styleUrls: [ './prijava.component.css' ]
 })
 
 export class PrijavaComponent{
@@ -19,4 +17,10 @@ export class PrijavaComponent{
   gotoPrijava(): void {
     this.router.navigate(['/prijava']);
   }
+  gotoRegistracija(): void {
+    this.router.navigate(['/registracija']);
+  }
+  mail='';
+  pwd='';
+  model=new Prijava(this.mail,this.pwd);
 }

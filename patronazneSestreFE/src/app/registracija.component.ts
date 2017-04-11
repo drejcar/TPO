@@ -1,14 +1,11 @@
-/**
- * Created by Andrej on 9.4.2017.
- */
-
 import { Component } from '@angular/core';
 import { Uporabnik } from './uporabnik';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'registracija',
-  templateUrl: './registracija.component.html'
+  templateUrl: './registracija.component.html',
+  styleUrls: [ './registracija.component.css' ]
 })
 
 export class RegistracijaFormComponent {

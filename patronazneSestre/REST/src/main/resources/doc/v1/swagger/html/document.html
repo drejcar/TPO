@@ -1,0 +1,5590 @@
+<!DOCTYPE html>
+<html>
+<title>API Document</title>
+
+<xmp theme="united" style="display:none;">
+#Patronazne Sestre
+
+
+## HTTP://localhost/v1
+
+
+Aplikacija za patronazne sestre
+
+
+[**Contact the developer**](mailto:mo0429@student.uni-lj.si)
+
+
+**Version** 1.0.0
+
+[**Terms of Service**]()
+
+
+
+
+
+
+
+
+
+
+
+
+# APIs
+
+
+## /delovniNalog
+
+
+### GET
+
+<a id="returnDelovniNalogs">Vrni delovne naloge</a>
+
+Vrne seznam vseh delovnih nalog
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/DelovniNalog">DelovniNalog</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateDelovniNalog">Posodobi delovni nalog</a>
+
+Posodobi ze obstojec delovni nalog
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createDelovniNalog">Kreiranje delovnega naloga</a>
+
+Doda delovni nalog v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /delovniNalog/{id}
+
+
+### GET
+
+<a id="returnDelovniNalog">vrni delovni nalog</a>
+
+Vrne specificni delovni nalog
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/DelovniNalog">DelovniNalog</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteDelovniNalog">Brisi delovni nalog</a>
+
+Pobrise specificni delovni nalog iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /izvajalecZdravstvenihStoritev
+
+
+### GET
+
+<a id="returnIzvajalecZdravstvenihStoritevs">Vrni seznam izvajalcev zdravstvenih storitev</a>
+
+Vrne seznam vseh izvajalcev zdravstvenih storitev
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/IzvajalecZdravstvenihStoritev">IzvajalecZdravstvenihStoritev</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateIzvajalecZdravstvenihStoritev">Posodobi izvajalca zdravstvenih storitev</a>
+
+Posodobi izvajalca zdravstvenih storitev
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createIzvajalecZdravstvenihStoritev">Dodaj izvajalca zdravstvenih storitev</a>
+
+Doda izvajalca zdravstvenih storitev v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /izvajalecZdravstvenihStoritev/{id}
+
+
+### GET
+
+<a id="returnIzvajalecZdravstvenihStoritev">Vrni izvajalca zdravstvenih storitev</a>
+
+Vrne izvajalca zdravstvenih storitev iz bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/IzvajalecZdravstvenihStoritev">IzvajalecZdravstvenihStoritev</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteIzvajalecZdravstvenihStoritev">Brisi izvajalca zdravstvenih storitev</a>
+
+Pobrise specificnega izvajalca zdravstvenih storitev preko id-ja
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /kontakt
+
+
+### GET
+
+<a id="returnKontakts">Vrni kontaktne osebe</a>
+
+Vrne seznam kontaktni oseb
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Kontakt">Kontakt</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateKontakt">Posodobi kontaktno osebo</a>
+
+Posodobi kontaktno osebo v bazi
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createKontakt">Dodaj kontaktno osebo</a>
+
+Doda kontaktno osebo v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /kontakt/{id}
+
+
+### GET
+
+<a id="returnKontakt">Vrni kontaktno osebo</a>
+
+Vraca specificno kontaktno osebo iz bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Kontakt">Kontakt</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteKontakt">Brisi kontaktno osebo</a>
+
+Pobrise kontaktno osebo iz bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /pacient
+
+
+### GET
+
+<a id="returnPacients">Vrni paciente</a>
+
+Vrne seznam pacientov
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Pacient">Pacient</a>|
+
+
+
+
+
+### PUT
+
+<a id="updatePacient">Posodobi pacienta</a>
+
+Posodobi pacienta v bazi
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createPacient">Dodaj pacienta</a>
+
+Doda pacienta v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /pacient/{id}
+
+
+### GET
+
+<a id="returnPacient">Vrni pacienta</a>
+
+Vrne pacienta iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Pacient">Pacient</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deletePacient">Pobrisi pacienta</a>
+
+Brisi pacienta iz bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/bolezen
+
+
+### GET
+
+<a id="returnBolezens">Vrni bolezni</a>
+
+Vrne seznam bolezni iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Bolezen">Bolezen</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateBolezen">Brisi bolezen</a>
+
+Brisi bolezen iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createBolezen">Dodaj bolezen</a>
+
+Doda bolezen v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/bolezen/{id}
+
+
+### GET
+
+<a id="returnBolezen">Vrni bolezen</a>
+
+Vrni bolezen iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Bolezen">Bolezen</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteBolezen">Brisi bolezen</a>
+
+Brisi bolezen iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/material
+
+
+### GET
+
+<a id="returnMaterials">Vrni material</a>
+
+Vrne seznam materiala iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Material">Material</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateMaterial">Brisi material</a>
+
+Brisi material iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createMaterial">Dodaj material</a>
+
+Doda material v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/material/{id}
+
+
+### GET
+
+<a id="returnMaterial">Vrni material</a>
+
+Vrni material iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Material">Material</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteMaterial">Brisi material</a>
+
+Brisi material iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/okolis
+
+
+### GET
+
+<a id="returnOkoliss">Vrni okolis</a>
+
+Vrne seznam okolisev iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Okolis">Okolis</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateOkolis">Brisi okolis</a>
+
+Brisi okolis iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createOkolis">Dodaj okolis</a>
+
+Doda okolis v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/okolis/{id}
+
+
+### GET
+
+<a id="returnOkolis">Vrni okolis</a>
+
+Vrni okolis iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Okolis">Okolis</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteOkolis">Brisi okolis</a>
+
+Brisi okolis iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/okolisByPosta/{id}
+
+
+### GET
+
+<a id="returnOkolissByPosta">Vrni okolis glede na posto</a>
+
+Vrne seznam okolisev glede na podan id od poste
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Okolis">Okolis</a>|
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/posta
+
+
+### GET
+
+<a id="returnPostas">Vrni poste</a>
+
+Vrne seznam post iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Posta">Posta</a>|
+
+
+
+
+
+### PUT
+
+<a id="updatePosta">Brisi posto</a>
+
+Brisi posto iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createPosta">Dodaj posto</a>
+
+Doda posto v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/posta/{id}
+
+
+### GET
+
+<a id="returnPosta">Vrni posto</a>
+
+Vrni posto iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Posta">Posta</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deletePosta">Brisi posto</a>
+
+Brisi posto iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/sorodstvenoRazmerje
+
+
+### GET
+
+<a id="returnSorodstvenoRazmerjes">Vrni sorodstvena razmerja</a>
+
+Vrne seznam sorodstvenih razmerij iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/SorodstvenoRazmerje">SorodstvenoRazmerje</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateSorodstvenoRazmerje">Brisi sorodstveno razmerje</a>
+
+Brisi sorodstveno razmerje iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createSorodstvenoRazmerje">Dodaj sorodstveno razmerje</a>
+
+Doda sorodstveno razmerje v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/sorodstvenoRazmerje/{id}
+
+
+### GET
+
+<a id="returnSorodstvenoRazmerje">Vrni sorodstveno razmerje</a>
+
+Vrni sorodstveno razmerje iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/SorodstvenoRazmerje">SorodstvenoRazmerje</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteSorodstvenoRazmerje">Brisi sorodstveno razmerje</a>
+
+Brisi sorodstveno razmerje iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/spol
+
+
+### GET
+
+<a id="returnSpols">Vrni spole</a>
+
+Vrne seznam spolov iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Spol">Spol</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateSpol">Brisi spol</a>
+
+Brisi spol iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createSpol">Dodaj spol</a>
+
+Doda spol v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/spol/{id}
+
+
+### GET
+
+<a id="returnSpol">Vrni spol</a>
+
+Vrni spol iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Spol">Spol</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteSpol">Brisi spol</a>
+
+Brisi spol iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/vloga
+
+
+### GET
+
+<a id="returnVlogas">Vrni vloge</a>
+
+Vrne seznam vlog iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Vloga">Vloga</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateVloga">Brisi vlogo</a>
+
+Brisi vlogo iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createVloga">Dodaj vlogo</a>
+
+Doda vlogo v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/vloga/{id}
+
+
+### GET
+
+<a id="returnVloga">Vrni vlogo</a>
+
+Vrni vlogo iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Vloga">Vloga</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteVloga">Brisi vlogo</a>
+
+Brisi vlogo iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/vrstaObiska
+
+
+### GET
+
+<a id="returnVrstaObiskas">Vrni vrste obiskov</a>
+
+Vrne seznam vrst obiskov iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/VrstaObiska">VrstaObiska</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateVrstaObiska">Brisi vrsto obiska</a>
+
+Brisi vrsto obiska iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createVrstaObiska">Dodaj vrsto obiska</a>
+
+Doda vrsto obiska v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/vrstaObiska/{id}
+
+
+### GET
+
+<a id="returnVrstaObiska">Vrni vrsto obiska</a>
+
+Vrni vrsto obiska iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/VrstaObiska">VrstaObiska</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteVrstaObiska">Brisi vrsto obiska</a>
+
+Brisi vrsto obiska iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/zdravilo
+
+
+### GET
+
+<a id="returnZdravilas">Vrni zdravila</a>
+
+Vrne seznam zdravila iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Zdravilo">Zdravilo</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateZdravilo">Posodobi zdravilo</a>
+
+Posodobi zdravilo v bazi
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createZdravilo">Dodaj zdravilo</a>
+
+Doda zdravilo v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /sifranti/zdravilo/{id}
+
+
+### GET
+
+<a id="returnZdravila">Vrni zdravilo</a>
+
+Vrni zdravilo iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Zdravilo">Zdravilo</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteZdravilo">Brisi zdravilo</a>
+
+Brisi zdravilo iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /uporabnik
+
+
+### GET
+
+<a id="returnUporabniks">Vrni uporabnike</a>
+
+Vrne uporabnike iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Uporabnik">Uporabnik</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateUporabnik">Posodobi uporabnika</a>
+
+Posodobi uporabnika v bazi
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createUporabnik">Dodaj uporabnika</a>
+
+Doda uporabnika v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /uporabnik/{id}
+
+
+### GET
+
+<a id="returnUporabnik">Vrni uporabnika</a>
+
+Vrne uporabnika iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/Uporabnik">Uporabnik</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteUporabnik">Brisi uporabnika</a>
+
+Brise uporabnika iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+## /zdravstveniDelavec
+
+
+### GET
+
+<a id="returnZdravstveniDelavecs">Vrni zdravstvene delavce</a>
+
+Vrne seznam zdravstvenih delavcev
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/ZdravstveniDelavec">ZdravstveniDelavec</a>|
+
+
+
+
+
+### PUT
+
+<a id="updateZdravstveniDelavec">Posodobi zdravstvenega delavca</a>
+
+Posodobi zdravstvenega delavca v bazi
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+### POST
+
+
+<a id="createZdravstveniDelavec">Dodaj zdravstvenega delavca</a>
+
+Doda zdravstvenega delavca v bazo
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+
+
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## /zdravstveniDelavec/{id}
+
+
+### GET
+
+<a id="returnZdravstveniDelavec">Vrne zdravstvenega delavca</a>
+
+Vrne zdravstvenega delavca iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| 200    | successful operation | <a href="#/definitions/ZdravstveniDelavec">ZdravstveniDelavec</a>|
+
+
+
+
+
+
+
+
+
+### DELETE
+
+<a id="deleteZdravstveniDelavec">Brisi zdravstvenega delavca</a>
+
+Brise zdravstvenega delavca iz baze
+
+
+
+
+
+
+
+#### Request
+
+
+**Content-Type: ** application/xml, application/json
+
+##### Parameters
+
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Located in</th>
+        <th>Required</th>
+        <th>Description</th>
+        <th>Default</th>
+        <th>Schema</th>
+    </tr>
+
+
+
+<tr>
+    <th>id</th>
+    <td>path</td>
+    <td>yes</td>
+    <td></td>
+    <td> - </td>
+
+    
+            <td>integer (int32)</td>
+    
+
+</tr>
+
+
+</table>
+
+
+
+#### Response
+
+**Content-Type: ** application/json
+
+
+| Status Code | Reason      | Response Model |
+|-------------|-------------|----------------|
+| default    | successful operation |  - |
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Definitions
+
+## <a name="/definitions/Aktivnost">Aktivnost</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idaktivnost</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>vrstaObiska</td>
+            <td>
+                
+                    <a href="#/definitions/VrstaObiska">VrstaObiska</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>meritevs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Meritev">Meritev</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Bolezen">Bolezen</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idbolezen</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>delovniNalogs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/DelovniNalog">DelovniNalog</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/DelovniNalog">DelovniNalog</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>iddelovniNalog</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>bolezen</td>
+            <td>
+                
+                    <a href="#/definitions/Bolezen">Bolezen</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>izvajalecZdravstvenihStoritev</td>
+            <td>
+                
+                    <a href="#/definitions/IzvajalecZdravstvenihStoritev">IzvajalecZdravstvenihStoritev</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>obisk</td>
+            <td>
+                
+                    <a href="#/definitions/Obisk">Obisk</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>vrstaObiska</td>
+            <td>
+                
+                    <a href="#/definitions/VrstaObiska">VrstaObiska</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>zdravstveniDelavec</td>
+            <td>
+                
+                    <a href="#/definitions/ZdravstveniDelavec">ZdravstveniDelavec</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>materials</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Material">Material</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>pacients</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Pacient">Pacient</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>zdravilos</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Zdravilo">Zdravilo</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/IzvajalecZdravstvenihStoritev">IzvajalecZdravstvenihStoritev</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idizvajalecZdravstvenihStoritev</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>hisnaStevilka</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>naziv</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>stevilkaIzvajalca</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>ulica</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>delovniNalogs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/DelovniNalog">DelovniNalog</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>posta</td>
+            <td>
+                
+                    <a href="#/definitions/Posta">Posta</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>zdravstveniDelavecs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/ZdravstveniDelavec">ZdravstveniDelavec</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Kontakt">Kontakt</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idkontakt</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>ime</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>priimek</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>telefonskaStevilka</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>sorodstvenoRazmerje</td>
+            <td>
+                
+                    <a href="#/definitions/SorodstvenoRazmerje">SorodstvenoRazmerje</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>pacients</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Pacient">Pacient</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Material">Material</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idmaterial</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>delovniNalogs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/DelovniNalog">DelovniNalog</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Meritev">Meritev</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idmeritev</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>merskaEnota</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>obvezno</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>spodnjaMeja</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>ugornjaMeja</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>aktivnosts</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Aktivnost">Aktivnost</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Obisk">Obisk</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idobisk</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>delovniNalogs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/DelovniNalog">DelovniNalog</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Okolis">Okolis</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idokolis</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>posta</td>
+            <td>
+                
+                    <a href="#/definitions/Posta">Posta</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>zdravstveniDelavecs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/ZdravstveniDelavec">ZdravstveniDelavec</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Pacient">Pacient</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idpacient</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>hisnaStevilka</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>ime</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>priimek</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>stevilkaZdravstvenegaZavarovanja</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>ulica</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>delovniNalogs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/DelovniNalog">DelovniNalog</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>kontakt</td>
+            <td>
+                
+                    <a href="#/definitions/Kontakt">Kontakt</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>pacient</td>
+            <td>
+                
+                    <a href="#/definitions/Pacient">Pacient</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>pacients</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Pacient">Pacient</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>posta</td>
+            <td>
+                
+                    <a href="#/definitions/Posta">Posta</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>sorodstvenoRazmerje</td>
+            <td>
+                
+                    <a href="#/definitions/SorodstvenoRazmerje">SorodstvenoRazmerje</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>spol</td>
+            <td>
+                
+                    <a href="#/definitions/Spol">Spol</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>uporabnik</td>
+            <td>
+                
+                    <a href="#/definitions/Uporabnik">Uporabnik</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Posta">Posta</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idposta</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>izvajalecZdravstvenihStoritevs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/IzvajalecZdravstvenihStoritev">IzvajalecZdravstvenihStoritev</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>okolis</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Okolis">Okolis</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>pacients</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Pacient">Pacient</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/SorodstvenoRazmerje">SorodstvenoRazmerje</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idsorodstvenoRazmerje</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>kontakts</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Kontakt">Kontakt</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>pacients</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Pacient">Pacient</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Spol">Spol</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idspol</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>pacients</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Pacient">Pacient</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Uporabnik">Uporabnik</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>iduporabnik</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>email</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>geslo</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>pacients</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Pacient">Pacient</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>vloga</td>
+            <td>
+                
+                    <a href="#/definitions/Vloga">Vloga</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>zdravstveniDelavecs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/ZdravstveniDelavec">ZdravstveniDelavec</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Vloga">Vloga</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idvloga</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>uporabniks</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Uporabnik">Uporabnik</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/VrstaObiska">VrstaObiska</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idvrstaObiska</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>aktivnosts</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/Aktivnost">Aktivnost</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>delovniNalogs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/DelovniNalog">DelovniNalog</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/Zdravilo">Zdravilo</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idzdravilo</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>opis</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>delovniNalogs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/DelovniNalog">DelovniNalog</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+## <a name="/definitions/ZdravstveniDelavec">ZdravstveniDelavec</a>
+
+<table border="1">
+    <tr>
+        <th>name</th>
+        <th>type</th>
+        <th>required</th>
+        <th>description</th>
+        <th>example</th>
+    </tr>
+    
+        <tr>
+            <td>idzdravstveniDelavec</td>
+            <td>
+                
+                    
+                    integer (int32)
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>ime</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>priimek</td>
+            <td>
+                
+                    
+                    string
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>delovniNalogs</td>
+            <td>
+                
+                
+                    array[<a href="#/definitions/DelovniNalog">DelovniNalog</a>]
+                
+                
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>izvajalecZdravstvenihStoritev</td>
+            <td>
+                
+                    <a href="#/definitions/IzvajalecZdravstvenihStoritev">IzvajalecZdravstvenihStoritev</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>uporabnik</td>
+            <td>
+                
+                    <a href="#/definitions/Uporabnik">Uporabnik</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+        <tr>
+            <td>okolis</td>
+            <td>
+                
+                    <a href="#/definitions/Okolis">Okolis</a>
+                    
+                
+            </td>
+            <td>optional</td>
+            <td>-</td>
+            <td></td>
+        </tr>
+    
+</table>
+
+
+
+</xmp>
+
+<script src="http://strapdownjs.com/v/0.2/strapdown.js"></script>
+</html>
