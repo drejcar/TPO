@@ -1,6 +1,3 @@
-/**
- * Created by Andrej on 9.4.2017.
- */
 export class Uporabnik{
   constructor(
     public ime: String,

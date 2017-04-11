@@ -1,12 +1,5 @@
-/**
- * Created by Andrej on 7.4.2017.
- */
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-
-//import { Sestra } from './sestra';
-//import { SestraService } from './sestra.service';
-
 
 @Component({
   selector: 'my-dashboard',

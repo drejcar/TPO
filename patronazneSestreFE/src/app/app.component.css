@@ -3,19 +3,19 @@ header {
 	width: 100vw;
 	height: 20vh;
 	position: relative;
-	color: black;	
+	color: black;
 }
 
 nav {
 	position: absolute;
 	bottom: 0;
-	width: 100px;
-	color: black;	
+	width: 200px;
+	color: black;
 }
 
 footer {
 	bottom: 0;
-	position: fixed;		
+	position: fixed;
 }
 
 a:link {color:black; }
