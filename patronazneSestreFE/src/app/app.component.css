@@ -11,8 +11,8 @@ header {
 nav {
 	position: absolute;
 	bottom: 0;
-<<<<<<< HEAD
-	width: 45svx;
+
+	width: 45vx;
 	color: black;	
 	
 }
@@ -24,22 +24,18 @@ nav {
 	width: 45vx;
 	color: black;	
 	
-	
-	
-=======
-	width: 200px;
-	color: black;
->>>>>>> 15b3eaa35d9a762208ea49e6c8f5ffa8262a70e6
+
+
+
 }
 
 footer {
 	bottom: 0;
 	position: fixed;
-<<<<<<< HEAD
+
 	background: blue;
 	width: 98vw;
-=======
->>>>>>> 15b3eaa35d9a762208ea49e6c8f5ffa8262a70e6
+
 }
 
 a:link {color:black; }
