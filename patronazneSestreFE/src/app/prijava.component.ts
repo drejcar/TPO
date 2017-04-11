@@ -10,7 +10,7 @@ import { Router } from '@angular/router'
 @Component({
   selector: 'prijava',
   templateUrl: './prijava.component.html',
-  //styleUrls: [ './prijava.component.css' ]
+  styleUrls: [ './prijava.component.css' ]
 })
 
 export class PrijavaComponent{
