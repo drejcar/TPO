@@ -19,10 +19,14 @@ import { Component } from '@angular/core';
 			<a routerLink="/prijava" routerLinkActive="active">Prijava</a>	
 			/
 			<a routerLink="/registracija" routerLinkActive="active">Registracija</a>
+			/
+			<a routerLink="/delovniNalog" routerLinkActive="active">DelovniNalog</a>
 		</div>
 	  </header>
 	  
 	  <!-- <h1>Hello motherfucking {{name}}</h1> -->
+	  
+	  
 	  
 	  <router-outlet></router-outlet>
 	  

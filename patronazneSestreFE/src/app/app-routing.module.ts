@@ -11,13 +11,16 @@ import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent }   from './dashboard.component';
 import { PrijavaComponent }      from './prijava.component';
 import { RegistracijaFormComponent } from './registracija.component';
+import { DelovniNalogComponent } from './delovniNalog.component';
 import { BrowserModule } from '@angular/platform-browser';
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard',  component: DashboardComponent },  
   { path: 'prijava', component: PrijavaComponent }, 
-  { path: 'registracija', component: RegistracijaFormComponent }
+  { path: 'registracija', component: RegistracijaFormComponent }, 
+  { path: 'delovniNalog', component: DelovniNalogComponent },
+  
 ];
 @NgModule({
   imports: [ RouterModule.forRoot(routes) ],
