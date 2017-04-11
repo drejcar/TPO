@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
 
-
 @Component({
   selector: 'my-app',
   template: `
@@ -10,6 +9,7 @@ import { Component } from '@angular/core';
 		<nav>
 			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
 			<a routerLink="/prijava" routerLinkActive="active">Prijava</a>
+			<a routerLink="/registracija" routerLinkActive="active">Registracija</a>
 		</nav>
 	  </header>
 	  
