@@ -1,0 +1,1868 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Aplikacija za patronazne sestre",
+    "version" : "1.0.0",
+    "title" : "Patronazne Sestre",
+    "contact" : {
+      "email" : "mo0429@student.uni-lj.si"
+    }
+  },
+  "host" : "localhost",
+  "basePath" : "/v1",
+  "tags" : [ {
+    "name" : "Storitve za delovni nalog"
+  }, {
+    "name" : "Storitve za izvajalca zdravstvenih storitev"
+  }, {
+    "name" : "Storitve za kotaktno osebo"
+  }, {
+    "name" : "Storitve za pacienta"
+  }, {
+    "name" : "Storitve za sifrante"
+  }, {
+    "name" : "Storitve za uporabnike"
+  }, {
+    "name" : "Storitve za zdravstvene delavce"
+  } ],
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/delovniNalog" : {
+      "get" : {
+        "tags" : [ "Storitve za delovni nalog" ],
+        "summary" : "Vrni delovne naloge",
+        "description" : "Vrne seznam vseh delovnih nalog",
+        "operationId" : "returnDelovniNalogs",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DelovniNalog"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za delovni nalog" ],
+        "summary" : "Kreiranje delovnega naloga",
+        "description" : "Doda delovni nalog v bazo",
+        "operationId" : "createDelovniNalog",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za delovni nalog" ],
+        "summary" : "Posodobi delovni nalog",
+        "description" : "Posodobi ze obstojec delovni nalog",
+        "operationId" : "updateDelovniNalog",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/delovniNalog/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za delovni nalog" ],
+        "summary" : "vrni delovni nalog",
+        "description" : "Vrne specificni delovni nalog",
+        "operationId" : "returnDelovniNalog",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/DelovniNalog"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za delovni nalog" ],
+        "summary" : "Brisi delovni nalog",
+        "description" : "Pobrise specificni delovni nalog iz baze",
+        "operationId" : "deleteDelovniNalog",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/izvajalecZdravstvenihStoritev" : {
+      "get" : {
+        "tags" : [ "Storitve za izvajalca zdravstvenih storitev" ],
+        "summary" : "Vrni seznam izvajalcev zdravstvenih storitev",
+        "description" : "Vrne seznam vseh izvajalcev zdravstvenih storitev",
+        "operationId" : "returnIzvajalecZdravstvenihStoritevs",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IzvajalecZdravstvenihStoritev"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za izvajalca zdravstvenih storitev" ],
+        "summary" : "Dodaj izvajalca zdravstvenih storitev",
+        "description" : "Doda izvajalca zdravstvenih storitev v bazo",
+        "operationId" : "createIzvajalecZdravstvenihStoritev",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za izvajalca zdravstvenih storitev" ],
+        "summary" : "Posodobi izvajalca zdravstvenih storitev",
+        "description" : "Posodobi izvajalca zdravstvenih storitev",
+        "operationId" : "updateIzvajalecZdravstvenihStoritev",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/izvajalecZdravstvenihStoritev/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za izvajalca zdravstvenih storitev" ],
+        "summary" : "Vrni izvajalca zdravstvenih storitev",
+        "description" : "Vrne izvajalca zdravstvenih storitev iz bazo",
+        "operationId" : "returnIzvajalecZdravstvenihStoritev",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/IzvajalecZdravstvenihStoritev"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za izvajalca zdravstvenih storitev" ],
+        "summary" : "Brisi izvajalca zdravstvenih storitev",
+        "description" : "Pobrise specificnega izvajalca zdravstvenih storitev preko id-ja",
+        "operationId" : "deleteIzvajalecZdravstvenihStoritev",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/kontakt" : {
+      "get" : {
+        "tags" : [ "Storitve za kotaktno osebo" ],
+        "summary" : "Vrni kontaktne osebe",
+        "description" : "Vrne seznam kontaktni oseb",
+        "operationId" : "returnKontakts",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Kontakt"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za kotaktno osebo" ],
+        "summary" : "Dodaj kontaktno osebo",
+        "description" : "Doda kontaktno osebo v bazo",
+        "operationId" : "createKontakt",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za kotaktno osebo" ],
+        "summary" : "Posodobi kontaktno osebo",
+        "description" : "Posodobi kontaktno osebo v bazi",
+        "operationId" : "updateKontakt",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/kontakt/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za kotaktno osebo" ],
+        "summary" : "Vrni kontaktno osebo",
+        "description" : "Vraca specificno kontaktno osebo iz bazo",
+        "operationId" : "returnKontakt",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Kontakt"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za kotaktno osebo" ],
+        "summary" : "Brisi kontaktno osebo",
+        "description" : "Pobrise kontaktno osebo iz bazo",
+        "operationId" : "deleteKontakt",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/pacient" : {
+      "get" : {
+        "tags" : [ "Storitve za pacienta" ],
+        "summary" : "Vrni paciente",
+        "description" : "Vrne seznam pacientov",
+        "operationId" : "returnPacients",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Pacient"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za pacienta" ],
+        "summary" : "Dodaj pacienta",
+        "description" : "Doda pacienta v bazo",
+        "operationId" : "createPacient",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za pacienta" ],
+        "summary" : "Posodobi pacienta",
+        "description" : "Posodobi pacienta v bazi",
+        "operationId" : "updatePacient",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/pacient/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za pacienta" ],
+        "summary" : "Vrni pacienta",
+        "description" : "Vrne pacienta iz baze",
+        "operationId" : "returnPacient",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Pacient"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za pacienta" ],
+        "summary" : "Pobrisi pacienta",
+        "description" : "Brisi pacienta iz bazo",
+        "operationId" : "deletePacient",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/bolezen" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni bolezni",
+        "description" : "Vrne seznam bolezni iz baze",
+        "operationId" : "returnBolezens",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Bolezen"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Dodaj bolezen",
+        "description" : "Doda bolezen v bazo",
+        "operationId" : "createBolezen",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi bolezen",
+        "description" : "Brisi bolezen iz baze",
+        "operationId" : "updateBolezen",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/bolezen/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni bolezen",
+        "description" : "Vrni bolezen iz baze",
+        "operationId" : "returnBolezen",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Bolezen"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi bolezen",
+        "description" : "Brisi bolezen iz baze",
+        "operationId" : "deleteBolezen",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/material" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni material",
+        "description" : "Vrne seznam materiala iz baze",
+        "operationId" : "returnMaterials",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Material"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Dodaj material",
+        "description" : "Doda material v bazo",
+        "operationId" : "createMaterial",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi material",
+        "description" : "Brisi material iz baze",
+        "operationId" : "updateMaterial",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/material/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni material",
+        "description" : "Vrni material iz baze",
+        "operationId" : "returnMaterial",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Material"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi material",
+        "description" : "Brisi material iz baze",
+        "operationId" : "deleteMaterial",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/okolis" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni okolis",
+        "description" : "Vrne seznam okolisev iz baze",
+        "operationId" : "returnOkoliss",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Okolis"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Dodaj okolis",
+        "description" : "Doda okolis v bazo",
+        "operationId" : "createOkolis",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi okolis",
+        "description" : "Brisi okolis iz baze",
+        "operationId" : "updateOkolis",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/okolis/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni okolis",
+        "description" : "Vrni okolis iz baze",
+        "operationId" : "returnOkolis",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Okolis"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi okolis",
+        "description" : "Brisi okolis iz baze",
+        "operationId" : "deleteOkolis",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/okolisByPosta/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni okolis glede na posto",
+        "description" : "Vrne seznam okolisev glede na podan id od poste",
+        "operationId" : "returnOkolissByPosta",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Okolis"
+            }
+          }
+        }
+      }
+    },
+    "/sifranti/posta" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni poste",
+        "description" : "Vrne seznam post iz baze",
+        "operationId" : "returnPostas",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Posta"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Dodaj posto",
+        "description" : "Doda posto v bazo",
+        "operationId" : "createPosta",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi posto",
+        "description" : "Brisi posto iz baze",
+        "operationId" : "updatePosta",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/posta/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni posto",
+        "description" : "Vrni posto iz baze",
+        "operationId" : "returnPosta",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Posta"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi posto",
+        "description" : "Brisi posto iz baze",
+        "operationId" : "deletePosta",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/sorodstvenoRazmerje" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni sorodstvena razmerja",
+        "description" : "Vrne seznam sorodstvenih razmerij iz baze",
+        "operationId" : "returnSorodstvenoRazmerjes",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/SorodstvenoRazmerje"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Dodaj sorodstveno razmerje",
+        "description" : "Doda sorodstveno razmerje v bazo",
+        "operationId" : "createSorodstvenoRazmerje",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi sorodstveno razmerje",
+        "description" : "Brisi sorodstveno razmerje iz baze",
+        "operationId" : "updateSorodstvenoRazmerje",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/sorodstvenoRazmerje/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni sorodstveno razmerje",
+        "description" : "Vrni sorodstveno razmerje iz baze",
+        "operationId" : "returnSorodstvenoRazmerje",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/SorodstvenoRazmerje"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi sorodstveno razmerje",
+        "description" : "Brisi sorodstveno razmerje iz baze",
+        "operationId" : "deleteSorodstvenoRazmerje",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/spol" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni spole",
+        "description" : "Vrne seznam spolov iz baze",
+        "operationId" : "returnSpols",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Spol"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Dodaj spol",
+        "description" : "Doda spol v bazo",
+        "operationId" : "createSpol",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi spol",
+        "description" : "Brisi spol iz baze",
+        "operationId" : "updateSpol",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/spol/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni spol",
+        "description" : "Vrni spol iz baze",
+        "operationId" : "returnSpol",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Spol"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi spol",
+        "description" : "Brisi spol iz baze",
+        "operationId" : "deleteSpol",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/vloga" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni vloge",
+        "description" : "Vrne seznam vlog iz baze",
+        "operationId" : "returnVlogas",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Vloga"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Dodaj vlogo",
+        "description" : "Doda vlogo v bazo",
+        "operationId" : "createVloga",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi vlogo",
+        "description" : "Brisi vlogo iz baze",
+        "operationId" : "updateVloga",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/vloga/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni vlogo",
+        "description" : "Vrni vlogo iz baze",
+        "operationId" : "returnVloga",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Vloga"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi vlogo",
+        "description" : "Brisi vlogo iz baze",
+        "operationId" : "deleteVloga",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/vrstaObiska" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni vrste obiskov",
+        "description" : "Vrne seznam vrst obiskov iz baze",
+        "operationId" : "returnVrstaObiskas",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/VrstaObiska"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Dodaj vrsto obiska",
+        "description" : "Doda vrsto obiska v bazo",
+        "operationId" : "createVrstaObiska",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi vrsto obiska",
+        "description" : "Brisi vrsto obiska iz baze",
+        "operationId" : "updateVrstaObiska",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/vrstaObiska/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni vrsto obiska",
+        "description" : "Vrni vrsto obiska iz baze",
+        "operationId" : "returnVrstaObiska",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/VrstaObiska"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi vrsto obiska",
+        "description" : "Brisi vrsto obiska iz baze",
+        "operationId" : "deleteVrstaObiska",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/zdravilo" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni zdravila",
+        "description" : "Vrne seznam zdravila iz baze",
+        "operationId" : "returnZdravilas",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Zdravilo"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Dodaj zdravilo",
+        "description" : "Doda zdravilo v bazo",
+        "operationId" : "createZdravilo",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Posodobi zdravilo",
+        "description" : "Posodobi zdravilo v bazi",
+        "operationId" : "updateZdravilo",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/sifranti/zdravilo/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Vrni zdravilo",
+        "description" : "Vrni zdravilo iz baze",
+        "operationId" : "returnZdravila",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Zdravilo"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za sifrante" ],
+        "summary" : "Brisi zdravilo",
+        "description" : "Brisi zdravilo iz baze",
+        "operationId" : "deleteZdravilo",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/uporabnik" : {
+      "get" : {
+        "tags" : [ "Storitve za uporabnike" ],
+        "summary" : "Vrni uporabnike",
+        "description" : "Vrne uporabnike iz baze",
+        "operationId" : "returnUporabniks",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Uporabnik"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za uporabnike" ],
+        "summary" : "Dodaj uporabnika",
+        "description" : "Doda uporabnika v bazo",
+        "operationId" : "createUporabnik",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za uporabnike" ],
+        "summary" : "Posodobi uporabnika",
+        "description" : "Posodobi uporabnika v bazi",
+        "operationId" : "updateUporabnik",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/uporabnik/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za uporabnike" ],
+        "summary" : "Vrni uporabnika",
+        "description" : "Vrne uporabnika iz baze",
+        "operationId" : "returnUporabnik",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/Uporabnik"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za uporabnike" ],
+        "summary" : "Brisi uporabnika",
+        "description" : "Brise uporabnika iz baze",
+        "operationId" : "deleteUporabnik",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/zdravstveniDelavec" : {
+      "get" : {
+        "tags" : [ "Storitve za zdravstvene delavce" ],
+        "summary" : "Vrni zdravstvene delavce",
+        "description" : "Vrne seznam zdravstvenih delavcev",
+        "operationId" : "returnZdravstveniDelavecs",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ZdravstveniDelavec"
+            }
+          }
+        }
+      },
+      "post" : {
+        "tags" : [ "Storitve za zdravstvene delavce" ],
+        "summary" : "Dodaj zdravstvenega delavca",
+        "description" : "Doda zdravstvenega delavca v bazo",
+        "operationId" : "createZdravstveniDelavec",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      },
+      "put" : {
+        "tags" : [ "Storitve za zdravstvene delavce" ],
+        "summary" : "Posodobi zdravstvenega delavca",
+        "description" : "Posodobi zdravstvenega delavca v bazi",
+        "operationId" : "updateZdravstveniDelavec",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    },
+    "/zdravstveniDelavec/{id}" : {
+      "get" : {
+        "tags" : [ "Storitve za zdravstvene delavce" ],
+        "summary" : "Vrne zdravstvenega delavca",
+        "description" : "Vrne zdravstvenega delavca iz baze",
+        "operationId" : "returnZdravstveniDelavec",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/ZdravstveniDelavec"
+            }
+          }
+        }
+      },
+      "delete" : {
+        "tags" : [ "Storitve za zdravstvene delavce" ],
+        "summary" : "Brisi zdravstvenega delavca",
+        "description" : "Brise zdravstvenega delavca iz baze",
+        "operationId" : "deleteZdravstveniDelavec",
+        "consumes" : [ "application/xml", "application/json" ],
+        "produces" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "integer",
+          "format" : "int32"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "successful operation"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "Aktivnost" : {
+      "type" : "object",
+      "properties" : {
+        "idaktivnost" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "vrstaObiska" : {
+          "$ref" : "#/definitions/VrstaObiska"
+        },
+        "meritevs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Meritev"
+          }
+        }
+      }
+    },
+    "Bolezen" : {
+      "type" : "object",
+      "properties" : {
+        "idbolezen" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "delovniNalogs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DelovniNalog"
+          }
+        }
+      }
+    },
+    "DelovniNalog" : {
+      "type" : "object",
+      "properties" : {
+        "iddelovniNalog" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "bolezen" : {
+          "$ref" : "#/definitions/Bolezen"
+        },
+        "izvajalecZdravstvenihStoritev" : {
+          "$ref" : "#/definitions/IzvajalecZdravstvenihStoritev"
+        },
+        "obisk" : {
+          "$ref" : "#/definitions/Obisk"
+        },
+        "vrstaObiska" : {
+          "$ref" : "#/definitions/VrstaObiska"
+        },
+        "zdravstveniDelavec" : {
+          "$ref" : "#/definitions/ZdravstveniDelavec"
+        },
+        "materials" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Material"
+          }
+        },
+        "pacients" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Pacient"
+          }
+        },
+        "zdravilos" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Zdravilo"
+          }
+        }
+      }
+    },
+    "IzvajalecZdravstvenihStoritev" : {
+      "type" : "object",
+      "properties" : {
+        "idizvajalecZdravstvenihStoritev" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "hisnaStevilka" : {
+          "type" : "string"
+        },
+        "naziv" : {
+          "type" : "string"
+        },
+        "stevilkaIzvajalca" : {
+          "type" : "string"
+        },
+        "ulica" : {
+          "type" : "string"
+        },
+        "delovniNalogs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DelovniNalog"
+          }
+        },
+        "posta" : {
+          "$ref" : "#/definitions/Posta"
+        },
+        "zdravstveniDelavecs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ZdravstveniDelavec"
+          }
+        }
+      }
+    },
+    "Kontakt" : {
+      "type" : "object",
+      "properties" : {
+        "idkontakt" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "ime" : {
+          "type" : "string"
+        },
+        "priimek" : {
+          "type" : "string"
+        },
+        "telefonskaStevilka" : {
+          "type" : "string"
+        },
+        "sorodstvenoRazmerje" : {
+          "$ref" : "#/definitions/SorodstvenoRazmerje"
+        },
+        "pacients" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Pacient"
+          }
+        }
+      }
+    },
+    "Material" : {
+      "type" : "object",
+      "properties" : {
+        "idmaterial" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "delovniNalogs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DelovniNalog"
+          }
+        }
+      }
+    },
+    "Meritev" : {
+      "type" : "object",
+      "properties" : {
+        "idmeritev" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "merskaEnota" : {
+          "type" : "string"
+        },
+        "obvezno" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "spodnjaMeja" : {
+          "type" : "string"
+        },
+        "ugornjaMeja" : {
+          "type" : "string"
+        },
+        "aktivnosts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Aktivnost"
+          }
+        }
+      }
+    },
+    "Obisk" : {
+      "type" : "object",
+      "properties" : {
+        "idobisk" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "delovniNalogs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DelovniNalog"
+          }
+        }
+      }
+    },
+    "Okolis" : {
+      "type" : "object",
+      "properties" : {
+        "idokolis" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "posta" : {
+          "$ref" : "#/definitions/Posta"
+        },
+        "zdravstveniDelavecs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ZdravstveniDelavec"
+          }
+        }
+      }
+    },
+    "Pacient" : {
+      "type" : "object",
+      "properties" : {
+        "idpacient" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "hisnaStevilka" : {
+          "type" : "string"
+        },
+        "ime" : {
+          "type" : "string"
+        },
+        "priimek" : {
+          "type" : "string"
+        },
+        "stevilkaZdravstvenegaZavarovanja" : {
+          "type" : "string"
+        },
+        "ulica" : {
+          "type" : "string"
+        },
+        "delovniNalogs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DelovniNalog"
+          }
+        },
+        "kontakt" : {
+          "$ref" : "#/definitions/Kontakt"
+        },
+        "pacient" : {
+          "$ref" : "#/definitions/Pacient"
+        },
+        "pacients" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Pacient"
+          }
+        },
+        "posta" : {
+          "$ref" : "#/definitions/Posta"
+        },
+        "sorodstvenoRazmerje" : {
+          "$ref" : "#/definitions/SorodstvenoRazmerje"
+        },
+        "spol" : {
+          "$ref" : "#/definitions/Spol"
+        },
+        "uporabnik" : {
+          "$ref" : "#/definitions/Uporabnik"
+        }
+      }
+    },
+    "Posta" : {
+      "type" : "object",
+      "properties" : {
+        "idposta" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "izvajalecZdravstvenihStoritevs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/IzvajalecZdravstvenihStoritev"
+          }
+        },
+        "okolis" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Okolis"
+          }
+        },
+        "pacients" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Pacient"
+          }
+        }
+      }
+    },
+    "SorodstvenoRazmerje" : {
+      "type" : "object",
+      "properties" : {
+        "idsorodstvenoRazmerje" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "kontakts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Kontakt"
+          }
+        },
+        "pacients" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Pacient"
+          }
+        }
+      }
+    },
+    "Spol" : {
+      "type" : "object",
+      "properties" : {
+        "idspol" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "pacients" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Pacient"
+          }
+        }
+      }
+    },
+    "Uporabnik" : {
+      "type" : "object",
+      "properties" : {
+        "iduporabnik" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "email" : {
+          "type" : "string"
+        },
+        "geslo" : {
+          "type" : "string"
+        },
+        "pacients" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Pacient"
+          }
+        },
+        "vloga" : {
+          "$ref" : "#/definitions/Vloga"
+        },
+        "zdravstveniDelavecs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/ZdravstveniDelavec"
+          }
+        }
+      }
+    },
+    "Vloga" : {
+      "type" : "object",
+      "properties" : {
+        "idvloga" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "uporabniks" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Uporabnik"
+          }
+        }
+      }
+    },
+    "VrstaObiska" : {
+      "type" : "object",
+      "properties" : {
+        "idvrstaObiska" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "aktivnosts" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/Aktivnost"
+          }
+        },
+        "delovniNalogs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DelovniNalog"
+          }
+        }
+      }
+    },
+    "Zdravilo" : {
+      "type" : "object",
+      "properties" : {
+        "idzdravilo" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "opis" : {
+          "type" : "string"
+        },
+        "delovniNalogs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DelovniNalog"
+          }
+        }
+      }
+    },
+    "ZdravstveniDelavec" : {
+      "type" : "object",
+      "properties" : {
+        "idzdravstveniDelavec" : {
+          "type" : "integer",
+          "format" : "int32"
+        },
+        "ime" : {
+          "type" : "string"
+        },
+        "priimek" : {
+          "type" : "string"
+        },
+        "delovniNalogs" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "#/definitions/DelovniNalog"
+          }
+        },
+        "izvajalecZdravstvenihStoritev" : {
+          "$ref" : "#/definitions/IzvajalecZdravstvenihStoritev"
+        },
+        "uporabnik" : {
+          "$ref" : "#/definitions/Uporabnik"
+        },
+        "okolis" : {
+          "$ref" : "#/definitions/Okolis"
+        }
+      }
+    }
+  }
+}

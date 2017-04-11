@@ -57,5 +57,41 @@
 			<version>0.0.1-SNAPSHOT</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>io.swagger</groupId>
+			<artifactId>swagger-core</artifactId>
+			<version>1.5.10</version>
+		</dependency>
 	</dependencies>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>com.github.kongchen</groupId>
+				<artifactId>swagger-maven-plugin</artifactId>
+				<version>3.1.2</version>
+				<configuration>
+					<apiSources>
+						<apiSource>
+							<springmvc>false</springmvc>
+							<locations>si.fri.tpo.v1.viri</locations>
+							<schemes>http</schemes>
+							<host>localhost</host>
+							<basePath>/v1</basePath>
+							<info>
+								<title>Patronazne Sestre</title>
+								<version>1.0.0</version>
+								<description>Aplikacija za patronazne sestre</description>
+								<contact>
+									<email>mo0429@student.uni-lj.si</email>
+								</contact>
+							</info>
+							<templatePath>${project.basedir}/src/main/resources/doc/v1/swagger/templates/strapdown.html.hbs</templatePath>
+							<outputPath>${project.basedir}/src/main/resources/doc/v1/swagger/html/document.html</outputPath>
+							<swaggerDirectory>${project.basedir}/src/main/resources/doc/v1/swagger</swaggerDirectory>
+						</apiSource>
+					</apiSources>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>

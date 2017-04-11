@@ -10,6 +10,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import si.fri.tpo.entitete.Uporabnik;
 import si.fri.tpo.entitete.Vloga;
 import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
@@ -19,6 +21,7 @@ import si.fri.tpo.vmesniki_ws.UporabnikREST;
 @Path("uporabnik")
 @Produces({ "application/json" })
 @Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
+@Api(value = "Storitve za uporabnike")
 public class UporabnikStoritve implements UporabnikREST {
 	@EJB
 	private FasadniSBLocal fasada;
@@ -26,6 +29,7 @@ public class UporabnikStoritve implements UporabnikREST {
 	
 	@POST
 	@Path("")
+	@ApiOperation(value = "Dodaj uporabnika", notes = "Doda uporabnika v bazo", code = 200)
 	public void createUporabnik(Uporabnik uporabnik) {
 		fasada.shraniNovegaUporabnika(uporabnik);
 		
@@ -33,6 +37,7 @@ public class UporabnikStoritve implements UporabnikREST {
 
 	@GET
 	@Path("")
+	@ApiOperation(value = "Vrni uporabnike", notes = "Vrne uporabnike iz baze", code = 200, response = Uporabnik.class)
 	public List<Uporabnik> returnUporabniks() {
 		
 		return fasada.najdiUporabniks();
@@ -40,6 +45,7 @@ public class UporabnikStoritve implements UporabnikREST {
 
 	@DELETE
 	@Path("{id}")
+	@ApiOperation(value = "Brisi uporabnika", notes = "Brise uporabnika iz baze", code = 200)
 	public void deleteUporabnik(@PathParam("id") int id) {
 		fasada.deleteUporabnik(id);
 		
@@ -48,6 +54,7 @@ public class UporabnikStoritve implements UporabnikREST {
 
 	@PUT
 	@Path("")
+	@ApiOperation(value = "Posodobi uporabnika", notes = "Posodobi uporabnika v bazi", code = 200)
 	public void updateUporabnik(Uporabnik uporabnik) {
 		fasada.updateUporabnika(uporabnik);
 		
@@ -56,6 +63,7 @@ public class UporabnikStoritve implements UporabnikREST {
 
 	@GET
 	@Path("{id}")
+	@ApiOperation(value = "Vrni uporabnika", notes = "Vrne uporabnika iz baze", code = 200, response = Uporabnik.class)
 	public Uporabnik returnUporabnik(@PathParam("id") int id) {
 		return fasada.najdiUporabnik(id);
 	}
