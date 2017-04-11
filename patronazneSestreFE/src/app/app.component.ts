@@ -1,14 +1,18 @@
 import { Component } from '@angular/core';
 
 
-
 @Component({
   selector: 'my-app',
   template: `
-  
+
 	  <header>
 		<nav>
+
 			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>				
+
+			
+			
+
 		</nav>
 						
 		<div id="navRight">
@@ -23,6 +27,7 @@ import { Component } from '@angular/core';
 	  <router-outlet></router-outlet>
 	  
 	  <footer>@ 2017</footer>
+
   `,
 	styleUrls: [ './app.component.css' ]
 })

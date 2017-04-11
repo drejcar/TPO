@@ -9,6 +9,10 @@ import javax.ws.rs.*;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import com.sun.mail.iap.Response;
+
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.DelovniNalogREST;
@@ -17,6 +21,7 @@ import si.fri.tpo.vmesniki_ws.DelovniNalogREST;
 @Path("delovniNalog")
 @Produces({ "application/json" })
 @Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
+@Api(value = "Storitve za delovni nalog")
 public class DelovniNalogStoritve implements DelovniNalogREST {
 
 	@EJB
@@ -24,6 +29,7 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 	
 	@POST
 	@Path("")
+	@ApiOperation(value = "Kreiranje delovnega naloga", notes = "Doda delovni nalog v bazo")
 	public void createDelovniNalog(DelovniNalog delovniNalog) {
 		fasada.dodajDelovniNalog(delovniNalog);
 		
@@ -32,12 +38,14 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 
 	@GET
 	@Path("")
+	@ApiOperation(value = "Vrni delovne naloge", notes = "Vrne seznam vseh delovnih nalog",code = 200, response = DelovniNalog.class)
 	public List<DelovniNalog> returnDelovniNalogs() {
 		return fasada.vrniDelovniNalogs();
 	}
 
 	@DELETE
 	@Path("{id}")
+	@ApiOperation(value = "Brisi delovni nalog", notes = "Pobrise specificni delovni nalog iz baze", code = 200)
 	public void deleteDelovniNalog(@PathParam("id") int id) {
 		fasada.deleteDelovniNalog(id);
 		
@@ -46,6 +54,7 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 
 	@PUT
 	@Path("")
+	@ApiOperation(value = "Posodobi delovni nalog", notes = "Posodobi ze obstojec delovni nalog", code = 200)
 	public void updateDelovniNalog(DelovniNalog delovniNalog) {
 		fasada.updateDelovniNalog(delovniNalog);
 		
@@ -54,6 +63,7 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 
 	@GET
 	@Path("{id}")
+	@ApiOperation(value = "vrni delovni nalog", notes = "Vrne specificni delovni nalog",code = 200, response = DelovniNalog.class)
 	public DelovniNalog returnDelovniNalog(@PathParam("id") int id) {
 		
 		
