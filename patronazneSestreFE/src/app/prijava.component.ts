@@ -24,3 +24,4 @@ export class PrijavaComponent{
   pwd='';
   model=new Prijava(this.mail,this.pwd);
 }
+
