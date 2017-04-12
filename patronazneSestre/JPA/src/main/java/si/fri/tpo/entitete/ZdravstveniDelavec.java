@@ -33,6 +33,12 @@ public class ZdravstveniDelavec implements Serializable {
 	@Column(nullable=false, length=45)
 	private String priimek;
 
+	@Column(nullable=false, length=45)
+	private String sifra;
+
+	@Column(nullable=false, length=45)
+	private String telefonskaStevilka;
+
 	//bi-directional many-to-one association to DelovniNalog
 	@OneToMany(mappedBy="zdravstveniDelavec")
 	private List<DelovniNalog> delovniNalogs;
@@ -79,6 +85,22 @@ public class ZdravstveniDelavec implements Serializable {
 		this.priimek = priimek;
 	}
 
+	public String getSifra() {
+		return this.sifra;
+	}
+
+	public void setSifra(String sifra) {
+		this.sifra = sifra;
+	}
+
+	public String getTelefonskaStevilka() {
+		return this.telefonskaStevilka;
+	}
+
+	public void setTelefonskaStevilka(String telefonskaStevilka) {
+		this.telefonskaStevilka = telefonskaStevilka;
+	}
+
 	public List<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
@@ -109,11 +131,11 @@ public class ZdravstveniDelavec implements Serializable {
 		this.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
 	}
 
-	public Okolis getOkolis() {
+	public Okolis getOkoli() {
 		return this.okoli;
 	}
 
-	public void setOkolis(Okolis okoli) {
+	public void setOkoli(Okolis okoli) {
 		this.okoli = okoli;
 	}
 

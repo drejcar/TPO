@@ -77,14 +77,14 @@ public class Okolis implements Serializable {
 
 	public ZdravstveniDelavec addZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		getZdravstveniDelavecs().add(zdravstveniDelavec);
-		zdravstveniDelavec.setOkolis(this);
+		zdravstveniDelavec.setOkoli(this);
 
 		return zdravstveniDelavec;
 	}
 
 	public ZdravstveniDelavec removeZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		getZdravstveniDelavecs().remove(zdravstveniDelavec);
-		zdravstveniDelavec.setOkolis(null);
+		zdravstveniDelavec.setOkoli(null);
 
 		return zdravstveniDelavec;
 	}

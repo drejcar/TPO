@@ -37,11 +37,6 @@ public class DelovniNalog implements Serializable {
 	@JoinColumn(name="idizvajalec_zdravstvenih_storitev", nullable=false)
 	private IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev;
 
-	//bi-directional many-to-one association to Obisk
-	@ManyToOne
-	@JoinColumn(name="idobisk", nullable=false)
-	private Obisk obisk;
-
 	//bi-directional many-to-one association to VrstaObiska
 	@ManyToOne
 	@JoinColumn(name="idvrsta_obiska", nullable=false)
@@ -55,6 +50,10 @@ public class DelovniNalog implements Serializable {
 	//bi-directional many-to-many association to Material
 	@ManyToMany(mappedBy="delovniNalogs")
 	private List<Material> materials;
+
+	//bi-directional many-to-one association to Obisk
+	@OneToMany(mappedBy="delovniNalog")
+	private List<Obisk> obisks;
 
 	//bi-directional many-to-many association to Pacient
 	@ManyToMany(mappedBy="delovniNalogs")
@@ -91,14 +90,6 @@ public class DelovniNalog implements Serializable {
 		this.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
 	}
 
-	public Obisk getObisk() {
-		return this.obisk;
-	}
-
-	public void setObisk(Obisk obisk) {
-		this.obisk = obisk;
-	}
-
 	public VrstaObiska getVrstaObiska() {
 		return this.vrstaObiska;
 	}
@@ -121,6 +112,28 @@ public class DelovniNalog implements Serializable {
 
 	public void setMaterials(List<Material> materials) {
 		this.materials = materials;
+	}
+
+	public List<Obisk> getObisks() {
+		return this.obisks;
+	}
+
+	public void setObisks(List<Obisk> obisks) {
+		this.obisks = obisks;
+	}
+
+	public Obisk addObisk(Obisk obisk) {
+		getObisks().add(obisk);
+		obisk.setDelovniNalog(this);
+
+		return obisk;
+	}
+
+	public Obisk removeObisk(Obisk obisk) {
+		getObisks().remove(obisk);
+		obisk.setDelovniNalog(null);
+
+		return obisk;
 	}
 
 	public List<Pacient> getPacients() {

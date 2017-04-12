@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import java.util.Date;
 
 
 /**
@@ -27,9 +27,17 @@ public class Obisk implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int idobisk;
 
+	@Temporal(TemporalType.DATE)
+	@Column(name="datum_obiska", nullable=false)
+	private Date datumObiska;
+
+	@Column(name="fixen_datum", nullable=false)
+	private int fixenDatum;
+
 	//bi-directional many-to-one association to DelovniNalog
-	@OneToMany(mappedBy="obisk")
-	private List<DelovniNalog> delovniNalogs;
+	@ManyToOne
+	@JoinColumn(name="iddelovni_nalog", nullable=false)
+	private DelovniNalog delovniNalog;
 
 	public Obisk() {
 	}
@@ -42,26 +50,28 @@ public class Obisk implements Serializable {
 		this.idobisk = idobisk;
 	}
 
-	public List<DelovniNalog> getDelovniNalogs() {
-		return this.delovniNalogs;
+	public Date getDatumObiska() {
+		return this.datumObiska;
 	}
 
-	public void setDelovniNalogs(List<DelovniNalog> delovniNalogs) {
-		this.delovniNalogs = delovniNalogs;
+	public void setDatumObiska(Date datumObiska) {
+		this.datumObiska = datumObiska;
 	}
 
-	public DelovniNalog addDelovniNalog(DelovniNalog delovniNalog) {
-		getDelovniNalogs().add(delovniNalog);
-		delovniNalog.setObisk(this);
-
-		return delovniNalog;
+	public int getFixenDatum() {
+		return this.fixenDatum;
 	}
 
-	public DelovniNalog removeDelovniNalog(DelovniNalog delovniNalog) {
-		getDelovniNalogs().remove(delovniNalog);
-		delovniNalog.setObisk(null);
+	public void setFixenDatum(int fixenDatum) {
+		this.fixenDatum = fixenDatum;
+	}
 
-		return delovniNalog;
+	public DelovniNalog getDelovniNalog() {
+		return this.delovniNalog;
+	}
+
+	public void setDelovniNalog(DelovniNalog delovniNalog) {
+		this.delovniNalog = delovniNalog;
 	}
 
 }

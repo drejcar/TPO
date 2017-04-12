@@ -40,6 +40,9 @@ public class Pacient implements Serializable {
 	private String stevilkaZdravstvenegaZavarovanja;
 
 	@Column(nullable=false, length=45)
+	private String telefonskaStevilka;
+
+	@Column(nullable=false, length=45)
 	private String ulica;
 
 	//bi-directional many-to-many association to DelovniNalog
@@ -130,6 +133,14 @@ public class Pacient implements Serializable {
 
 	public void setStevilkaZdravstvenegaZavarovanja(String stevilkaZdravstvenegaZavarovanja) {
 		this.stevilkaZdravstvenegaZavarovanja = stevilkaZdravstvenegaZavarovanja;
+	}
+
+	public String getTelefonskaStevilka() {
+		return this.telefonskaStevilka;
+	}
+
+	public void setTelefonskaStevilka(String telefonskaStevilka) {
+		this.telefonskaStevilka = telefonskaStevilka;
 	}
 
 	public String getUlica() {
