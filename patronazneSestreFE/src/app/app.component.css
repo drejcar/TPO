@@ -12,16 +12,15 @@ nav {
 	bottom: 0;
 	width: 45vw;
 	color: black;
-	margin: 5px;
+	margin: 5px 10px;
 }
 
 #navRight {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-
 	color: black;
-	margin: 5px;
+	margin: 5px 10px;
 }
 
 .nav1 {

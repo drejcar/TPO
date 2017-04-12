@@ -31,8 +31,8 @@ public class Bolezen implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to DelovniNalog
-	@OneToMany(mappedBy="bolezen")
-	private List<DelovniNalog> delovniNalogs;
+	//@OneToMany(mappedBy="bolezen")
+	//private List<DelovniNalog> delovniNalogs;
 
 	public Bolezen() {
 	}
@@ -52,7 +52,7 @@ public class Bolezen implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
+	/*
 	public List<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
@@ -74,5 +74,5 @@ public class Bolezen implements Serializable {
 
 		return delovniNalog;
 	}
-
+	*/
 }

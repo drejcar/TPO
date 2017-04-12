@@ -41,11 +41,11 @@ public class Uporabnik implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idvloga", nullable=false)
 	private Vloga vloga;
-
+/*
 	//bi-directional many-to-one association to ZdravstveniDelavec
 	@OneToMany(mappedBy="uporabnik")
 	private List<ZdravstveniDelavec> zdravstveniDelavecs;
-
+*/
 	public Uporabnik() {
 	}
 
@@ -72,7 +72,7 @@ public class Uporabnik implements Serializable {
 	public void setGeslo(String geslo) {
 		this.geslo = geslo;
 	}
-
+/*
 	public List<Pacient> getPacients() {
 		return this.pacients;
 	}
@@ -94,7 +94,7 @@ public class Uporabnik implements Serializable {
 
 		return pacient;
 	}
-
+*/
 	public Vloga getVloga() {
 		return this.vloga;
 	}
@@ -102,7 +102,7 @@ public class Uporabnik implements Serializable {
 	public void setVloga(Vloga vloga) {
 		this.vloga = vloga;
 	}
-
+/*
 	public List<ZdravstveniDelavec> getZdravstveniDelavecs() {
 		return this.zdravstveniDelavecs;
 	}
@@ -124,5 +124,5 @@ public class Uporabnik implements Serializable {
 
 		return zdravstveniDelavec;
 	}
-
+*/
 }

@@ -38,20 +38,20 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 
 	@Column(nullable=false, length=45)
 	private String ulica;
-
+/*
 	//bi-directional many-to-one association to DelovniNalog
 	@OneToMany(mappedBy="izvajalecZdravstvenihStoritev")
 	private List<DelovniNalog> delovniNalogs;
-
+*/
 	//bi-directional many-to-one association to Posta
 	@ManyToOne
 	@JoinColumn(name="idposta", nullable=false)
 	private Posta posta;
-
+/*
 	//bi-directional many-to-one association to ZdravstveniDelavec
 	@OneToMany(mappedBy="izvajalecZdravstvenihStoritev")
 	private List<ZdravstveniDelavec> zdravstveniDelavecs;
-
+*/
 	public IzvajalecZdravstvenihStoritev() {
 	}
 
@@ -94,7 +94,7 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 	public void setUlica(String ulica) {
 		this.ulica = ulica;
 	}
-
+/*
 	public List<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
@@ -116,7 +116,7 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 
 		return delovniNalog;
 	}
-
+*/
 	public Posta getPosta() {
 		return this.posta;
 	}
@@ -124,7 +124,7 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 	public void setPosta(Posta posta) {
 		this.posta = posta;
 	}
-
+/*
 	public List<ZdravstveniDelavec> getZdravstveniDelavecs() {
 		return this.zdravstveniDelavecs;
 	}
@@ -146,5 +146,5 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 
 		return zdravstveniDelavec;
 	}
-
+*/
 }

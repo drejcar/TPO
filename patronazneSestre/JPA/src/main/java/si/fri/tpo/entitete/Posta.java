@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.List;
 
 
@@ -31,20 +34,20 @@ public class Posta implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to IzvajalecZdravstvenihStoritev
-	@OneToMany(mappedBy="posta")
-	private List<IzvajalecZdravstvenihStoritev> izvajalecZdravstvenihStoritevs;
+	//@OneToMany(mappedBy="posta")
+	//private List<IzvajalecZdravstvenihStoritev> izvajalecZdravstvenihStoritevs;
 
 	//bi-directional many-to-one association to Kontakt
-	@OneToMany(mappedBy="posta")
-	private List<Kontakt> kontakts;
+	//@OneToMany(mappedBy="posta")
+	//private List<Kontakt> kontakts;
 
 	//bi-directional many-to-one association to Okoli
-	@OneToMany(mappedBy="posta")
-	private List<Okolis> okolis;
+	//@OneToMany(mappedBy="posta")
+	//private List<Okolis> okolis;
 
 	//bi-directional many-to-one association to Pacient
-	@OneToMany(mappedBy="posta")
-	private List<Pacient> pacients;
+	//@OneToMany(mappedBy="posta")
+	//private List<Pacient> pacients;
 
 	public Posta() {
 	}
@@ -64,7 +67,7 @@ public class Posta implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
+/*
 	public List<IzvajalecZdravstvenihStoritev> getIzvajalecZdravstvenihStoritevs() {
 		return this.izvajalecZdravstvenihStoritevs;
 	}
@@ -152,5 +155,5 @@ public class Posta implements Serializable {
 
 		return pacient;
 	}
-
+*/
 }

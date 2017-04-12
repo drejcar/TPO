@@ -31,8 +31,8 @@ public class Vloga implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to Uporabnik
-	@OneToMany(mappedBy="vloga")
-	private List<Uporabnik> uporabniks;
+	//@OneToMany(mappedBy="vloga")
+	//private List<Uporabnik> uporabniks;
 
 	public Vloga() {
 	}
@@ -52,7 +52,7 @@ public class Vloga implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
+/*
 	public List<Uporabnik> getUporabniks() {
 		return this.uporabniks;
 	}
@@ -74,5 +74,5 @@ public class Vloga implements Serializable {
 
 		return uporabnik;
 	}
-
+*/
 }

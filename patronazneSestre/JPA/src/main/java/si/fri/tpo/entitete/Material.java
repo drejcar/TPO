@@ -31,6 +31,7 @@ public class Material implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-many association to DelovniNalog
+	
 	@ManyToMany
 	@JoinTable(
 		name="material_has_delovni_nalog"
@@ -42,7 +43,7 @@ public class Material implements Serializable {
 			}
 		)
 	private List<DelovniNalog> delovniNalogs;
-
+	
 	public Material() {
 	}
 
