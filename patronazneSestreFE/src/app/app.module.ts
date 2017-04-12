@@ -11,7 +11,7 @@ import { DelovniNalogComponent } from './delovniNalog.component';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
 import { EqualValidator } from './equal-validator.directive';
-import { CustomFormsModule } from 'ng2-validation';
+//import { CustomFormsModule } from 'ng2-validation';
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule ],

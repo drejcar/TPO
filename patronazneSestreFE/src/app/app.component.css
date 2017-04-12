@@ -2,7 +2,7 @@ header {
 	background: blue;
 	width: 100vw;
 	height: 20vh;
-	position: absolute;
+	position: relative;
 	color: black;
 }
 
@@ -12,7 +12,7 @@ nav {
 	position: absolute;
 	bottom: 0;
 
-	width: 45vx;
+	width: 100px;
 	color: black;
 
 }
