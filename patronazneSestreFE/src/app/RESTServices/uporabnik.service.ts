@@ -2,18 +2,50 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Uporabnik } from '../uporabnik';
-import { Prijava } from '../prijava';
+import { Pacient } from '../Pacient';
+import { Posta } from '../Pacient';
+import { Spol } from '../Pacient';
+import { Uporabnikdrugi } from '../Pacient';
+import { Vloga } from '../Pacient';
 
 @Injectable()
 export class UporabnikService{
  private baseUrl: String = 'localhost:8080/patronazneSestre/v1/';
  constructor(private http : Http){}
  
- save(uporabnik: Uporabnik,login: Prijava) : Observable<Response>{
+ save(upr: Uporabnik) : Observable<Response>{
   var headers = new Headers();
-	login.mail = uporabnik.mail;
-	login.pwd = uporabnik.pwd;
-	return this.http.post(`${this.baseUrl}/Uporabnik/`,JSON.stringify(login), {headers: this.createAuthorizationHeader(headers)});
+	
+	//spol TODO se id za spol
+	let spol = <Spol>({
+		opis: upr.spol,
+	});
+	//TODO dokoncat posto
+	let posta = <Posta>({
+		opis: upr.okolis,
+	});
+	//vloga
+	let vloga = <Vloga>({
+		idvloga: 2,
+	});
+	//uporabnik nov
+	let uporabnikDrugi = <Uporabnikdrugi>({
+		email: upr.mail,
+		geslo: upr.pwd,
+		vloga: vloga
+	});
+	
+	//filamo json pacient
+	let pacient = <Pacient>({
+		ime: upr.ime,
+		priimek: upr.priimek,
+		stevilkaZdravstvenegaZavarovanja: upr.stKartice,
+		posta: posta,
+		spol: spol,
+		uporabnik: uporabnikDrugi,
+	});
+	
+	return this.http.post(`${this.baseUrl}/Pacient/`,JSON.stringify(pacient), {headers: this.createAuthorizationHeader(headers)});
  }
  
  createAuthorizationHeader(headers:Headers){
