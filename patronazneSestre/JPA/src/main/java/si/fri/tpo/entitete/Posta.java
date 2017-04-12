@@ -4,9 +4,6 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
 import java.util.List;
 
 
@@ -36,6 +33,10 @@ public class Posta implements Serializable {
 	//bi-directional many-to-one association to IzvajalecZdravstvenihStoritev
 	@OneToMany(mappedBy="posta")
 	private List<IzvajalecZdravstvenihStoritev> izvajalecZdravstvenihStoritevs;
+
+	//bi-directional many-to-one association to Kontakt
+	@OneToMany(mappedBy="posta")
+	private List<Kontakt> kontakts;
 
 	//bi-directional many-to-one association to Okoli
 	@OneToMany(mappedBy="posta")
@@ -84,6 +85,28 @@ public class Posta implements Serializable {
 		izvajalecZdravstvenihStoritev.setPosta(null);
 
 		return izvajalecZdravstvenihStoritev;
+	}
+
+	public List<Kontakt> getKontakts() {
+		return this.kontakts;
+	}
+
+	public void setKontakts(List<Kontakt> kontakts) {
+		this.kontakts = kontakts;
+	}
+
+	public Kontakt addKontakt(Kontakt kontakt) {
+		getKontakts().add(kontakt);
+		kontakt.setPosta(this);
+
+		return kontakt;
+	}
+
+	public Kontakt removeKontakt(Kontakt kontakt) {
+		getKontakts().remove(kontakt);
+		kontakt.setPosta(null);
+
+		return kontakt;
 	}
 
 	public List<Okolis> getOkolis() {
