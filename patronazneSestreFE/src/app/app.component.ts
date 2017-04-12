@@ -7,14 +7,20 @@ import { Component } from '@angular/core';
 
 	  <header>
 		<nav>
-			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
-			<a routerLink="/prijava" routerLinkActive="active">Prijava</a>
-			<a routerLink="/registracija" routerLinkActive="active">Registracija</a>
+			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>				
 		</nav>
+						
+		<div id="navRight">
+			<a routerLink="/prijava" routerLinkActive="active">Prijava</a>
+			/
+			<a routerLink="/registracija" routerLinkActive="active">Registracija</a>
+			/
+			<a routerLink="/delovniNalog" routerLinkActive="active">DelovniNalog</a>
+
+		</div>
 	  </header>
 	  
 	  <!-- <h1>Hello motherfucking {{name}}</h1> -->
-	  
 	  <router-outlet></router-outlet>
 	  
 	  <footer>@ 2017</footer>
