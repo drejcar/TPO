@@ -5,8 +5,12 @@ export class Uporabnik{
     public mail:String,
     public pwd:String,
     public stKartice:String,
+    public ulica:String,
+    public hisnaStevilka:String,
+    public postnaStevilka:String,
     public okolis: String,
     public datumRojstva: String,
-    public spol: String
+    public spol: String,
+    public test:String
   ){}
 }
