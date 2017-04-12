@@ -653,6 +653,14 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	}
 
+	@Override
+	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSestra"})
+	public Pacient returnPacientZZ(int stevilkaZZ) {
+		Pacient nov = pacienti.returnPacientZZ(stevilkaZZ);
+		pacienti.odstraniZrno();
+		return nov;
+	}
+	
 	// *** klici za kontakt ***
 
 	@Override
@@ -750,5 +758,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		
 		
 	}
+
+	
 
 }

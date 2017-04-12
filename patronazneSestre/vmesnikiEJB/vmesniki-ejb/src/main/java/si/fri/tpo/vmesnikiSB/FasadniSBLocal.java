@@ -108,6 +108,7 @@ public interface FasadniSBLocal {
 		void createPacient(Pacient pacient); // kreiranje novega pacienta
 		void updatePacient(Pacient pacient); //updatanje pacienta
 		void deletePacient(int id); // brisanje pacienta
+		public Pacient returnPacientZZ(int stevilkaZZ); // vracanje pacienta glede na stevilkoZZ
 		
 		//klici za kontakt
 		public Kontakt returnKontakt(int id); //klic za vracanje enega kontakta
