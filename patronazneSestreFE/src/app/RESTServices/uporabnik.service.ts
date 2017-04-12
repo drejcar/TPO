@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
-import { Uporabnik } from 'C:/git/tpoProjekt/patronazneSestreFE/src/app/uporabnik';
-import { Prijava } from 'C:/git/tpoProjekt/patronazneSestreFE/src/app/prijava';
+import { Uporabnik } from '../uporabnik';
+import { Prijava } from '../prijava';
 
 @Injectable()
 export class UporabnikService{

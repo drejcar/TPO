@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 //import { DelovniNalog } from '/../delovniNalog';
-import { Uporabnik } from 'C:/git/tpoProjekt/patronazneSestreFE/src/app/uporabnik';
+import { Uporabnik } from '../uporabnik';
 
 @Injectable()
 export class UporabnikService{

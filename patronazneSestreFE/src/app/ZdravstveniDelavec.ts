@@ -4,6 +4,6 @@ export class ZdravstveniDelavec{
     public priimek :String,
     public mail:String,
     public pwd:String,
-    public sifraZd:number   
+    public sifraZd:String   
   ){}
 }
