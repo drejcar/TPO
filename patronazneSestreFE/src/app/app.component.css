@@ -1,16 +1,32 @@
 header {
 	background: blue;
-	width: 100vw;
+	width: 99vw;
 	height: 20vh;
 	position: absolute;
 	color: black;
 }
 
+
+
 nav {
 	position: absolute;
 	bottom: 0;
-	width: 200px;
-	color: black;
+
+	width: 45vx;
+	color: black;	
+	
+}
+
+#navRight {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	width: 45vx;
+	color: black;	
+	
+
+
+
 }
 
 .nav1 {
@@ -22,6 +38,10 @@ nav {
 footer {
 	bottom: 0;
 	position: fixed;
+
+	background: blue;
+	width: 98vw;
+
 }
 
 a:link {color:black; }

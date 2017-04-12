@@ -9,6 +9,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import si.fri.tpo.entitete.IzvajalecZdravstvenihStoritev;
 import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.IzvajalecZdravstvenihStoritevREST;
@@ -17,6 +19,7 @@ import si.fri.tpo.vmesniki_ws.IzvajalecZdravstvenihStoritevREST;
 @Path("izvajalecZdravstvenihStoritev")
 @Produces({ "application/json" })
 @Consumes({ MediaType.APPLICATION_JSON, "application/xml" })
+@Api(value = "Storitve za izvajalca zdravstvenih storitev")
 public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstvenihStoritevREST {
 
 	@EJB
@@ -24,6 +27,7 @@ public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstve
 	
 	@POST
 	@Path("")
+	@ApiOperation(value = "Dodaj izvajalca zdravstvenih storitev", notes = "Doda izvajalca zdravstvenih storitev v bazo", code = 200)
 	public void createIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
 		fasada.createIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
 		
@@ -32,6 +36,7 @@ public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstve
 
 	@GET
 	@Path("")
+	@ApiOperation(value = "Vrni seznam izvajalcev zdravstvenih storitev", notes = "Vrne seznam vseh izvajalcev zdravstvenih storitev", code = 200, response = IzvajalecZdravstvenihStoritev.class)
 	public List<IzvajalecZdravstvenihStoritev> returnIzvajalecZdravstvenihStoritevs() {
 		
 		
@@ -40,6 +45,7 @@ public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstve
 
 	@DELETE
 	@Path("{id}")
+	@ApiOperation(value = "Brisi izvajalca zdravstvenih storitev", notes = "Pobrise specificnega izvajalca zdravstvenih storitev preko id-ja", code = 200)
 	public void deleteIzvajalecZdravstvenihStoritev(@PathParam("id") int id) {
 		fasada.deleteIzvajalecZdravstvenihStoritev(id);
 		
@@ -48,6 +54,7 @@ public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstve
 
 	@PUT
 	@Path("")
+	@ApiOperation(value = "Posodobi izvajalca zdravstvenih storitev", notes = "Posodobi izvajalca zdravstvenih storitev", code = 200)
 	public void updateIzvajalecZdravstvenihStoritev(IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev) {
 		fasada.updateIzvajalecZdravstvenihStoritev(izvajalecZdravstvenihStoritev);
 		
@@ -56,6 +63,7 @@ public class IzvajalecZdravstvenihStoritevStoritve implements IzvajalecZdravstve
 
 	@GET
 	@Path("{id}")
+	@ApiOperation(value = "Vrni izvajalca zdravstvenih storitev", notes = "Vrne izvajalca zdravstvenih storitev iz bazo", code = 200, response = IzvajalecZdravstvenihStoritev.class)
 	public IzvajalecZdravstvenihStoritev returnIzvajalecZdravstvenihStoritev(@PathParam("id") int id) {
 		
 		

@@ -79,6 +79,11 @@
 				<type>jar</type>
 				<scope>compile</scope>
 			</dependency>
+			<dependency>
+				<groupId>io.swagger</groupId>
+				<artifactId>swagger-core</artifactId>
+				<version>1.5.10</version>
+			</dependency>
 		</dependencies>
 	</dependencyManagement>
 	<modules>
