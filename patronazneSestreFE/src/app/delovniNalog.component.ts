@@ -5,6 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './delovniNalog.component.html'
 
 })
-export class DelovniNalogComponent {
-	vrsteZdravnikov=['Moski','Zenski'];
+export class DelovniNalogComponent {	
 }
