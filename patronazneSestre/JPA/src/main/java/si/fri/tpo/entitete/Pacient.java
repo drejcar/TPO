@@ -4,12 +4,11 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-<<<<<<< HEAD
+
 import org.hibernate.annotations.Cascade;
-=======
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
->>>>>>> e8d1e89582a28e998d7b24472d589003ee745c01
+
 
 import java.util.List;
 
@@ -96,12 +95,8 @@ public class Pacient implements Serializable {
 	private Spol spol;
 
 	//bi-directional many-to-one association to Uporabnik
-<<<<<<< HEAD
+
 	@ManyToOne(cascade = CascadeType.ALL)
-=======
-	
-	@ManyToOne
->>>>>>> e8d1e89582a28e998d7b24472d589003ee745c01
 	@JoinColumn(name="iduporabnik", nullable=true)
 	private Uporabnik uporabnik;
 
