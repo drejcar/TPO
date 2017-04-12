@@ -1,0 +1,3 @@
+npm install ng2-validation --save
+npm install libphonenumber-js --save
+npm install angular2-acl --save

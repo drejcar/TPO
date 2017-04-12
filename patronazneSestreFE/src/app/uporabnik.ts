@@ -7,6 +7,7 @@ export class Uporabnik{
     public stKartice:String,
     public okolis: String,
     public datumRojstva: String,
-    public spol: String
+    public spol: String,
+    public test:String
   ){}
 }

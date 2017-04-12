@@ -44,7 +44,11 @@ footer {
 
 
 }
-
+router-outlet{
+  padding-top:20vh;
+  margin: auto;
+  position: absolute;
+}
 
 a:link {color:black; }
 a:visited  {color:black;}
