@@ -16,8 +16,10 @@
                [(ngModel)]="model.pwd" name="pwd"
                #pwd="ngModel">
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!prijavaForm.form.valid">Prijava</button>
-      <button (click)="gotoRegistracija()" class="btn btn-default" >Registracija</button>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" [disabled]="!prijavaForm.form.valid">Prijava</button>
+        <a [routerLink]="['/registracija']" class="btn btn-default">Registracija</a>
+      </div>
     </form>
   </div>
 

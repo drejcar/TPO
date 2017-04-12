@@ -2,7 +2,7 @@ header {
 	background: blue;
 	width: 100vw;
 	height: 20vh;
-	position: relative;
+	position: absolute;
 	color: black;
 }
 
@@ -13,6 +13,12 @@ nav {
 	color: black;
 }
 
+.nav1 {
+  position: relative;
+  right: 0;
+
+
+}
 footer {
 	bottom: 0;
 	position: fixed;

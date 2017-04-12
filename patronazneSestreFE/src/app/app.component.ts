@@ -8,9 +8,13 @@ import { Component } from '@angular/core';
 	  <header>
 		<nav>
 			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
-			<a routerLink="/prijava" routerLinkActive="active">Prijava</a>
-			<a routerLink="/registracija" routerLinkActive="active">Registracija</a>
+			
 		</nav>
+		
+		<div id="nav1"> 
+		  <a routerLink="/prijava" routerLinkActive="active">Prijava</a>
+			<a routerLink="/registracija" routerLinkActive="active">Registracija</a>
+		</div>
 	  </header>
 	  
 	  <!-- <h1>Hello motherfucking {{name}}</h1> -->
