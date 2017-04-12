@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.List;
 
 
@@ -56,11 +59,12 @@ public class Pacient implements Serializable {
 			@JoinColumn(name="iddelovni_nalog", nullable=false)
 			}
 		)
+	@Fetch(FetchMode.JOIN)
 	private List<DelovniNalog> delovniNalogs;
 
 	//bi-directional many-to-one association to Kontakt
 	@ManyToOne
-	@JoinColumn(name="idkontakt", nullable=false)
+	@JoinColumn(name="idkontakt", nullable=true)
 	private Kontakt kontakt;
 
 	//bi-directional many-to-one association to Pacient
@@ -69,7 +73,7 @@ public class Pacient implements Serializable {
 	private Pacient pacient;
 
 	//bi-directional many-to-one association to Pacient
-	@OneToMany(mappedBy="pacient")
+	@OneToMany(mappedBy="pacient", fetch=FetchType.EAGER)
 	private List<Pacient> pacients;
 
 	//bi-directional many-to-one association to Posta
@@ -79,7 +83,7 @@ public class Pacient implements Serializable {
 
 	//bi-directional many-to-one association to SorodstvenoRazmerje
 	@ManyToOne
-	@JoinColumn(name="idsorodstveno_razmerje", nullable=false)
+	@JoinColumn(name="idsorodstveno_razmerje", nullable=true)
 	private SorodstvenoRazmerje sorodstvenoRazmerje;
 
 	//bi-directional many-to-one association to Spol
@@ -88,8 +92,9 @@ public class Pacient implements Serializable {
 	private Spol spol;
 
 	//bi-directional many-to-one association to Uporabnik
+	
 	@ManyToOne
-	@JoinColumn(name="iduporabnik", nullable=false)
+	@JoinColumn(name="iduporabnik", nullable=true)
 	private Uporabnik uporabnik;
 
 	public Pacient() {

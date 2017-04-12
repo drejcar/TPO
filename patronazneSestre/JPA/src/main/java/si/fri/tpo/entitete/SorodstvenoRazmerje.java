@@ -31,12 +31,12 @@ public class SorodstvenoRazmerje implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to Kontakt
-	@OneToMany(mappedBy="sorodstvenoRazmerje")
-	private List<Kontakt> kontakts;
+	//@OneToMany(mappedBy="sorodstvenoRazmerje")
+	//private List<Kontakt> kontakts;
 
 	//bi-directional many-to-one association to Pacient
-	@OneToMany(mappedBy="sorodstvenoRazmerje")
-	private List<Pacient> pacients;
+	//@OneToMany(mappedBy="sorodstvenoRazmerje")
+	//private List<Pacient> pacients;
 
 	public SorodstvenoRazmerje() {
 	}
@@ -56,7 +56,7 @@ public class SorodstvenoRazmerje implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
+/*
 	public List<Kontakt> getKontakts() {
 		return this.kontakts;
 	}
@@ -100,5 +100,5 @@ public class SorodstvenoRazmerje implements Serializable {
 
 		return pacient;
 	}
-
+*/
 }

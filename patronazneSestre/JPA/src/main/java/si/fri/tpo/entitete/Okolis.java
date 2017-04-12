@@ -37,8 +37,8 @@ public class Okolis implements Serializable {
 	private Posta posta;
 
 	//bi-directional many-to-one association to ZdravstveniDelavec
-	@OneToMany(mappedBy="okoli")
-	private List<ZdravstveniDelavec> zdravstveniDelavecs;
+	//@OneToMany(mappedBy="okoli")
+	//private List<ZdravstveniDelavec> zdravstveniDelavecs;
 
 	public Okolis() {
 	}
@@ -66,7 +66,7 @@ public class Okolis implements Serializable {
 	public void setPosta(Posta posta) {
 		this.posta = posta;
 	}
-
+/*
 	public List<ZdravstveniDelavec> getZdravstveniDelavecs() {
 		return this.zdravstveniDelavecs;
 	}
@@ -88,5 +88,5 @@ public class Okolis implements Serializable {
 
 		return zdravstveniDelavec;
 	}
-
+*/
 }
