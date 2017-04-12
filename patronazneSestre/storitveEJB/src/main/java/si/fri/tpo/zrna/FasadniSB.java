@@ -44,7 +44,7 @@ import si.fri.tpo.vmesnikiSB.ZdravstveniDelavecSBLocal;
  * Session Bean implementation class FasadniSB
  */
 @Stateless
-@DeclareRoles({"Administrator","Pacient","PatronaznaSestra","PatronaznaSluzba","SodelavecIZS","Zdravnik","Guest"})
+@DeclareRoles({"Administrator","Pacient","PatronaznaSestra","PatronaznaSluzba","SodelavecIZS","Zdravnik","guest"})
 @PermitAll
 public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
@@ -424,7 +424,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// spol
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","guest","anonymous"})
 	public Spol returnSpol(int id) {
 		Spol eno = sifranti.returnSpol(id);
 		sifranti.odstraniZrno();
