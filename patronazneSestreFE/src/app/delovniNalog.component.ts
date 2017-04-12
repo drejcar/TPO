@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'delovniNalog',
-  templateUrl: './delovniNalog.component.html';
+  templateUrl: './delovniNalog.component.html'
 
 })
 export class DelovniNalogComponent {
