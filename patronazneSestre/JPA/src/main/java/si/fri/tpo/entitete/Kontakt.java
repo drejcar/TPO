@@ -51,11 +51,11 @@ public class Kontakt implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idsorodstveno_razmerje", nullable=false)
 	private SorodstvenoRazmerje sorodstvenoRazmerje;
-
+/*
 	//bi-directional many-to-one association to Pacient
 	@OneToMany(mappedBy="kontakt")
 	private List<Pacient> pacients;
-
+*/
 	public Kontakt() {
 	}
 
@@ -122,7 +122,7 @@ public class Kontakt implements Serializable {
 	public void setSorodstvenoRazmerje(SorodstvenoRazmerje sorodstvenoRazmerje) {
 		this.sorodstvenoRazmerje = sorodstvenoRazmerje;
 	}
-
+/*
 	public List<Pacient> getPacients() {
 		return this.pacients;
 	}
@@ -144,5 +144,5 @@ public class Kontakt implements Serializable {
 
 		return pacient;
 	}
-
+*/
 }
