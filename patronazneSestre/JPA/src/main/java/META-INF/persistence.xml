@@ -19,8 +19,8 @@
 		<class>si.fri.tpo.entitete.Zdravilo</class>
 		<class>si.fri.tpo.entitete.ZdravstveniDelavec</class>
 		<class>si.fri.tpo.entitete.Bolezen</class>
-		<class>si.fri.tpo.entitete.Okolis</class>
 		<class>si.fri.tpo.entitete.Aktivnost</class>
 		<class>si.fri.tpo.entitete.Meritev</class>
+		<class>si.fri.tpo.entitete.Okolis</class>
 	</persistence-unit>
 </persistence>

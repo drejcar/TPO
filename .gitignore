@@ -38,3 +38,4 @@ id_rsa
 # Code Recommenders
 .recommenders/
 /build/
+.properties

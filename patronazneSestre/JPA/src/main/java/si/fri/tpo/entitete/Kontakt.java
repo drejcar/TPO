@@ -27,6 +27,9 @@ public class Kontakt implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int idkontakt;
 
+	@Column(name="hisna_stevilka", nullable=false, length=45)
+	private String hisnaStevilka;
+
 	@Column(nullable=false, length=45)
 	private String ime;
 
@@ -35,6 +38,14 @@ public class Kontakt implements Serializable {
 
 	@Column(nullable=false, length=45)
 	private String telefonskaStevilka;
+
+	@Column(nullable=false, length=45)
+	private String ulica;
+
+	//bi-directional many-to-one association to Posta
+	@ManyToOne
+	@JoinColumn(name="posta_idposta", nullable=false)
+	private Posta posta;
 
 	//bi-directional many-to-one association to SorodstvenoRazmerje
 	@ManyToOne
@@ -54,6 +65,14 @@ public class Kontakt implements Serializable {
 
 	public void setIdkontakt(int idkontakt) {
 		this.idkontakt = idkontakt;
+	}
+
+	public String getHisnaStevilka() {
+		return this.hisnaStevilka;
+	}
+
+	public void setHisnaStevilka(String hisnaStevilka) {
+		this.hisnaStevilka = hisnaStevilka;
 	}
 
 	public String getIme() {
@@ -78,6 +97,22 @@ public class Kontakt implements Serializable {
 
 	public void setTelefonskaStevilka(String telefonskaStevilka) {
 		this.telefonskaStevilka = telefonskaStevilka;
+	}
+
+	public String getUlica() {
+		return this.ulica;
+	}
+
+	public void setUlica(String ulica) {
+		this.ulica = ulica;
+	}
+
+	public Posta getPosta() {
+		return this.posta;
+	}
+
+	public void setPosta(Posta posta) {
+		this.posta = posta;
 	}
 
 	public SorodstvenoRazmerje getSorodstvenoRazmerje() {
