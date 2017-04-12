@@ -10,18 +10,18 @@ header {
 nav {
 	position: absolute;
 	bottom: 0;
-	width: 45vx;
+	
 	color: black;
-	margin: 5px;
+	margin: 5px 10px;
 }
 
 #navRight {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	width: 45vx;
+	
 	color: black;
-	margin: 5px;
+	margin: 5px 10px;
 }
 
 .nav1 {

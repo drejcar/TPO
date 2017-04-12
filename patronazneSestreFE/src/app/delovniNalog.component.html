@@ -6,9 +6,6 @@
 			<label>številka izvajalca</label>
 			<input type="text" id="stevilkaIzvajalca">
 			   
-			<label>šifra zdravstvene dejavnosti</label>
-			<input type="text" id="sifraZdravstveneDejavnosti">
-			   
 			<label>naziv izvajalca</label>
 			<input type="text" id="sifraZdravstveneDejavnosti">		
 		</div>
@@ -17,17 +14,7 @@
 		<div id="zdravnik"> 
 			<h3>2 - ZDRAVNIK</h3>
 			<label>številka zdravnika</label>
-			<input type="text" id="stevilkaZdravnika">
-				
-			<select id="vrstaZdravnika">
-			  <option> Osebni</option>
-			  <option> Napotni</option>
-			  <option> Nmp</option>
-			  <option> Nadomestni</option>		 
-			</select>
-			
-			<label>imenski žig</label>
-			<input type="text" id="imenskiZig">		
+			<input type="text" id="stevilkaZdravnika">			
 		</div>
 		
 		<div id="zavarovanaOseba"> 
@@ -44,8 +31,11 @@
 			<label>Ime</label>
 			<input type="text" id="ime">
 			
-			<label>Ulica, hišna številka</label>
-			<input type="text" id="ulicaHisnaStevilka">
+			<label>Ulica</label>
+			<input type="text" id="ulica">
+			
+			<label>Hišna številka</label>
+			<input type="text" id="hisnaStevilka">
 			
 			<label>Postna številka</label>
 			<input type="text" id="postnaStevilka">
@@ -60,32 +50,44 @@
 			<input type="text" id="ePosta">			
 		</div>
 		
-		<div id="napotnica">
-			<h3>4 - NAPOTNICA </h3>
-			<label>številka napotnice</label>
-			<input type="text" id="stevilkaNapotnice">
-			
-			<label>številka zdravnika</label>
-			<input type="text" id="stevilkaZdravnika">		
-		</div>
+		
 		
 		<div id="veljavnostNaloga">
-			<h3>5 - VELJAVNOST NALOGA</h3>
-			<label>1 - enkratno</label><br>
-			<label>2 - za obdobje</label>
-			<input type="text" id="veljavnostNalogaIzbira">
-			<label>mesecev</label>
-			<input type="text" id="veljavnostNalogaMesecev">
+			<h3>4 - VELJAVNOST NALOGA</h3>
+			<input type="radio" name="veljavnostNalogaVrsta"><label> enkratno</label><br>
+			<input type="radio" name="veljavnostNalogaVrsta"><label> za obdobje</label><br>
+			
+			<label>od</label>
+			<input type="text" id="veljavnostNalogaOd">
+			<label>do</label>
+			<input type="text" id="veljavnostNalogaDo"><br>
+			
+			<input type="checkbox" id="veljavnostNalogaFiksniDatum"> 
+			<label>fiksni datum</label>
 		</div>
 		
 		<div id="vrstaStoritve">
-			<h3>6 - VRSTA STORITVE</h3>
-			<label>1. Delovna terapija</label>
-			<label>1. Nega na domu</label>
-			<input type="text" id="vrstaStoritveIzbira">
-			<label>3. Storitve psihologa, logopeda, spec.pedagoga</label>
-			<label>4. Rentgensko slikanje</label>
-			<label>5. Laboratorijske in druge storitve</label>
+			<h3>5 - VRSTA STORITVE</h3>
+			<select id="vrstaStoritveSelect">			
+			</select>
+		</div>
+		
+		<div id="bolezen">
+			<h3>6 - BOLEZEN</h3>
+			<select id="bolezenSelect">			
+			</select>
+		</div>
+		
+		<div id="material">
+			<h3>7 - MATERIAL</h3>
+			<select id="materialSelect">			
+			</select>
+		</div>
+		
+		<div id="zdravilo">
+			<h3>8 - ZDRAVILO</h3>
+			<select id="zdraviloSelect">			
+			</select>
 		</div>
 	</form>
 
