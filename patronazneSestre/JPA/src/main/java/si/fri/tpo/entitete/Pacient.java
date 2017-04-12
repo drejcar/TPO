@@ -4,6 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Cascade;
+
 import java.util.List;
 
 
@@ -60,7 +62,7 @@ public class Pacient implements Serializable {
 
 	//bi-directional many-to-one association to Kontakt
 	@ManyToOne
-	@JoinColumn(name="idkontakt", nullable=false)
+	@JoinColumn(name="idkontakt", nullable=true)
 	private Kontakt kontakt;
 
 	//bi-directional many-to-one association to Pacient
@@ -79,7 +81,7 @@ public class Pacient implements Serializable {
 
 	//bi-directional many-to-one association to SorodstvenoRazmerje
 	@ManyToOne
-	@JoinColumn(name="idsorodstveno_razmerje", nullable=false)
+	@JoinColumn(name="idsorodstveno_razmerje", nullable=true)
 	private SorodstvenoRazmerje sorodstvenoRazmerje;
 
 	//bi-directional many-to-one association to Spol
@@ -88,8 +90,8 @@ public class Pacient implements Serializable {
 	private Spol spol;
 
 	//bi-directional many-to-one association to Uporabnik
-	@ManyToOne
-	@JoinColumn(name="iduporabnik", nullable=false)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="iduporabnik", nullable=true)
 	private Uporabnik uporabnik;
 
 	public Pacient() {
