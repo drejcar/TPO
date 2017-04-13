@@ -7,12 +7,12 @@ import { PrijavaComponent }      from './prijava.component';
 import { RegistracijaFormComponent } from './registracija.component';
 import { DelovniNalogComponent } from './delovniNalog.component';
 
-import {PacientGuard} from "./pacient.guard";
-import {ZdravnikGuard} from "./zdravnik.guard";
-import {PatronaznaSluzbaGuard} from "./patronaznasluzba.guard";
-import {PatronaznaSestraGuard} from "./patronaznasestra.guard";
-import {AdministratorGuard} from "./administrator.guard";
-import {SodelavecIZSGuard} from "./sodelavecizs.guard";
+import {PacientGuard} from "./guard/pacient.guard";
+import {ZdravnikGuard} from "./guard/zdravnik.guard";
+import {PatronaznaSluzbaGuard} from "./guard/patronaznasluzba.guard";
+import {PatronaznaSestraGuard} from "./guard/patronaznasestra.guard";
+import {AdministratorGuard} from "./guard/administrator.guard";
+import {SodelavecIZSGuard} from "./guard/sodelavecizs.guard";
 
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
