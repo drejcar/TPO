@@ -62,7 +62,7 @@
       	<label for="sifraZd">Sifra zdravstvenega delavca</label>
       	<input type="sifra" class="form-control" id="sifraZd"
       			required minlength="5" [(ngModel)]="model.sifraZd" name="sifraZd" #sifraZd="ngModel">
-      	<div [hidden]="sifraZd.valid" || sifraZd.pristine" class="alert alert-danger">
+      	<div [hidden]="sifraZd.valid || sifraZd.pristine" class="alert alert-danger">
       		Vnesite Šifro zdravstvenega delavca (dolžina mora biti vsaj 5 znakov)
       	</div>
       </div>

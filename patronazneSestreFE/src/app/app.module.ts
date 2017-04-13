@@ -21,11 +21,12 @@ import {PatronaznaSluzbaGuard} from "./_guard/patronaznasluzba.guard";
 import {PatronaznaSestraGuard} from "./_guard/patronaznasestra.guard";
 import {AdministratorGuard} from "./_guard/administrator.guard";
 import {SodelavecIZSGuard} from "./_guard/sodelavecizs.guard";
+import {Registracija_zdComponent} from "./registracija_zd/registracija_zd.component";
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule ],
   declarations: [ AppComponent,DashboardComponent,PrijavaComponent,RegistracijaFormComponent,
-                  DelovniNalogComponent, EqualValidator,PageNotFoundComponent
+                  DelovniNalogComponent, EqualValidator,PageNotFoundComponent,Registracija_zdComponent
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard
