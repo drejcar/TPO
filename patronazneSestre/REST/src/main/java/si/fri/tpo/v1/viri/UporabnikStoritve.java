@@ -68,5 +68,6 @@ public class UporabnikStoritve implements UporabnikREST {
 		return fasada.najdiUporabnik(id);
 	}
 	
+	
 
 }
