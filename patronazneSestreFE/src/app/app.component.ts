@@ -20,7 +20,6 @@ import { Component } from '@angular/core';
 		</div>
 	  </header>
 	  
-	  <!-- <h1>Hello motherfucking {{name}}</h1> -->
 	  <router-outlet></router-outlet>
 	  
 	  <footer>@ 2017</footer>
