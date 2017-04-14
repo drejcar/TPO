@@ -79,7 +79,40 @@
           Vnesite vašo telefonsko Številko
         </div>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
+      <div class="form-group">
+        <select id="izvajalecZdravstvenihStoritev">
+          <option id="1" name="1000">OI Ljubljana</option>
+          <option id="2" name="2000">UKC Maribor</option>
+          <option id="3" name="5270">ZD Ajdovščina</option>
+          <option id="4" name="5220">ZD Tolmin</option>
+          <option id="5" name="8000">ZD Novo Mesto</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select id="vloga">
+          <option id="1" name="administrator">Administrator</option>
+          <option id="2" name="pacient">Pacient</option>
+          <option id="3" name="zdravnik">Zdravnik</option>
+          <option id="4" name="patronaznaSestra">Patronažna Sestra</option>
+          <option id="5" name="patronaznaSluzba">Patronažna Služba</option>
+          <option id="6" name="sodelavecIZS">Sodelavec IZS</option>
+          <option id="7" name="guest">Guest</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="okolis">Okoliš</label>
+        <select class="form-control" id="okolis"
+                required
+                [(ngModel)]="model.okolis" name="okolis"
+                #okolis="ngModel">
+          <option *ngFor="let okolis of okolisi" [value]="okolis">{{okolis}}</option>
+        </select>
+        <div [hidden]="okolis.valid || okolis.pristine" class="alert alert-danger">
+          Izberite okoliš
+        </div>
+      </div>
+      <button type="submit" (click)="onSubmit()"
+              class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
     </form>
   </div>
 </div>
