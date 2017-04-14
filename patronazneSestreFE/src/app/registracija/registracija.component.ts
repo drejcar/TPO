@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Uporabnik } from './uporabnik';
+import { Uporabnik } from '../uporabnik';
 import { Router } from '@angular/router';
 
 @Component({
@@ -21,12 +21,23 @@ export class RegistracijaFormComponent {
   pwd='';
   datumRojstva='';
   stKartice='';
+  ulica='';
+  hisnaStevilka='';
+  postnaStevilka='';
+  test='';
+  tel='';
   okolisi=['Ljubljana','Maribor','Koper','Kranj','Novo Mesto'];
-  model=new Uporabnik(this.ime,this.priimek,this.mail,this.pwd,this.stKartice,this.okolisi[0],this.datumRojstva,this.spoli[0]);
+  model=new Uporabnik(this.ime,this.priimek,this.mail,
+      this.pwd,this.stKartice,this.tel,this.ulica,this.hisnaStevilka,
+    this.postnaStevilka,this.okolisi[0],
+    this.datumRojstva,this.spoli[0],this.test);
   submitted=false;
   onSubmit(){this.submitted=true;}
   novUporabnik(){
-    this.model=new Uporabnik(this.ime,this.priimek,this.mail,this.pwd,this.stKartice,this.okolisi[0],this.datumRojstva,this.spoli[0]);
+    this.model=new Uporabnik(this.ime,this.priimek,this.mail,
+      this.pwd,this.stKartice,this.tel,this.ulica,this.hisnaStevilka,
+      this.postnaStevilka,this.okolisi[0],this.datumRojstva,
+      this.spoli[0],this.test);
   }
   //ne potrebujes
   get diagnostic() { return JSON.stringify(this.model); }

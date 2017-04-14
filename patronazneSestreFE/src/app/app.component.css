@@ -1,5 +1,5 @@
 header {
-	background: blue;
+	background: #448cff;
 	width: 98.6vw;
 	height: 20vh;
 	position: relative;
@@ -10,7 +10,7 @@ header {
 nav {
 	position: absolute;
 	bottom: 0;
-	
+	width: 45vw;
 	color: black;
 	margin: 5px 10px;
 }
@@ -19,7 +19,6 @@ nav {
 	position: absolute;
 	bottom: 0;
 	right: 0;
-	
 	color: black;
 	margin: 5px 10px;
 }
@@ -31,10 +30,14 @@ nav {
 footer {
 	bottom: 0;
 	position: relative;
-	background: blue;
+	background: #448cff;
 	width: 98.6vw;
 }
-
+router-outlet{
+  padding-top:20vh;
+  margin: auto;
+  position: absolute;
+}
 
 a:link {color:black; }
 a:visited  {color:black;}

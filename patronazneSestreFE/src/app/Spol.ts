@@ -1,6 +1,6 @@
 export class Spol{
   constructor(
-    public id: String,
+    public id: number,
     public opis: String
   ){}
 }

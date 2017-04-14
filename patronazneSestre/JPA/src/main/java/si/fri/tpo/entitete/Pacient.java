@@ -4,8 +4,11 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+
 
 import java.util.List;
 
@@ -20,7 +23,8 @@ import java.util.List;
 @NamedQueries({
 	@NamedQuery(name="Pacient.findAll", query="SELECT p FROM Pacient p"),
 	@NamedQuery(name="Pacient.findOne",query="SELECT p FROM Pacient p WHERE p.idpacient = :id"),
-	@NamedQuery(name="Pacient.deleteOne",query="DELETE FROM Pacient p WHERE p.idpacient = :id")
+	@NamedQuery(name="Pacient.deleteOne",query="DELETE FROM Pacient p WHERE p.idpacient = :id"),
+	@NamedQuery(name="Pacient.findOneZZ",query="SELECT p FROM Pacient p WHERE p.stevilkaZdravstvenegaZavarovanja = :stevilkaZZ")
 })
 public class Pacient implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -92,8 +96,8 @@ public class Pacient implements Serializable {
 	private Spol spol;
 
 	//bi-directional many-to-one association to Uporabnik
-	
-	@ManyToOne
+
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="iduporabnik", nullable=true)
 	private Uporabnik uporabnik;
 

@@ -110,7 +110,16 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		uporabnik.odstraniZrno();
 
 	}
-
+	
+	@Override
+	@PermitAll
+	public Uporabnik returnUporabnikEmail(String email) {
+		Uporabnik nov = uporabnik.returnUporabnikEmail(email);
+		uporabnik.odstraniZrno();
+		return nov;
+	}
+	
+	
 	// *** klici za delovni nalog ***
 
 	@Override
@@ -653,6 +662,14 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	}
 
+	@Override
+	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSestra"})
+	public Pacient returnPacientZZ(int stevilkaZZ) {
+		Pacient nov = pacienti.returnPacientZZ(stevilkaZZ);
+		pacienti.odstraniZrno();
+		return nov;
+	}
+	
 	// *** klici za kontakt ***
 
 	@Override
@@ -750,5 +767,9 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		
 		
 	}
+
+	
+
+	
 
 }

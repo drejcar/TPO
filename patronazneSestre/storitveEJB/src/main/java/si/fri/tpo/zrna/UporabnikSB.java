@@ -110,4 +110,14 @@ public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
 		}
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.UporabnikSBLocal#returnUporabnikEmail(java.lang.String)
+	 */
+	@Override
+	public Uporabnik returnUporabnikEmail(String email) {
+		return (Uporabnik) em.createNamedQuery("Uporabnik.findOneVloga").setParameter("email", email);
+		
+	}
+	
 }

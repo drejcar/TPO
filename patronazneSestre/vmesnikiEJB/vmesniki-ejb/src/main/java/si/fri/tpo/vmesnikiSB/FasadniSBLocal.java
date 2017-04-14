@@ -30,6 +30,7 @@ public interface FasadniSBLocal {
 	void shraniNovegaUporabnika(Uporabnik u); //kreiranje novega uporabnika
 	void updateUporabnika(Uporabnik u); //za updatanje gesla
 	void deleteUporabnik(int id); //odstranjevanje uporabnika po id-ju
+	public Uporabnik returnUporabnikEmail(String email); //vracanje uporabnika (login)
 	
 	//funkcije za DelovniNalog
 	public DelovniNalog vrniDelovniNalog(int id); //vrni specificni delovni nalog
@@ -108,6 +109,7 @@ public interface FasadniSBLocal {
 		void createPacient(Pacient pacient); // kreiranje novega pacienta
 		void updatePacient(Pacient pacient); //updatanje pacienta
 		void deletePacient(int id); // brisanje pacienta
+		public Pacient returnPacientZZ(int stevilkaZZ); // vracanje pacienta glede na stevilkoZZ
 		
 		//klici za kontakt
 		public Kontakt returnKontakt(int id); //klic za vracanje enega kontakta

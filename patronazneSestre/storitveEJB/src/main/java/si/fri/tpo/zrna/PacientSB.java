@@ -82,10 +82,22 @@ public class PacientSB implements PacientSBRemote, PacientSBLocal {
 		
 	}
 	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.PacientSBLocal#returnPacientZZ(int)
+	 */
+	@Override
+	public Pacient returnPacientZZ(int stevilkaZZ) {
+		return (Pacient) em.createNamedQuery("Pacient.findOneZZ").setParameter("stevilkaZZ", stevilkaZZ).getSingleResult();
+		
+	}
+	
 	//odstranjevanje zrna
 	@Remove
 	public void odstraniZrno() {
 		
 	}
+
+	
 
 }
