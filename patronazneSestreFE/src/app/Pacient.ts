@@ -4,7 +4,7 @@ export class Pacient{
     ime: String,
     priimek: String,
     stevilkaZdravstvenegaZavarovanja: number,
-    telefonskaStevilka: number,
+    telefonskaStevilka: String,
     ulica: String,
     posta: Posta,
     spol: Spol,

@@ -22,7 +22,7 @@ const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent },
   { path: 'prijava', component: PrijavaComponent },
   { path: 'registracija', component: RegistracijaFormComponent },
-  { path: 'delovniNalog', component: DelovniNalogComponent,canActivate:[ZdravnikGuard,PatronaznaSluzbaGuard]},
+  { path: 'delovniNalog', component: DelovniNalogComponent,/**canActivate:[ZdravnikGuard,PatronaznaSluzbaGuard]*/},
   { path: 'registracijazd', component: Registracija_zdComponent },
   { path: 'spremembaGesla',component: SpremembaGeslaComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },

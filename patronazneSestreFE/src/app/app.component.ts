@@ -27,6 +27,7 @@ import { Component } from '@angular/core';
 	  <footer>@ 2017</footer>
 
   `,
-	styleUrls: [ './app.component.css' ]
+	styleUrls: [ './app.component.css' ],
+	
 })
 export class AppComponent  { name = 'Angular'; }

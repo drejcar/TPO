@@ -5,6 +5,9 @@ import { HttpModule }    from '@angular/http';
 import { Router } from '@angular/router';
 import { Prijava } from './prijava';
 import {UserService} from "../user.service";
+import { Upr } from "./upr"
+import { Vlog } from "./upr"
+import { LocalStorageService } from 'angular-2-local-storage';
 
 @Component({
   selector: 'prijava',
@@ -13,8 +16,9 @@ import {UserService} from "../user.service";
 })
 
 export class PrijavaComponent{
+	person: Upr;
   constructor(private userService: UserService,
-    private router:Router){}
+    private router:Router,private localStorageService: LocalStorageService){}
   gotoPrijava(): void {
     this.router.navigate(['/prijava']);
   }
@@ -24,12 +28,17 @@ export class PrijavaComponent{
   mail='';
   pwd='';
   model=new Prijava(this.mail,this.pwd);
-  /*onSubmit(email,password) {
-    this.userService.login(email, password).subscribe((result) => {
-      if (result) {
-        this.router.navigate(['']);
-      }
-    });
-  }*/
+  onSubmit() {
+    this.userService.login(this.model).subscribe(result => this.person = result);
+	console.log(this.person);
+	localStorage.setItem('vloga',this.person.vloga.idvloga.toLocaleString());
+	localStorage.setItem('username',this.person.email.toLocaleString());
+	localStorage.setItem('password',this.person.geslo.toLocaleString());
+	
+    //if (this.person.vloga.idvloga ==) {
+        //this.router.navigate(['']);
+      //}*/
+    }
+  
 }
 

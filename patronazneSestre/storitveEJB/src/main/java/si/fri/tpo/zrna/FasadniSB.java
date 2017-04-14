@@ -88,7 +88,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
-	@RolesAllowed({"Guest"})
+	@RolesAllowed({"guest"})
 	public void shraniNovegaUporabnika(Uporabnik u) {
 		uporabnik.shraniNovegaUporabnika(u);
 		uporabnik.odstraniZrno();
@@ -112,7 +112,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 	
 	@Override
-	@PermitAll
+	@RolesAllowed({"Administrator","Pacient","guest"})
 	public Uporabnik returnUporabnikEmail(String email) {
 		Uporabnik nov = uporabnik.returnUporabnikEmail(email);
 		uporabnik.odstraniZrno();
@@ -639,7 +639,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
-	@RolesAllowed({"Administrator","Pacient"})
+	@RolesAllowed({"Administrator","Pacient","guest"})
 	public void createPacient(Pacient pacient) {
 		pacienti.createPacient(pacient);
 		pacienti.odstraniZrno();

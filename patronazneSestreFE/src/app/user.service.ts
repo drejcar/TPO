@@ -3,35 +3,30 @@ import { Http, Response, Headers} from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 import { Uporabnikdrugi } from './Pacient';
 import { Vloga } from './Pacient';
+import { Prijava } from './prijava/prijava';
+import { Observable } from 'rxjs/Rx';
+import { Upr } from "./prijava/upr"
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch'
 
 @Injectable()
 export class UserService {
  
- 
+ private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('guest@guest:guest')});
   private loggedIn = false;
-  private baseUrl: String = 'localhost:8080/patronazneSestre/v1/';
-  vlog = [{idvloga: 1}];
-  result = [{email: "test", geslo: "neki",vloga:this.vlog }];
+  private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
   constructor(private http: Http) {
     this.loggedIn = !!localStorage.getItem('username');
 	
   }
 
-  login(username: String, pass: String): Uporabnikdrugi {
-	  
-	  
-    let headers = new Headers();
-	
-	this.http.get(`${this.baseUrl}/uporabnik/login/${username}`, {headers: this.createAuthorizationHeader(headers,pass,username)}).toPromise().then(r => r.json()).then(r => this.result = r);
+  login(prijava:Prijava): Observable<Upr> {
+		
+	return this.http.get(`${this.baseUrl}/uporabnik/login/${prijava.mail}`, {headers: this.headers}).map((res) => {return this.mapUporabnik(res)});/*.toPromise().then(r => r.json()).then(r => this.result = r)*/
 		
 		
-		localStorage.setItem('username', this.result[0].email);
-		localStorage.setItem('password', this.result[0].geslo);
-		
-		this.loggedIn = true;
-		
-		return this.result;	
-        
+		//localStorage.setItem('username', this.result.email);
+		//localStorage.setItem('password', this.result.geslo);
 		
   }
 
@@ -47,12 +42,12 @@ export class UserService {
 	return headers;
  }
  
- mapUporabnik(response: Response): Uporabnikdrugi{
+ mapUporabnik(response: Response): Upr{
   return this.toUporabnik(response.json());
 }
 //pretvorba json objekta v angular objekt
- toUporabnik(r:any): Uporabnikdrugi{
-  let uporabnik = <Uporabnikdrugi>({
+ toUporabnik(r:any): Upr{
+  let uporabnik = <Upr>({ 	 
 	 email: r.email,
 	 geslo: r.geslo,
 	 vloga: r.vloga,
