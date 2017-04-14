@@ -1,9 +1,4 @@
-:host(.active){
-  background:#448cff;
-}
-h2{
-  background:#448cff;
-}
-p{
-  background: #448cff;
+#404{
+  text-align:center;
+  background-color:#448cff;
 }

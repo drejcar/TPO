@@ -22,7 +22,11 @@ import {PatronaznaSestraGuard} from "./_guard/patronaznasestra.guard";
 import {AdministratorGuard} from "./_guard/administrator.guard";
 import {SodelavecIZSGuard} from "./_guard/sodelavecizs.guard";
 import {Registracija_zdComponent} from "./registracija_zd/registracija_zd.component";
+<<<<<<< HEAD
 import { LocalStorageModule } from 'angular-2-local-storage';
+=======
+import {SpremembaGeslaComponent} from "./spremembaGesla.component";
+>>>>>>> c47e64f64fb0c4e10b900ae99a5b38e6357c0093
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule,LocalStorageModule.withConfig({
@@ -32,6 +36,7 @@ import { LocalStorageModule } from 'angular-2-local-storage';
         }) ],
   declarations: [ AppComponent,DashboardComponent,PrijavaComponent,RegistracijaFormComponent,
                   DelovniNalogComponent, EqualValidator,PageNotFoundComponent,Registracija_zdComponent
+                  ,SpremembaGeslaComponent
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,

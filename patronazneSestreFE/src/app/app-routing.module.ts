@@ -15,13 +15,16 @@ import {PatronaznaSestraGuard} from "./_guard/patronaznasestra.guard";
 import {AdministratorGuard} from "./_guard/administrator.guard";
 import {SodelavecIZSGuard} from "./_guard/sodelavecizs.guard";
 import {Registracija_zdComponent} from "./registracija_zd/registracija_zd.component";
+import {SpremembaGeslaComponent} from "./spremembaGesla.component";
+
 
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent },
   { path: 'prijava', component: PrijavaComponent },
   { path: 'registracija', component: RegistracijaFormComponent },
-  { path: 'delovniNalog', component: DelovniNalogComponent,canActivate:[ZdravnikGuard,PatronaznaSluzbaGuard]},
+  { path: 'delovniNalog', component: DelovniNalogComponent,/**canActivate:[ZdravnikGuard,PatronaznaSluzbaGuard]*/},
   { path: 'registracijazd', component: Registracija_zdComponent },
+  { path: 'spremembaGesla',component: SpremembaGeslaComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
