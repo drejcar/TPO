@@ -16,4 +16,5 @@ public interface UporabnikREST {
 	
 	public Uporabnik returnUporabnik(int id);
 	
+	public Uporabnik returnUporabnikMail(String email); //vrni uporabnika glede na email
 }

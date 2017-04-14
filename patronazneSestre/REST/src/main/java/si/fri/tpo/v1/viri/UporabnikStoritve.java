@@ -67,6 +67,13 @@ public class UporabnikStoritve implements UporabnikREST {
 	public Uporabnik returnUporabnik(@PathParam("id") int id) {
 		return fasada.najdiUporabnik(id);
 	}
+
+	@GET
+	@Path("/login/{mail}")
+	public Uporabnik returnUporabnikMail(@PathParam("mail") String email) {
+		
+		return fasada.returnUporabnikEmail(email);
+	}
 	
 	
 

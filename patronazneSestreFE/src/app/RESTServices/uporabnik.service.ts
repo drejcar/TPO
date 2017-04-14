@@ -49,7 +49,7 @@ export class UporabnikService{
  }
  
  createAuthorizationHeader(headers:Headers){
-	headers.append('Authorization', 'Basic' + btoa('username:password'));
+	headers.append('Authorization', 'Basic' + btoa('guest@guest:guest'));
 	return headers;
  }
 }

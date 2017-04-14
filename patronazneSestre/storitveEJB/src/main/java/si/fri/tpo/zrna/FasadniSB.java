@@ -110,7 +110,16 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		uporabnik.odstraniZrno();
 
 	}
-
+	
+	@Override
+	@PermitAll
+	public Uporabnik returnUporabnikEmail(String email) {
+		Uporabnik nov = uporabnik.returnUporabnikEmail(email);
+		uporabnik.odstraniZrno();
+		return nov;
+	}
+	
+	
 	// *** klici za delovni nalog ***
 
 	@Override
@@ -758,6 +767,8 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		
 		
 	}
+
+	
 
 	
 
