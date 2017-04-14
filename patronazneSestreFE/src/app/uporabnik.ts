@@ -5,6 +5,7 @@ export class Uporabnik{
     public mail:String,
     public pwd:String,
     public stKartice:String,
+    public tel:String,
     public ulica:String,
     public hisnaStevilka:String,
     public postnaStevilka:String,

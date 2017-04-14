@@ -26,9 +26,10 @@ export class RegistracijaFormComponent {
   hisnaStevilka='';
   postnaStevilka='';
   test='';
+  tel='';
   okolisi=['Ljubljana','Maribor','Koper','Kranj','Novo Mesto'];
   model=new Uporabnik(this.ime,this.priimek,this.mail,
-      this.pwd,this.stKartice,this.ulica,this.hisnaStevilka,
+      this.pwd,this.stKartice,this.tel,this.ulica,this.hisnaStevilka,
     this.postnaStevilka,this.okolisi[0],
     this.datumRojstva,this.spoli[0],this.test);
   submitted=false;
@@ -38,7 +39,7 @@ export class RegistracijaFormComponent {
   }
   novUporabnik(){
     this.model=new Uporabnik(this.ime,this.priimek,this.mail,
-      this.pwd,this.stKartice,this.ulica,this.hisnaStevilka,
+      this.pwd,this.stKartice,this.tel,this.ulica,this.hisnaStevilka,
       this.postnaStevilka,this.okolisi[0],this.datumRojstva,
       this.spoli[0],this.test);
   }
