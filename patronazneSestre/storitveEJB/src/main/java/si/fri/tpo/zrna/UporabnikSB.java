@@ -116,7 +116,7 @@ public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
 	 */
 	@Override
 	public Uporabnik returnUporabnikEmail(String email) {
-		return (Uporabnik) em.createNamedQuery("Uporabnik.findOneVloga").setParameter("email", email);
+		return (Uporabnik) em.createNamedQuery("Uporabnik.findOneVloga").setParameter("email", email).getSingleResult();
 		
 	}
 	
