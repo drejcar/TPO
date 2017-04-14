@@ -10,9 +10,9 @@ export class UporabnikService{
  
  constructor(private http : Http){}
  
- save(zdravstveniDelavec: ZdravstveniDelavec,username: String, geslo: String){
+ save(zdravstveniDelavec: ZdravstveniDelavec){
 	 
-  var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(username+':'+geslo)});
+  var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
   
 	//TODO
 	this.http.post(`${this.baseUrl}/zdravstveniDelavec/`,JSON.stringify(zdravstveniDelavec), {headers: headers});

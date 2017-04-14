@@ -22,17 +22,11 @@ import {PatronaznaSestraGuard} from "./_guard/patronaznasestra.guard";
 import {AdministratorGuard} from "./_guard/administrator.guard";
 import {SodelavecIZSGuard} from "./_guard/sodelavecizs.guard";
 import {Registracija_zdComponent} from "./registracija_zd/registracija_zd.component";
-import { LocalStorageModule } from 'angular-2-local-storage';
-
 import {SpremembaGeslaComponent} from "./spremembaGesla.component";
 
 
 @NgModule({
-  imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule,LocalStorageModule.withConfig({
-            prefix: 'my-app',
-			storageType: 'localStorage'
-            //storageType: 'sessionStorage'
-        }) ],
+  imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule],
   declarations: [ AppComponent,DashboardComponent,PrijavaComponent,RegistracijaFormComponent,
                   DelovniNalogComponent, EqualValidator,PageNotFoundComponent,Registracija_zdComponent
                   ,SpremembaGeslaComponent

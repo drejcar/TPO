@@ -7,19 +7,19 @@ import { Posta } from './vrniPacient';
 import { Spol } from './vrniPacient';
 import { Uporabnikdrugi } from './vrniPacient';
 import { Vloga } from './vrniPacient';
-import { LocalStorageService } from 'angular-2-local-storage';
+
 
 //klasa za service
 @Injectable()
 export class PacientService{
  private baseUrl: String = 'localhost:8080/patronazneSestre/v1';
- constructor(private http : Http,private localStorageService: LocalStorageService){}
+ constructor(private http : Http){}
  
  //service za prejemanje pacienta
  get(zz: number): Observable<Pacient> {
-	 var username = localStorage.getItem('username');
-	 var pass = localStorage.getItem('password');
-	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(username+':'+pass)});
+	 /*var username = localStorage.getItem('username');
+	 var pass = localStorage.getItem('password');*/
+	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail:admin')});
 	
 	let pacient$ = this.http.get(`${this.baseUrl}/pacient/zz/${zz}`, {headers: headers}).map((res) => { return this.mapPacient(res)});
 	

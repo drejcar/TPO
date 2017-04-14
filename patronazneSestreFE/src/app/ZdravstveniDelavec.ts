@@ -4,7 +4,10 @@ export class ZdravstveniDelavec{
     public priimek :String,
     public sifraZd:String,
     public tel:String,
-    public uporabnik: UporabnikZd
+	public vloga: Vloga,
+    public uporabnik: UporabnikZd,
+	public okolis: Okolis,
+	public izvajalecZdravstvenihStoritev: IzvajalecZdravstvenihStoritev
   ){}
 }
 
@@ -21,4 +24,16 @@ export class Vloga{
         public idvloga: number
     ){}
 
+}
+export class IzvajalecZdravstvenihStoritev{
+	constructor(
+		public id: number
+		
+	){}
+}
+export class Okolis{
+	constructor(
+		public id: number
+	){}
+	
 }

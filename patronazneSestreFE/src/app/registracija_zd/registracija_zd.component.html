@@ -111,7 +111,7 @@
           Izberite okoliš
         </div>
       </div>
-      <button type="submit" (click)="onSubmit()"
+      <button type="submit" (click)="onSubmit(this.vloga,this.izvajalecZdravstvenihStoritev)"
               class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
     </form>
   </div>
