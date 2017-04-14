@@ -9,6 +9,7 @@ import { Component } from '@angular/core';
 		<nav>
 			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
 			<a routerLink="/registracijazd" routerLinkActive="active">regZd</a>	
+			<a routerLink="/spremembaGesla" routerLinkActive="active">sprGesla</a>	
 		</nav>
 						
 		<div id="navRight">

@@ -18,26 +18,31 @@ nav {
 #navRight {
 	position: absolute;
 	bottom: 0;
-	right: 0;
+	right:0;
 	color: black;
 	margin: 5px 10px;
 }
-
-.nav1 {
-  position: relative;
-  right: 0;
+#404{
+  background:#448cff;
+  text-align:center;
 }
+
+
+
 footer {
-	bottom: 0;
+	bottom: 0px;
 	position: relative;
 	background: #448cff;
 	width: 98.6vw;
+	top: 40vh;
 }
+
 router-outlet{
   padding-top:20vh;
   margin: auto;
   position: absolute;
 }
+
 
 a:link {color:black; }
 a:visited  {color:black;}

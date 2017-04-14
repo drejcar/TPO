@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Component } from '@angular/core';
-//import { Uporabnik } from './uporabnik';
-//import { Spol } from './Spol';
 import { Router } from '@angular/router';
 import { ZdravstveniDelavec } from '../ZdravstveniDelavec';
 import { UporabnikZd } from '../ZdravstveniDelavec';
@@ -28,10 +26,11 @@ export class Registracija_zdComponent {
   pwd='';
   sifraZd='';
   idvloga=3;
+  tel='';
 
   model3 = new Vloga(this.idvloga);
   model2 = new UporabnikZd(this.mail,this.pwd,this.model3);
-  model=new ZdravstveniDelavec(this.ime,this.priimek,this.sifraZd,this.model2);
+  model=new ZdravstveniDelavec(this.ime,this.priimek,this.sifraZd,this.tel,this.model2);
   submitted=false;
   onSubmit(){this.submitted=true;}
   novVloga(){
@@ -41,7 +40,7 @@ export class Registracija_zdComponent {
 	  this.model2 = new UporabnikZd(this.mail,this.pwd,this.model3);
   }
   novZd(){
-	this.model=new ZdravstveniDelavec(this.ime,this.priimek,this.sifraZd,this.model2);
+	this.model=new ZdravstveniDelavec(this.ime,this.priimek,this.sifraZd,this.tel,this.model2);
   }
   //ne potrebujes
   get diagnostic() { return JSON.stringify(this.model); }

@@ -5,90 +5,114 @@
 			<h3> 1 - IZVAJALEC </h3>
 			<label>številka izvajalca</label>
 			<input type="text" id="stevilkaIzvajalca">
-			   
+
 			<label>naziv izvajalca</label>
-			<input type="text" id="sifraZdravstveneDejavnosti">		
+			<input type="text" id="sifraZdravstveneDejavnosti">
 		</div>
-		
-		
-		<div id="zdravnik"> 
+
+
+		<div id="zdravnik">
 			<h3>2 - ZDRAVNIK</h3>
 			<label>številka zdravnika</label>
-			<input type="text" id="stevilkaZdravnika">			
+			<input type="text" id="stevilkaZdravnika">
 		</div>
-		
-		<div id="zavarovanaOseba"> 
+
+		<div id="zavarovanaOseba">
 			<h3>3 - ZAVAROVANA OSEBA</h3>
 			<label>Številka zavarovane osebe</label>
-			<input type="text" id="stevilkaZavarovaneOsebe">
-			
+			<input type="text" id="stevilkaZavarovaneOsebe" placeholder="Številka zavarovane osebe">
+
 			<label>Datum rojstva</label>
-			<input type="date" id="datumRojstva">
-			
+			<input type="date" id="datumRojstva" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" required>
+
 			<label>Priimek</label>
-			<input type="text" id="priimek">
-			
+			<input type="text" id="priimek" placeholder="priimek" required>
+
 			<label>Ime</label>
-			<input type="text" id="ime">
-			
+			<input type="text" id="ime"placeholder="ime" required>
+
 			<label>Ulica</label>
-			<input type="text" id="ulica">
-			
+			<input type="text" id="ulica" placeholder="Ulica" required minlength="2" maxlength="45">
+
 			<label>Hišna številka</label>
-			<input type="text" id="hisnaStevilka">
-			
+			<input type="text" id="hisnaStevilka" placeholder="Hišna Številka" required minlength="1" maxlength="5">
+
 			<label>Postna številka</label>
-			<input type="text" id="postnaStevilka">
-			
+			<input type="text" id="postnaStevilka" placeholder="Poštna Številka" required minlength="4" maxlength="4">
+
 			<label>Kraj</label>
 			<input type="text" id="kraj">
-			
+
 			<label>Telefonska stevilka</label>
-			<input type="text" id="telefonskaStevilka">
-			
+			<input type="text" id="telefonskaStevilka" placeholder="+38600000000" required minlength="12" maxlength="12"
+             pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+               2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+               4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$">
+
 			<label>e-pošta</label>
-			<input type="text" id="ePosta">			
+			<input type="text" id="ePosta" maxlength="45" placeholder="elektronska pošta" required
+             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
 		</div>
 		
-		
-		
+		<input type="button" name="pridobiPodatke" value="pridobi podatke"> 
+
 		<div id="veljavnostNaloga">
 			<h3>4 - VELJAVNOST NALOGA</h3>
 			<input type="radio" name="veljavnostNalogaVrsta"><label> enkratno</label><br>
 			<input type="radio" name="veljavnostNalogaVrsta"><label> za obdobje</label><br>
-			
+
 			<label>od</label>
 			<input type="text" id="veljavnostNalogaOd">
 			<label>do</label>
 			<input type="text" id="veljavnostNalogaDo"><br>
-			
-			<input type="checkbox" id="veljavnostNalogaFiksniDatum"> 
+
+			<input type="checkbox" id="veljavnostNalogaFiksniDatum">
 			<label>fiksni datum</label>
 		</div>
-		
+
 		<div id="vrstaStoritve">
 			<h3>5 - VRSTA STORITVE</h3>
-			<select id="vrstaStoritveSelect">			
+			<select id="vrstaStoritveSelect">
+				<option id="10"> Obisk nosečnice</option>
+				<option id="20"> Obisk otročnice</option>
+				<option id="30"> Obisk novorojenčka</option>
+				<option id="40"> Preventiva starostnika</option>
+				<option id="50"> Aplikacija injekcije</option>
+				<option id="60"> Odvzem krvi</option>
+				<option id="70"> Kontrola zdravstvenega stanja</option>				
 			</select>
 		</div>
-		
+
 		<div id="bolezen">
 			<h3>6 - BOLEZEN</h3>
-			<select id="bolezenSelect">			
+			<select id="bolezenSelect">
+				<option id="1"> Viroza </option>
+				<option id="2"> Angina </option>
+				<option id="3"> Pljučnica</option>
 			</select>
 		</div>
-		
+
 		<div id="material">
 			<h3>7 - MATERIAL</h3>
-			<select id="materialSelect">			
+			<select id="materialSelect">
+				<option id="1"> Epruveta rdeča </option>
+				<option id="2"> Epruveta modra</option>
+				<option id="3"> Epruveta rumena</option>
+				<option id="4"> Epruveta zelena</option>
+			</select>
+		</div>
+
+		<div id="zdravilo">
+			<h3>8 - ZDRAVILO</h3>
+			<select id="zdraviloSelect">
+				<option id="1"> Injekcija</option>
+				
 			</select>
 		</div>
 		
-		<div id="zdravilo">
-			<h3>8 - ZDRAVILO</h3>
-			<select id="zdraviloSelect">			
-			</select>
-		</div>
+		<input type="button" name="posljiDelovniNalog" value="posljiDelovniNalog">
+	
+		
 	</form>
 
 </div>
