@@ -71,9 +71,43 @@
         </div>
       </div>
       <div class="form-group">
+        <label for="tel">Telefonska številka</label>
+        <input type="text" class="form-control" id="tel"
+               placeholder="+38600000000" required minlength="12" maxlength="12"
+               [(ngModel)]="model.tel" name="tel" pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+               2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+               4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$"
+               #tel="ngModel">
+        <div [hidden]="tel.valid || tel.pristine"
+             class="alert alert-danger">
+          Vnesite vašo telefonsko Številko
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Naslov</label>
+        <input type="text" class="form-control" id="ulica"
+               placeholder="Ulica" required minlength="2" maxlength="45"
+               [(ngModel)]="model.ulica" name="ulica"
+               #ulica="ngModel">
+        <input type="text" class="form-control" id="hisnaStevilka"
+               placeholder="Hišna Številka" required minlength="1" maxlength="5"
+               [(ngModel)]="model.hisnaStevilka" name="hisnaStevilka"
+               #hisnaStevilka="ngModel">
+        <input type="text" class="form-control" id="postnaStevilka"
+               placeholder="Poštna Številka" required minlength="4" maxlength="4"
+               [(ngModel)]="model.postnaStevilka" name="postnaStevilka"
+               #postnaStevilka="ngModel">
+        <div [hidden]="ulica.valid || ulica.pristine ||
+                       hisnaStevilka.valid || hisnaStevilka.pristine ||
+                       postnaStevilka.valid || postnaStevilka.pristine"
+             class="alert alert-danger">
+          Vnesite vaš naslov
+        </div>
+      </div>
+      <div class="form-group">
         <label for="datumRojstva">Datum rojstva</label>
         <input type="date" class="form-control" id="datumRojstva"
-               placeholder="01-01-1900" minDate="01-01-1900" maxDate="14-04-2017" required
+               placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" required
                [(ngModel)]="model.datumRojstva" name="datumRojstva"
                #datumRojstva="ngModel">
         <div [hidden]="datumRojstva.valid || datumRojstva.pristine"
@@ -85,7 +119,7 @@
         <label for="spol">Spol</label>
         <select class="form-control" id="spol"
                 required
-                [(ngModel)]="model.power" name="spol"
+                [(ngModel)]="model.spol" name="spol"
                 #spol="ngModel">
           <option *ngFor="let spol of spoli" [value]="spol">{{spol}}</option>
         </select>

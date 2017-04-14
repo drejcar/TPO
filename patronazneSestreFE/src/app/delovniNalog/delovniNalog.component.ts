@@ -5,5 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './delovniNalog.component.html'
 
 })
-export class DelovniNalogComponent {	
+export class DelovniNalogComponent {
 }

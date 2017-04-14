@@ -31,8 +31,8 @@ public class Spol implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-one association to Pacient
-	@OneToMany(mappedBy="spol")
-	private List<Pacient> pacients;
+	//@OneToMany(mappedBy="spol")
+	//private List<Pacient> pacients;
 
 	public Spol() {
 	}
@@ -52,7 +52,7 @@ public class Spol implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
+/*
 	public List<Pacient> getPacients() {
 		return this.pacients;
 	}
@@ -74,5 +74,5 @@ public class Spol implements Serializable {
 
 		return pacient;
 	}
-
+*/
 }

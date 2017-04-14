@@ -18,4 +18,5 @@ public interface UporabnikSBLocal {
 	void odstraniUporabnik(int id); //odstranjevanje uporabnika po id-ju
 	void odstraniZrno(); //za odstranjevanje zrna
 	public String vrniShaHash(String pass); //funkcija za hashiranje passwordov v SHA-256
+	public Uporabnik returnUporabnikEmail(String email); //funkcija za vracanje uporabnika glede na mail (login)
 }

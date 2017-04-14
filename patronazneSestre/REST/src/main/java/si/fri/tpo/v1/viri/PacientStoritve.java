@@ -66,4 +66,11 @@ public class PacientStoritve implements PacientREST {
 		return fasada.returnPacient(id);
 	}
 
+	@GET
+	@Path("/zz/{stevilka}")
+	@ApiOperation(value="Vrni pacienta glede na zz", notes = "Vrne pacienta glede na njegovo stevilko zdravstvenega zavarovanja", code = 200, response = Pacient.class)
+	public Pacient returnPacientZZ(@PathParam("stevilka")int stevilkaZZ) {
+		return fasada.returnPacientZZ(stevilkaZZ);
+	}
+
 }

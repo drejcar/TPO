@@ -16,4 +16,5 @@ public interface PacientREST {
 	
 	public Pacient returnPacient(int id);
 	
+	public Pacient returnPacientZZ(int stevilkaZZ); //vracanje pacienta glede na stevilkoZZ
 }

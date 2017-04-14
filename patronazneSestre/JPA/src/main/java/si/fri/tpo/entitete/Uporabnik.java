@@ -17,7 +17,8 @@ import java.util.List;
 @NamedQueries({
 	@NamedQuery(name="Uporabnik.findAll", query="SELECT u FROM Uporabnik u"),
 	@NamedQuery(name="Uporabnik.findOne",query="SELECT u FROM Uporabnik u WHERE u.iduporabnik = :id"),
-	@NamedQuery(name="Uporabnik.deleteOne",query="DELETE FROM Uporabnik u WHERE u.iduporabnik = :id")
+	@NamedQuery(name="Uporabnik.deleteOne",query="DELETE FROM Uporabnik u WHERE u.iduporabnik = :id"),
+	@NamedQuery(name="Uporabnik.findOneVloga",query="SELECT u FROM Uporabnik u WHERE u.email = :email")
 })
 public class Uporabnik implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -41,11 +42,11 @@ public class Uporabnik implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idvloga", nullable=false)
 	private Vloga vloga;
-
+/*
 	//bi-directional many-to-one association to ZdravstveniDelavec
 	@OneToMany(mappedBy="uporabnik")
 	private List<ZdravstveniDelavec> zdravstveniDelavecs;
-
+*/
 	public Uporabnik() {
 	}
 
@@ -72,7 +73,7 @@ public class Uporabnik implements Serializable {
 	public void setGeslo(String geslo) {
 		this.geslo = geslo;
 	}
-
+/*
 	public List<Pacient> getPacients() {
 		return this.pacients;
 	}
@@ -94,7 +95,7 @@ public class Uporabnik implements Serializable {
 
 		return pacient;
 	}
-
+*/
 	public Vloga getVloga() {
 		return this.vloga;
 	}
@@ -102,7 +103,7 @@ public class Uporabnik implements Serializable {
 	public void setVloga(Vloga vloga) {
 		this.vloga = vloga;
 	}
-
+/*
 	public List<ZdravstveniDelavec> getZdravstveniDelavecs() {
 		return this.zdravstveniDelavecs;
 	}
@@ -124,5 +125,5 @@ public class Uporabnik implements Serializable {
 
 		return zdravstveniDelavec;
 	}
-
+*/
 }
