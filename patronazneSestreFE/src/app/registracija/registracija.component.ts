@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Uporabnik } from '../uporabnik';
 import { Router } from '@angular/router';
+import { Http, Response, Headers} from '@angular/http';
 import { UporabnikService} from '../RESTServices/uporabnik.service'
 
 @Component({
@@ -9,7 +10,7 @@ import { UporabnikService} from '../RESTServices/uporabnik.service'
   styleUrls: [ './registracija.component.css' ]
 })
 
-export class RegistracijaFormComponent {
+export class RegistracijaFormComponent{
   constructor(
     private router:Router, private uporabnikService: UporabnikService){}
   gotoRegistracija(): void {
@@ -35,7 +36,9 @@ export class RegistracijaFormComponent {
   submitted=false;
   onSubmit(){
 	this.submitted=true;
-	this.uporabnikService.save(this.model);		
+	this.uporabnikService.save(this.model).subscribe(
+            (r: Response) => {console.log('success');}
+          );		
   }
   novUporabnik(){
     this.model=new Uporabnik(this.ime,this.priimek,this.mail,

@@ -2,32 +2,28 @@ import { Injectable } from '@angular/core';
 import { Http, Response, Headers} from '@angular/http';
 import { Observable } from 'rxjs/Rx';
 import { Uporabnik } from '../uporabnik';
-import { Pacient } from '../Pacient';
-import { Posta } from '../Pacient';
-import { Spol } from '../Pacient';
-import { Uporabnikdrugi } from '../Pacient';
-import { Vloga } from '../Pacient';
+import { Pacient } from './vrniPacient';
+import { Posta } from './vrniPacient';
+import { Spol } from './vrniPacient';
+import { Uporabnikdrugi } from './vrniPacient';
+import { Vloga } from './vrniPacient';
 
 //klasa za service
 @Injectable()
 export class PacientService{
- private baseUrl: String = 'localhost:8080/patronazneSestre/v1/';
+ private baseUrl: String = 'localhost:8080/patronazneSestre/v1';
  constructor(private http : Http){}
  
  //service za prejemanje pacienta
  get(zz: number,username: String, pass: String): Observable<Pacient> {
+	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(username+':'+pass)});
 	
-	var headers = new Headers();
-	let pacient$ = this.http.get(`${this.baseUrl}/pacient/zz/${zz}`, {headers: this.createAuthorizationHeader(headers,pass,username)}).map(this.mapPacient);
+	let pacient$ = this.http.get(`${this.baseUrl}/pacient/zz/${zz}`, {headers: headers}).map((res) => { return this.mapPacient(res)});
 	
 	return pacient$
 	
  }
- //funkcija za ustvarjanje avtorizacijski header
-  createAuthorizationHeader(headers:Headers, pass: String,username: String){
-	headers.append('Authorization', 'Basic' + btoa(username+':'+pass));
-	return headers;
- }
+ 
  //vmesna funkcija
  mapPacient(response: Response): Pacient{
   return this.toPacient(response.json());
@@ -45,7 +41,7 @@ export class PacientService{
 	spol: r.spol,
 	uporabnik: r.uporabnik,
   });
-  console.log('Parsed person:', pacient);
+  
   return pacient;
 }
 

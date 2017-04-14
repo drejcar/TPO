@@ -6,18 +6,16 @@ import { ZdravstveniDelavec } from '../ZdravstveniDelavec';
 
 @Injectable()
 export class UporabnikService{
- private baseUrl: String = 'localhost:8080/patronazneSestre/v1/';
+ private baseUrl: String = 'localhost:8080/patronazneSestre/v1';
+ 
  constructor(private http : Http){}
  
- save(zdravstveniDelavec: ZdravstveniDelavec,username: String, geslo: String) : Observable<Response>{
-  var headers = new Headers();
+ save(zdravstveniDelavec: ZdravstveniDelavec,username: String, geslo: String){
+	 
+  var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(username+':'+geslo)});
   
 	//TODO
-	return this.http.post(`${this.baseUrl}/zdravstveniDelavec/`,JSON.stringify(zdravstveniDelavec), {headers: this.createAuthorizationHeader(headers,username,geslo)});
+	this.http.post(`${this.baseUrl}/zdravstveniDelavec/`,JSON.stringify(zdravstveniDelavec), {headers: headers});
  }
  
- createAuthorizationHeader(headers:Headers,username:String,geslo:String){
-	headers.append('Authorization', 'Basic ' + btoa(username+':'+geslo));
-	return headers;
- }
 }

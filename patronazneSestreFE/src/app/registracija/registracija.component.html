@@ -139,7 +139,7 @@
           Izberite okoliš
         </div>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
+      <button type="submit" (click)="onSubmit()" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
     </form>
   </div>
 </div>
