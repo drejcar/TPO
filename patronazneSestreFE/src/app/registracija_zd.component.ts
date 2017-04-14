@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Component } from '@angular/core';
-//import { Uporabnik } from './uporabnik';
-//import { Spol } from './Spol';
 import { Router } from '@angular/router';
 import { ZdravstveniDelavec } from './ZdravstveniDelavec';
 
