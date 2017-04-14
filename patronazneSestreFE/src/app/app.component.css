@@ -22,6 +22,11 @@ nav {
 	color: black;
 	margin: 5px 10px;
 }
+#404{
+  background:#448cff;
+  text-align:center;
+}
+
 
 .nav1 {
   position: relative;
