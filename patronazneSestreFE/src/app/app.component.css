@@ -18,8 +18,7 @@ nav {
 #navRight {
 	position: absolute;
 	bottom: 0;
-
-
+	right:0;
 	color: black;
 	margin: 5px 10px;
 }
@@ -29,10 +28,7 @@ nav {
 }
 
 
-.nav1 {
-  position: relative;
-  right: 0;
-}
+
 footer {
 	bottom: 0px;
 	position: relative;

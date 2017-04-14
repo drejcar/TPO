@@ -53,8 +53,8 @@
 			<input type="text" id="ePosta" maxlength="45" placeholder="elektronska pošta" required
              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
 		</div>
-
-
+		
+		<input type="button" name="pridobiPodatke" value="pridobi podatke"> 
 
 		<div id="veljavnostNaloga">
 			<h3>4 - VELJAVNOST NALOGA</h3>
@@ -73,26 +73,46 @@
 		<div id="vrstaStoritve">
 			<h3>5 - VRSTA STORITVE</h3>
 			<select id="vrstaStoritveSelect">
+				<option id="10"> Obisk nosečnice</option>
+				<option id="20"> Obisk otročnice</option>
+				<option id="30"> Obisk novorojenčka</option>
+				<option id="40"> Preventiva starostnika</option>
+				<option id="50"> Aplikacija injekcije</option>
+				<option id="60"> Odvzem krvi</option>
+				<option id="70"> Kontrola zdravstvenega stanja</option>				
 			</select>
 		</div>
 
 		<div id="bolezen">
 			<h3>6 - BOLEZEN</h3>
 			<select id="bolezenSelect">
+				<option id="1"> Viroza </option>
+				<option id="2"> Angina </option>
+				<option id="3"> Pljučnica</option>
 			</select>
 		</div>
 
 		<div id="material">
 			<h3>7 - MATERIAL</h3>
 			<select id="materialSelect">
+				<option id="1"> Epruveta rdeča </option>
+				<option id="2"> Epruveta modra</option>
+				<option id="3"> Epruveta rumena</option>
+				<option id="4"> Epruveta zelena</option>
 			</select>
 		</div>
 
 		<div id="zdravilo">
 			<h3>8 - ZDRAVILO</h3>
 			<select id="zdraviloSelect">
+				<option id="1"> Injekcija</option>
+				
 			</select>
 		</div>
+		
+		<input type="button" name="posljiDelovniNalog" value="posljiDelovniNalog">
+	
+		
 	</form>
 
 </div>
