@@ -7,7 +7,8 @@ import { Component } from '@angular/core';
 
 	  <header>
 		<nav>
-			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>				
+			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
+			<a routerLink="/registracijazd" routerLinkActive="active">regZd</a>	
 		</nav>
 						
 		<div id="navRight">
@@ -20,7 +21,6 @@ import { Component } from '@angular/core';
 		</div>
 	  </header>
 	  
-	  <!-- <h1>Hello motherfucking {{name}}</h1> -->
 	  <router-outlet></router-outlet>
 	  
 	  <footer>@ 2017</footer>

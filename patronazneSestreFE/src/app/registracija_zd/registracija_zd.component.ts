@@ -3,9 +3,9 @@ import { Component } from '@angular/core';
 //import { Uporabnik } from './uporabnik';
 //import { Spol } from './Spol';
 import { Router } from '@angular/router';
-import { ZdravstveniDelavec } from './ZdravstveniDelavec';
-import { UporabnikZd } from './ZdravstveniDelavec';
-import { Vloga } from './ZdravstveniDelavec';
+import { ZdravstveniDelavec } from '../ZdravstveniDelavec';
+import { UporabnikZd } from '../ZdravstveniDelavec';
+import { Vloga } from '../ZdravstveniDelavec';
 
 @Component({
   selector: 'registracija_zd',
@@ -21,14 +21,14 @@ export class Registracija_zdComponent {
     this.router.navigate(['/registracija_zd']);
   }
 
-  
+
   ime='';
   priimek='';
   mail='';
   pwd='';
   sifraZd='';
   idvloga=3;
-  
+
   model3 = new Vloga(this.idvloga);
   model2 = new UporabnikZd(this.mail,this.pwd,this.model3);
   model=new ZdravstveniDelavec(this.ime,this.priimek,this.sifraZd,this.model2);

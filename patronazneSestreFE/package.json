@@ -1,7 +1,7 @@
 {
   "name": "angular-quickstart",
   "version": "1.0.0",
-  "description": "QuickStart package.json from the documentation, supplemented with testing support",
+  "description": "Projekt pri predmetu TPO",
   "scripts": {
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
@@ -34,7 +34,9 @@
     "@angular/router": "~4.0.0",
     "angular-in-memory-web-api": "~0.3.0",
     "core-js": "^2.4.1",
+    "google-libphonenumber": "^2.0.14",
     "ng2-validation": "^4.0.0",
+    "ng2-validation-manager": "^0.2.8",
     "rxjs": "5.0.1",
     "systemjs": "0.19.40",
     "zone.js": "^0.8.4"

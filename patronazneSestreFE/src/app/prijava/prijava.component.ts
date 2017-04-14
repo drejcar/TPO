@@ -4,7 +4,7 @@ import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 import { HttpModule }    from '@angular/http';
 import { Router } from '@angular/router';
 import { Prijava } from './prijava';
-import {UserService} from "./user.service";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'prijava',
