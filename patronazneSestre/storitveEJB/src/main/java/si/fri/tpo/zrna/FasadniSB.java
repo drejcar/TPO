@@ -88,7 +88,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
-	@RolesAllowed({"Guest"})
+	@RolesAllowed({"guest"})
 	public void shraniNovegaUporabnika(Uporabnik u) {
 		uporabnik.shraniNovegaUporabnika(u);
 		uporabnik.odstraniZrno();

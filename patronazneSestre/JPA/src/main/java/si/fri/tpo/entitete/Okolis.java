@@ -17,7 +17,7 @@ import java.util.List;
 @NamedQueries({
 	@NamedQuery(name="Okolis.findAll", query="SELECT o.idokolis, o.opis FROM Okolis o"),
 	@NamedQuery(name="Okolis.findOne", query="SELECT o FROM Okolis o WHERE o.idokolis = :id"),
-	@NamedQuery(name="Okolis.findByPosta", query="SELECT o.idokolis, o.opis FROM Okolis o WHERE o.posta.idposta = :id"),
+	@NamedQuery(name="Okolis.findByPosta", query="SELECT o FROM Okolis o WHERE o.posta.idposta = :id"),
 	@NamedQuery(name="Okolis.deleteOne", query="DELETE FROM Okolis o WHERE o.idokolis = :id")
 })
 public class Okolis implements Serializable {
