@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Uporabnik } from '../uporabnik';
 import { Router } from '@angular/router';
+import { UporabnikService} from '../RESTServices/uporabnik.service'
 
 @Component({
   selector: 'registracija',
@@ -10,7 +11,7 @@ import { Router } from '@angular/router';
 
 export class RegistracijaFormComponent {
   constructor(
-    private router:Router){}
+    private router:Router, private uporabnikService: UporabnikService){}
   gotoRegistracija(): void {
     this.router.navigate(['/registracija']);
   }
@@ -31,7 +32,10 @@ export class RegistracijaFormComponent {
     this.postnaStevilka,this.okolisi[0],
     this.datumRojstva,this.spoli[0],this.test);
   submitted=false;
-  onSubmit(){this.submitted=true;}
+  onSubmit(){
+	this.submitted=true;
+	this.uporabnikService.save(this.model);		
+  }
   novUporabnik(){
     this.model=new Uporabnik(this.ime,this.priimek,this.mail,
       this.pwd,this.stKartice,this.ulica,this.hisnaStevilka,
