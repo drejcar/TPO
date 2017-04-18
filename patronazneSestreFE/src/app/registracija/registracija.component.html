@@ -121,7 +121,7 @@
                 required
                 [(ngModel)]="model.spol" name="spol"
                 #spol="ngModel">
-          <option *ngFor="let spol of spoli" [value]="spol">{{spol}}</option>
+          <option *ngFor="let spol of spoli" [value]="spol">{{spol.opis}}</option>
         </select>
         <div [hidden]="spol.valid || spol.pristine" class="alert alert-danger">
           Izberite spol

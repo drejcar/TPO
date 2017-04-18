@@ -6,7 +6,7 @@ import si.fri.tpo.entitete.*;
 
 public interface UporabnikREST {
 
-	void createUporabnik(Uporabnik uporabnik);
+	public void createUporabnik(Uporabnik uporabnik);
 	
 	public List<Uporabnik> returnUporabniks();
 	

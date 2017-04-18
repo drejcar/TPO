@@ -40,7 +40,7 @@ public class UporabnikSB implements UporabnikSBRemote, UporabnikSBLocal {
      */
 	@Override
 	public void shraniNovegaUporabnika(Uporabnik u) {
-		u.setGeslo(vrniShaHash(u.getGeslo()));
+		//u.setGeslo(vrniShaHash(u.getGeslo()));
 		em.persist(u);
 	}
 	
