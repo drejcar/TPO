@@ -67,7 +67,7 @@ public class Pacient implements Serializable {
 	private List<DelovniNalog> delovniNalogs;
 
 	//bi-directional many-to-one association to Kontakt
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idkontakt", nullable=true)
 	private Kontakt kontakt;
 
