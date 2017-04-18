@@ -2,7 +2,7 @@
 // logged-in.guard.ts
 import { Injectable } from '@angular/core';
 import { Router, CanActivate } from '@angular/router';
-import { UserService } from '../user.service';
+import { UserService } from '../prijava/user.service';
 
 @Injectable()
 export class PacientGuard implements CanActivate {

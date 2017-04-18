@@ -4,7 +4,7 @@ import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 import { HttpModule }    from '@angular/http';
 import { Router } from '@angular/router';
 import { Prijava } from './prijava';
-import {UserService} from "../user.service";
+import {UserService} from "./user.service";
 import { Upr } from "./upr"
 import { Vlog } from "./upr"
 
@@ -16,6 +16,9 @@ import { Vlog } from "./upr"
 
 export class PrijavaComponent{
 	person: Upr;
+	
+	data: Object;
+	textValue = "default";
   constructor(private userService: UserService,
     private router:Router){}
   gotoPrijava(): void {
@@ -28,12 +31,18 @@ export class PrijavaComponent{
   pwd='';
   model=new Prijava(this.mail,this.pwd);
   onSubmit() {
-    this.userService.login(this.model).subscribe(result => this.person = result);
-	console.log(this.person);
+	
+    this.userService.login(this.model).subscribe(data => {this.data = data
+			this.router.navigate(['/'+this.data.vloga.opis]);
+	});
+	
+	
+	
 	/*localStorage.setItem('vloga',this.person.vloga.idvloga.toLocaleString());
 	localStorage.setItem('username',this.person.email.toLocaleString());
 	localStorage.setItem('password',this.person.geslo.toLocaleString());*/
-	this.router.navigate(['/dashboard']);
+	
+	
     
    }
   

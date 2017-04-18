@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Uporabnik } from '../uporabnik';
 import { Router } from '@angular/router';
 import { Http, Response, Headers} from '@angular/http';
-import { UporabnikService} from '../RESTServices/uporabnik.service'
+import { UporabnikService} from './uporabnik.service'
 
 @Component({
   selector: 'registracija',
@@ -38,7 +38,9 @@ export class RegistracijaFormComponent{
 	this.submitted=true;
 	this.uporabnikService.save(this.model).subscribe(
             (r: Response) => {console.log('success');}
-          );		
+          );
+		  //tukaj bo navigacija na page kjer bo povedal ali je registracija uspešna
+	this.router.navigate(['/dashboard']);
   }
   novUporabnik(){
     this.model=new Uporabnik(this.ime,this.priimek,this.mail,

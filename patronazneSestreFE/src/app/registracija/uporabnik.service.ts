@@ -59,4 +59,14 @@ export class UporabnikService{
 	
 	return this.http.post(`${this.baseUrl}`,JSON.stringify(pacient), {headers: this.headers});
  }
+ /*
+ getPoste(): Observable<Posta>{
+	 
+	 
+ }
+ getSpol(): Observable<Spol>{
+	 
+	 
+ }
+ getOkolisByPosta(): Observable<Okolis>{}*/
 }

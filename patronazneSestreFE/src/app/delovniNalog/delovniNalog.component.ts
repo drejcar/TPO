@@ -25,7 +25,7 @@ export class DelovniNalogComponent {
 	    var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
 
 		this.http.get(this.restUrl, {headers: headers}).map(res => res.json()).subscribe(data => this.data = data);
-
+		
 		this.textValue = JSON.stringify(this.data);
 
 	
