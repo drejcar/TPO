@@ -39,6 +39,7 @@ import si.fri.tpo.vmesnikiSB.PacientSBLocal;
 import si.fri.tpo.vmesnikiSB.SifrantiSBLocal;
 import si.fri.tpo.vmesnikiSB.UporabnikSBLocal;
 import si.fri.tpo.vmesnikiSB.ZdravstveniDelavecSBLocal;
+import si.fri.tpo.vmesnikiSB.EmailSBLocal;
 
 /**
  * Session Bean implementation class FasadniSB
@@ -62,7 +63,8 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	private KontaktSBLocal kontakti;
 	@EJB
 	private IzvajalecZdravstvenihStoritevSBLocal izs;
-
+	@EJB
+	private EmailSBLocal email;
 	/**
 	 * Default constructor.
 	 */
@@ -88,7 +90,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
-	@RolesAllowed({"guest"})
+	@RolesAllowed({"Administrator","guest"})
 	public void shraniNovegaUporabnika(Uporabnik u) {
 		uporabnik.shraniNovegaUporabnika(u);
 		uporabnik.odstraniZrno();
@@ -643,7 +645,6 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	public void createPacient(Pacient pacient) {
 		pacienti.createPacient(pacient);
 		pacienti.odstraniZrno();
-
 	}
 
 	@Override

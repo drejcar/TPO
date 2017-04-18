@@ -16,7 +16,13 @@
 	<security-constraint>
 		<web-resource-collection>
 			<web-resource-name>HtmlAuth</web-resource-name>
-			<url-pattern>/*</url-pattern>
+			<url-pattern>sifranti/*</url-pattern>
+			<url-pattern>zdravstveniDelavec/*</url-pattern>
+			<url-pattern>uporabnik/*</url-pattern>
+			<url-pattern>pacient/*</url-pattern>
+			<url-pattern>kontakt/*</url-pattern>
+			<url-pattern>izvajalecZdravstvenihStoritev/*</url-pattern>
+			<url-pattern>delovniNalog/*</url-pattern>
 			<http-method>GET</http-method>
 			<http-method>PUT</http-method>
 			<http-method>POST</http-method>
