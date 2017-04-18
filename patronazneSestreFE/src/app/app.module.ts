@@ -23,13 +23,20 @@ import {AdministratorGuard} from "./_guard/administrator.guard";
 import {SodelavecIZSGuard} from "./_guard/sodelavecizs.guard";
 import {Registracija_zdComponent} from "./registracija_zd/registracija_zd.component";
 import {SpremembaGeslaComponent} from "./spremembaGesla.component";
-
+import {AdminDashComponent} from "./loggedindash/admindash/admindash.component";
+import {PacientDashComponent} from "./loggedindash/pacientdash/pacientdash.component";
+import {PatronaznaSestraDashComponent} from "./loggedindash/patronaznasestradash/patronaznasestradash.component";
+import {PatronaznaSluzbaDashComponent} from "./loggedindash/patronaznasluzbadash/patronaznasluzbadash.component";
+import {SodelavecIzsDashComponent} from "./loggedindash/sodelavecizsdash/sodelavecizsdash.component";
+import {ZdravnikDashComponent} from "./loggedindash/zdravnikdash/zdravnikdash.component";
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule],
   declarations: [ AppComponent,DashboardComponent,PrijavaComponent,RegistracijaFormComponent,
-                  DelovniNalogComponent, EqualValidator,PageNotFoundComponent,Registracija_zdComponent
-                  ,SpremembaGeslaComponent
+                  DelovniNalogComponent, EqualValidator,PageNotFoundComponent,Registracija_zdComponent,
+                  SpremembaGeslaComponent,AdminDashComponent,PacientDashComponent,
+                  PatronaznaSestraDashComponent,PatronaznaSluzbaDashComponent,SodelavecIzsDashComponent,
+                  ZdravnikDashComponent
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,

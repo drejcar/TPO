@@ -16,15 +16,27 @@ import {AdministratorGuard} from "./_guard/administrator.guard";
 import {SodelavecIZSGuard} from "./_guard/sodelavecizs.guard";
 import {Registracija_zdComponent} from "./registracija_zd/registracija_zd.component";
 import {SpremembaGeslaComponent} from "./spremembaGesla.component";
+import {AdminDashComponent} from "./loggedindash/admindash/admindash.component";
+import {PacientDashComponent} from "./loggedindash/pacientdash/pacientdash.component";
+import {PatronaznaSestraDashComponent} from "./loggedindash/patronaznasestradash/patronaznasestradash.component";
+import {PatronaznaSluzbaDashComponent} from "./loggedindash/patronaznasluzbadash/patronaznasluzbadash.component";
+import {SodelavecIzsDashComponent} from "./loggedindash/sodelavecizsdash/sodelavecizsdash.component";
+import {ZdravnikDashComponent} from "./loggedindash/zdravnikdash/zdravnikdash.component";
 
 
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent },
   { path: 'prijava', component: PrijavaComponent },
   { path: 'registracija', component: RegistracijaFormComponent },
-  { path: 'delovniNalog', component: DelovniNalogComponent,/**canActivate:[ZdravnikGuard,PatronaznaSluzbaGuard]*/},
+  { path: 'delovniNalog', component: DelovniNalogComponent/**,canActivate:[ZdravnikGuard,PatronaznaSluzbaGuard]*/},
   { path: 'registracijazd', component: Registracija_zdComponent },
   { path: 'spremembaGesla',component: SpremembaGeslaComponent },
+  { path: 'administrator',component: AdminDashComponent, canActivate: [AdministratorGuard] },
+  { path: 'pacient', component: PacientDashComponent, canActivate: [PacientGuard] },
+  { path: 'patronazna_sestra', component: PatronaznaSestraDashComponent, canActivate: [PatronaznaSestraGuard] },
+  { path: 'patronazna_sluzba', component: PatronaznaSluzbaDashComponent, canActivate: [PatronaznaSluzbaGuard] },
+  { path: 'sodelavecizs', component: SodelavecIzsDashComponent, canActivate: [SodelavecIZSGuard] },
+  { path: 'zdravnik', component: ZdravnikDashComponent, canActivate: [ZdravnikGuard] },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
