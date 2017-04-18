@@ -11,8 +11,8 @@ import { Router, CanActivate } from '@angular/router';
 
 @Injectable()
 export class UporabnikService{
- private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1/';
- private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('guest@guest:guest')});
+ private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1/registracija';
+ private headers = new Headers({'Content-Type': 'application/json'});
  constructor(private http : Http){}
  
  save(upr: Uporabnik) : Observable<Response>{
@@ -35,7 +35,7 @@ export class UporabnikService{
 	});
 	//vloga
 	let vloga = <Vloga>({
-		idvloga: 2,
+		idvloga: 7,
 	});
 	//uporabnik nov
 	let uporabnikDrugi = <Uporabnikdrugi>({
@@ -57,11 +57,6 @@ export class UporabnikService{
 		uporabnik: uporabnikDrugi,
 	});
 	
-	return this.http.post(`${this.baseUrl}pacient/`,JSON.stringify(pacient), {headers: this.headers});
- }
- 
- createAuthorizationHeader(headers:Headers){
-	headers.append('Authorization', 'Basic' + btoa('guest@guest:guest'));
-	return headers;
+	return this.http.post(`${this.baseUrl}`,JSON.stringify(pacient), {headers: this.headers});
  }
 }
