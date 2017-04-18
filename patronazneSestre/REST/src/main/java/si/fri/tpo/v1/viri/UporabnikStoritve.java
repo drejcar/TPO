@@ -9,6 +9,9 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.*;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
+import javax.ws.rs.core.Response.Status;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -32,7 +35,6 @@ public class UporabnikStoritve implements UporabnikREST {
 	@ApiOperation(value = "Dodaj uporabnika", notes = "Doda uporabnika v bazo", code = 200)
 	public void createUporabnik(Uporabnik uporabnik) {
 		fasada.shraniNovegaUporabnika(uporabnik);
-		
 	}
 
 	@GET

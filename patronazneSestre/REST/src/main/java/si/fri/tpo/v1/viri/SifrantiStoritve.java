@@ -159,7 +159,6 @@ public class SifrantiStoritve implements SifrantiREST {
 	@ApiOperation(value = "Vrni okolis glede na posto", notes = "Vrne seznam okolisev glede na podan id od poste", code = 200,response = Okolis.class)
 	public List<Okolis> returnOkolissByPosta(@PathParam("id")int id) {
 		
-		
 		return fasada.returnOkolissByPosta(id);
 	}
 	
@@ -167,7 +166,6 @@ public class SifrantiStoritve implements SifrantiREST {
 	@Path("/posta")
 	@ApiOperation(value = "Vrni poste", notes = "Vrne seznam post iz baze", code = 200,response = Posta.class)
 	public List<Posta> returnPostas() {
-		
 		
 		return fasada.returnPostas();
 	}
