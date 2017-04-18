@@ -7,11 +7,14 @@ import { Posta } from '../Pacient';
 import { Spol } from '../Pacient';
 import { Uporabnikdrugi } from '../Pacient';
 import { Vloga } from '../Pacient';
+import { Okolis } from '../Pacient';
 import { Router, CanActivate } from '@angular/router';
+import { Spols } from './sifranti'
+
 
 @Injectable()
 export class UporabnikService{
- private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1/registracija';
+ private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
  private headers = new Headers({'Content-Type': 'application/json'});
  constructor(private http : Http){}
  
@@ -57,16 +60,52 @@ export class UporabnikService{
 		uporabnik: uporabnikDrugi,
 	});
 	
-	return this.http.post(`${this.baseUrl}`,JSON.stringify(pacient), {headers: this.headers});
+	return this.http.post(`${this.baseUrl}/registracija`,JSON.stringify(pacient), {headers: this.headers});
  }
- /*
- getPoste(): Observable<Posta>{
-	 
-	 
- }
- getSpol(): Observable<Spol>{
-	 
+ 
+ getPoste(): Observable<Posta[]>{
+	 return this.http.get(`${this.baseUrl}/sifranti/posta`, {headers: this.headers}).map((res) => {return this.mapPosta(res)});
 	 
  }
- getOkolisByPosta(): Observable<Okolis>{}*/
+ getSpol(): Observable<Spols[]>{
+	 return this.http.get(`${this.baseUrl}/sifranti/spol`, {headers: this.headers}).map((res) => {return this.mapSpol(res)});
+	 
+ }
+ getOkolisByPosta(): Observable<Okolis[]>{
+	 return this.http.get(`${this.baseUrl}/sifranti/okolisByPosta/`, {headers: this.headers}).map((res) => {return this.mapOkolis(res)});
+	 
+ }
+ 
+  mapPosta(response: Response): Posta[]{
+  return response.json().results.map(this.toPostas);
+}
+ mapSpol(response: Response): Spols[]{
+  return response.json().results.map(this.toSpols);
+}
+ mapOkolis(response: Response): Okolis[]{
+  return response.json().results.map(this.toOkoliss);
+}
+ toPostas(r:any): Posta{
+	let posta = <Posta>({
+		idposta: r.idposta,
+		opis: r.opis,
+		
+	});
+	return posta;
+ }
+ toSpols(r:any): Spols{
+	 let spol = <Spols>({
+		idspol: r.idspol,
+		opis: r.opis,
+	});
+	return spol;
+ }
+ toOkoliss(r:any): Okolis{
+	let okolis = <Okolis>({
+	 idokolis: r.idokolis,
+	 opis: r.opis,
+	 idposta: r.idposta,
+	});
+	return okolis;
+ }
 }

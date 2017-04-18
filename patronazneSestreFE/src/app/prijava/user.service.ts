@@ -48,7 +48,7 @@ export class UserService {
 //pretvorba json objekta v angular objekt
  toUporabnik(r:any): Upr{
   let vlog = <Vloga>({
-	 idVloga: r.vloga.idvloga; 
+	 idVloga: r.vloga.idvloga,
 	 opis: r.vloga.opis	
   });
   let uporabnik = <Upr>({ 	 
