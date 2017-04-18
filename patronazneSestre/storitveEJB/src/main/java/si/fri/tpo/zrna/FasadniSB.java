@@ -251,7 +251,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// zdravilo
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","guest"})
 	public List<Zdravilo> returnZdravilas() {
 		List<Zdravilo> list = sifranti.returnZdravilas();
 		sifranti.odstraniZrno();
@@ -260,7 +260,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// material
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","guest"})
 	public List<Material> returnMaterials() {
 		List<Material> list = sifranti.returnMaterials();
 		sifranti.odstraniZrno();
@@ -269,7 +269,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// spol
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","guest"})
 	public List<Spol> returnSpols() {
 		List<Spol> list = sifranti.returnSpols();
 		sifranti.odstraniZrno();
@@ -279,7 +279,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// okolis
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","guest"})
 	public List<Okolis> returnOkoliss() {
 		List<Okolis> list = sifranti.returnOkoliss();
 		sifranti.odstraniZrno();
@@ -288,7 +288,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// posta
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","guest"})
 	public List<Posta> returnPostas() {
 		List<Posta> list = sifranti.returnPostas();
 		sifranti.odstraniZrno();
@@ -297,7 +297,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// vloga
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","guest"})
 	public List<Vloga> returnVlogas() {
 		List<Vloga> list = sifranti.returnVlogas();
 		sifranti.odstraniZrno();
@@ -315,7 +315,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// sorodstvenoRazmerje
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","guest"})
 	public List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes() {
 		List<SorodstvenoRazmerje> list = sifranti.returnSorodstvenoRazmerjes();
 		sifranti.odstraniZrno();
@@ -665,7 +665,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	@Override
 	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSestra"})
-	public Pacient returnPacientZZ(int stevilkaZZ) {
+	public Pacient returnPacientZZ(String stevilkaZZ) {
 		Pacient nov = pacienti.returnPacientZZ(stevilkaZZ);
 		pacienti.odstraniZrno();
 		return nov;

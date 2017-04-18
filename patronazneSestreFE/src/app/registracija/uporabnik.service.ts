@@ -68,7 +68,7 @@ export class UporabnikService{
 	 
  }
  getSpol(): Observable<Spols[]>{
-	 return this.http.get(`${this.baseUrl}/sifranti/spol`, {headers: this.headers}).map((res) => {return this.mapSpol(res)});
+	 return this.http.get(`${this.baseUrl}/registracija/spol`, {headers: this.headers}).map((res) => <Spols[]> this.mapSpol(res));
 	 
  }
  getOkolisByPosta(): Observable<Okolis[]>{
@@ -77,13 +77,13 @@ export class UporabnikService{
  }
  
   mapPosta(response: Response): Posta[]{
-  return response.json().results.map(this.toPostas);
+  return response.json().results.map(this.toPostas(response.json()));
 }
  mapSpol(response: Response): Spols[]{
-  return response.json().results.map(this.toSpols);
+  return response.json().results.map(this.toSpols(response.json()));
 }
  mapOkolis(response: Response): Okolis[]{
-  return response.json().results.map(this.toOkoliss);
+  return response.json().results.map(this.toOkoliss(response.json()));
 }
  toPostas(r:any): Posta{
 	let posta = <Posta>({
@@ -98,6 +98,7 @@ export class UporabnikService{
 		idspol: r.idspol,
 		opis: r.opis,
 	});
+	console.log("made spols: ",spol);
 	return spol;
  }
  toOkoliss(r:any): Okolis{
