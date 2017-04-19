@@ -40,18 +40,18 @@
         <label for="pwd">Željeno geslo</label>
         <input type="password" class="form-control" id="pwd"
                required minlength="8" validateEqual="pwd2" reverse="true"
-               [(ngModel)]="model.pwd" name="pwd"
+               [(ngModel)]="model.pwd" name="pwd" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                #pwd="ngModel">
         <div [hidden]="pwd.valid || pwd.pristine"
              class="alert alert-danger">
-          Vnesite željeno geslo (dolžina mora biti vsaj 8 znakov)
+          Vnesite željeno geslo (dolžina mora biti vsaj 8 znakov, od tega 1 numerični)
         </div>
       </div>
       <div class="form-group">
         <label for="pwd2">Ponovite geslo</label>
         <input type="password" class="form-control" id="pwd2"
                required validateEqual="pwd"
-               [(ngModel)]="model.pwd2" name="pwd2"
+               [(ngModel)]="model.pwd2" name="pwd2" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
                #pwd2="ngModel">
         <div [hidden]="pwd2.valid || pwd2.pristine"
              class="alert alert-danger">
@@ -141,8 +141,55 @@
           Izberite okoliš
         </div>
       </div>
+      <button type="button" class="btn btn-info" (click)="dodaj = !dodaj">Dodaj kontakt</button>
+      <div *ngIf="dodaj">
+        <h3>Podatki o kontaktni osebi</h3>
+        <label for="kime">Ime</label>
+        <input type="text" class="form-control" id="kime"
+               placeholder="ime" required
+               [(ngModel)]="kontakt.kime" name="kime"
+               #kime="ngModel">
+        <label for="kpriimek">Priimek</label>
+        <input type="text" class="form-control" id="kpriimek"
+               placeholder="priimek" required
+               [(ngModel)]="kontakt.kpriimek" name="kpriimek"
+               #kontaktPriimek="ngModel">
+        <label for="ktel">Telefonska številka</label>
+        <input type="text" class="form-control" id="ktel"
+               placeholder="+38600000000" required minlength="12" maxlength="12"
+               [(ngModel)]="kontakt.ktel" name="ktel" pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+               2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+               4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$"
+               #ktel="ngModel">
+        <label>Naslov</label>
+        <input type="text" class="form-control" id="kulica"
+               placeholder="Ulica" required minlength="2" maxlength="45"
+               [(ngModel)]="kontakt.kulica" name="kulica"
+               #kulica="ngModel">
+        <input type="text" class="form-control" id="khisnaStevilka"
+               placeholder="Hišna Številka" required minlength="1" maxlength="5"
+               [(ngModel)]="kontakt.khisnaStevilka" name="khisnaStevilka"
+               #khisnaStevilka="ngModel">
+        <select class="form-control" id="kpostnaStevilka"
+                required
+                [(ngModel)]="kontakt.kpostnaStevilka" (ngModelChange)="onChangePostnaStevilka($event)" name="kpostnaStevilka"
+                #kpostnaStevilka="ngModel">
+          <option *ngFor="let kpostnaStevilka of kpostneStevilke" [value]="kpostnaStevilka">{{kpostnaStevilka}}</option>
+        </select>
+        <label for="krazmerje">Sorodstveno razmerje</label>
+        <select class="form-control" id="krazmerje"
+                required
+                [(ngModel)]="kontakt.krazmerje" name="krazmerje"
+                #kontaktRazmerje="ngModel">
+          <option *ngFor="let krazmerje of krazmerja" [value]="krazmerje">{{krazmerje}}</option>
+        </select>
+      </div>
       <button type="submit" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
     </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>Z registracijo ste skoraj gotovi:</h2>
+    <h3>Na vašo elektronsko pošto smo vam poslali aktivacijsko povezavo, potrebno za dokončanje registracije.</h3>
   </div>
 </div>
 

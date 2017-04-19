@@ -9,6 +9,7 @@ import { Uporabnikdrugi } from '../Pacient';
 import { Vloga } from '../Pacient';
 import { Okolis } from '../Pacient';
 import { Router, CanActivate } from '@angular/router';
+import { Razmerje } from "../Razmerje";
 
 
 
@@ -17,7 +18,7 @@ export class UporabnikService{
  private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
  private headers = new Headers({'Content-Type': 'application/json'});
  constructor(private http : Http){}
- 
+
  save(upr: Uporabnik) : Observable<Response>{
 	var sp = 1;
 	if(upr.spol == 'Moski'){
@@ -30,11 +31,17 @@ export class UporabnikService{
 		idspol: sp,
 		opis: upr.spol,
 	});
-	//TODO dokoncat posto
+   //
+/*   let razmerje = <Razmerje>({
+     idrazmerje: ra,
+     opis: upr.razmerje,
+   });
+*/
+   	//TODO dokoncat posto
 	let posta = <Posta>({
 		idposta: upr.postnaStevilka,
 		opis: upr.okolis,
-		
+
 	});
 	//vloga
 	let vloga = <Vloga>({
@@ -46,7 +53,7 @@ export class UporabnikService{
 		geslo: upr.pwd,
 		vloga: vloga
 	});
-	
+
 	//filamo json pacient
 	let pacient = <Pacient>({
 		ime: upr.ime,
@@ -59,26 +66,37 @@ export class UporabnikService{
 		hisnaStevilka: upr.hisnaStevilka,
 		uporabnik: uporabnikDrugi,
 	});
-	
+
 	return this.http.post(`${this.baseUrl}/registracija`,JSON.stringify(pacient), {headers: this.headers});
  }
- 
+
  getPoste(): Observable<Posta[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/posta`, {headers: this.headers}).map((response: Response) => response.json());
-	 
+
  }
  getSpol(): Observable<Spol[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/spol`, {headers: this.headers}).map((response: Response) => response.json());
-	 
+
  }
+ /*
+ getRazmerje(): Observable<Razmerje[]>{
+   return this.http.get(`${this.baseUrl}/registracija/razmerje`, {headers: this.headers}).map((response: Response) => response.json());
+
+ }
+ */
  getOkolisByPosta(post: number): Observable<Okolis[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/okolisByPosta/${post}`, {headers: this.headers}).map((response: Response) => response.json());
-	 
+
  }
- 
+
   mapPosta(response: Response): Posta[]{
   return response.json().results.map(this.toPostas(response.json()));
 }
+/*
+  mapRazmerje(response: Response): Razmerje[]{
+    return response.json().results.map(this.toRazmerjas(response.json()));
+  }
+*/
  /*mapSpol(response: Response): Spols[]{
   return response.json().results.map(this.toSpols(response.json()));
 }*/
@@ -89,10 +107,19 @@ export class UporabnikService{
 	let posta = <Posta>({
 		idposta: r.idposta,
 		opis: r.opis,
-		
+
 	});
 	return posta;
  }
+ /* toRazmerjas(r:any): Razmerje{
+    let razmerje = <Razmerje>({
+      idrazmerje: r.idrazmerje,
+      opis: r.opis,
+
+    });
+    return razmerje;
+  }
+  */
  /*toSpols(r:any): Spols{
 	 let spol = <Spols>({
 		idspol: r.idspol,
