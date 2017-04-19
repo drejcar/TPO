@@ -172,18 +172,20 @@
                #khisnaStevilka="ngModel">
         <select class="form-control" id="kpostnaStevilka"
                 required
-                [(ngModel)]="kontakt.kpostnaStevilka" (ngModelChange)="onChangePostnaStevilka($event)" name="kpostnaStevilka"
+                [(ngModel)]="kontakt.kpostnaStevilka" name="kpostnaStevilka"
                 #kpostnaStevilka="ngModel">
-          <option *ngFor="let kpostnaStevilka of kpostneStevilke" [value]="kpostnaStevilka">{{kpostnaStevilka}}</option>
+          <option *ngFor="let kpostnaStevilka of kpostnestevilke" [value]="kpostnaStevilka">{{kpostnaStevilka}}</option>
         </select>
         <label for="krazmerje">Sorodstveno razmerje</label>
         <select class="form-control" id="krazmerje"
                 required
                 [(ngModel)]="kontakt.krazmerje" name="krazmerje"
                 #kontaktRazmerje="ngModel">
-          <option *ngFor="let krazmerje of krazmerja" [value]="krazmerje">{{krazmerje}}</option>
+          <option *ngFor="let krazmerje of krazmerja" [value]="krazmerje">{{krazmerje.opis}}</option>
         </select>
+		<br/>
       </div>
+	  
       <button type="submit" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
     </form>
   </div>

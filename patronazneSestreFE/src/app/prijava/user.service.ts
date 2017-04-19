@@ -12,7 +12,7 @@ import 'rxjs/add/operator/catch'
 @Injectable()
 export class UserService {
 
- private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('guest@guest:guest')});
+ 
   private loggedIn = false;
   private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
   upr: Upr;
@@ -22,9 +22,9 @@ export class UserService {
   }
 
   login(prijava:Prijava): Observable<Upr> {
-
-		return this.http.get(`${this.baseUrl}/uporabnik/login/${prijava.mail}`, {headers: this.headers}).map((res) => {return this.mapUporabnik(res)});
-
+		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(prijava.mail+':'+prijava.pwd)});
+		return this.http.get(`${this.baseUrl}/uporabnik/login/${prijava.mail}`, {headers: headers}).map((res) => {return this.mapUporabnik(res)});
+		
 		//localStorage.setItem('username', this.result.email);
 		//localStorage.setItem('password', this.result.geslo);
 

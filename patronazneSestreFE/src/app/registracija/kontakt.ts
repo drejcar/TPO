@@ -5,7 +5,14 @@ export class Kontakt{
     public ktel:String,
     public kulica:String,
     public khisnaStevilka:String,
-    public kpostnaStevilka:String,
-    public krazmerje: Object,
+    public kpostnaStevilka: String,
+    public krazmerje: sorodstvenoRazmerje
   ){}
+}
+
+export class sorodstvenoRazmerje{
+	constructor(
+	idsorodstvenoRazmerje: number,
+	opis: String
+	){}
 }

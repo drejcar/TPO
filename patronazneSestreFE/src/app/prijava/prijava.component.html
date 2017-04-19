@@ -1,4 +1,7 @@
 <div class="container">
+  <div *ngIf="aliJeNapaka">
+	<h3>Vaš račun še ni bil aktiviran ali ste napisali napačno uporabniško ime in geslo</h3>
+  </div>
   <div [hidden]="submitted">
     <h1>Prijava</h1>
     <form (ngSubmit)="onSubmit()" #prijavaForm="ngForm">

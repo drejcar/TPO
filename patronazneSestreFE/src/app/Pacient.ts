@@ -9,10 +9,12 @@ export class Pacient{
     posta: Posta,
     spol: Spol,
     uporabnik: Uporabnikdrugi,
-	okolis: Okolis
+	okolis: Okolis,
+	datumRojstva: String,
+	kontakt?: Kontakts,
+	
     ){}
  }
-
  export class Posta {
   constructor(
  	idposta: number,
@@ -49,3 +51,21 @@ export class Pacient{
    ){}	 
 	 
  }
+ export class Kontakts{
+  constructor(
+    public ime: String,
+    public priimek: String,
+    public telefonskaStevilka:String,
+    public ulica:String,
+    public hisnaStevilka:String,
+    public posta: Posta,
+    public sorodstvenoRazmerje: sorodstvenoRazmerje
+  ){}
+}
+
+export class sorodstvenoRazmerje{
+	constructor(
+	idsorodstvenoRazmerje: number,
+	opis: String
+	){}
+}

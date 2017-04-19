@@ -16,7 +16,7 @@ import { Vlog } from "./upr"
 
 export class PrijavaComponent{
 	person: Upr;
-	
+	aliJeNapaka: boolean = false;
 	
 	textValue = "default";
   constructor(private userService: UserService,
@@ -34,7 +34,8 @@ export class PrijavaComponent{
 	
     this.userService.login(this.model).subscribe(data => {this.person = data
 			this.router.navigate(['/'+this.person.vloga.opis]);
-	});
+	},
+	err => {this.aliJeNapaka = true;});
 	
 	
 	

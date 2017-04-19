@@ -8,7 +8,7 @@ import { Spol } from '../Pacient';
 import { Posta } from '../Pacient';
 import { Okolis } from '../Pacient';
 import { Kontakt } from './kontakt';
-import { Razmerje } from "../Razmerje";
+import { sorodstvenoRazmerje } from "./kontakt";
 
 @Component({
   selector: 'registracija',
@@ -22,7 +22,7 @@ export class RegistracijaFormComponent implements OnInit{
 	poste: Posta[];
 	spoln: Spol[];
 	okoliss: Okolis[];
-  razmerjas: Razmerje[];
+  razmerjas: sorodstvenoRazmerje[];
   constructor(
     private router:Router, private uporabnikService: UporabnikService){}
   gotoRegistracija(): void {
@@ -48,7 +48,7 @@ export class RegistracijaFormComponent implements OnInit{
   kulica='';
   khisnaStevilka='';
   kpostnestevilke=[''];
-  krazmerja=[''];
+  krazmerja: sorodstvenoRazmerje[] = [{idsorodstvenoRazmerje:1,opis:''}];
   kontakt=new Kontakt(this.kime,this.kpriimek,this.ktel,this.kulica,this.khisnaStevilka,this.kpostnestevilke[0],this.krazmerja[0])
 
 
@@ -62,7 +62,8 @@ export class RegistracijaFormComponent implements OnInit{
 	this.submitted=true;
 	//kreiranje novega modela
 	this.model.okolis = this.okolisi[0];
-	this.uporabnikService.save(this.model).subscribe(
+	this.kontakt.krazmerje = this.krazmerja[0];
+	this.uporabnikService.save(this.model,this.dodaj,this.kontakt).subscribe(
             (r: Response) => {console.log('success');}
           );
 		  //tukaj bo navigacija na page kjer bo povedal ali je registracija uspešna
@@ -92,18 +93,18 @@ export class RegistracijaFormComponent implements OnInit{
 	},
 	err => {console.log(err);});
     //rest klic za razmerja
-    /*
+    
     this.uporabnikService.getRazmerje().subscribe(data => {this.razmerjas = data;
         let i = 0;
 
         for(let entry of this.razmerjas){
 
-          this.krazmerja[i] = entry[1];
+          this.krazmerja[i] = entry;
           i = i+1;
         }
       },
       err => {console.log(err);});
-	  */
+	  
 	  //rest klic za poste
     this.uporabnikService.getPoste().subscribe(data => {this.poste = data;
 		let i = 0;
@@ -111,6 +112,7 @@ export class RegistracijaFormComponent implements OnInit{
 		for(let entry of this.poste){
 
 			this.postneStevilke[i] = (entry[0].toString()+" "+entry[1].toString());
+			this.kpostnestevilke[i] = (entry[0].toString()+" "+entry[1].toString());
 			i = i+1;
 
 		}

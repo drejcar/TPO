@@ -9,9 +9,9 @@ import { Uporabnikdrugi } from '../Pacient';
 import { Vloga } from '../Pacient';
 import { Okolis } from '../Pacient';
 import { Router, CanActivate } from '@angular/router';
-import { Razmerje } from "../Razmerje";
-
-
+import { Kontakt } from "./kontakt";
+import { sorodstvenoRazmerje } from "./kontakt";
+import { Kontakts } from "../Pacient";
 
 @Injectable()
 export class UporabnikService{
@@ -19,7 +19,7 @@ export class UporabnikService{
  private headers = new Headers({'Content-Type': 'application/json'});
  constructor(private http : Http){}
 
- save(upr: Uporabnik) : Observable<Response>{
+ save(upr: Uporabnik,dodaj: boolean,kontaktnov: Kontakt) : Observable<Response>{
 	var sp = 1;
 	if(upr.spol == 'Moški'){
 		sp = 1;
@@ -27,19 +27,11 @@ export class UporabnikService{
 		sp = 2;
 	}
 	var devided = upr.postnaStevilka.split(' ');
-
+	
 	let spol = <Spol>({
 		idspol: sp,
 		opis: upr.spol,
 	});
-
-   //
-/*   let razmerje = <Razmerje>({
-     idrazmerje: ra,
-     opis: upr.razmerje,
-   });
-*/
-
 
 	let posta = <Posta>({
 		idposta: Number(devided[0]),
@@ -47,6 +39,7 @@ export class UporabnikService{
 
 
 	});
+	
 	//vloga
 	let vloga = <Vloga>({
 		idvloga: 7,
@@ -57,9 +50,29 @@ export class UporabnikService{
 		geslo: upr.pwd,
 		vloga: vloga
 	});
-
+	console.log(dodaj+"\n");
+	var devided2 = kontaktnov.kpostnaStevilka.split(' ');
+	let posta2 = <Posta>({
+		idposta: Number(devided2[0]),
+		opis: devided2[1],
+	});
+	
+	let kontakt = <Kontakts> ({
+		ime: kontaktnov.kime,
+		priimek: kontaktnov.kpriimek,
+		telefonskaStevilka: kontaktnov.ktel,
+		ulica: kontaktnov.kulica,
+		hisnaStevilka: kontaktnov.khisnaStevilka,
+		posta: posta2,
+		sorodstvenoRazmerje: kontaktnov.krazmerje,
+	});
+	if(dodaj == false){
+		kontakt = null;
+		
+		
+	}
 	//filamo json pacient
-	console.log(upr.okolis);
+	
 	let pacient = <Pacient>({
 		ime: upr.ime,
 		priimek: upr.priimek,
@@ -71,8 +84,10 @@ export class UporabnikService{
 		hisnaStevilka: upr.hisnaStevilka,
 		uporabnik: uporabnikDrugi,
 		okolis: upr.okolis,
+		datumRojstva: upr.datumRojstva,
+		kontakt: kontakt,
 	});
-
+	
 	return this.http.post(`${this.baseUrl}/registracija`,JSON.stringify(pacient), {headers: this.headers});
  }
 
@@ -84,12 +99,12 @@ export class UporabnikService{
 	 return this.http.get(`${this.baseUrl}/registracija/spol`, {headers: this.headers}).map((response: Response) => response.json());
 
  }
- /*
- getRazmerje(): Observable<Razmerje[]>{
-   return this.http.get(`${this.baseUrl}/registracija/razmerje`, {headers: this.headers}).map((response: Response) => response.json());
+ 
+ getRazmerje(): Observable<sorodstvenoRazmerje[]>{
+   return this.http.get(`${this.baseUrl}/registracija/sorodstvenoRazmerje`, {headers: this.headers}).map((response: Response) => response.json());
 
  }
- */
+ 
  getOkolisByPosta(post: number): Observable<Okolis[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/okolisByPosta/${post}`, {headers: this.headers}).map((response: Response) => response.json());
 
