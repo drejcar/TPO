@@ -128,4 +128,5 @@ public interface FasadniSBLocal {
 		//klic za odstranjevanje zrna
 		void odstraniZrno();
 		public List<Okolis> returnOkolissByPosta(int id);
+		public void posodobiZadnjoPrijavo(int id);
 }
