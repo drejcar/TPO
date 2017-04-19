@@ -9,6 +9,7 @@ import { Uporabnikdrugi } from '../Pacient';
 import { Vloga } from '../Pacient';
 import { Okolis } from '../Pacient';
 import { Router, CanActivate } from '@angular/router';
+import { Razmerje } from "../Razmerje";
 
 
 
@@ -17,7 +18,7 @@ export class UporabnikService{
  private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
  private headers = new Headers({'Content-Type': 'application/json'});
  constructor(private http : Http){}
- 
+
  save(upr: Uporabnik) : Observable<Response>{
 	var sp = 1;
 	if(upr.spol == 'Moški'){
@@ -26,17 +27,25 @@ export class UporabnikService{
 		sp = 2;
 	}
 	var devided = upr.postnaStevilka.split(' ');
-	
+
 	let spol = <Spol>({
 		idspol: sp,
 		opis: upr.spol,
 	});
-	
-	
+
+   //
+/*   let razmerje = <Razmerje>({
+     idrazmerje: ra,
+     opis: upr.razmerje,
+   });
+*/
+
+
 	let posta = <Posta>({
 		idposta: Number(devided[0]),
 		opis: devided[1],
-		
+
+
 	});
 	//vloga
 	let vloga = <Vloga>({
@@ -48,7 +57,7 @@ export class UporabnikService{
 		geslo: upr.pwd,
 		vloga: vloga
 	});
-	
+
 	//filamo json pacient
 	console.log(upr.okolis);
 	let pacient = <Pacient>({
@@ -63,24 +72,32 @@ export class UporabnikService{
 		uporabnik: uporabnikDrugi,
 		okolis: upr.okolis,
 	});
-	
+
 	return this.http.post(`${this.baseUrl}/registracija`,JSON.stringify(pacient), {headers: this.headers});
  }
- 
+
  getPoste(): Observable<Posta[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/posta`, {headers: this.headers}).map((response: Response) => response.json());
-	 
+
  }
  getSpol(): Observable<Spol[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/spol`, {headers: this.headers}).map((response: Response) => response.json());
-	 
+
  }
+ /*
+ getRazmerje(): Observable<Razmerje[]>{
+   return this.http.get(`${this.baseUrl}/registracija/razmerje`, {headers: this.headers}).map((response: Response) => response.json());
+
+ }
+ */
  getOkolisByPosta(post: number): Observable<Okolis[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/okolisByPosta/${post}`, {headers: this.headers}).map((response: Response) => response.json());
-	 
+
  }
+
  aktivirajRacun(id: number): Observable<Response>{
-	 
+
 	 return this.http.get(`${this.baseUrl}/registracija/${id}`,{headers: this.headers});
+
  }
 }

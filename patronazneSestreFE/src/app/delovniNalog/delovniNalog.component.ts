@@ -21,9 +21,9 @@ export class DelovniNalogComponent {
 	//polja to be filled
 	
 	
-	//stevilkaZdravstvenegaZavarovanja = "default";
 	
-	//var drekec = "asda";
+	
+	
 	
 	constructor(private http: Http) {}
 	
@@ -33,9 +33,19 @@ export class DelovniNalogComponent {
 	private restUrl = 'http://localhost:8080/patronazneSestre/v1/pacient/3';
 	//private restUrl = 'http://jsonplaceholder.typicode.com/posts/1';	
 
+	stevilkaZdravstvenegaZavarovanja : string = "";
+	priimek : string = "";
+	ime : string = "";
+	ulica : string = "";
+	postnaStevilka : string = "";
+	kraj : string = "";
+	telefonskaStevilka : string = "";
+	email : string = "";
 	
 	 
 	test(): void {	
+	
+		
 	
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
 
@@ -55,7 +65,6 @@ export class DelovniNalogComponent {
 			this.email = test.uporabnik.email;
 			
 			//console.log(test.posta.idposta);
-
 		
 		});
 		
