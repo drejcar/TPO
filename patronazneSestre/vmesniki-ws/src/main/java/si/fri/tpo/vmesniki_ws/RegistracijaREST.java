@@ -6,6 +6,6 @@ public interface RegistracijaREST {
 
 	void createPacient(Pacient pacient);
 
-	void activateUporabnik(int id);
+	void activateUporabnik(int id) throws Throwable;
 	
 }

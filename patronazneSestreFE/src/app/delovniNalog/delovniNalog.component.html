@@ -26,17 +26,16 @@
 		<div id="zavarovanaOseba">
 			<h3>3 - ZAVAROVANA OSEBA</h3>
 			<label>Številka zavarovane osebe</label>
-			<input type="text" id="stevilkaZavarovaneOsebe" placeholder="Številka zavarovane osebe">
-
-			<label>Datum rojstva</label>
-			<input type="date" id="datumRojstva" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" required>
+			<input type="text" id="stevilkaZavarovaneOsebe" placeholder= " {{ stevilkaZdravstvenegaZavarovanja }} " >
+			
+			<!-- <label>Datum rojstva</label>
+			<input type="date" id="datumRojstva" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" required> -->
 
 			<label>Priimek</label>
-			<input type="text" id="priimek" placeholder="priimek" required>
+			<input type="text" id="priimek" placeholder="{{ priimek }}" required>
 
 			<label>Ime</label>
-			<input type="text" id="ime"placeholder="ime" required>
-
+			<input type="text" id="ime"placeholder="{{ ime }}" required>
 			<label>Ulica</label>
 			<input type="text" id="ulica" placeholder=" {{ ulica}} " v required minlength="2" maxlength="45">
 
@@ -44,19 +43,19 @@
 			<input type="text" id="hisnaStevilka" placeholder="Hišna Številka" required minlength="1" maxlength="5">
 
 			<label>Postna številka</label>
-			<input type="text" id="postnaStevilka" placeholder="Poštna Številka" required minlength="4" maxlength="4">
+			<input type="text" id="postnaStevilka" placeholder=" {{ postnaStevilka }}" required minlength="4" maxlength="4">
 
 			<label>Kraj</label>
-			<input type="text" id="kraj">
+			<input type="text" id="kraj" placeholder=" {{ kraj }} ">
 
 			<label>Telefonska stevilka</label>
-			<input type="text" id="telefonskaStevilka" placeholder="+38600000000" required minlength="12" maxlength="12"
+			<input type="text" id="telefonskaStevilka" placeholder=" {{ telefonskaStevilka}} " required minlength="12" maxlength="12"
              pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
                2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
                4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$">
 
 			<label>e-pošta</label>
-			<input type="text" id="ePosta" maxlength="45" placeholder="elektronska pošta" required
+			<input type="text" id="ePosta" maxlength="45" placeholder=" {{ email }} " required
              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
 		</div>
 		

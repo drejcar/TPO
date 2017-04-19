@@ -10,20 +10,26 @@ import { FormsModule } from '@angular/forms';
 })
 
 
+
+
  
  
 
 
 export class DelovniNalogComponent {
 
-
+	//polja to be filled
 	
+	
+	//stevilkaZdravstvenegaZavarovanja = "default";
+	
+	//var drekec = "asda";
 	
 	constructor(private http: Http) {}
 	
 	data : any;
-	ulica : any;
-	testing : any;
+	//ulica : any;
+	//testing : Object;
 	private restUrl = 'http://localhost:8080/patronazneSestre/v1/pacient/3';
 	//private restUrl = 'http://jsonplaceholder.typicode.com/posts/1';	
 
@@ -33,20 +39,38 @@ export class DelovniNalogComponent {
 	
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
 
-		this.http.get(this.restUrl, {headers: headers}).subscribe(data => this.data = data.json());
+		this.http.get(this.restUrl, {headers: headers}).subscribe(data => { 
 		
-		setTimeout(() => {			
-			var drek : string = JSON.stringify(this.data);
+			this.data = data.json()
+			var drek : string = JSON.stringify(this.data);						
+			var test = JSON.parse(drek);
+
+			this.stevilkaZdravstvenegaZavarovanja = test.stevilkaZdravstvenegaZavarovanja;
+			this.priimek = test.priimek;
+			this.ime = test.ime;
+			this.ulica = test.ulica;
+			this.postnaStevilka = test.posta.idposta.toString();
+			this.kraj = test.posta.opis;
+			this.telefonskaStevilka = test.telefonskaStevilka;
+			this.email = test.uporabnik.email;
+			
+			//console.log(test.posta.idposta);
+);
+		
+		});
+		
+		//setTimeout(() => {			
+			//var drek : string = JSON.stringify(this.data);
 			//let obj : MyObj = JSON.parse(drek);			
 
-			this.testing = JSON.parse(drek);
+			//this.testing = JSON.parse(drek);
 			
 			
 			
 			//this.ulica = testing.ulica;			
-			//console.log(this.testing.hisnaStevilka);
+			//console.log(drek);
 			
-		}, 1000);			
+		//}, 1000);			
 	
 	}
 	

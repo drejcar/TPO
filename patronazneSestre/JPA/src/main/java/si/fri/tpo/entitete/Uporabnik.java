@@ -5,6 +5,7 @@ import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import java.util.List;
+import java.util.Date;
 
 
 /**
@@ -28,26 +29,40 @@ public class Uporabnik implements Serializable {
 	@Column(unique=true, nullable=false)
 	private int iduporabnik;
 
+	@Temporal(TemporalType.DATE)
+	@Column(name="aktiviraj_do", nullable=false)
+	private Date aktivirajDo;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="zadnja_prijava", nullable=true)
+	private Date zadnjaPrijava;
+
 	@Column(length=45)
 	private String email;
 
 	@Column(nullable=false, length=255)
 	private String geslo;
-
-	//bi-directional many-to-one association to Pacient
-	@OneToMany(mappedBy="uporabnik")
-	private List<Pacient> pacients;
-
+	
 	//bi-directional many-to-one association to Vloga
 	@ManyToOne
 	@JoinColumn(name="idvloga", nullable=false)
 	private Vloga vloga;
-/*
+
+	//bi-directional many-to-one association to Pacient
+	@OneToMany(mappedBy="uporabnik")
+	private List<Pacient> pacients;
+	
+	/*
 	//bi-directional many-to-one association to ZdravstveniDelavec
 	@OneToMany(mappedBy="uporabnik")
 	private List<ZdravstveniDelavec> zdravstveniDelavecs;
-*/
+	 */
+	
 	public Uporabnik() {
+		Date today = new Date();
+		Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
+		setAktivirajDo(tomorrow);
+		setZadnjaPrijava(today);
 	}
 
 	public int getIduporabnik() {
@@ -58,6 +73,22 @@ public class Uporabnik implements Serializable {
 		this.iduporabnik = iduporabnik;
 	}
 
+	public Date getAktivirajDo() {
+		return this.aktivirajDo;
+	}
+
+	public void setAktivirajDo(Date aktivirajDo) {
+		this.aktivirajDo = aktivirajDo;
+	}
+
+	public Date getZadnjaPrijava() {
+		return this.zadnjaPrijava;
+	}
+
+	public void setZadnjaPrijava(Date zadnjaPrijava) {
+		this.zadnjaPrijava = zadnjaPrijava;
+	}
+	
 	public String getEmail() {
 		return this.email;
 	}
@@ -73,7 +104,8 @@ public class Uporabnik implements Serializable {
 	public void setGeslo(String geslo) {
 		this.geslo = geslo;
 	}
-/*
+
+	/*
 	public List<Pacient> getPacients() {
 		return this.pacients;
 	}
@@ -126,4 +158,5 @@ public class Uporabnik implements Serializable {
 		return zdravstveniDelavec;
 	}
 */
+
 }

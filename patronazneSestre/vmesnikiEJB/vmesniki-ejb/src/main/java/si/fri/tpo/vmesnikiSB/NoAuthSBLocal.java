@@ -7,6 +7,7 @@ import javax.ejb.Local;
 import si.fri.tpo.entitete.Okolis;
 import si.fri.tpo.entitete.Pacient;
 import si.fri.tpo.entitete.Posta;
+import si.fri.tpo.entitete.SorodstvenoRazmerje;
 import si.fri.tpo.entitete.Spol;
 
 @Local
@@ -20,6 +21,8 @@ public interface NoAuthSBLocal {
 
 	List<Spol> returnSpols();
 
-	void aktivirajUporabnika(int id);
+	void aktivirajUporabnika(int id) throws Throwable;
+
+	List<SorodstvenoRazmerje> returnSorodstvenoRazmerjes();
 
 }

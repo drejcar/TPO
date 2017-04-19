@@ -40,7 +40,7 @@ export class RegistracijaFormComponent implements OnInit{
   postneStevilke=[''];
   test='';
   tel='';
-  okolisi=[''];
+  okolisi: Okolis[] = [{idokolis: 1,opis: '',idposta:1000}];
 
   kime='';
   kpriimek='';
@@ -50,6 +50,9 @@ export class RegistracijaFormComponent implements OnInit{
   kpostnestevilke=[''];
   krazmerja=[''];
   kontakt=new Kontakt(this.kime,this.kpriimek,this.ktel,this.kulica,this.khisnaStevilka,this.kpostnestevilke[0],this.krazmerja[0])
+
+
+
   model=new Uporabnik(this.ime,this.priimek,this.mail,
       this.pwd,this.stKartice,this.tel,this.ulica,this.hisnaStevilka,
     this.postneStevilke[0],this.okolisi[0],
@@ -57,11 +60,13 @@ export class RegistracijaFormComponent implements OnInit{
   submitted=false;
   onSubmit(){
 	this.submitted=true;
+	//kreiranje novega modela
+	this.model.okolis = this.okolisi[0];
 	this.uporabnikService.save(this.model).subscribe(
             (r: Response) => {console.log('success');}
           );
 		  //tukaj bo navigacija na page kjer bo povedal ali je registracija uspešna
-	this.router.navigate(['/dashboard']);
+
   }
   novUporabnik(){
     this.model=new Uporabnik(this.ime,this.priimek,this.mail,
@@ -120,7 +125,8 @@ export class RegistracijaFormComponent implements OnInit{
 	  let i = 0;
 	  for(let entry of this.okoliss){
 
-		  this.okolisi[i] = (entry[1].toString());
+		  this.okolisi[i] = entry;
+
 		  i = i+1;
 	  }
 	  })

@@ -21,26 +21,30 @@ export class UporabnikService{
 
  save(upr: Uporabnik) : Observable<Response>{
 	var sp = 1;
-	if(upr.spol == 'Moski'){
+	if(upr.spol == 'Moški'){
 		sp = 1;
 	}else{
 		sp = 2;
 	}
-	//spol TODO se id za spol
+	var devided = upr.postnaStevilka.split(' ');
+
 	let spol = <Spol>({
 		idspol: sp,
 		opis: upr.spol,
 	});
+
    //
 /*   let razmerje = <Razmerje>({
      idrazmerje: ra,
      opis: upr.razmerje,
    });
 */
-   	//TODO dokoncat posto
+
+
 	let posta = <Posta>({
-		idposta: upr.postnaStevilka,
-		opis: upr.okolis,
+		idposta: Number(devided[0]),
+		opis: devided[1],
+
 
 	});
 	//vloga
@@ -55,6 +59,7 @@ export class UporabnikService{
 	});
 
 	//filamo json pacient
+	console.log(upr.okolis);
 	let pacient = <Pacient>({
 		ime: upr.ime,
 		priimek: upr.priimek,
@@ -65,6 +70,7 @@ export class UporabnikService{
 		spol: spol,
 		hisnaStevilka: upr.hisnaStevilka,
 		uporabnik: uporabnikDrugi,
+		okolis: upr.okolis,
 	});
 
 	return this.http.post(`${this.baseUrl}/registracija`,JSON.stringify(pacient), {headers: this.headers});
@@ -89,51 +95,9 @@ export class UporabnikService{
 
  }
 
-  mapPosta(response: Response): Posta[]{
-  return response.json().results.map(this.toPostas(response.json()));
-}
-/*
-  mapRazmerje(response: Response): Razmerje[]{
-    return response.json().results.map(this.toRazmerjas(response.json()));
-  }
-*/
- /*mapSpol(response: Response): Spols[]{
-  return response.json().results.map(this.toSpols(response.json()));
-}*/
- mapOkolis(response: Response): Okolis[]{
-  return response.json().results.map(this.toOkoliss(response.json()));
-}
- toPostas(r:any): Posta{
-	let posta = <Posta>({
-		idposta: r.idposta,
-		opis: r.opis,
+ aktivirajRacun(id: number): Observable<Response>{
 
-	});
-	return posta;
- }
- /* toRazmerjas(r:any): Razmerje{
-    let razmerje = <Razmerje>({
-      idrazmerje: r.idrazmerje,
-      opis: r.opis,
+	 return this.http.get(`${this.baseUrl}/registracija/${id}`,{headers: this.headers});
 
-    });
-    return razmerje;
-  }
-  */
- /*toSpols(r:any): Spols{
-	 let spol = <Spols>({
-		idspol: r.idspol,
-		opis: r.opis,
-	});
-	console.log("made spols: ",spol);
-	return spol;
- }*/
- toOkoliss(r:any): Okolis{
-	let okolis = <Okolis>({
-	 idokolis: r.idokolis,
-	 opis: r.opis,
-	 idposta: r.idposta,
-	});
-	return okolis;
  }
 }

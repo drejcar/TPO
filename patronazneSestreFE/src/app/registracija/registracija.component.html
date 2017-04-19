@@ -135,7 +135,7 @@
                 required
                 [(ngModel)]="model.okolis" name="okolis"
                 #okolis="ngModel">
-          <option *ngFor="let okolis of okolisi" [value]="okolis">{{okolis}}</option>
+          <option *ngFor="let okolis of okolisi" [value]="okolis">{{okolis.opis}}</option>
         </select>
         <div [hidden]="okolis.valid || okolis.pristine" class="alert alert-danger">
           Izberite okoliš
