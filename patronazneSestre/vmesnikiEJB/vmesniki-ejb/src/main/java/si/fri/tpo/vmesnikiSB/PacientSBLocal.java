@@ -15,7 +15,7 @@ public interface PacientSBLocal {
 	void createPacient(Pacient pacient); // kreiranje novega pacienta
 	void updatePacient(Pacient pacient); //updatanje pacienta
 	void deletePacient(int id); // brisanje pacienta
-	public Pacient returnPacientZZ(int stevilkaZZ); // iskanje pacienta po ZZ
+	public Pacient returnPacientZZ(String stevilkaZZ); // iskanje pacienta po ZZ
 	void odstraniZrno();
 	
 }

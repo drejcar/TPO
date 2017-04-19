@@ -13,8 +13,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
 import { EqualValidator } from './equal-validator.directive';
 
-import {UporabnikService} from "./RESTServices/uporabnik.service";
-import {UserService} from "./user.service";
+import {UporabnikService} from "./registracija/uporabnik.service";
+import {UserService} from "./prijava/user.service";
 import {PacientGuard} from "./_guard/pacient.guard";
 import {ZdravnikGuard} from "./_guard/zdravnik.guard";
 import {PatronaznaSluzbaGuard} from "./_guard/patronaznasluzba.guard";

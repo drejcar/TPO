@@ -93,10 +93,12 @@
                placeholder="Hišna Številka" required minlength="1" maxlength="5"
                [(ngModel)]="model.hisnaStevilka" name="hisnaStevilka"
                #hisnaStevilka="ngModel">
-        <input type="text" class="form-control" id="postnaStevilka"
-               placeholder="Poštna Številka" required minlength="4" maxlength="4"
-               [(ngModel)]="model.postnaStevilka" name="postnaStevilka"
+        <select class="form-control" id="postnaStevilka"
+               required
+               [(ngModel)]="model.postnaStevilka" (ngModelChange)="onChangePostnaStevilka($event)" name="postnaStevilka"
                #postnaStevilka="ngModel">
+			   <option *ngFor="let postnaStevilka of postneStevilke" [value]="postnaStevilka">{{postnaStevilka}}</option>
+		</select>
         <div [hidden]="ulica.valid || ulica.pristine ||
                        hisnaStevilka.valid || hisnaStevilka.pristine ||
                        postnaStevilka.valid || postnaStevilka.pristine"

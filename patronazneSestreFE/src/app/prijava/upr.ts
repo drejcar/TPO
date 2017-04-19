@@ -6,4 +6,5 @@ export interface Upr{
 
 export interface Vlog{
 	idvloga: number;
+	opis: String;
 }

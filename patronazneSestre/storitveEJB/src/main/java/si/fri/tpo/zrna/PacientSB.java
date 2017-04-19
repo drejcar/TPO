@@ -87,7 +87,7 @@ public class PacientSB implements PacientSBRemote, PacientSBLocal {
 	 * @see si.fri.tpo.vmesnikiSB.PacientSBLocal#returnPacientZZ(int)
 	 */
 	@Override
-	public Pacient returnPacientZZ(int stevilkaZZ) {
+	public Pacient returnPacientZZ(String stevilkaZZ) {
 		return (Pacient) em.createNamedQuery("Pacient.findOneZZ").setParameter("stevilkaZZ", stevilkaZZ).getSingleResult();
 		
 	}
