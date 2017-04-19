@@ -79,5 +79,8 @@ export class UporabnikService{
 	 return this.http.get(`${this.baseUrl}/registracija/okolisByPosta/${post}`, {headers: this.headers}).map((response: Response) => response.json());
 	 
  }
- 
+ aktivirajRacun(id: number): Observable<Response>{
+	 
+	 return this.http.get(`${this.baseUrl}/registracija/${id}`,{headers: this.headers});
+ }
 }
