@@ -9,7 +9,7 @@ import { Uporabnikdrugi } from '../Pacient';
 import { Vloga } from '../Pacient';
 import { Okolis } from '../Pacient';
 import { Router, CanActivate } from '@angular/router';
-import { Spols } from './sifranti'
+
 
 
 @Injectable()
@@ -64,24 +64,24 @@ export class UporabnikService{
  }
  
  getPoste(): Observable<Posta[]>{
-	 return this.http.get(`${this.baseUrl}/sifranti/posta`, {headers: this.headers}).map((res) => {return this.mapPosta(res)});
+	 return this.http.get(`${this.baseUrl}/registracija/posta`, {headers: this.headers}).map((response: Response) => response.json());
 	 
  }
- getSpol(): Observable<Spols[]>{
-	 return this.http.get(`${this.baseUrl}/registracija/spol`, {headers: this.headers}).map((res) => <Spols[]> this.mapSpol(res));
+ getSpol(): Observable<Spol[]>{
+	 return this.http.get(`${this.baseUrl}/registracija/spol`, {headers: this.headers}).map((response: Response) => response.json());
 	 
  }
- getOkolisByPosta(): Observable<Okolis[]>{
-	 return this.http.get(`${this.baseUrl}/sifranti/okolisByPosta/`, {headers: this.headers}).map((res) => {return this.mapOkolis(res)});
+ getOkolisByPosta(post: number): Observable<Okolis[]>{
+	 return this.http.get(`${this.baseUrl}/registracija/okolisByPosta/${post}`, {headers: this.headers}).map((response: Response) => response.json());
 	 
  }
  
   mapPosta(response: Response): Posta[]{
   return response.json().results.map(this.toPostas(response.json()));
 }
- mapSpol(response: Response): Spols[]{
+ /*mapSpol(response: Response): Spols[]{
   return response.json().results.map(this.toSpols(response.json()));
-}
+}*/
  mapOkolis(response: Response): Okolis[]{
   return response.json().results.map(this.toOkoliss(response.json()));
 }
@@ -93,14 +93,14 @@ export class UporabnikService{
 	});
 	return posta;
  }
- toSpols(r:any): Spols{
+ /*toSpols(r:any): Spols{
 	 let spol = <Spols>({
 		idspol: r.idspol,
 		opis: r.opis,
 	});
 	console.log("made spols: ",spol);
 	return spol;
- }
+ }*/
  toOkoliss(r:any): Okolis{
 	let okolis = <Okolis>({
 	 idokolis: r.idokolis,
