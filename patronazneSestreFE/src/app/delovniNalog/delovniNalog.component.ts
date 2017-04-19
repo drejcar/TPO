@@ -55,7 +55,7 @@ export class DelovniNalogComponent {
 			this.email = test.uporabnik.email;
 			
 			//console.log(test.posta.idposta);
-);
+
 		
 		});
 		

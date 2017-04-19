@@ -50,7 +50,6 @@ export class RegistracijaFormComponent implements OnInit{
             (r: Response) => {console.log('success');}
           );
 		  //tukaj bo navigacija na page kjer bo povedal ali je registracija uspešna
-	
   }
   novUporabnik(){
     this.model=new Uporabnik(this.ime,this.priimek,this.mail,
