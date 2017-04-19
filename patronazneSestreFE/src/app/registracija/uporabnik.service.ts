@@ -25,15 +25,17 @@ export class UporabnikService{
 	}else{
 		sp = 2;
 	}
-	//spol TODO se id za spol
+	var devided = upr.postnaStevilka.split(' ');
+	
 	let spol = <Spol>({
 		idspol: sp,
 		opis: upr.spol,
 	});
-	//TODO dokoncat posto
+	
+	
 	let posta = <Posta>({
-		idposta: upr.postnaStevilka,
-		opis: upr.okolis,
+		idposta: Number(devided[0]),
+		opis: devided[1],
 		
 	});
 	//vloga
@@ -76,37 +78,4 @@ export class UporabnikService{
 	 
  }
  
-  mapPosta(response: Response): Posta[]{
-  return response.json().results.map(this.toPostas(response.json()));
-}
- /*mapSpol(response: Response): Spols[]{
-  return response.json().results.map(this.toSpols(response.json()));
-}*/
- mapOkolis(response: Response): Okolis[]{
-  return response.json().results.map(this.toOkoliss(response.json()));
-}
- toPostas(r:any): Posta{
-	let posta = <Posta>({
-		idposta: r.idposta,
-		opis: r.opis,
-		
-	});
-	return posta;
- }
- /*toSpols(r:any): Spols{
-	 let spol = <Spols>({
-		idspol: r.idspol,
-		opis: r.opis,
-	});
-	console.log("made spols: ",spol);
-	return spol;
- }*/
- toOkoliss(r:any): Okolis{
-	let okolis = <Okolis>({
-	 idokolis: r.idokolis,
-	 opis: r.opis,
-	 idposta: r.idposta,
-	});
-	return okolis;
- }
 }
