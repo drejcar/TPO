@@ -9,15 +9,21 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './delovniNalog.component.html'	
 })
 
-//var ulica = "";
 
+ 
+ 
 
 
 export class DelovniNalogComponent {
+
+
+	
 	
 	constructor(private http: Http) {}
 	
-	data : Object;
+	data : any;
+	ulica : any;
+	testing : any;
 	private restUrl = 'http://localhost:8080/patronazneSestre/v1/pacient/3';
 	//private restUrl = 'http://jsonplaceholder.typicode.com/posts/1';	
 
@@ -31,37 +37,19 @@ export class DelovniNalogComponent {
 		
 		setTimeout(() => {			
 			var drek : string = JSON.stringify(this.data);
-			let obj : MyObj = JSON.parse(drek);			
+			//let obj : MyObj = JSON.parse(drek);			
 
-			let testing : Object = JSON.parse(drek);
-			
-			this.ulica = testing.ulica;
-			
-			console.log(testing.hisnaStevilka);
-
+			this.testing = JSON.parse(drek);
 			
 			
-		}, 1000);				
-
-		
-		
-				
 			
-		
-		
-		
-		
+			//this.ulica = testing.ulica;			
+			//console.log(this.testing.hisnaStevilka);
+			
+		}, 1000);			
 	
 	}
 	
-
-	
-	
-	
-	
-	
-
-
 }
 
 
