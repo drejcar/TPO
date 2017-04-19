@@ -22,7 +22,7 @@ export class Pacient{
  export class Spol {
   constructor(
  	idspol: number,
- 	opis: String
+ 	opis: String,
  	){}
  }
 
@@ -38,4 +38,13 @@ export class Pacient{
   constructor(
  	idvloga: number
    ){}
+ }
+ 
+ export class Okolis{
+   constructor(
+	idokolis: number,
+	opis: String,
+	posta: Posta
+   ){}	 
+	 
  }

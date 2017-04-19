@@ -49,6 +49,7 @@ export class UserService {
  toUporabnik(r:any): Upr{
   let vlog = <Vloga>({
 	 idVloga: r.vloga.idvloga,
+    
 	 opis: r.vloga.opis
   });
   let uporabnik = <Upr>({

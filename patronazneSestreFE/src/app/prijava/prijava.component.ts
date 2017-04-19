@@ -17,7 +17,7 @@ import { Vlog } from "./upr"
 export class PrijavaComponent{
 	person: Upr;
 	
-	data: Object;
+	
 	textValue = "default";
   constructor(private userService: UserService,
     private router:Router){}
@@ -32,8 +32,8 @@ export class PrijavaComponent{
   model=new Prijava(this.mail,this.pwd);
   onSubmit() {
 	
-    this.userService.login(this.model).subscribe(data => {this.data = data
-			this.router.navigate(['/'+this.data.vloga.opis]);
+    this.userService.login(this.model).subscribe(data => {this.person = data
+			this.router.navigate(['/'+this.person.vloga.opis]);
 	});
 	
 	
