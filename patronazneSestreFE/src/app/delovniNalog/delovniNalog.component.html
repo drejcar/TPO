@@ -75,49 +75,59 @@
 			<label>fiksni datum</label>
 		</div>
 
-		<div id="vrstaStoritve">
-			<h3>5 - VRSTA STORITVE</h3>
-			<select id="vrstaStoritveSelect">
-				<option id="10"> Obisk nosečnice</option>
-				<option id="20"> Obisk otročnice</option>
-				<option id="30"> Obisk novorojenčka</option>
-				<option id="40"> Preventiva starostnika</option>
-				<option id="50"> Aplikacija injekcije</option>
-				<option id="60"> Odvzem krvi</option>
-				<option id="70"> Kontrola zdravstvenega stanja</option>				
-			</select>
-		</div>
+		
 
-		<div id="bolezen">
-			<h3>6 - BOLEZEN</h3>
-			<select id="bolezenSelect">
-				<option id="1"> Viroza </option>
-				<option id="2"> Angina </option>
-				<option id="3"> Pljučnica</option>
-			</select>
-		</div>
-
-		<div id="material">
-			<h3>7 - MATERIAL</h3>
-			<select id="materialSelect">
-				<option id="1"> Epruveta rdeča </option>
-				<option id="2"> Epruveta modra</option>
-				<option id="3"> Epruveta rumena</option>
-				<option id="4"> Epruveta zelena</option>
-			</select>
-		</div>
-
-		<div id="zdravilo">
-			<h3>8 - ZDRAVILO</h3>
-			<select id="zdraviloSelect">
-				<option id="1"> Injekcija</option>
-				
+			<div id="storitev">
+			<h3>6 - BOLEZEN</h3>			
+			<select [(ngModel)]="izbranaStoritev" name="krneki3" >
+				<option *ngFor="let s of storitve" [ngValue]="s"> {{s.name}} </option>
 			</select>
 		</div>
 		
-		<input type="button" name="posljiDelovniNalog" value="posljiDelovniNalog">
+		
+		<div id="bolezen">
+			<h3>6 - BOLEZEN</h3>			
+			<select [(ngModel)]="izbranaBolezen" name="krneki2" >
+				<option *ngFor="let b of bolezni" [ngValue]="b"> {{b.name}} </option>
+			</select>
+		</div>
+		
+		
+		<div id="material">
+			<h3>7 - MATERIAL</h3>			
+			<select [(ngModel)]="izbraniMaterial" name="krneki1" >
+				<option *ngFor="let m of materiali" [ngValue]="m"> {{m.name}} </option>
+			</select>
+		</div>
+		
+		
+		
+		
+		
+		
+		<div id="zdravilo">
+			<h3>8 - ZDRAVILO</h3>
+			<select [(ngModel)]="izbranoZdravilo"  name="krneki">
+				<option *ngFor="let z of zdravila" [ngValue]="z"> {{z.name}} </option>
+			</select>			
+		</div>
+		
+		
+		
+		<input type="button" (click)="posljiDelovniNalog()" name="posljiDelovniNalog" value="posljiDelovniNalog">
 	
 		
 	</form>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </div>
