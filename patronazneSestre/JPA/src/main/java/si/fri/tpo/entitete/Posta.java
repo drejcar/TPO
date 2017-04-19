@@ -18,7 +18,7 @@ import java.util.List;
 @XmlRootElement
 @Table(name="posta")
 @NamedQueries({
-	@NamedQuery(name="Posta.findAll", query="SELECT p.idposta, p.opis FROM Posta p"),
+	@NamedQuery(name="Posta.findAll", query="SELECT p FROM Posta p"),
 	@NamedQuery(name="Posta.findOne",query="SELECT p FROM Posta p WHERE p.idposta = :idposta"),
 	@NamedQuery(name="Posta.deleteOne",query="DELETE FROM Posta p WHERE p.idposta = :idposta")
 })
