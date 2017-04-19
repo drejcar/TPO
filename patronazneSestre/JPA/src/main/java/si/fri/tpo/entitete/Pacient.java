@@ -9,7 +9,7 @@ import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-
+import java.util.Date;
 import java.util.List;
 
 
@@ -52,6 +52,10 @@ public class Pacient implements Serializable {
 	@Column(nullable=false, length=45)
 	private String ulica;
 
+	@Temporal(TemporalType.DATE)
+	@Column(name="datum_rojstva", nullable=false)
+	private Date datumRojstva;
+	
 	//bi-directional many-to-many association to DelovniNalog
 	@ManyToMany
 	@JoinTable(
@@ -249,4 +253,11 @@ public class Pacient implements Serializable {
 		this.uporabnik = uporabnik;
 	}
 
+	public Date getDatumRojstva() {
+		return this.datumRojstva;
+	}
+
+	public void setDatumRojstva(Date datumRojstva) {
+		this.datumRojstva = datumRojstva;
+	}
 }

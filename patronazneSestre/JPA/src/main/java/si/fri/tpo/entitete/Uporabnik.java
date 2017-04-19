@@ -62,6 +62,7 @@ public class Uporabnik implements Serializable {
 		Date today = new Date();
 		Date tomorrow = new Date(today.getTime() + (1000 * 60 * 60 * 24));
 		setAktivirajDo(tomorrow);
+		setZadnjaPrijava(today);
 	}
 
 	public int getIduporabnik() {

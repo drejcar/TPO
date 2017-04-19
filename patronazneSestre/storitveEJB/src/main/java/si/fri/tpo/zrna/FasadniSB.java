@@ -3,6 +3,7 @@ package si.fri.tpo.zrna;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.security.DeclareRoles;
@@ -767,6 +768,15 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	public void odstraniZrno() {
 		
 		
+	}
+
+	@Override
+	@RolesAllowed({"Administrator","Pacient","PatronaznaSestra","PatronaznaSluzba","SodelavecIZS","Zdravnik"})
+	public void posodobiZadnjoPrijavo(int id) {
+		Uporabnik u = uporabnik.najdiUporabnik(id);
+		Date date = new Date();
+		u.setZadnjaPrijava(date);
+		uporabnik.updateUporabnika(u);
 	}
 
 	

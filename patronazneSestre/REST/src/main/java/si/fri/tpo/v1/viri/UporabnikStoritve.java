@@ -60,9 +60,15 @@ public class UporabnikStoritve implements UporabnikREST {
 	public void updateUporabnik(Uporabnik uporabnik) {
 		fasada.updateUporabnika(uporabnik);
 		
-
 	}
 
+	@PUT
+	@Path("/zadnjaprijava/{id}")
+	public void posodobiZadnjoPrijavo(@PathParam("id") int id){
+		fasada.posodobiZadnjoPrijavo(id);
+	}
+	
+	
 	@GET
 	@Path("{id}")
 	@ApiOperation(value = "Vrni uporabnika", notes = "Vrne uporabnika iz baze", code = 200, response = Uporabnik.class)
