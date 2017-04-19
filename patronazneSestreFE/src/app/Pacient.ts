@@ -8,7 +8,8 @@ export class Pacient{
     ulica: String,
     posta: Posta,
     spol: Spol,
-    uporabnik: Uporabnikdrugi
+    uporabnik: Uporabnikdrugi,
+	okolis: Okolis
     ){}
  }
 

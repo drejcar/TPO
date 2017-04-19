@@ -50,6 +50,7 @@ export class UporabnikService{
 	});
 	
 	//filamo json pacient
+	console.log(upr.okolis);
 	let pacient = <Pacient>({
 		ime: upr.ime,
 		priimek: upr.priimek,
@@ -60,6 +61,7 @@ export class UporabnikService{
 		spol: spol,
 		hisnaStevilka: upr.hisnaStevilka,
 		uporabnik: uporabnikDrugi,
+		okolis: upr.okolis,
 	});
 	
 	return this.http.post(`${this.baseUrl}/registracija`,JSON.stringify(pacient), {headers: this.headers});
