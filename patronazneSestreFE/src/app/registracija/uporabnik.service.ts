@@ -20,7 +20,7 @@ export class UporabnikService{
  
  save(upr: Uporabnik) : Observable<Response>{
 	var sp = 1;
-	if(upr.spol == 'Moski'){
+	if(upr.spol == 'Moški'){
 		sp = 1;
 	}else{
 		sp = 2;
