@@ -68,15 +68,13 @@ export class DelovniNalogComponent {
 	kraj : string = "";
 	telefonskaStevilka : string = "";
 	email : string = "";
-	idPacient : number = 15;
-
-	
+	idPacient : number = 15;	
 	
 		 
 	test(): void {		
 
-		console.log(this.izbranoZdravilo.name);
-		console.log(this.izbraniMaterial.name);
+		//console.log(this.izbranoZdravilo.name);
+		//console.log(this.izbraniMaterial.name);
 	
 	
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
@@ -120,14 +118,27 @@ export class DelovniNalogComponent {
 		
 		var material = new Material();
 		material.idMaterial = this.izbraniMaterial.id;
+		
+		var zdravilo = new Zdravilo();
+		zdravilo.idZdravilo = this.izbranoZdravilo.id;
+		
+		var bolezen = new Bolezen();
+		bolezen.idBolezen = this.izbranaBolezen.id;
+		
+		var storitev = new Storitev();
+		storitev.idStoritev = this.izbranaStoritev.id;
 
 
 		
 		
 		//console.log(pacient.idPacient);
 		
-		console.log("Pacient: " + pacient.idPacient);
-		console.log("Material: " + material.idMaterial);
+		console.log(pacient);
+		console.log(material);
+		console.log(zdravilo);
+		console.log(bolezen);
+		console.log(storitev);
+
 
 				
 		
