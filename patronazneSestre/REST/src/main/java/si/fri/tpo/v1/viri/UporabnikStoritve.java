@@ -80,7 +80,9 @@ public class UporabnikStoritve implements UporabnikREST {
 	@Path("/login/{mail}")
 	public Uporabnik returnUporabnikMail(@PathParam("mail") String email) {
 		
-		return fasada.returnUporabnikEmail(email);
+		 Uporabnik up = fasada.returnUporabnikEmail(email);
+		 fasada.posodobiZadnjoPrijavo(up.getIduporabnik());
+		 return up;
 	}
 	
 	

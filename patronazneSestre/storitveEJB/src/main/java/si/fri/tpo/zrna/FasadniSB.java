@@ -115,7 +115,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 	
 	@Override
-	@RolesAllowed({"Administrator","Pacient","guest"})
+	@RolesAllowed({"Administrator","Pacient","PatronaznaSestra","PatronaznaSluzba","SodelavecIZS","Zdravnik"})
 	public Uporabnik returnUporabnikEmail(String email) {
 		Uporabnik nov = uporabnik.returnUporabnikEmail(email);
 		uporabnik.odstraniZrno();

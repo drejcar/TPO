@@ -55,7 +55,7 @@ public class NoAuthSB implements NoAuthSBRemote, NoAuthSBLocal {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Pozdravljeni! ");
 		sb.append("Zahvaljujemo se vam za resgistracijo na portalu PatronažnaSlužba. S klikom na priloženo povezavo bo vaša registracija zaključena. ");
-		sb.append("<a href='http://localhost:3000/");
+		sb.append("<a href='http://localhost:3000/aktivacija/");
 		sb.append(id);
 		sb.append("'>Aktivacija</a>");
 			

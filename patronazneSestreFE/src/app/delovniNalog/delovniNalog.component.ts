@@ -114,11 +114,14 @@ export class DelovniNalogComponent {
 		//console.log(p4);
 		
 		
+
 		var pacient = new Pacient();
 		pacient.idPacient = this.idPacient;
 		
 		var material = new Material();
 		material.idMaterial = this.izbraniMaterial.id;
+
+
 		
 		
 		//console.log(pacient.idPacient);
