@@ -93,10 +93,12 @@
                placeholder="Hišna Številka" required minlength="1" maxlength="5"
                [(ngModel)]="model.hisnaStevilka" name="hisnaStevilka"
                #hisnaStevilka="ngModel">
-        <input type="text" class="form-control" id="postnaStevilka"
-               placeholder="Poštna Številka" required minlength="4" maxlength="4"
-               [(ngModel)]="model.postnaStevilka" name="postnaStevilka"
+        <select class="form-control" id="postnaStevilka"
+               required
+               [(ngModel)]="model.postnaStevilka" (ngModelChange)="onChangePostnaStevilka($event)" name="postnaStevilka"
                #postnaStevilka="ngModel">
+			   <option *ngFor="let postnaStevilka of postneStevilke" [value]="postnaStevilka">{{postnaStevilka}}</option>
+		</select>
         <div [hidden]="ulica.valid || ulica.pristine ||
                        hisnaStevilka.valid || hisnaStevilka.pristine ||
                        postnaStevilka.valid || postnaStevilka.pristine"
@@ -133,7 +135,7 @@
                 required
                 [(ngModel)]="model.okolis" name="okolis"
                 #okolis="ngModel">
-          <option *ngFor="let okolis of okolisi" [value]="okolis">{{okolis}}</option>
+          <option *ngFor="let okolis of okolisi" [value]="okolis">{{okolis.opis}}</option>
         </select>
         <div [hidden]="okolis.valid || okolis.pristine" class="alert alert-danger">
           Izberite okoliš
@@ -141,6 +143,10 @@
       </div>
       <button type="submit" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
     </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>Z registracijo ste skoraj gotovi:</h2>
+    <h3>Na vašo elektronsko pošto smo vam poslali aktivacijsko povezavo, potrebno za dokončanje registracije.</h3>
   </div>
 </div>
 

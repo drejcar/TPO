@@ -92,11 +92,14 @@ public class Pacient implements Serializable {
 
 	//bi-directional many-to-one association to Spol
 	@ManyToOne
-	@JoinColumn(name="spol_idspol", nullable=false)
+	@JoinColumn(name="idspol", nullable=false)
 	private Spol spol;
 
+	@ManyToOne
+	@JoinColumn(name="idOkolis", nullable=false)
+	private Okolis okolis;
+	
 	//bi-directional many-to-one association to Uporabnik
-
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="iduporabnik", nullable=true)
 	private Uporabnik uporabnik;
@@ -214,6 +217,14 @@ public class Pacient implements Serializable {
 		this.posta = posta;
 	}
 
+	public Okolis getOkolis() {
+		return this.okolis;
+	}
+
+	public void setOkolis(Okolis okolis) {
+		this.okolis = okolis;
+	}
+	
 	public SorodstvenoRazmerje getSorodstvenoRazmerje() {
 		return this.sorodstvenoRazmerje;
 	}

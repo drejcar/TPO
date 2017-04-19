@@ -9,7 +9,7 @@ import { Uporabnikdrugi } from '../Pacient';
 import { Vloga } from '../Pacient';
 import { Okolis } from '../Pacient';
 import { Router, CanActivate } from '@angular/router';
-import { Spols } from './sifranti'
+
 
 
 @Injectable()
@@ -20,20 +20,22 @@ export class UporabnikService{
  
  save(upr: Uporabnik) : Observable<Response>{
 	var sp = 1;
-	if(upr.spol == 'Moski'){
+	if(upr.spol == 'Moški'){
 		sp = 1;
 	}else{
 		sp = 2;
 	}
-	//spol TODO se id za spol
+	var devided = upr.postnaStevilka.split(' ');
+	
 	let spol = <Spol>({
 		idspol: sp,
 		opis: upr.spol,
 	});
-	//TODO dokoncat posto
+	
+	
 	let posta = <Posta>({
-		idposta: upr.postnaStevilka,
-		opis: upr.okolis,
+		idposta: Number(devided[0]),
+		opis: devided[1],
 		
 	});
 	//vloga
@@ -48,6 +50,7 @@ export class UporabnikService{
 	});
 	
 	//filamo json pacient
+	console.log(upr.okolis);
 	let pacient = <Pacient>({
 		ime: upr.ime,
 		priimek: upr.priimek,
@@ -58,55 +61,23 @@ export class UporabnikService{
 		spol: spol,
 		hisnaStevilka: upr.hisnaStevilka,
 		uporabnik: uporabnikDrugi,
+		okolis: upr.okolis,
 	});
 	
 	return this.http.post(`${this.baseUrl}/registracija`,JSON.stringify(pacient), {headers: this.headers});
  }
  
  getPoste(): Observable<Posta[]>{
-	 return this.http.get(`${this.baseUrl}/sifranti/posta`, {headers: this.headers}).map((res) => {return this.mapPosta(res)});
+	 return this.http.get(`${this.baseUrl}/registracija/posta`, {headers: this.headers}).map((response: Response) => response.json());
 	 
  }
- getSpol(): Observable<Spols[]>{
-	 return this.http.get(`${this.baseUrl}/registracija/spol`, {headers: this.headers}).map((res) => <Spols[]> this.mapSpol(res));
+ getSpol(): Observable<Spol[]>{
+	 return this.http.get(`${this.baseUrl}/registracija/spol`, {headers: this.headers}).map((response: Response) => response.json());
 	 
  }
- getOkolisByPosta(): Observable<Okolis[]>{
-	 return this.http.get(`${this.baseUrl}/sifranti/okolisByPosta/`, {headers: this.headers}).map((res) => {return this.mapOkolis(res)});
+ getOkolisByPosta(post: number): Observable<Okolis[]>{
+	 return this.http.get(`${this.baseUrl}/registracija/okolisByPosta/${post}`, {headers: this.headers}).map((response: Response) => response.json());
 	 
  }
  
-  mapPosta(response: Response): Posta[]{
-  return response.json().results.map(this.toPostas(response.json()));
-}
- mapSpol(response: Response): Spols[]{
-  return response.json().results.map(this.toSpols(response.json()));
-}
- mapOkolis(response: Response): Okolis[]{
-  return response.json().results.map(this.toOkoliss(response.json()));
-}
- toPostas(r:any): Posta{
-	let posta = <Posta>({
-		idposta: r.idposta,
-		opis: r.opis,
-		
-	});
-	return posta;
- }
- toSpols(r:any): Spols{
-	 let spol = <Spols>({
-		idspol: r.idspol,
-		opis: r.opis,
-	});
-	console.log("made spols: ",spol);
-	return spol;
- }
- toOkoliss(r:any): Okolis{
-	let okolis = <Okolis>({
-	 idokolis: r.idokolis,
-	 opis: r.opis,
-	 idposta: r.idposta,
-	});
-	return okolis;
- }
 }
