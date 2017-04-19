@@ -22,7 +22,7 @@ import {PatronaznaSestraDashComponent} from "./loggedindash/patronaznasestradash
 import {PatronaznaSluzbaDashComponent} from "./loggedindash/patronaznasluzbadash/patronaznasluzbadash.component";
 import {SodelavecIzsDashComponent} from "./loggedindash/sodelavecizsdash/sodelavecizsdash.component";
 import {ZdravnikDashComponent} from "./loggedindash/zdravnikdash/zdravnikdash.component";
-
+import {AktivacijaComponent} from "./registracija/aktivacija.component";
 
 const routes: Routes = [
   { path: 'dashboard',  component: DashboardComponent },
@@ -37,6 +37,7 @@ const routes: Routes = [
   { path: 'PatronaznaSluzba', component: PatronaznaSluzbaDashComponent, canActivate: [PatronaznaSluzbaGuard] },
   { path: 'SodelavecIZS', component: SodelavecIzsDashComponent, canActivate: [SodelavecIZSGuard] },
   { path: 'Zdravnik', component: ZdravnikDashComponent, canActivate: [ZdravnikGuard] },
+  { path: 'aktivacija/:id',component: AktivacijaComponent},
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }
