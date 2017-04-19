@@ -144,5 +144,9 @@
       <button type="submit" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
     </form>
   </div>
+  <div [hidden]="!submitted">
+    <h2>Z registracijo ste skoraj gotovi:</h2>
+    <h3>Na vašo elektronsko pošto smo vam poslali aktivacijsko povezavo, potrebno za dokončanje registracije.</h3>
+  </div>
 </div>
 
