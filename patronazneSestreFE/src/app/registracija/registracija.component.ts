@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component} from '@angular/core';
 import { Uporabnik } from '../uporabnik';
 import { Router } from '@angular/router';
 import { Http, Response, Headers} from '@angular/http';
@@ -12,14 +12,14 @@ import { Spols } from './sifranti';
   styleUrls: [ './registracija.component.css' ]
 })
 
-export class RegistracijaFormComponent implements OnInit{
+export class RegistracijaFormComponent /*implements OnInit*/{
 	isLoading: boolean = true;
   constructor(
     private router:Router, private uporabnikService: UporabnikService){}
   gotoRegistracija(): void {
     this.router.navigate(['/registracija']);
   }
-  spoli: Spols[] = [];
+  spoli=['Moski','Zenska'] //: Spols[] = [{idspol: 1,opis:'moski'}];
   ime='';
   priimek='';
   mail='';
@@ -35,7 +35,7 @@ export class RegistracijaFormComponent implements OnInit{
   model=new Uporabnik(this.ime,this.priimek,this.mail,
       this.pwd,this.stKartice,this.tel,this.ulica,this.hisnaStevilka,
     this.postnaStevilka,this.okolisi[0],
-    this.datumRojstva,this.spoli[0].opis,this.test);
+    this.datumRojstva,this.spoli[0],this.test);
   submitted=false;
   onSubmit(){
 	this.submitted=true;
@@ -49,14 +49,16 @@ export class RegistracijaFormComponent implements OnInit{
     this.model=new Uporabnik(this.ime,this.priimek,this.mail,
       this.pwd,this.stKartice,this.tel,this.ulica,this.hisnaStevilka,
       this.postnaStevilka,this.okolisi[0],this.datumRojstva,
-      this.spoli[0].opis,this.test);
+      this.spoli[0],this.test);
   }
   //ne potrebujes
   get diagnostic() { return JSON.stringify(this.model); }
+  /*ngOnInit(){
+	this.uporabnikService.getSpol().subscribe(data => {this.spoli = data 
+	console.log(this.spoli);
+	
+	});
+  } TODO*/
   
-  ngOnInit(){
-	this.uporabnikService.getSpol().subscribe(data => this.spoli = data,
-		() => this.isLoading = false);
-  }
 }
 

@@ -67,9 +67,9 @@ public class PacientStoritve implements PacientREST {
 	}
 
 	@GET
-	@Path("/zz/{stevilka}")
+	@Path("/zz/{id}")
 	@ApiOperation(value="Vrni pacienta glede na zz", notes = "Vrne pacienta glede na njegovo stevilko zdravstvenega zavarovanja", code = 200, response = Pacient.class)
-	public Pacient returnPacientZZ(@PathParam("stevilka")int stevilkaZZ) {
+	public Pacient returnPacientZZ(@PathParam("id") String stevilkaZZ) {
 		return fasada.returnPacientZZ(stevilkaZZ);
 	}
 
