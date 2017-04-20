@@ -1,5 +1,6 @@
 package si.fri.tpo.v1.viri;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.EJB;
@@ -30,10 +31,9 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 	@POST
 	@Path("")
 	@ApiOperation(value = "Kreiranje delovnega naloga", notes = "Doda delovni nalog v bazo")
-	public void createDelovniNalog(DelovniNalog delovniNalog) {
+	public void createDelovniNalog(DelovniNalog delovniNalog, @QueryParam("fixniDatim") int fixniDatum, @QueryParam("obdobje") int obdobje, @QueryParam("od") Date od, @QueryParam("do") Date doo) {
 		fasada.dodajDelovniNalog(delovniNalog);
 		
-
 	}
 
 	@GET
