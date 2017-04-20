@@ -61,7 +61,7 @@
       <div class="form-group">
       	<label for="sifra">Sifra zdravstvenega delavca</label>
       	<input type="sifra" class="form-control" id="sifra"
-      			required minlength="5" [(ngModel)]="model.sifra" name="sifra" #sifra="ngModel">
+      			required minlength="5" maxlength="5" [(ngModel)]="model.sifra" name="sifra" #sifra="ngModel">
       	<div [hidden]="sifra.valid || sifra.pristine" class="alert alert-danger">
       		Vnesite Šifro zdravstvenega delavca (dolžina mora biti vsaj 5 znakov)
       	</div>
@@ -82,18 +82,20 @@
       <div class="form-group">
 		<label for="izvajalecZdravstvenihStoritev">Izvajalec Zdravstvenih Storitev</label>
         <select class="form-control" id="izvajalecZdravstvenihStoritev"
-          required
+          required 
 		  [(ngModel)]="model.izvajalecZdravstvenihStoritev" (ngModelChange)="onChangePostnaStevilka($event)" name="izvajalecZdravstvenihStoritev"
 		  #izvajalecZdravstvenihStoritev="ngModel">
+		  
 		  <option *ngFor="let izv of izvajaleciZdravstvenihStoritev" [value]="izv.posta.idposta+' '+izv.idizvajalecZdravstvenihStoritev">{{izv.naziv}}</option>
         </select>
       </div>
       <div class="form-group">
 	  <label for="vloga">Vloga</label>
         <select class="form-control" id="vloga"
-          required
+          required 
 		  [(ngModel)]="model2.vloga" name="vloga"
 		  #vloga="ngModel" (ngModelChange)="onChangeVloga($event)">
+		  
 		  <option *ngFor="let vloga of vloge" [value]="vloga.opis+' '+vloga.idvloga">{{vloga.opis}}</option>
         </select>
       </div>
@@ -112,5 +114,12 @@
       <button type="submit"
               class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
     </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>Registrirali ste novega zdravstvenega delavca </h2>
+  </div>
+  <div *ngIf="novBool">
+    <h2>Prišlo je do težave pri kreiranju novega zdravstvenega delavca</h2>
+	<h3>Ponovno preverite vnešene podatke</h3>
   </div>
 </div>

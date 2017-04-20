@@ -14,7 +14,7 @@ export class zdravstveniDelavecService{
  
  save(zdravstveniDelavec: ZdravstveniDelavec,check: boolean): Observable<Response>{
 	 let okoli = <Okolis>({
-		idokolis: zdravstveniDelavec.okoli.idokolis,
+		idokolis: zdravstveniDelavec.okolis.idokolis,
 	 });
 	 if(check == false){
 		 okoli = null;
@@ -38,11 +38,11 @@ export class zdravstveniDelavecService{
 		telefonskaStevilka: zdravstveniDelavec.telefonskaStevilka,
 		uporabnik: uporabnik,
 		izvajalecZdravstvenihStoritev: izv,
-		okoli: okoli,
+		okolis: okoli,
 	 });
 	 
 	 this.headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@admin:admin')});
-	 console.log(zdr);
+	 
   return this.http.post(`${this.baseUrl}/zdravstveniDelavec`,JSON.stringify(zdr), {headers: this.headers});
  }
  getVloge(): Observable<Vloga[]> {

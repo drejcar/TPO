@@ -6,7 +6,7 @@ export class ZdravstveniDelavec{
    public telefonskaStevilka:String,
    public uporabnik: UporabnikZd,
    public izvajalecZdravstvenihStoritev: IzvajalecZdravstvenihStoritev,
-   public okoli?: Okolis,
+   public okolis?: Okolis,
   ){}
 }
 

@@ -51,15 +51,11 @@ public class ZdravstveniDelavec implements Serializable {
 	private IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev;
 
 	//bi-directional many-to-one association to Okoli
-<<<<<<< HEAD
-	
-	@JoinColumn(name="idokolis", nullable=true)
-	private Okolis okoli;
-=======
+
 	@ManyToOne
 	@JoinColumn(name="idokolis", nullable=true)
 	private Okolis okolis;
->>>>>>> 059bde2ed5c9e598c15f86958760deee0e0a5100
+
 
 	//bi-directional many-to-one association to Uporabnik
 	@ManyToOne(cascade = CascadeType.ALL)

@@ -23,6 +23,7 @@ export class Registracija_zdComponent implements OnInit {
 	izvajalci: IzvajalecZdravstvenihStoritev[];
 	okoliss: Okolis[];
 	ifpatronaz: boolean = false;
+	novBool: boolean = false;
   constructor(
     private router:Router,private zdravstveniDelavecService: zdravstveniDelavecService){}
   gotoRegistracija(): void {
@@ -47,8 +48,8 @@ export class Registracija_zdComponent implements OnInit {
   
   submitted=false;
   onSubmit(form: NgForm){
-	  this.submitted=true;
-	  console.log(form.value.vloga);
+	  this.novBool = false;
+	  
 	  var devided2 = form.value.vloga.split(' ');
 	  let vlog = <Vloga>({
 		  idvloga: Number(devided2[1]),
@@ -63,12 +64,14 @@ export class Registracija_zdComponent implements OnInit {
 		  idokolis: Number(this.okolisi[0].idokolis),
 	  });
 	  
-	  console.log(okol);
+	  
 	  this.model2.vloga = vlog;
-	  this.model.okoli = okol;
+	  this.model.okolis = okol;
 	  this.model.izvajalecZdravstvenihStoritev = izvr;
 	  this.model.uporabnik = this.model2;
-	  this.zdravstveniDelavecService.save(this.model,this.ifpatronaz).subscribe((r: Response) => {console.log('success');});
+	  this.zdravstveniDelavecService.save(this.model,this.ifpatronaz).subscribe((r: Response) => {console.log('success');this.submitted=true;},
+	  
+	  err => {this.novBool = true;});
 	  
   }
   novZdravstveniDelavec(){
