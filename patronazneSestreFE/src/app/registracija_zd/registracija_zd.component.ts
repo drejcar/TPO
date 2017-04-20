@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Http, Response, Headers} from '@angular/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NgForm } from '@angular/forms';
 import { ZdravstveniDelavec } from '../ZdravstveniDelavec';
 import { UporabnikZd } from '../ZdravstveniDelavec';
 import { Vloga } from '../ZdravstveniDelavec';
@@ -22,6 +22,7 @@ export class Registracija_zdComponent implements OnInit {
 	vlogas: Vloga[];
 	izvajalci: IzvajalecZdravstvenihStoritev[];
 	okoliss: Okolis[];
+	ifpatronaz: boolean = false;
   constructor(
     private router:Router,private zdravstveniDelavecService: zdravstveniDelavecService){}
   gotoRegistracija(): void {
@@ -35,35 +36,58 @@ export class Registracija_zdComponent implements OnInit {
   geslo='';
   sifra='';
   telefonskaStevilka='';
-  vloga: Vloga[] = [{idvloga:1,opis:''}];
+  vloge: Vloga[] = [{idvloga:1,opis:''}];
   okolisi: Okolis[] = [{idokolis:1,opis:'',posta:this.post[0]}];
   izvajaleciZdravstvenihStoritev: IzvajalecZdravstvenihStoritev[] = [{idizvajalecZdravstvenihStoritev:1,posta:this.post[0],ulica: '',hisnaStevilka:'',stevilkaIzvajalca:'',naziv:''}];
+  pwd2='';
   
-  
-  
-  model2 = new UporabnikZd(this.email,this.geslo,this.vloga[0])
-  model=new ZdravstveniDelavec(this.ime,this.priimek,this.sifra,this.telefonskaStevilka,this.model2,this.okolisi[0],this.izvajaleciZdravstvenihStoritev[0]);
+  model3 = new Object(this.pwd2);
+  model2 = new UporabnikZd(this.email,this.geslo,this.vloge[0])
+  model=new ZdravstveniDelavec(this.ime,this.priimek,this.sifra,this.telefonskaStevilka,this.model2,this.izvajaleciZdravstvenihStoritev[0],this.okolisi[0]);
   
   submitted=false;
-  onSubmit(){
+  onSubmit(form: NgForm){
 	  this.submitted=true;
-	  this.model.okolis = this.okolisi[0];
-	  this.zdravstveniDelavecService.save(this.model).subscribe((r: Response) => {console.log('success');});
+	  console.log(form.value.vloga);
+	  var devided2 = form.value.vloga.split(' ');
+	  let vlog = <Vloga>({
+		  idvloga: Number(devided2[1]),
+	  });
+	 
+	  
+	  var devided = form.value.izvajalecZdravstvenihStoritev.split(' ');
+	  let izvr = <IzvajalecZdravstvenihStoritev>({
+		 idizvajalecZdravstvenihStoritev: Number(devided[1]),
+	  });
+	  let okol = <Okolis>({
+		  idokolis: Number(this.okolisi[0].idokolis),
+	  });
+	  
+	  console.log(okol);
+	  this.model2.vloga = vlog;
+	  this.model.okoli = okol;
+	  this.model.izvajalecZdravstvenihStoritev = izvr;
+	  this.model.uporabnik = this.model2;
+	  this.zdravstveniDelavecService.save(this.model,this.ifpatronaz).subscribe((r: Response) => {console.log('success');});
 	  
   }
   novZdravstveniDelavec(){
-	 this.model=new ZdravstveniDelavec(this.ime,this.priimek,this.sifra,this.telefonskaStevilka,this.model2,this.okolisi[0],this.izvajaleciZdravstvenihStoritev[0]);
+	 this.model=new ZdravstveniDelavec(this.ime,this.priimek,this.sifra,this.telefonskaStevilka,this.model2,this.izvajaleciZdravstvenihStoritev[0],this.okolisi[0]);
   }
   novUporabnikZd(){
-	  this.model2 = new UporabnikZd(this.email,this.geslo,this.vloga[0]);
+	  this.model2 = new UporabnikZd(this.email,this.geslo,this.vloge[0]);
   }
   ngOnInit(){
 	  //za pridobit vloge
 	  this.zdravstveniDelavecService.getVloge().subscribe(data => {this.vlogas = data;
 		let i = 0;  
 		for(let entry of this.vlogas){
-			this.vloga[i] = entry;
-			i = i+1;
+			
+			if(Number(entry.idvloga) == 3 || Number(entry.idvloga) == 4 || Number(entry.idvloga) == 5 || Number(entry.idvloga) == 6){
+				
+				this.vloge[i] = entry;
+				i = i+1;
+			}
 		}  
 	  },
 	  err => {console.log(err);});
@@ -74,14 +98,24 @@ export class Registracija_zdComponent implements OnInit {
 			this.izvajaleciZdravstvenihStoritev[i] = entry;
 			i = i+1;
 		}  
-		this.onChangePostnaStevilka(this.izvajaleciZdravstvenihStoritev[0]);
+
 	  },
 	  err => {console.log(err);});
 	  
   }
-  onChangePostnaStevilka(sprememba: any){
-	  console.log(sprememba.posta.idposta);
-	 this.zdravstveniDelavecService.getOkolisByPosta(sprememba.posta.idposta).subscribe(data => {this.okoliss = data;
+  onChangeVloga(sprememba: String){
+	  var devide = sprememba.split(' ');
+	  if(devide[0] == 'PatronaznaSestra'){
+		  this.ifpatronaz = true;
+	  }else{
+		  this.ifpatronaz = false;
+	  }
+	  
+  }
+  onChangePostnaStevilka(sprememba: String){
+	  console.log(sprememba);
+	  var devided = sprememba.split(' ');
+	 this.zdravstveniDelavecService.getOkolisByPosta(Number(devided[0])).subscribe(data => {this.okoliss = data;
 	 let i = 0;
 	 for(let entry of this.okoliss){
 		 this.okolisi[i] = entry;

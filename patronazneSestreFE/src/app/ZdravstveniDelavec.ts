@@ -5,8 +5,8 @@ export class ZdravstveniDelavec{
    public sifra:String,
    public telefonskaStevilka:String,
    public uporabnik: UporabnikZd,
-   public okolis: Okolis,
    public izvajalecZdravstvenihStoritev: IzvajalecZdravstvenihStoritev,
+   public okoli?: Okolis,
   ){}
 }
 
@@ -21,31 +21,31 @@ export class UporabnikZd{
 export class Vloga{
     constructor(
        public idvloga: number,
-	   public opis: String,
+	   public opis?: String,
     ){}
 
 }
 export class IzvajalecZdravstvenihStoritev{
 	constructor(
 	   public idizvajalecZdravstvenihStoritev: number,
-	   public posta: Posta,
-	   public ulica: String,
-	   public hisnaStevilka: String,
-	   public stevilkaIzvajalca: String,
-	   public naziv: String,
+	   public posta?: Posta,
+	   public ulica?: String,
+	   public hisnaStevilka?: String,
+	   public stevilkaIzvajalca?: String,
+	   public naziv?: String,
 	){}
 }
 export class Okolis{
 	constructor(
 	   public idokolis: number,
-	   public opis: String,
-	   public posta: Posta,
+	   public opis?: String,
+	   public posta?: Posta,
 	){}
 	
 }
 export class Posta{
 	constructor(
 	    public idposta: number,
-	    public opis: String,
+	    public opis?: String,
 	){}
 }

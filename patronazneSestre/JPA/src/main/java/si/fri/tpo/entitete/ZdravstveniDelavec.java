@@ -49,13 +49,13 @@ public class ZdravstveniDelavec implements Serializable {
 	private IzvajalecZdravstvenihStoritev izvajalecZdravstvenihStoritev;
 
 	//bi-directional many-to-one association to Okoli
-	@ManyToOne
-	@JoinColumn(name="idokolis", nullable=false)
+	
+	@JoinColumn(name="idokolis", nullable=true)
 	private Okolis okoli;
 
 	//bi-directional many-to-one association to Uporabnik
-	@ManyToOne
-	@JoinColumn(name="iduporabnik", nullable=false)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="iduporabnik", nullable=true)
 	private Uporabnik uporabnik;
 
 	public ZdravstveniDelavec() {
