@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name="zdravstveni_delavec")
 @NamedQueries({
 	@NamedQuery(name="ZdravstveniDelavec.findAll", query="SELECT z FROM ZdravstveniDelavec z"),
-	@NamedQuery(name="ZdravstveniDelavec.findOne",query="SELECT z FROM ZdravstveniDelavec z WHERE z.idzdravstveniDelavec = :id"),
+	@NamedQuery(name="ZdravstveniDelavec.findOne",query="SELECT z FROM ZdravstveniDelavec z WHERE z.uporabnik.iduporabnik = :id"),
 	@NamedQuery(name="ZdravstveniDelavec.deleteOne",query="DELETE FROM ZdravstveniDelavec z WHERE z.idzdravstveniDelavec = :id")
 })
 public class ZdravstveniDelavec implements Serializable {
@@ -42,7 +42,7 @@ public class ZdravstveniDelavec implements Serializable {
 	private String telefonskaStevilka;
 
 	//bi-directional many-to-one association to DelovniNalog
-	@OneToMany(mappedBy="zdravstveniDelavec")
+	@OneToMany(mappedBy="zdravstveniDelavec",fetch=FetchType.EAGER)
 	private List<DelovniNalog> delovniNalogs;
 
 	//bi-directional many-to-one association to IzvajalecZdravstvenihStoritev
