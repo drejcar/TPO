@@ -14,6 +14,7 @@ import { AppComponent }  from './app.component';
 import { EqualValidator } from './equal-validator.directive';
 
 import {UporabnikService} from "./registracija/uporabnik.service";
+import { zdravstveniDelavecService } from "./registracija_zd/zdravstveniDelavec.service";
 import {UserService} from "./prijava/user.service";
 import {PacientGuard} from "./_guard/pacient.guard";
 import {ZdravnikGuard} from "./_guard/zdravnik.guard";
@@ -40,7 +41,7 @@ import {AktivacijaComponent} from "./registracija/aktivacija.component";
                   ZdravnikDashComponent,AktivacijaComponent
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,
-                  PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,
+                  PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,
                 ],
   bootstrap:    [ AppComponent ]
 })

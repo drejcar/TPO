@@ -1,12 +1,12 @@
 package si.fri.tpo.vmesniki_ws;
 
+import java.util.Date;
 import java.util.List;
-import javax.xml.ws.Response;
 import si.fri.tpo.entitete.*;
 
 public interface DelovniNalogREST {
 
-	void createDelovniNalog(DelovniNalog delovniNalog);
+	public void createDelovniNalog(DelovniNalog delovniNalog, int fixniDatum, int obdobje, Date od, Date doo);
 	
 	public List<DelovniNalog> returnDelovniNalogs();
 	
