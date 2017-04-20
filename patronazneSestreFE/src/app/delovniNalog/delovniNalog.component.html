@@ -26,9 +26,14 @@
 		<div id="zavarovanaOseba">
 			<h3>3 - ZAVAROVANA OSEBA</h3>
 			<label>Številka zavarovane osebe</label>
-			<input type="text" id="stevilkaZavarovaneOsebe" placeholder= " {{ stevilkaZdravstvenegaZavarovanja }} " >
+			<input type="text"  [(ngModel)]="post" id="stevilkaZavarovaneOsebe"  name="krneki5" >
 			
-			<!-- <label>Datum rojstva</label>
+			<!-- 
+			
+			placeholder= " {{ stevilkaZdravstvenegaZavarovanja }}
+			
+			
+			<label>Datum rojstva</label>
 			<input type="date" id="datumRojstva" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" required> -->
 
 			<label>Priimek</label>
@@ -61,28 +66,41 @@
 		
 		<input type="button" (click)="test()" name="pridobiPodatke" value="pridobi podatke"> 
 	
-		<!-- 
+		
 		<div id="veljavnostNaloga">
 			<h3>4 - VELJAVNOST NALOGA</h3>
-			<input type="radio" name="veljavnostNalogaVrsta"><label> enkratno</label><br>
-			<input type="radio" name="veljavnostNalogaVrsta"><label> za obdobje</label><br>
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta"  name="veljavnostNalogaVrsta" value="0">Enkratno<br>
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta"  name="veljavnostNalogaVrsta" value="1">Za obdobje
+					
+			 <div class="form-group">
+				
+				<label>od</label>
+				<input type="date"  id="veljavnostNalogaOd" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" 
+			    [(ngModel)]="veljavnostNalogaOd" name="datumRojstva1">	
 
-			<label>od</label>
-			<input type="text" id="veljavnostNalogaOd">
-			<label>do</label>
-			<input type="text" id="veljavnostNalogaDo"><br>
-
-			<input type="checkbox" id="veljavnostNalogaFiksniDatum">
+				<label>do</label>
+				<input type="date" id="veljavnostNalogaDo" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" 
+			    [(ngModel)]="veljavnostNalogaDo" name="datumRojstva1">	
+				
+				<label>interval</label>
+				<input type="text" [(ngModel)]="veljavnostNalogaInterval" id="stevilkaIzvajalca" name="krneki7">	
+				
+				<label>stevilo obiskov</label>
+				<input type="text" [(ngModel)]="veljavnostNalogaSteviloObiskov" id="stevilkaIzvajalca" name="krneki8">	
+				
+			</div>
+			
+		<input type="checkbox" name="veljavnostNalogaFiksniDatum" value="1">
 			<label>fiksni datum</label>
 		</div>
-		-->
-		
+	
+	
 
-			<div id="storitev">
-			<h3>5 - STORITEV</h3>			
-			<select [(ngModel)]="izbranaStoritev" name="krneki3" >
-				<option *ngFor="let s of storitve" [ngValue]="s"> {{s.name}} </option>
-			</select>
+		<div id="storitev">
+		<h3>5 - STORITEV</h3>			
+		<select [(ngModel)]="izbranaStoritev" name="krneki3" >
+			<option *ngFor="let s of storitve" [ngValue]="s"> {{s.name}} </option>
+		</select>
 		</div>
 		
 		

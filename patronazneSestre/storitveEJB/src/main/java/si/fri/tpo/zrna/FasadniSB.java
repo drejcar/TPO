@@ -142,7 +142,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
-	@RolesAllowed({"Zdravnik","PatronaznaSluzba"})
+	@RolesAllowed({"Zdravnik","PatronaznaSluzba","Administrator"})
 	public void dodajDelovniNalog(DelovniNalog dn) {
 		delovniNalog.dodajDelovniNalog(dn);
 		delovniNalog.odstraniZrno();
