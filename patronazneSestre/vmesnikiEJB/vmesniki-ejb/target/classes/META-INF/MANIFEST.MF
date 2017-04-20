@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: Robi
 Build-Jdk: 1.8.0_40
-=======
-Built-By: root
-Build-Jdk: 1.8.0_111
->>>>>>> 5d2e50ec6e706eff948d6a0cdaca510b967385e3
 Created-By: Maven Integration for Eclipse
 

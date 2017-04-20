@@ -4,6 +4,8 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Cascade;
+
 import java.util.List;
 
 
@@ -50,12 +52,12 @@ public class ZdravstveniDelavec implements Serializable {
 
 	//bi-directional many-to-one association to Okoli
 	@ManyToOne
-	@JoinColumn(name="idokolis", nullable=false)
-	private Okolis okoli;
+	@JoinColumn(name="idokolis", nullable=true)
+	private Okolis okolis;
 
 	//bi-directional many-to-one association to Uporabnik
-	@ManyToOne
-	@JoinColumn(name="iduporabnik", nullable=false)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="iduporabnik", nullable=true)
 	private Uporabnik uporabnik;
 
 	public ZdravstveniDelavec() {
@@ -131,12 +133,12 @@ public class ZdravstveniDelavec implements Serializable {
 		this.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
 	}
 
-	public Okolis getOkoli() {
-		return this.okoli;
+	public Okolis getOkolis() {
+		return this.okolis;
 	}
 
-	public void setOkoli(Okolis okoli) {
-		this.okoli = okoli;
+	public void setOkolis(Okolis okolis) {
+		this.okolis = okolis;
 	}
 
 	public Uporabnik getUporabnik() {
