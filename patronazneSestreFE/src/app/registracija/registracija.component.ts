@@ -131,7 +131,7 @@ export class RegistracijaFormComponent implements OnInit{
 
 		  i = i+1;
 	  }
-	  })
+	  });
 
   }
 
