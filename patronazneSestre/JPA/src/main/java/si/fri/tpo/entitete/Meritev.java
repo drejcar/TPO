@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.List;
 
 
@@ -48,6 +51,7 @@ public class Meritev implements Serializable {
 			@JoinColumn(name="idaktivnost", nullable=false)
 			}
 		)
+	
 	private List<Aktivnost> aktivnosts;
 
 	public Meritev() {
@@ -100,12 +104,17 @@ public class Meritev implements Serializable {
 	public void setUgornjaMeja(String ugornjaMeja) {
 		this.ugornjaMeja = ugornjaMeja;
 	}
+<<<<<<< HEAD
 /*
 	public List<Aktivnost> getAktivnosts() {
+=======
+
+	/*public List<Aktivnost> getAktivnosts() {
+>>>>>>> 9fdb8bcd451bf88b13ef3f55d44a704528fc1c68
 		return this.aktivnosts;
 	}
 
-	public void setAktivnosts(List<Aktivnost> aktivnosts) {
+	*/public void setAktivnosts(List<Aktivnost> aktivnosts) {
 		this.aktivnosts = aktivnosts;
 	}
 */

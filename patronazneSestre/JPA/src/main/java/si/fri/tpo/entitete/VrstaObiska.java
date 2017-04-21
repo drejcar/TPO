@@ -34,9 +34,9 @@ public class VrstaObiska implements Serializable {
 	@OneToMany(mappedBy="vrstaObiska",fetch=FetchType.EAGER)
 	private List<Aktivnost> aktivnosts;
 
-	//bi-directional many-to-one association to DelovniNalog
+	/*//bi-directional many-to-one association to DelovniNalog
 	@OneToMany(mappedBy="vrstaObiska")
-	private List<DelovniNalog> delovniNalogs;
+	private List<DelovniNalog> delovniNalogs;*/
 
 	public VrstaObiska() {
 	}
@@ -64,8 +64,13 @@ public class VrstaObiska implements Serializable {
 	public void setAktivnosts(List<Aktivnost> aktivnosts) {
 		this.aktivnosts = aktivnosts;
 	}
+<<<<<<< HEAD
 /*
 	public Aktivnost addAktivnost(Aktivnost aktivnost) {
+=======
+
+	/*public Aktivnost addAktivnost(Aktivnost aktivnost) {
+>>>>>>> 9fdb8bcd451bf88b13ef3f55d44a704528fc1c68
 		getAktivnosts().add(aktivnost);
 		aktivnost.setVrstaObiska(this);
 
@@ -77,9 +82,15 @@ public class VrstaObiska implements Serializable {
 		aktivnost.setVrstaObiska(null);
 
 		return aktivnost;
+<<<<<<< HEAD
 	}
  
 	public List<DelovniNalog> getDelovniNalogs() {
+=======
+	}*/
+
+	/*public List<DelovniNalog> getDelovniNalogs() {
+>>>>>>> 9fdb8bcd451bf88b13ef3f55d44a704528fc1c68
 		return this.delovniNalogs;
 	}
 
@@ -99,6 +110,11 @@ public class VrstaObiska implements Serializable {
 		delovniNalog.setVrstaObiska(null);
 
 		return delovniNalog;
+<<<<<<< HEAD
 	}
 	*/
+=======
+	}*/
+
+>>>>>>> 9fdb8bcd451bf88b13ef3f55d44a704528fc1c68
 }

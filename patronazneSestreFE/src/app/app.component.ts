@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Http} from "@angular/http";
+import { UserService } from './prijava/user.service'
 
 
 @Component({
@@ -21,6 +23,9 @@ import { Component } from '@angular/core';
 
 		</div>
 	  </header>
+	  <div ngIf="log">
+			<button (click)="logout()">Odjava</button>
+			</div>
 	  
 	  <router-outlet></router-outlet>
 	  
@@ -28,6 +33,14 @@ import { Component } from '@angular/core';
 
   `,
 	styleUrls: [ './app.component.css' ],
-	
+
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent  {
+  private loggedIn = false;
+  constructor(private http:Http ,private usr:UserService){
+    this.loggedIn = !!localStorage.getItem('username');
+  }
+  name = 'Angular';
+  log=this.usr.isLoggedIn()
+
+}

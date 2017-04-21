@@ -23,14 +23,16 @@ import {PatronaznaSluzbaDashComponent} from "./loggedindash/patronaznasluzbadash
 import {SodelavecIzsDashComponent} from "./loggedindash/sodelavecizsdash/sodelavecizsdash.component";
 import {ZdravnikDashComponent} from "./loggedindash/zdravnikdash/zdravnikdash.component";
 import {AktivacijaComponent} from "./registracija/aktivacija.component";
+import {GuestGuard} from "./_guard/guest.guard";
 
 const routes: Routes = [
-  { path: 'dashboard',  component: DashboardComponent },
-  { path: 'prijava', component: PrijavaComponent },
-  { path: 'registracija', component: RegistracijaFormComponent },
+  { path: 'dashboard',/* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: DashboardComponent },
+  { path: 'prijava', component: PrijavaComponent,/* canActivate: [GuestGuard] */},
+  { path: 'registracija', component: RegistracijaFormComponent,/* canActivate: [GuestGuard] */ },
   { path: 'delovniNalog', component: DelovniNalogComponent/**,canActivate:[ZdravnikGuard,PatronaznaSluzbaGuard]*/},
   { path: 'registracijazd', component: Registracija_zdComponent },
-  { path: 'spremembaGesla',component: SpremembaGeslaComponent },
+  { path: 'spremembaGesla',component: SpremembaGeslaComponent,/* canActivate: [PacientGuard,AdministratorGuard,
+    PatronaznaSestraGuard,PatronaznaSluzbaGuard,SodelavecIZSGuard,ZdravnikGuard]*/  },
   { path: 'Administrator',component: AdminDashComponent, canActivate: [AdministratorGuard] },
   { path: 'Pacient', component: PacientDashComponent, canActivate: [PacientGuard] },
   { path: 'PatronaznaSestra', component: PatronaznaSestraDashComponent, canActivate: [PatronaznaSestraGuard] },
@@ -38,6 +40,7 @@ const routes: Routes = [
   { path: 'SodelavecIZS', component: SodelavecIzsDashComponent, canActivate: [SodelavecIZSGuard] },
   { path: 'Zdravnik', component: ZdravnikDashComponent, canActivate: [ZdravnikGuard] },
   { path: 'aktivacija/:id',component: AktivacijaComponent},
+  //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' }

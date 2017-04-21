@@ -1,13 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
 class delovniNalog {
+	izvajalecZdravstvenihStoritev : IzvajalecZdravstvenihStoritev;
+	zdravstveniDelavec : ZdravstveniDelavec;
 	pacients :  Array<Pacient>;
 	vrstaObiska : Storitev;
 	bolezen : Bolezen;
 	materials : Array<Material>;
 	zdravilos : Array<Zdravilo>;		
+}
+class IzvajalecZdravstvenihStoritev {
+	idIzvajalecZdravstvenihStoritev : number;
+}
+
+class ZdravstveniDelavec {
+	idzdravstveniDelavec : number;
 }
 	
 class Pacient {
@@ -36,7 +45,7 @@ class Storitev {
   styleUrls: [ './delovniNalog.component.css' ]
 })
 
-export class DelovniNalogComponent {	
+export class DelovniNalogComponent implements OnInit{	
 	
 	constructor(private http: Http) {}
 	
@@ -61,12 +70,23 @@ export class DelovniNalogComponent {
 	veljavnostNalogaVrsta: string = "0";
 	veljavnostNalogaFiksniDatum: boolean = false;
 	veljavnostNalogaInterval: number;
-	veljavnostNalogaSteviloObiskov: number;
+	veljavnostNalogaSteviloObiskov: number = 1;
 	
 	data : any;	
+	data1 : any;
+	
+	sifraUporabnika: string = "";
+	urlParametri: string = "";
+	
 	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
 	//private restUrl = 'http://jsonplaceholder.typicode.com/posts/1';	
 
+	stevilkaIzvajalca : string = "stevilka izvajalca";
+	nazivIzvajalca : string = "naziv izvajalca";
+	stevilkaZdravnika : string = " stevilka zdravnika";
+	idIzvajalca : number;
+	idZdravnika : number;
+	
 	stevilkaZdravstvenegaZavarovanja : string = "";
 	priimek : string = "";
 	ime : string = "";
@@ -77,7 +97,9 @@ export class DelovniNalogComponent {
 	email : string = "";
 	idPacient : number = 15;		
 		 
-	test(): void {		
+	test(): void {	
+
+		console.log("iduporabnik: "+localStorage['iduporabnik']);
 	
 		//console.log(this.veljavnostNalogaOd);
 		//console.log(this.veljavnostNalogaDo);
@@ -99,6 +121,7 @@ export class DelovniNalogComponent {
 			
 		this.http.get(`${this.restUrl}/pacient/zz/${this.post}`, {headers: headers}).subscribe(data => { 
 		
+			
 			this.data = data.json()
 			var drek : string = JSON.stringify(this.data);						
 			var test = JSON.parse(drek);
@@ -110,21 +133,84 @@ export class DelovniNalogComponent {
 			this.kraj = test.posta.opis;
 			this.telefonskaStevilka = test.telefonskaStevilka;
 			this.email = test.uporabnik.email;
-			this.idPacient = test.idpacient;				
-		
+			this.idPacient = test.idpacient;			
+			
 		});				
 	
 	}
 	
+	ngOnInit() {	
+	
+		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
+	
+		console.log("iduporabnik: "+localStorage['iduporabnik']);
+		
+		var idUporabnik = localStorage['iduporabnik'];
+		
+		console.log(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`);
+		
+		//this.stevilkaIzvajalca =
+		//this.nazivIzvajalca =
+		//this.stevilkaZdravnika =
+		//this.idIzvajalca = 
+		//this,idZdravnika = 
+		
+		
+		//this.http.get(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`, {headers: headers3});
+		
+		
+		this.http.get(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`, {headers: headers3}).subscribe(data1 => { 
+		
+			//this.data1 = data1.json()
+			//var drek1 : string = JSON.stringify(this.data1);						
+			//var test1 = JSON.parse(drek1);
+			
+			//this.sifraUporabnika = test.priimek;
+			
+			/*
+			this.ime = test.ime;
+			this.ulica = test.ulica;
+			this.postnaStevilka = test.posta.idposta.toString();
+			this.kraj = test.posta.opis;
+			this.telefonskaStevilka = test.telefonskaStevilka;
+			this.email = test.uporabnik.email;
+			this.idPacient = test.idpacient;				
+			 */
+		});
+		
+		console.log(this.sifraUporabnika);
+		
+		
+	}
+	
 	posljiDelovniNalog() {
 	
+	
+		
+		
+		//console.log(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`);
+		
+		var fiksniDatum = 0;
+		
+		if(this.veljavnostNalogaFiksniDatum) fiksniDatum = 1;
+			
+		
+		
+		this.urlParametri = `?fiksniDatum=${fiksniDatum}&stObiskov=${this.veljavnostNalogaSteviloObiskov}&obdobje=${this.veljavnostNalogaVrsta}&interval=${this.veljavnostNalogaInterval}&od=${this.veljavnostNalogaOd}&do=${this.veljavnostNalogaDo}`
+		//this.urlParametri = `${this.veljavnostNalogaOd} -> ${this.veljavnostNalogaDo} `;
+		
+		console.log(this.urlParametri);
+	
+		
+		
+	
+	
+	
 		var headers1 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
-
 	
 		var pacient = new Pacient();
 		pacient.idpacient = this.idPacient;
-		
-				
+						
 		var material = new Material();
 		material.idmaterial = this.izbraniMaterial.id;
 		
@@ -136,8 +222,17 @@ export class DelovniNalogComponent {
 		
 		var storitev = new Storitev();
 		storitev.idvrsta_obiska = this.izbranaStoritev.id;
+		
+		var izvajalecZdravstvenihStoritev = new IzvajalecZdravstvenihStoritev();
+		izvajalecZdravstvenihStoritev.idIzvajalecZdravstvenihStoritev = this.idIzvajalca;
+		
+		var zdravstveniDelavec = new ZdravstveniDelavec();
+		zdravstveniDelavec.idzdravstveniDelavec = this.idZdravnika;
+		
 
 		var dn = new delovniNalog();
+		dn.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
+		dn.zdravstveniDelavec = zdravstveniDelavec;
 		dn.pacients = [pacient];
 		dn.vrstaObiska = storitev;
 		dn.bolezen = bolezen;
@@ -151,14 +246,16 @@ export class DelovniNalogComponent {
 
 		
 		
-		//var p4 = JSON.stringify(dn);
-		//console.log(dn);		
-		//console.log(p4);
+		var p4 = JSON.stringify(dn);
+		console.log(dn);		
+		console.log(p4);
 
 		//var dnJSON = JSON.stringify(dn);
 		//console.log(this.restUrl);
 		this.http.post(`${this.restUrl}/delovniNalog`,JSON.stringify(dn), {headers: headers1});
-		
+				
+		//dodaj še /${this.urlParametri}	
+				
 	}
 	
 }
@@ -178,3 +275,23 @@ export class DelovniNalogComponent {
 		
 		//let obj : MyObj = JSON.parse('{"userId" : " 10 " }');
 		//console.log(obj.userId);
+		
+		/* 
+			veljavnostNalogaOd: string = "";
+			veljavnostNalogaDo: string = "";
+			veljavnostNalogaVrsta: string = "0";
+			veljavnostNalogaFiksniDatum: boolean = false;
+			veljavnostNalogaInterval: number;
+			veljavnostNalogaSteviloObiskov: number;		
+			
+			@QueryParam("fixniDatum") int fixniDatum,	//0 - da | 1 - ne
+									@QueryParam("obdobje") int obdobje,			//0 - en obisk | 1 - vec obiskov
+									@QueryParam("od") Date od,					//prvi obisk
+									@QueryParam("do") Date doo,					//zakjucek obdobja obiskov
+									@QueryParam("interval") int interval,		//interval obiskov --> razmik med obiski
+									@QueryParam("stObiskov") int stObiskov)
+			
+		*/
+		
+		
+		

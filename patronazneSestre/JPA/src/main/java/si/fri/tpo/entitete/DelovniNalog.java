@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.List;
 
 
@@ -97,12 +100,21 @@ public class DelovniNalog implements Serializable {
 	public void setVrstaObiska(VrstaObiska vrstaObiska) {
 		this.vrstaObiska = vrstaObiska;
 	}
+<<<<<<< HEAD
 /*
 	public ZdravstveniDelavec getZdravstveniDelavec() {
 		return this.zdravstveniDelavec;
 	}
 */
 	public void setZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
+=======
+
+	/*public ZdravstveniDelavec getZdravstveniDelavec() {
+		return this.zdravstveniDelavec;
+	}
+
+	*/public void setZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
+>>>>>>> 9fdb8bcd451bf88b13ef3f55d44a704528fc1c68
 		this.zdravstveniDelavec = zdravstveniDelavec;
 	}
 

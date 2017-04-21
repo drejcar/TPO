@@ -35,7 +35,7 @@ public class Aktivnost implements Serializable {
 	private VrstaObiska vrstaObiska;
 
 	//bi-directional many-to-many association to Meritev
-	@ManyToMany(mappedBy="aktivnosts")
+	@ManyToMany(mappedBy="aktivnosts",fetch=FetchType.EAGER)
 	private List<Meritev> meritevs;
 
 	public Aktivnost() {
@@ -56,15 +56,25 @@ public class Aktivnost implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
+<<<<<<< HEAD
 /*
 	public VrstaObiska getVrstaObiska() {
+=======
+
+	/*public VrstaObiska getVrstaObiska() {
+>>>>>>> 9fdb8bcd451bf88b13ef3f55d44a704528fc1c68
 		return this.vrstaObiska;
 	}
 
 	public void setVrstaObiska(VrstaObiska vrstaObiska) {
 		this.vrstaObiska = vrstaObiska;
+<<<<<<< HEAD
 	}
 */
+=======
+	}*/
+
+>>>>>>> 9fdb8bcd451bf88b13ef3f55d44a704528fc1c68
 	public List<Meritev> getMeritevs() {
 		return this.meritevs;
 	}
