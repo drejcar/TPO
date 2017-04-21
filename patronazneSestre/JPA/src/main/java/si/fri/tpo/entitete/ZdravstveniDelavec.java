@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name="zdravstveni_delavec")
 @NamedQueries({
 	@NamedQuery(name="ZdravstveniDelavec.findAll", query="SELECT z FROM ZdravstveniDelavec z"),
-	@NamedQuery(name="ZdravstveniDelavec.findOne",query="SELECT z FROM ZdravstveniDelavec z WHERE z.uporabnik.iduporabnik = :id"),
+	@NamedQuery(name="ZdravstveniDelavec.findOne",query="SELECT z.idzdravstveniDelavec,z.sifra, s.idizvajalecZdravstvenihStoritev, s.stevilkaIzvajalca FROM ZdravstveniDelavec z,IzvajalecZdravstvenihStoritev s WHERE z.uporabnik.iduporabnik = :id AND z.izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev = s.idizvajalecZdravstvenihStoritev"),
 	@NamedQuery(name="ZdravstveniDelavec.deleteOne",query="DELETE FROM ZdravstveniDelavec z WHERE z.idzdravstveniDelavec = :id")
 })
 public class ZdravstveniDelavec implements Serializable {
@@ -113,19 +113,19 @@ public class ZdravstveniDelavec implements Serializable {
 		this.delovniNalogs = delovniNalogs;
 	}
 
-	public DelovniNalog addDelovniNalog(DelovniNalog delovniNalog) {
+	/*public DelovniNalog addDelovniNalog(DelovniNalog delovniNalog) {
 		getDelovniNalogs().add(delovniNalog);
 		delovniNalog.setZdravstveniDelavec(this);
 
 		return delovniNalog;
-	}
+	}*/
 
-	public DelovniNalog removeDelovniNalog(DelovniNalog delovniNalog) {
+	/*public DelovniNalog removeDelovniNalog(DelovniNalog delovniNalog) {
 		getDelovniNalogs().remove(delovniNalog);
 		delovniNalog.setZdravstveniDelavec(null);
 
 		return delovniNalog;
-	}
+	}*/
 
 	public IzvajalecZdravstvenihStoritev getIzvajalecZdravstvenihStoritev() {
 		return this.izvajalecZdravstvenihStoritev;

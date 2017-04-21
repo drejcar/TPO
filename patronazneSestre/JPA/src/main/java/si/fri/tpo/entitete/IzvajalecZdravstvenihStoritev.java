@@ -47,11 +47,11 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 	@ManyToOne
 	@JoinColumn(name="idposta", nullable=false)
 	private Posta posta;
-/*
-	//bi-directional many-to-one association to ZdravstveniDelavec
+
+	/*//bi-directional many-to-one association to ZdravstveniDelavec
 	@OneToMany(mappedBy="izvajalecZdravstvenihStoritev")
-	private List<ZdravstveniDelavec> zdravstveniDelavecs;
-*/
+	private List<ZdravstveniDelavec> zdravstveniDelavecs;*/
+
 	public IzvajalecZdravstvenihStoritev() {
 	}
 
