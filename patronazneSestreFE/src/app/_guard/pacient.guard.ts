@@ -9,6 +9,6 @@ export class PacientGuard implements CanActivate {
   constructor(private user: UserService) {}
 
   canActivate() {
-    return (localStorage.getItem("vloga")=="Pacient");
+    return (localStorage.getItem('vloga')=='Pacient');
   }
 }
