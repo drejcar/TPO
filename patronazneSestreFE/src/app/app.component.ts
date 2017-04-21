@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {Http} from "@angular/http";
+import { UserService } from './prijava/user.service'
 
 
 @Component({
@@ -10,6 +12,9 @@ import { Component } from '@angular/core';
 			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
 			<a routerLink="/registracijazd" routerLinkActive="active">regZd</a>	
 			<a routerLink="/spremembaGesla" routerLinkActive="active">sprGesla</a>	
+			<div ngIf="log">
+			<button (click)="logout()">Odjava</button>
+			</div>
 		</nav>
 						
 		<div id="navRight">
@@ -28,6 +33,14 @@ import { Component } from '@angular/core';
 
   `,
 	styleUrls: [ './app.component.css' ],
-	
+
 })
-export class AppComponent  { name = 'Angular'; }
+export class AppComponent  {
+  private loggedIn = false;
+  constructor(private http:Http ,private usr:UserService){
+    this.loggedIn = !!localStorage.getItem('username');
+  }
+  name = 'Angular';
+  log=this.usr.isLoggedIn()
+
+}
