@@ -2,45 +2,45 @@ import { Component } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { FormsModule } from '@angular/forms';
 
-//class Pacients {
-//	pacient :  Array<pacient>;
-//}
-
+class delovniNalog {
+	pacients :  Array<Pacient>;
+	vrstaObiska : Storitev;
+	bolezen : Bolezen;
+	materials : Array<Material>;
+	zdravilos : Array<Zdravilo>;		
+}
+	
 class Pacient {
-	idPacient : number;	
+	idpacient : number;	
 }
 
 class Material {
-	idMaterial : number;
+	idmaterial : number;
 }
 
 class Zdravilo {
-	idZdravilo : number;
+	idzdravilo : number;
 }
 
 class Bolezen {
-	idBolezen : number;
+	idbolezen : number;
 }
 
 class Storitev {
-	idStoritev : number;
+	idvrsta_obiska : number;
 }
-
-
 
 @Component({
   selector: 'delovniNalog',
-  templateUrl: './delovniNalog.component.html'	
+  templateUrl: './delovniNalog.component.html',
+  styleUrls: [ './delovniNalog.component.css' ]
 })
 
-export class DelovniNalogComponent {
-
-
-	
+export class DelovniNalogComponent {	
 	
 	constructor(private http: Http) {}
 	
-	
+	post: string = "";
 	
 	zdravila = [{'name': 'injekcija', 'id': 1}, {'name': 'injekcija1', 'id': 2}];
 	izbranoZdravilo = this.zdravila[0];
@@ -55,9 +55,16 @@ export class DelovniNalogComponent {
 	storitve = [{'name': 'Obisk nosečnice', 'id': 10}, {'name': 'Obisk otročnice', 'id': 20}, {'name': 'Obisk novorojenčka', 'id': 30}, {'name': 'Preventiva starostnika', 'id': 40},
 	{'name': 'Aplikacija injekcije', 'id': 50}, {'name': 'Odvzem krvi', 'id': 60}, {'name': 'Kontrola zdravstvenega stanja', 'id': 70}];
     izbranaStoritev = this.storitve[0];
-		
+	
+	veljavnostNalogaOd: string = "";
+	veljavnostNalogaDo: string = "";
+	veljavnostNalogaVrsta: string = "0";
+	veljavnostNalogaFiksniDatum: boolean = false;
+	veljavnostNalogaInterval: number;
+	veljavnostNalogaSteviloObiskov: number;
+	
 	data : any;	
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1/pacient/2';
+	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
 	//private restUrl = 'http://jsonplaceholder.typicode.com/posts/1';	
 
 	stevilkaZdravstvenegaZavarovanja : string = "";
@@ -68,24 +75,34 @@ export class DelovniNalogComponent {
 	kraj : string = "";
 	telefonskaStevilka : string = "";
 	email : string = "";
-	idPacient : number = 15;	
-	
+	idPacient : number = 15;		
 		 
 	test(): void {		
+	
+		//console.log(this.veljavnostNalogaOd);
+		//console.log(this.veljavnostNalogaDo);
+		//console.log(this.veljavnostNalogaVrsta);
+		//console.log(this.veljavnostNalogaFiksniDatum);
+		//console.log("Interval: " + this.veljavnostNalogaInterval);
+		//console.log("Stevilo obiskov: " + this.veljavnostNalogaSteviloObiskov);
+											   
 
-		//console.log(this.izbranoZdravilo.name);
-		//console.log(this.izbraniMaterial.name);
+		/* Napolnimo podatke o pacientu*/
 	
 	
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
-
-		this.http.get(this.restUrl, {headers: headers}).subscribe(data => { 
+		
+		//var post = "12345678911";
+		
+		//console.log(this.post);
+		
+			
+		this.http.get(`${this.restUrl}/pacient/zz/${this.post}`, {headers: headers}).subscribe(data => { 
 		
 			this.data = data.json()
 			var drek : string = JSON.stringify(this.data);						
 			var test = JSON.parse(drek);
-
-			this.stevilkaZdravstvenegaZavarovanja = test.stevilkaZdravstvenegaZavarovanja;
+			
 			this.priimek = test.priimek;
 			this.ime = test.ime;
 			this.ulica = test.ulica;
@@ -93,8 +110,7 @@ export class DelovniNalogComponent {
 			this.kraj = test.posta.opis;
 			this.telefonskaStevilka = test.telefonskaStevilka;
 			this.email = test.uporabnik.email;
-			this.idPacient = test.idpacient;
-				
+			this.idPacient = test.idpacient;				
 		
 		});				
 	
@@ -102,57 +118,50 @@ export class DelovniNalogComponent {
 	
 	posljiDelovniNalog() {
 	
-		//var p1 = new Pacient();
-		//p1.idPacient = 85;		
-		//var p2 = new Pacient();
-		//p2.idPacient = 96;		
-		//var p3 = new Pacients();		
-		//p3.pacient = [p1, p2];		
-		//var p4 = JSON.stringify(p3);		
-		//console.log(p4);
-		
-		
+		var headers1 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
 
+	
 		var pacient = new Pacient();
-		pacient.idPacient = this.idPacient;
+		pacient.idpacient = this.idPacient;
 		
+				
 		var material = new Material();
-		material.idMaterial = this.izbraniMaterial.id;
+		material.idmaterial = this.izbraniMaterial.id;
 		
 		var zdravilo = new Zdravilo();
-		zdravilo.idZdravilo = this.izbranoZdravilo.id;
+		zdravilo.idzdravilo = this.izbranoZdravilo.id;
 		
 		var bolezen = new Bolezen();
-		bolezen.idBolezen = this.izbranaBolezen.id;
+		bolezen.idbolezen = this.izbranaBolezen.id;
 		
 		var storitev = new Storitev();
-		storitev.idStoritev = this.izbranaStoritev.id;
+		storitev.idvrsta_obiska = this.izbranaStoritev.id;
 
+		var dn = new delovniNalog();
+		dn.pacients = [pacient];
+		dn.vrstaObiska = storitev;
+		dn.bolezen = bolezen;
+		dn.materials = [material];
+		dn.zdravilos = [zdravilo];		
+		
+		/* veljavnost naloga */
+		// v spremenljivkah, pošiljamo v urlju		
+		
+		
 
 		
 		
-		//console.log(pacient.idPacient);
+		//var p4 = JSON.stringify(dn);
+		//console.log(dn);		
+		//console.log(p4);
+
+		//var dnJSON = JSON.stringify(dn);
+		//console.log(this.restUrl);
+		this.http.post(`${this.restUrl}/delovniNalog`,JSON.stringify(dn), {headers: headers1});
 		
-		console.log(pacient);
-		console.log(material);
-		console.log(zdravilo);
-		console.log(bolezen);
-		console.log(storitev);
-
-
-				
-		
-
-	
 	}
 	
-	 
-
-	
-	
 }
-
-
 
 //var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
 		//this.http.get(this.restUrl, {headers: headers}).map(res => res.json()).subscribe(data => this.data = data);
