@@ -118,6 +118,9 @@ export class DelovniNalogComponent {
 	
 	posljiDelovniNalog() {
 	
+		var headers1 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
+
+	
 		var pacient = new Pacient();
 		pacient.idpacient = this.idPacient;
 		
@@ -153,8 +156,8 @@ export class DelovniNalogComponent {
 		//console.log(p4);
 
 		//var dnJSON = JSON.stringify(dn);
-		console.log(restUrl);
-		this.http.post(`${this.restUrl}/delovniNalog`,JSON.stringify(dn), {headers: this.headers});
+		//console.log(this.restUrl);
+		this.http.post(`${this.restUrl}/delovniNalog`,JSON.stringify(dn), {headers: headers1});
 		
 	}
 	
