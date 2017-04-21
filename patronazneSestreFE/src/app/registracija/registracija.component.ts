@@ -81,10 +81,11 @@ export class RegistracijaFormComponent implements OnInit{
 
   //funkcija ob initializaciji
   ngOnInit(){
+	  
 	  //rest klic za spole
 	this.uporabnikService.getSpol().subscribe(data => {this.spoln = data;
 	let i = 0;
-
+	
 	for(let entry of this.spoln){
 
 		this.spoli[i] = entry[1];
@@ -131,7 +132,7 @@ export class RegistracijaFormComponent implements OnInit{
 
 		  i = i+1;
 	  }
-	  })
+	  });
 
   }
 
