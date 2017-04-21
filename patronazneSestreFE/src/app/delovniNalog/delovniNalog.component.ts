@@ -45,7 +45,7 @@ class Storitev {
   styleUrls: [ './delovniNalog.component.css' ]
 })
 
-export class DelovniNalogComponent implements onInit{	
+export class DelovniNalogComponent implements OnInit{	
 	
 	constructor(private http: Http) {}
 	
@@ -84,6 +84,8 @@ export class DelovniNalogComponent implements onInit{
 	stevilkaIzvajalca : string = "stevilka izvajalca";
 	nazivIzvajalca : string = "naziv izvajalca";
 	stevilkaZdravnika : string = " stevilka zdravnika";
+	idIzvajalca : number;
+	idZdravnika : number;
 	
 	stevilkaZdravstvenegaZavarovanja : string = "";
 	priimek : string = "";
@@ -131,29 +133,27 @@ export class DelovniNalogComponent implements onInit{
 			this.kraj = test.posta.opis;
 			this.telefonskaStevilka = test.telefonskaStevilka;
 			this.email = test.uporabnik.email;
-			this.idPacient = test.idpacient;				
-			
-			
-			
+			this.idPacient = test.idpacient;			
 			
 		});				
 	
 	}
 	
-	ngOnInit() {
-	
-		
-	
-		
+	ngOnInit() {	
 	
 		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
 	
-		//console.log("alalalala");
 		console.log("iduporabnik: "+localStorage['iduporabnik']);
 		
 		var idUporabnik = localStorage['iduporabnik'];
 		
 		console.log(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`);
+		
+		//this.stevilkaIzvajalca =
+		//this.nazivIzvajalca =
+		//this.stevilkaZdravnika =
+		//this.idIzvajalca = 
+		//this,idZdravnika = 
 		
 		
 		//this.http.get(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`, {headers: headers3});
@@ -186,22 +186,7 @@ export class DelovniNalogComponent implements onInit{
 	posljiDelovniNalog() {
 	
 	
-		/* 
-			veljavnostNalogaOd: string = "";
-			veljavnostNalogaDo: string = "";
-			veljavnostNalogaVrsta: string = "0";
-			veljavnostNalogaFiksniDatum: boolean = false;
-			veljavnostNalogaInterval: number;
-			veljavnostNalogaSteviloObiskov: number;		
-			
-			@QueryParam("fixniDatum") int fixniDatum,	//0 - da | 1 - ne
-									@QueryParam("obdobje") int obdobje,			//0 - en obisk | 1 - vec obiskov
-									@QueryParam("od") Date od,					//prvi obisk
-									@QueryParam("do") Date doo,					//zakjucek obdobja obiskov
-									@QueryParam("interval") int interval,		//interval obiskov --> razmik med obiski
-									@QueryParam("stObiskov") int stObiskov)
-			
-		*/
+		
 		
 		//console.log(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`);
 		
@@ -239,10 +224,10 @@ export class DelovniNalogComponent implements onInit{
 		storitev.idvrsta_obiska = this.izbranaStoritev.id;
 		
 		var izvajalecZdravstvenihStoritev = new IzvajalecZdravstvenihStoritev();
-		izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev = this.stevilkaIzvajalca;
+		izvajalecZdravstvenihStoritev.idIzvajalecZdravstvenihStoritev = this.idIzvajalca;
 		
 		var zdravstveniDelavec = new ZdravstveniDelavec();
-		zdravstveniDelavec.idzdravstveniDelavec = this.stevilkaZdravnika;
+		zdravstveniDelavec.idzdravstveniDelavec = this.idZdravnika;
 		
 
 		var dn = new delovniNalog();
@@ -290,3 +275,23 @@ export class DelovniNalogComponent implements onInit{
 		
 		//let obj : MyObj = JSON.parse('{"userId" : " 10 " }');
 		//console.log(obj.userId);
+		
+		/* 
+			veljavnostNalogaOd: string = "";
+			veljavnostNalogaDo: string = "";
+			veljavnostNalogaVrsta: string = "0";
+			veljavnostNalogaFiksniDatum: boolean = false;
+			veljavnostNalogaInterval: number;
+			veljavnostNalogaSteviloObiskov: number;		
+			
+			@QueryParam("fixniDatum") int fixniDatum,	//0 - da | 1 - ne
+									@QueryParam("obdobje") int obdobje,			//0 - en obisk | 1 - vec obiskov
+									@QueryParam("od") Date od,					//prvi obisk
+									@QueryParam("do") Date doo,					//zakjucek obdobja obiskov
+									@QueryParam("interval") int interval,		//interval obiskov --> razmik med obiski
+									@QueryParam("stObiskov") int stObiskov)
+			
+		*/
+		
+		
+		
