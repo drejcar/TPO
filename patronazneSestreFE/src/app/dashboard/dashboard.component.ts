@@ -16,6 +16,7 @@ export class DashboardComponent {
   gotoRegistracija(): void {
     this.router.navigate(['/registracija']);
   }
+
   /*
   sestre: Sestra[] = [];
 
@@ -27,3 +28,4 @@ export class DashboardComponent {
       .then(sestre => this.sestre = sestre.slice(1, 5));
   }*/
 }
+
