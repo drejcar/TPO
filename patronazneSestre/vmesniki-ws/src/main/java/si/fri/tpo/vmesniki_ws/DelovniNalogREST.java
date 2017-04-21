@@ -6,7 +6,7 @@ import si.fri.tpo.entitete.*;
 
 public interface DelovniNalogREST {
 
-	public void createDelovniNalog(DelovniNalog delovniNalog, int fixniDatum, int obdobje, Date od, Date doo);
+	public void createDelovniNalog(DelovniNalog delovniNalog, int fixniDatum, int obdobje, Date od, Date doo, int interval, int stObiskov);
 	
 	public List<DelovniNalog> returnDelovniNalogs();
 	

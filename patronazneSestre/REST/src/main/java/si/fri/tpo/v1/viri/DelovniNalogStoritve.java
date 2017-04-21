@@ -31,7 +31,17 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 	@POST
 	@Path("")
 	@ApiOperation(value = "Kreiranje delovnega naloga", notes = "Doda delovni nalog v bazo")
-	public void createDelovniNalog(DelovniNalog delovniNalog, @QueryParam("fixniDatim") int fixniDatum, @QueryParam("obdobje") int obdobje, @QueryParam("od") Date od, @QueryParam("do") Date doo) {
+	public void createDelovniNalog(DelovniNalog delovniNalog,
+									@QueryParam("fixniDatum") int fixniDatum,	//0 - da | 1 - ne
+									@QueryParam("obdobje") int obdobje,			//0 - en obisk | 1 - vec obiskov
+									@QueryParam("od") Date od,					//prvi obisk
+									@QueryParam("do") Date doo,					//zakjucek obdobja obiskov
+									@QueryParam("interval") int interval,		//interval obiskov --> razmik med obiski
+									@QueryParam("stObiskov") int stObiskov)		//stevilo planiranih obiskov
+	{
+		
+		
+		
 		fasada.dodajDelovniNalog(delovniNalog);
 		
 	}
