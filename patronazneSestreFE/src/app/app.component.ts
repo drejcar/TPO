@@ -12,9 +12,6 @@ import { UserService } from './prijava/user.service'
 			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
 			<a routerLink="/registracijazd" routerLinkActive="active">regZd</a>	
 			<a routerLink="/spremembaGesla" routerLinkActive="active">sprGesla</a>	
-			<div ngIf="log">
-			<button (click)="logout()">Odjava</button>
-			</div>
 		</nav>
 						
 		<div id="navRight">
@@ -26,6 +23,9 @@ import { UserService } from './prijava/user.service'
 
 		</div>
 	  </header>
+	  <div ngIf="log">
+			<button (click)="logout()">Odjava</button>
+			</div>
 	  
 	  <router-outlet></router-outlet>
 	  
