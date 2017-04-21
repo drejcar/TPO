@@ -6,6 +6,7 @@ import { Vloga } from '../ZdravstveniDelavec';
 import { Okolis } from '../ZdravstveniDelavec';
 import { IzvajalecZdravstvenihStoritev } from '../ZdravstveniDelavec';
 import { UporabnikZd } from '../ZdravstveniDelavec';
+
 @Injectable()
 export class zdravstveniDelavecService{
  private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';

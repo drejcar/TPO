@@ -25,8 +25,7 @@ export class UserService {
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(prijava.mail+':'+prijava.pwd)});
 		return this.http.get(`${this.baseUrl}/uporabnik/login/${prijava.mail}`, {headers: headers}).map((res) => {return this.mapUporabnik(res)});
 		
-		//localStorage.setItem('username', this.result.email);
-		//localStorage.setItem('password', this.result.geslo);
+		
 
   }
 
@@ -53,9 +52,11 @@ export class UserService {
 	 opis: r.vloga.opis
   });
   let uporabnik = <Upr>({
+	 iduporabnik: r.iduporabnik,
 	 email: r.email,
 	 geslo: r.geslo,
 	 vloga: r.vloga,
+	 zadnjaPrijava: r.zadnjaPrijava,
   });
 
   return uporabnik;
