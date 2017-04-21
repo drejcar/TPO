@@ -7,6 +7,6 @@ export class SodelavecIZSGuard implements CanActivate {
   constructor(private user: UserService) {}
 
   canActivate() {
-    return this.user.isLoggedIn();
+    return (this.user.isLoggedIn() && localStorage.getItem("vloga")=="SodelavecIZS");
   }
 }
