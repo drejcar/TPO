@@ -31,6 +31,7 @@ import {PatronaznaSluzbaDashComponent} from "./loggedindash/patronaznasluzbadash
 import {SodelavecIzsDashComponent} from "./loggedindash/sodelavecizsdash/sodelavecizsdash.component";
 import {ZdravnikDashComponent} from "./loggedindash/zdravnikdash/zdravnikdash.component";
 import {AktivacijaComponent} from "./registracija/aktivacija.component";
+import {GuestGuard} from "./_guard/guest.guard";
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule],
@@ -40,7 +41,7 @@ import {AktivacijaComponent} from "./registracija/aktivacija.component";
                   PatronaznaSestraDashComponent,PatronaznaSluzbaDashComponent,SodelavecIzsDashComponent,
                   ZdravnikDashComponent,AktivacijaComponent
                 ],
-  providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,
+  providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,GuestGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,
                 ],
   bootstrap:    [ AppComponent ]

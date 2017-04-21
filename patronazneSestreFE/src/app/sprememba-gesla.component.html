@@ -6,25 +6,25 @@
         <label for="pwd">Željeno geslo</label>
         <input type="password" class="form-control" id="pwd"
                required minlength="8" validateEqual="pwd2" reverse="true"
-               [(ngModel)]="model.pwd" name="pwd"
-               #pwd="ngModel">
+               [(ngModel)]="model.pwd" name="pwd" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                #pwd="ngModel">
         <div [hidden]="pwd.valid || pwd.pristine"
              class="alert alert-danger">
-          Vnesite željeno geslo (dolžina mora biti vsaj 8 znakov)
+          Vnesite željeno geslo (dolžina mora biti vsaj 8 znakov, od tega vsaj ena števka)
         </div>
       </div>
       <div class="form-group">
         <label for="pwd2">Ponovite geslo</label>
         <input type="password" class="form-control" id="pwd2"
                required validateEqual="pwd"
-               [(ngModel)]="model.pwd2" name="pwd2"
-               #pwd2="ngModel">
+               [(ngModel)]="model.pwd2" name="pwd2" pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$"
+                #pwd2="ngModel">
         <div [hidden]="pwd2.valid || pwd2.pristine"
              class="alert alert-danger">
           Gesli se morata ujemati
         </div>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!spremembsGeslaForm.form.valid">Potrdi</button>
+      <button type="submit" class="btn btn-success" [disabled]="!spremembaGeslaForm.form.valid">Potrdi</button>
     </form>
   </div>
 </div>

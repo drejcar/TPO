@@ -7,6 +7,6 @@ export class PatronaznaSestraGuard implements CanActivate {
   constructor(private user: UserService) {}
 
   canActivate() {
-    return (this.user.isLoggedIn() && localStorage.getItem("vloga")=="PatronaznaSestra");
+    return (localStorage.getItem('vloga')=='PatronaznaSestra');
   }
 }

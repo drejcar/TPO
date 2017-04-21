@@ -7,6 +7,6 @@ export class ZdravnikGuard implements CanActivate {
   constructor(private user: UserService) {}
 
   canActivate() {
-    return (this.user.isLoggedIn() && localStorage.getItem("vloga")=="Zdravnik");
+    return (localStorage.getItem('vloga')=='Zdravnik');
   }
 }

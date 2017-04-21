@@ -7,6 +7,7 @@ export class AdministratorGuard implements CanActivate {
   constructor(private user: UserService) {}
 
   canActivate() {
-    return (this.user.isLoggedIn() && localStorage.getItem("vloga")=="Administrator");
+    return (localStorage.getItem('vloga')=='Administrator');
   }
+
 }
