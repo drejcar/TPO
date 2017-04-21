@@ -4,23 +4,21 @@
 
 <div id="delovniNalogMain">
 
-	Najprej se pritisne vmesni knof da zafila polja, pol pa še un spodnji knof in zgenerira objekte in jih izpiše v konzolo. Potem bo to vse skp
-	dano v se en objekt in pol se sparsa v json in pošlje v pizdo božjo, da grem jst u petk lahko pit pa kadit.
 	<form>
 		<div id="izvajalec">
 			<h3> 1 - IZVAJALEC </h3>
 			<label>številka izvajalca</label>
-			<input type="text" id="stevilkaIzvajalca">
+			<input type="text" [(ngModel)]="stevilkaIzvajalca" name="krneki9">
 
 			<label>naziv izvajalca</label>
-			<input type="text" id="sifraZdravstveneDejavnosti">
+			<input type="text" [(ngModel)]="nazivIzvajalca" name="krneki10">
 		</div>
 
 
 		<div id="zdravnik">
 			<h3>2 - ZDRAVNIK</h3>
 			<label>številka zdravnika</label>
-			<input type="text" id="stevilkaZdravnika">
+			<input type="text" [(ngModel)]="stevilkaZdravnika" name="krneki11">
 		</div>
 
 		<div id="zavarovanaOseba">

@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.List;
 
 
@@ -42,6 +45,7 @@ public class Material implements Serializable {
 			@JoinColumn(name="iddelovni_nalog", nullable=false)
 			}
 		)
+	
 	private List<DelovniNalog> delovniNalogs;
 	
 	public Material() {
