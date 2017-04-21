@@ -27,5 +27,11 @@
       <button type="submit" class="btn btn-success" [disabled]="!spremembaGeslaForm.form.valid">Potrdi</button>
     </form>
   </div>
+  <div [hidden]="!submitted">
+	<h2>Uspesno ste spremenili geslo!</h2>
+  </div>
+  <div [hidden]="!fail">
+	<h2>Prislo je do napake pri spremembi gesla!</h2>
+  </div>
 </div>
 

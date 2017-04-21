@@ -24,7 +24,7 @@ export class UserService {
   login(prijava:Prijava): Observable<Upr> {
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(prijava.mail+':'+prijava.pwd)});
 		return this.http.get(`${this.baseUrl}/uporabnik/login/${prijava.mail}`, {headers: headers}).map((res) => {return this.mapUporabnik(res)});
-
+		this.isLoggedIn = true;
 
 
   }
@@ -48,7 +48,6 @@ export class UserService {
  toUporabnik(r:any): Upr{
   let vlog = <Vloga>({
 	 idVloga: r.vloga.idvloga,
-
 	 opis: r.vloga.opis
   });
   let uporabnik = <Upr>({
