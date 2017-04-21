@@ -4,6 +4,9 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
 import java.util.List;
 
 
@@ -53,7 +56,7 @@ public class Aktivnost implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
+/*
 	public VrstaObiska getVrstaObiska() {
 		return this.vrstaObiska;
 	}
@@ -61,7 +64,7 @@ public class Aktivnost implements Serializable {
 	public void setVrstaObiska(VrstaObiska vrstaObiska) {
 		this.vrstaObiska = vrstaObiska;
 	}
-
+*/
 	public List<Meritev> getMeritevs() {
 		return this.meritevs;
 	}

@@ -100,7 +100,7 @@ public class Meritev implements Serializable {
 	public void setUgornjaMeja(String ugornjaMeja) {
 		this.ugornjaMeja = ugornjaMeja;
 	}
-
+/*
 	public List<Aktivnost> getAktivnosts() {
 		return this.aktivnosts;
 	}
@@ -108,5 +108,5 @@ public class Meritev implements Serializable {
 	public void setAktivnosts(List<Aktivnost> aktivnosts) {
 		this.aktivnosts = aktivnosts;
 	}
-
+*/
 }

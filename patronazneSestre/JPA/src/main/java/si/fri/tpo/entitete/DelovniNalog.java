@@ -97,11 +97,11 @@ public class DelovniNalog implements Serializable {
 	public void setVrstaObiska(VrstaObiska vrstaObiska) {
 		this.vrstaObiska = vrstaObiska;
 	}
-
+/*
 	public ZdravstveniDelavec getZdravstveniDelavec() {
 		return this.zdravstveniDelavec;
 	}
-
+*/
 	public void setZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
 		this.zdravstveniDelavec = zdravstveniDelavec;
 	}

@@ -62,11 +62,11 @@ public class Material implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
+/*
 	public List<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
-
+*/
 	public void setDelovniNalogs(List<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}

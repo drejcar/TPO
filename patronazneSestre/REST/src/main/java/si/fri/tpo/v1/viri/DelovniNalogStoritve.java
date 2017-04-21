@@ -15,6 +15,7 @@ import com.sun.mail.iap.Response;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import si.fri.tpo.entitete.DelovniNalog;
+import si.fri.tpo.entitete.Obisk;
 import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.DelovniNalogREST;
 
@@ -39,7 +40,8 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 									@QueryParam("interval") int interval,		//interval obiskov --> razmik med obiski
 									@QueryParam("stObiskov") int stObiskov)		//stevilo planiranih obiskov
 	{
-		
+	
+
 		
 		
 		fasada.dodajDelovniNalog(delovniNalog);
