@@ -66,6 +66,7 @@ export class UserService {
 	localStorage.setItem('password','');
 	localStorage.setItem('vloga','guest');
     this.loggedIn = false;
+	this.router.navigate(['/dashboard']);
   }
   isLoggedIn() {
     return this.loggedIn;
