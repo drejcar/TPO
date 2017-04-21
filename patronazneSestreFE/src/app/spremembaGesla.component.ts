@@ -18,7 +18,7 @@ export class SpremembaGeslaComponent{
 
   pwd:String='';
   pwd2:String='';
-
+  model : Object = ({pwd: this.pwd, pwd2: this.pwd2});
   submitted=false;
   onSubmit(){
     this.submitted=true;
