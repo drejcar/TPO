@@ -23,8 +23,9 @@ export class UserService {
 
   login(prijava:Prijava): Observable<Upr> {
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(prijava.mail+':'+prijava.pwd)});
+		this.loggedIn = true;
 		return this.http.get(`${this.baseUrl}/uporabnik/login/${prijava.mail}`, {headers: headers}).map((res) => {return this.mapUporabnik(res)});
-		this.isLoggedIn = true;
+		
 
 
   }
@@ -66,7 +67,7 @@ export class UserService {
 	localStorage.setItem('password','');
 	localStorage.setItem('vloga','guest');
     this.loggedIn = false;
-	this.router.navigate(['/dashboard']);
+	//this.router.navigate(['/dashboard']);
   }
   isLoggedIn() {
     return this.loggedIn;
