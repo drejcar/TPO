@@ -1,29 +1,32 @@
 <div class="container">
-  <div *ngIf="aliJeNapaka">
+  <div *ngIf="aliJeNapaka && aliSeLahkoLogina">
 	<h3>Vaš račun še ni bil aktiviran ali ste napisali napačno uporabniško ime in geslo</h3>
   </div>
   <div [hidden]="submitted">
     <h1>Prijava</h1>
     <form (ngSubmit)="onSubmit()" #prijavaForm="ngForm">
-      <div class="form-group">
+      <div class="form-group" [hidden]="!aliSeLahkoLogina">
         <label for="mail">Elektronska pošta:</label>
         <input type="email" class="form-control" id="mail"
                maxlength="45" placeholder="elektronska pošta" required
                [(ngModel)]="model.mail" name="mail"
                #mail="ngModel">
       </div>
-      <div class="form-group">
+      <div class="form-group" [hidden]="!aliSeLahkoLogina">
         <label for="pwd">Geslo:</label>
         <input type="password" class="form-control" id="pwd"
                required placeholder="Geslo"
                [(ngModel)]="model.pwd" name="pwd"
                #pwd="ngModel">
       </div>
-      <div class="form-group">
+      <div [hidden]="!aliSeLahkoLogina" class="form-group">
         <button type="submit" class="btn btn-success" [disabled]="!prijavaForm.form.valid">Prijava</button>
         <a [routerLink]="['/registracija']" class="btn btn-default">Registracija</a>
       </div>
     </form>
+  </div>
+  <div [hidden]="aliSeLahkoLogina">
+	<h3>Zaradi treh neuspešnih poiskusov morate počakati {{steviloMinut}} min, da se lahko na novo prijavite.</h3>
   </div>
 
 </div>
