@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Cascade;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -18,7 +18,7 @@ import java.util.List;
 @Table(name="zdravstveni_delavec")
 @NamedQueries({
 	@NamedQuery(name="ZdravstveniDelavec.findAll", query="SELECT z FROM ZdravstveniDelavec z"),
-	@NamedQuery(name="ZdravstveniDelavec.findOne",query="SELECT z.idzdravstveniDelavec,z.sifra FROM ZdravstveniDelavec z WHERE z.uporabnik.iduporabnik = :id "),
+	@NamedQuery(name="ZdravstveniDelavec.findOne",query="SELECT z FROM ZdravstveniDelavec z WHERE z.uporabnik.iduporabnik = :id "),
 	@NamedQuery(name="ZdravstveniDelavec.deleteOne",query="DELETE FROM ZdravstveniDelavec z WHERE z.idzdravstveniDelavec = :id")
 })
 public class ZdravstveniDelavec implements Serializable {
@@ -43,7 +43,7 @@ public class ZdravstveniDelavec implements Serializable {
 
 	//bi-directional many-to-one association to DelovniNalog
 	@OneToMany(mappedBy="zdravstveniDelavec",fetch=FetchType.EAGER)
-	private List<DelovniNalog> delovniNalogs;
+	private Set<DelovniNalog> delovniNalogs;
 
 	//bi-directional many-to-one association to IzvajalecZdravstvenihStoritev
 	@ManyToOne
@@ -105,11 +105,11 @@ public class ZdravstveniDelavec implements Serializable {
 		this.telefonskaStevilka = telefonskaStevilka;
 	}
 
-	public List<DelovniNalog> getDelovniNalogs() {
+	public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
 
-	public void setDelovniNalogs(List<DelovniNalog> delovniNalogs) {
+	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}
 

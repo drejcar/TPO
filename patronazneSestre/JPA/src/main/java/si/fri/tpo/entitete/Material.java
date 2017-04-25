@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -35,18 +35,8 @@ public class Material implements Serializable {
 
 	//bi-directional many-to-many association to DelovniNalog
 	
-	@ManyToMany
-	@JoinTable(
-		name="material_has_delovni_nalog"
-		, joinColumns={
-			@JoinColumn(name="idmaterial", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="iddelovni_nalog", nullable=false)
-			}
-		)
-	
-	private List<DelovniNalog> delovniNalogs;
+	@ManyToMany(mappedBy="materials")
+	private Set<DelovniNalog> delovniNalogs;
 	
 	public Material() {
 	}
@@ -67,11 +57,11 @@ public class Material implements Serializable {
 		this.opis = opis;
 	}
 /*
-	public List<DelovniNalog> getDelovniNalogs() {
+	public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
 */
-	public void setDelovniNalogs(List<DelovniNalog> delovniNalogs) {
+	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}
 

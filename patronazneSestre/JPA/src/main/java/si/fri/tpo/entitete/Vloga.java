@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -32,7 +32,7 @@ public class Vloga implements Serializable {
 
 	//bi-directional many-to-one association to Uporabnik
 	//@OneToMany(mappedBy="vloga")
-	//private List<Uporabnik> uporabniks;
+	//private Set<Uporabnik> uporabniks;
 
 	public Vloga() {
 	}
@@ -53,11 +53,11 @@ public class Vloga implements Serializable {
 		this.opis = opis;
 	}
 /*
-	public List<Uporabnik> getUporabniks() {
+	public Set<Uporabnik> getUporabniks() {
 		return this.uporabniks;
 	}
 
-	public void setUporabniks(List<Uporabnik> uporabniks) {
+	public void setUporabniks(set<Uporabnik> uporabniks) {
 		this.uporabniks = uporabniks;
 	}
 

@@ -1,6 +1,8 @@
 package si.fri.tpo.zrna;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.security.PermitAll;
 import javax.ejb.Remove;
@@ -11,6 +13,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import si.fri.tpo.entitete.DelovniNalog;
+import si.fri.tpo.entitete.Pacient;
 import si.fri.tpo.vmesnikiSB.DelovniNalogSBLocal;
 import si.fri.tpo.vmesnikiSB.DelovniNalogSBRemote;
 
@@ -39,6 +42,7 @@ public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal
 	public void dodajDelovniNalog(DelovniNalog dn) {
 		
 		em.persist(dn);
+		
 	}
 	
 	/*

@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -32,11 +32,11 @@ public class SorodstvenoRazmerje implements Serializable {
 
 	//bi-directional many-to-one association to Kontakt
 	//@OneToMany(mappedBy="sorodstvenoRazmerje")
-	//private List<Kontakt> kontakts;
+	//private Set<Kontakt> kontakts;
 
 	//bi-directional many-to-one association to Pacient
 	//@OneToMany(mappedBy="sorodstvenoRazmerje")
-	//private List<Pacient> pacients;
+	//private Set<Pacient> pacients;
 
 	public SorodstvenoRazmerje() {
 	}
@@ -57,11 +57,11 @@ public class SorodstvenoRazmerje implements Serializable {
 		this.opis = opis;
 	}
 /*
-	public List<Kontakt> getKontakts() {
+	public Set<Kontakt> getKontakts() {
 		return this.kontakts;
 	}
 
-	public void setKontakts(List<Kontakt> kontakts) {
+	public void setKontakts(Set<Kontakt> kontakts) {
 		this.kontakts = kontakts;
 	}
 
@@ -79,7 +79,7 @@ public class SorodstvenoRazmerje implements Serializable {
 		return kontakt;
 	}
 
-	public List<Pacient> getPacients() {
+	public Set<Pacient> getPacients() {
 		return this.pacients;
 	}
 

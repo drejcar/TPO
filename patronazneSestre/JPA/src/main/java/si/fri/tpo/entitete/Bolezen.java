@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -53,11 +53,11 @@ public class Bolezen implements Serializable {
 		this.opis = opis;
 	}
 	/*
-	public List<DelovniNalog> getDelovniNalogs() {
+	public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
 
-	public void setDelovniNalogs(List<DelovniNalog> delovniNalogs) {
+	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}
 

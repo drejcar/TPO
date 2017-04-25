@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -68,11 +68,11 @@ public class Posta implements Serializable {
 		this.opis = opis;
 	}
 /*
-	public List<IzvajalecZdravstvenihStoritev> getIzvajalecZdravstvenihStoritevs() {
+	public Set<IzvajalecZdravstvenihStoritev> getIzvajalecZdravstvenihStoritevs() {
 		return this.izvajalecZdravstvenihStoritevs;
 	}
 
-	public void setIzvajalecZdravstvenihStoritevs(List<IzvajalecZdravstvenihStoritev> izvajalecZdravstvenihStoritevs) {
+	public void setIzvajalecZdravstvenihStoritevs(Set<IzvajalecZdravstvenihStoritev> izvajalecZdravstvenihStoritevs) {
 		this.izvajalecZdravstvenihStoritevs = izvajalecZdravstvenihStoritevs;
 	}
 
@@ -90,11 +90,11 @@ public class Posta implements Serializable {
 		return izvajalecZdravstvenihStoritev;
 	}
 
-	public List<Kontakt> getKontakts() {
+	public Set<Kontakt> getKontakts() {
 		return this.kontakts;
 	}
 
-	public void setKontakts(List<Kontakt> kontakts) {
+	public void setKontakts(Set<Kontakt> kontakts) {
 		this.kontakts = kontakts;
 	}
 

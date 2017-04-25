@@ -23,9 +23,7 @@ import { UserService } from './prijava/user.service'
 
 		</div>
 	  </header>
-	  <div ngIf="log">
-			<button (click)="logout()">Odjava</button>
-			</div>
+	  
 	  
 	  <router-outlet></router-outlet>
 	  

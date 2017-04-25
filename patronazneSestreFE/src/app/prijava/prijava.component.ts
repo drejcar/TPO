@@ -30,8 +30,11 @@ export class PrijavaComponent{
   mail='';
   pwd='';
   model=new Prijava(this.mail,this.pwd);
+  
   onSubmit() {
 	this.aliJeNapaka = false;
+	
+	
     this.userService.login(this.model).subscribe(data => {this.person = data
 			
 			localStorage.setItem('email',this.person.email.toString());
@@ -49,7 +52,9 @@ export class PrijavaComponent{
 			
 			this.router.navigate(['/'+this.person.vloga.opis]);
 	},
-	err => {this.aliJeNapaka = true;});
+	err => {this.aliJeNapaka = true;
+	
+	});
 	
 	
 	

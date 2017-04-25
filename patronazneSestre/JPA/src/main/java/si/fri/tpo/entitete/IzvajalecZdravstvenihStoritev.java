@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -41,7 +41,7 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 /*
 	//bi-directional many-to-one association to DelovniNalog
 	@OneToMany(mappedBy="izvajalecZdravstvenihStoritev")
-	private List<DelovniNalog> delovniNalogs;
+	private Set<DelovniNalog> delovniNalogs;
 */
 	//bi-directional many-to-one association to Posta
 	@ManyToOne
@@ -50,7 +50,7 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 
 	/*//bi-directional many-to-one association to ZdravstveniDelavec
 	@OneToMany(mappedBy="izvajalecZdravstvenihStoritev")
-	private List<ZdravstveniDelavec> zdravstveniDelavecs;*/
+	private Set<ZdravstveniDelavec> zdravstveniDelavecs;*/
 
 	public IzvajalecZdravstvenihStoritev() {
 	}
@@ -95,11 +95,11 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 		this.ulica = ulica;
 	}
 /*
-	public List<DelovniNalog> getDelovniNalogs() {
+	public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
 
-	public void setDelovniNalogs(List<DelovniNalog> delovniNalogs) {
+	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}
 
@@ -125,11 +125,11 @@ public class IzvajalecZdravstvenihStoritev implements Serializable {
 		this.posta = posta;
 	}
 /*
-	public List<ZdravstveniDelavec> getZdravstveniDelavecs() {
+	public Set<ZdravstveniDelavec> getZdravstveniDelavecs() {
 		return this.zdravstveniDelavecs;
 	}
 
-	public void setZdravstveniDelavecs(List<ZdravstveniDelavec> zdravstveniDelavecs) {
+	public void setZdravstveniDelavecs(Set<ZdravstveniDelavec> zdravstveniDelavecs) {
 		this.zdravstveniDelavecs = zdravstveniDelavecs;
 	}
 
