@@ -1,4 +1,4 @@
-import { NgModule,Component } from '@angular/core';
+import { NgModule,Component, OnInit } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 import { HttpModule }    from '@angular/http';
@@ -14,11 +14,12 @@ import { Vlog } from "./upr"
   styleUrls: [ './prijava.component.css' ]
 })
 
-export class PrijavaComponent{
+export class PrijavaComponent implements OnInit{
 	person: Upr;
 	aliJeNapaka: boolean = false;
-	
+	aliSeLahkoLogina: boolean = true;
 	textValue = "default";
+	steviloMinut: number = 5;
   constructor(private userService: UserService,
     private router:Router){}
   gotoPrijava(): void {
@@ -53,7 +54,36 @@ export class PrijavaComponent{
 			this.router.navigate(['/'+this.person.vloga.opis]);
 	},
 	err => {this.aliJeNapaka = true;
+<<<<<<< HEAD
 	
+=======
+			if(localStorage.getItem('attempts') === null){
+				localStorage.setItem('attempts','1');
+			}else{
+				var trenutn = localStorage.getItem('attempts');
+				var stevilo = Number(trenutn)+1;
+				localStorage.setItem('attempts', stevilo.toString());
+				
+				if(stevilo >= 3){
+					
+					this.aliSeLahkoLogina = false;
+					var d = new Date();
+					var hours = d.getHours();
+					var minutes = d.getMinutes();
+					if(Number(minutes) < 10){
+						var noveminutes = '0'+minutes.toString();
+						
+					}
+					
+					minutes = Number(noveminutes);
+					var cajt = hours.toString()+minutes.toString();
+					localStorage.setItem('neSme',cajt.toString());
+					
+					
+					localStorage.removeItem('attempts');
+				}
+			}
+>>>>>>> 6c00b7376109da5d04251e89fd00544d72a0933b
 	});
 	
 	
@@ -64,6 +94,39 @@ export class PrijavaComponent{
 	
 	
     
+   }
+   //vse tukaj je za lockanje uporabnika
+   ngOnInit(){
+	   
+	   if(localStorage.getItem('neSme') != null){
+		   
+		   var d = new Date();
+		   var hours = d.getHours();
+		   var minutes = d.getMinutes();
+		   var cas = localStorage.getItem('neSme');
+		   
+		   
+		   if(Number(minutes) < 10){
+			   var noveminutes = '0'+minutes.toString();
+			   
+			}
+			minutes = Number(noveminutes)
+			var trenutniCas = hours.toString()+minutes.toString();
+			
+			
+		   
+		   if(Number(trenutniCas)-Number(cas) >= 5){ 
+				localStorage.removeItem('neSme');
+				this.aliSeLahkoLogina = true;
+				
+		   }else{
+			   
+			   this.steviloMinut = 5-(Number(trenutniCas)-Number(cas));
+			   this.aliSeLahkoLogina = false;
+		   }
+	   
+		   
+	   }
    }
   
 }
