@@ -7,7 +7,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -52,7 +52,7 @@ public class Meritev implements Serializable {
 			}
 		)
 	
-	private List<Aktivnost> aktivnosts;
+	private Set<Aktivnost> aktivnosts;
 
 	public Meritev() {
 	}
@@ -105,11 +105,13 @@ public class Meritev implements Serializable {
 		this.ugornjaMeja = ugornjaMeja;
 	}
 
-	/*public List<Aktivnost> getAktivnosts() {
+
+	/*public Set<Aktivnost> getAktivnosts() {
 		return this.aktivnosts;
 	}
 
-	*/public void setAktivnosts(List<Aktivnost> aktivnosts) {
+	*/
+	public void setAktivnosts(Set<Aktivnost> aktivnosts) {
 		this.aktivnosts = aktivnosts;
 	}
 

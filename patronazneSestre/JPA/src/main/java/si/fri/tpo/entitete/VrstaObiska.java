@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -32,7 +32,7 @@ public class VrstaObiska implements Serializable {
 
 	//bi-directional many-to-one association to Aktivnost
 	@OneToMany(mappedBy="vrstaObiska",fetch=FetchType.EAGER)
-	private List<Aktivnost> aktivnosts;
+	private Set<Aktivnost> aktivnosts;
 
 	/*//bi-directional many-to-one association to DelovniNalog
 	@OneToMany(mappedBy="vrstaObiska")
@@ -57,13 +57,14 @@ public class VrstaObiska implements Serializable {
 		this.opis = opis;
 	}
 
-	public List<Aktivnost> getAktivnosts() {
+	public Set<Aktivnost> getAktivnosts() {
 		return this.aktivnosts;
 	}
 
-	public void setAktivnosts(List<Aktivnost> aktivnosts) {
+	public void setAktivnosts(Set<Aktivnost> aktivnosts) {
 		this.aktivnosts = aktivnosts;
 	}
+
 
 	/*public Aktivnost addAktivnost(Aktivnost aktivnost) {
 		getAktivnosts().add(aktivnost);
@@ -77,13 +78,14 @@ public class VrstaObiska implements Serializable {
 		aktivnost.setVrstaObiska(null);
 
 		return aktivnost;
-	}*/
 
-	/*public List<DelovniNalog> getDelovniNalogs() {
+	}
+
+	/*public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
 
-	public void setDelovniNalogs(List<DelovniNalog> delovniNalogs) {
+	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}
 
@@ -99,6 +101,7 @@ public class VrstaObiska implements Serializable {
 		delovniNalog.setVrstaObiska(null);
 
 		return delovniNalog;
-	}*/
 
+	}
+	*/
 }

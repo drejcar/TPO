@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -31,17 +31,8 @@ public class Zdravilo implements Serializable {
 	private String opis;
 
 	//bi-directional many-to-many association to DelovniNalog
-	@ManyToMany
-	@JoinTable(
-		name="zdravilo_has_delovni_nalog"
-		, joinColumns={
-			@JoinColumn(name="idzdravilo", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="iddelovni_nalog", nullable=false)
-			}
-		)
-	private List<DelovniNalog> delovniNalogs;
+	@ManyToMany(mappedBy="zdravilos")
+	private Set<DelovniNalog> delovniNalogs;
 
 	public Zdravilo() {
 	}
@@ -62,11 +53,11 @@ public class Zdravilo implements Serializable {
 		this.opis = opis;
 	}
 
-	public List<DelovniNalog> getDelovniNalogs() {
+	public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
 
-	public void setDelovniNalogs(List<DelovniNalog> delovniNalogs) {
+	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}
 

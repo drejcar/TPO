@@ -4,7 +4,9 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.security.DeclareRoles;
 import javax.annotation.security.PermitAll;
@@ -144,6 +146,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	@Override
 	@RolesAllowed({"Zdravnik","PatronaznaSluzba","Administrator"})
 	public void dodajDelovniNalog(DelovniNalog dn) {
+		
 		delovniNalog.dodajDelovniNalog(dn);
 		delovniNalog.odstraniZrno();
 

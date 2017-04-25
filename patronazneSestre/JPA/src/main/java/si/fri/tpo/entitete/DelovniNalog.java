@@ -4,10 +4,12 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -17,6 +19,8 @@ import java.util.List;
 @Entity
 @XmlRootElement
 @Table(name="delovni_nalog")
+@DynamicUpdate(value=true)
+@SelectBeforeUpdate(value=true)
 @NamedQueries({
 	@NamedQuery(name="DelovniNalog.findAll", query="SELECT d FROM DelovniNalog d"),
 	@NamedQuery(name="DelovniNalog.findOne",query="SELECT d FROM DelovniNalog d WHERE d.iddelovniNalog = :id"),
@@ -51,20 +55,47 @@ public class DelovniNalog implements Serializable {
 	private ZdravstveniDelavec zdravstveniDelavec;
 
 	//bi-directional many-to-many association to Material
-	@ManyToMany(mappedBy="delovniNalogs")
-	private List<Material> materials;
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+			name="material_has_delovni_nalog"
+			, joinColumns={
+				@JoinColumn(name="iddelovni_nalog", nullable=false)
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="idmaterial", nullable=false)
+				}
+			)
+	private Set<Material> materials;
 
 	//bi-directional many-to-one association to Obisk
-	@OneToMany(mappedBy="delovniNalog")
-	private List<Obisk> obisks;
+	@OneToMany(mappedBy="delovniNalog", fetch=FetchType.EAGER)
+	private Set<Obisk> obisks;
 
 	//bi-directional many-to-many association to Pacient
-	@ManyToMany(mappedBy="delovniNalogs")
-	private List<Pacient> pacients;
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+			name="delovni_nalog_has_pacient"
+			, joinColumns={
+				@JoinColumn(name="iddelovni_nalog", nullable=false)
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="idpacient", nullable=false)
+				}
+			)
+	private Set<Pacient> pacients;
 
 	//bi-directional many-to-many association to Zdravilo
-	@ManyToMany(mappedBy="delovniNalogs")
-	private List<Zdravilo> zdravilos;
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+			name="zdravilo_has_delovni_nalog"
+			, joinColumns={
+				@JoinColumn(name="iddelovni_nalog", nullable=false)
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="idzdravilo", nullable=false)
+				}
+			)
+	private Set<Zdravilo> zdravilos;
 
 	public DelovniNalog() {
 	}
@@ -101,27 +132,30 @@ public class DelovniNalog implements Serializable {
 		this.vrstaObiska = vrstaObiska;
 	}
 
+
 	/*public ZdravstveniDelavec getZdravstveniDelavec() {
 		return this.zdravstveniDelavec;
 	}
 
-	*/public void setZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
+	*/
+	public void setZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
+
 		this.zdravstveniDelavec = zdravstveniDelavec;
 	}
 
-	public List<Material> getMaterials() {
+	public Set<Material> getMaterials() {
 		return this.materials;
 	}
 
-	public void setMaterials(List<Material> materials) {
+	public void setMaterials(Set<Material> materials) {
 		this.materials = materials;
 	}
 
-	public List<Obisk> getObisks() {
+	public Set<Obisk> getObisks() {
 		return this.obisks;
 	}
 
-	public void setObisks(List<Obisk> obisks) {
+	public void setObisks(Set<Obisk> obisks) {
 		this.obisks = obisks;
 	}
 
@@ -139,19 +173,26 @@ public class DelovniNalog implements Serializable {
 		return obisk;
 	}
 
-	public List<Pacient> getPacients() {
+	public Set<Pacient> getPacients() {
 		return this.pacients;
 	}
 
-	public void setPacients(List<Pacient> pacients) {
+	public void setPacients(Set<Pacient> pacients) {
 		this.pacients = pacients;
 	}
-
-	public List<Zdravilo> getZdravilos() {
+	//dodano za trackanje razmerij
+	public void setPacient(Pacient pacient){
+		this.pacients.add(pacient);
+		if(!pacient.getDelovniNalogs().contains(this)){
+			pacient.getDelovniNalogs().add(this);
+		}
+	}
+	
+	public Set<Zdravilo> getZdravilos() {
 		return this.zdravilos;
 	}
 
-	public void setZdravilos(List<Zdravilo> zdravilos) {
+	public void setZdravilos(Set<Zdravilo> zdravilos) {
 		this.zdravilos = zdravilos;
 	}
 

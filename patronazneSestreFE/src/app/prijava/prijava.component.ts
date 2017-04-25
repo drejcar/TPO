@@ -31,8 +31,11 @@ export class PrijavaComponent implements OnInit{
   mail='';
   pwd='';
   model=new Prijava(this.mail,this.pwd);
+  
   onSubmit() {
 	this.aliJeNapaka = false;
+	
+	
     this.userService.login(this.model).subscribe(data => {this.person = data
 			
 			localStorage.setItem('email',this.person.email.toString());
@@ -51,6 +54,9 @@ export class PrijavaComponent implements OnInit{
 			this.router.navigate(['/'+this.person.vloga.opis]);
 	},
 	err => {this.aliJeNapaka = true;
+<<<<<<< HEAD
+	
+=======
 			if(localStorage.getItem('attempts') === null){
 				localStorage.setItem('attempts','1');
 			}else{
@@ -77,6 +83,7 @@ export class PrijavaComponent implements OnInit{
 					localStorage.removeItem('attempts');
 				}
 			}
+>>>>>>> 6c00b7376109da5d04251e89fd00544d72a0933b
 	});
 	
 	

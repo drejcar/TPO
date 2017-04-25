@@ -6,11 +6,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 
 import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.SelectBeforeUpdate;
 
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -20,6 +22,8 @@ import java.util.List;
 @Entity
 @XmlRootElement
 @Table(name="pacient")
+@SelectBeforeUpdate(value=true)
+@DynamicUpdate(value=true)
 @NamedQueries({
 	@NamedQuery(name="Pacient.findAll", query="SELECT p FROM Pacient p"),
 	@NamedQuery(name="Pacient.findOne",query="SELECT p FROM Pacient p WHERE p.idpacient = :id"),
@@ -57,18 +61,8 @@ public class Pacient implements Serializable {
 	private Date datumRojstva;
 	
 	//bi-directional many-to-many association to DelovniNalog
-	@ManyToMany
-	@JoinTable(
-		name="delovni_nalog_has_pacient"
-		, joinColumns={
-			@JoinColumn(name="idpacient", nullable=false)
-			}
-		, inverseJoinColumns={
-			@JoinColumn(name="iddelovni_nalog", nullable=false)
-			}
-		)
-	@Fetch(FetchMode.JOIN)
-	private List<DelovniNalog> delovniNalogs;
+	@ManyToMany(mappedBy="pacients")
+	private Set<DelovniNalog> delovniNalogs;
 
 	//bi-directional many-to-one association to Kontakt
 	@ManyToOne(cascade = CascadeType.ALL)
@@ -82,7 +76,7 @@ public class Pacient implements Serializable {
 
 	//bi-directional many-to-one association to Pacient
 	@OneToMany(mappedBy="pacient", fetch=FetchType.EAGER)
-	private List<Pacient> pacients;
+	private Set<Pacient> pacients;
 
 	//bi-directional many-to-one association to Posta
 	@ManyToOne
@@ -167,14 +161,21 @@ public class Pacient implements Serializable {
 		this.ulica = ulica;
 	}
 
-	public List<DelovniNalog> getDelovniNalogs() {
+	public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
 
-	public void setDelovniNalogs(List<DelovniNalog> delovniNalogs) {
+	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}
-
+	//dodano za trackanje razmerij
+	public void setDelovniNalog(DelovniNalog delovniNalog){
+		this.delovniNalogs.add(delovniNalog);
+		if(!delovniNalog.getPacients().contains(this)){
+			delovniNalog.getPacients().add(this);
+		}
+	}
+	
 	public Kontakt getKontakt() {
 		return this.kontakt;
 	}
@@ -191,11 +192,11 @@ public class Pacient implements Serializable {
 		this.pacient = pacient;
 	}
 
-	public List<Pacient> getPacients() {
+	public Set<Pacient> getPacients() {
 		return this.pacients;
 	}
 
-	public void setPacients(List<Pacient> pacients) {
+	public void setPacients(Set<Pacient> pacients) {
 		this.pacients = pacients;
 	}
 

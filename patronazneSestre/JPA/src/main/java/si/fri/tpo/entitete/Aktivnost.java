@@ -4,7 +4,10 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import java.util.Set;
 
 
 /**
@@ -33,7 +36,7 @@ public class Aktivnost implements Serializable {
 
 	//bi-directional many-to-many association to Meritev
 	@ManyToMany(mappedBy="aktivnosts",fetch=FetchType.EAGER)
-	private List<Meritev> meritevs;
+	private Set<Meritev> meritevs;
 
 	public Aktivnost() {
 	}
@@ -54,19 +57,22 @@ public class Aktivnost implements Serializable {
 		this.opis = opis;
 	}
 
+
 	/*public VrstaObiska getVrstaObiska() {
+
 		return this.vrstaObiska;
 	}
 
 	public void setVrstaObiska(VrstaObiska vrstaObiska) {
 		this.vrstaObiska = vrstaObiska;
-	}*/
+	}
+*/
 
-	public List<Meritev> getMeritevs() {
+	public Set<Meritev> getMeritevs() {
 		return this.meritevs;
 	}
 
-	public void setMeritevs(List<Meritev> meritevs) {
+	public void setMeritevs(Set<Meritev> meritevs) {
 		this.meritevs = meritevs;
 	}
 

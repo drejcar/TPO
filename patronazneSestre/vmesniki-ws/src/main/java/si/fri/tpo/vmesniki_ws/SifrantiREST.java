@@ -1,6 +1,8 @@
 package si.fri.tpo.vmesniki_ws;
 
 import java.util.List;
+import java.util.Set;
+
 import javax.xml.ws.Response;
 import si.fri.tpo.entitete.*;
 

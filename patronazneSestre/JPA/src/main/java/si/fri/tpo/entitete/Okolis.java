@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -38,7 +38,7 @@ public class Okolis implements Serializable {
 
 	//bi-directional many-to-one association to ZdravstveniDelavec
 	//@OneToMany(mappedBy="okoli")
-	//private List<ZdravstveniDelavec> zdravstveniDelavecs;
+	//private Set<ZdravstveniDelavec> zdravstveniDelavecs;
 
 	public Okolis() {
 	}
@@ -67,11 +67,11 @@ public class Okolis implements Serializable {
 		this.posta = posta;
 	}
 /*
-	public List<ZdravstveniDelavec> getZdravstveniDelavecs() {
+	public Set<ZdravstveniDelavec> getZdravstveniDelavecs() {
 		return this.zdravstveniDelavecs;
 	}
 
-	public void setZdravstveniDelavecs(List<ZdravstveniDelavec> zdravstveniDelavecs) {
+	public void setZdravstveniDelavecs(Set<ZdravstveniDelavec> zdravstveniDelavecs) {
 		this.zdravstveniDelavecs = zdravstveniDelavecs;
 	}
 
