@@ -11,8 +11,9 @@ class delovniNalog {
 	materials : Array<Material>;
 	zdravilos : Array<Zdravilo>;		
 }
+
 class IzvajalecZdravstvenihStoritev {
-	idIzvajalecZdravstvenihStoritev : number;
+	idizvajalecZdravstvenihStoritev : number;
 }
 
 class ZdravstveniDelavec {
@@ -54,7 +55,6 @@ export class DelovniNalogComponent implements OnInit{
 	zdravila = [{'name': 'injekcija', 'id': 1}, {'name': 'injekcija1', 'id': 2}];
 	izbranoZdravilo = this.zdravila[0];
 	
-	//cities = [{'name': 'SF'}, {'name': 'NYC'}, {'name': 'Buffalo'}];
 	materiali = [{'name': 'Epruveta rdeča', 'id': 1}, {'name': 'Epruveta modra', 'id': 2}, {'name': 'Epruveta rumena', 'id': 3}, {'name': 'Epruveta zelena', 'id': 4}];
     izbraniMaterial = this.materiali[0];
 	
@@ -63,6 +63,7 @@ export class DelovniNalogComponent implements OnInit{
 	
 	storitve = [{'name': 'Obisk nosečnice', 'id': 10}, {'name': 'Obisk otročnice', 'id': 20}, {'name': 'Obisk novorojenčka', 'id': 30}, {'name': 'Preventiva starostnika', 'id': 40},
 	{'name': 'Aplikacija injekcije', 'id': 50}, {'name': 'Odvzem krvi', 'id': 60}, {'name': 'Kontrola zdravstvenega stanja', 'id': 70}];
+		
     izbranaStoritev = this.storitve[0];
 	
 	veljavnostNalogaOd: string = "";
@@ -79,13 +80,12 @@ export class DelovniNalogComponent implements OnInit{
 	urlParametri: string = "";
 	
 	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
-	//private restUrl = 'http://jsonplaceholder.typicode.com/posts/1';	
 
 	stevilkaIzvajalca : string = "stevilka izvajalca";
 	nazivIzvajalca : string = "naziv izvajalca";
 	stevilkaZdravnika : string = " stevilka zdravnika";
-	idIzvajalca : number;
-	idZdravnika : number;
+	idIzvajalca : number = -1;
+	idZdravnika : number = -2;
 	
 	stevilkaZdravstvenegaZavarovanja : string = "";
 	priimek : string = "";
@@ -95,19 +95,36 @@ export class DelovniNalogComponent implements OnInit{
 	kraj : string = "";
 	telefonskaStevilka : string = "";
 	email : string = "";
-	idPacient : number = 15;		
+	idPacient : number = 15;
+
+	ngOnInit() {	
+	
+		//ce ni zdravnik lahko opravlja samo preventivne obiske	
+		
+		if(localStorage['vloga'] != "Zdravnik") {
+			this.storitve = [{'name': 'Obisk nosečnice', 'id': 10}, {'name': 'Obisk otročnice', 'id': 20}, {'name': 'Obisk novorojenčka', 'id': 30}, {'name': 'Preventiva starostnika', 'id': 40}];
+			this.izbranaStoritev = this.storitve[0];
+		}
+			
+		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
+	
+		console.log("iduporabnik: "+localStorage['iduporabnik']);
+		console.log("vloga: "+localStorage['vloga']);
+		
+		//var idUporabnik = localStorage['iduporabnik'];		
+		//console.log(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`);		
+		//ko se robiju prikaže marija in porihta backend.
+		//this.stevilkaIzvajalca =
+		//this.nazivIzvajalca =
+		//this.stevilkaZdravnika =
+		//this.idIzvajalca = 
+		//this,idZdravnika = 
+				
+	}
 		 
 	test(): void {	
 
-		console.log("iduporabnik: "+localStorage['iduporabnik']);
-	
-		//console.log(this.veljavnostNalogaOd);
-		//console.log(this.veljavnostNalogaDo);
-		//console.log(this.veljavnostNalogaVrsta);
-		//console.log(this.veljavnostNalogaFiksniDatum);
-		//console.log("Interval: " + this.veljavnostNalogaInterval);
-		//console.log("Stevilo obiskov: " + this.veljavnostNalogaSteviloObiskov);
-											   
+		console.log("iduporabnik: "+localStorage['iduporabnik']);											   
 
 		/* Napolnimo podatke o pacientu*/
 	
@@ -116,7 +133,7 @@ export class DelovniNalogComponent implements OnInit{
 		
 		//var post = "12345678911";
 		
-		//console.log(this.post);
+
 		
 			
 		this.http.get(`${this.restUrl}/pacient/zz/${this.post}`, {headers: headers}).subscribe(data => { 
@@ -139,49 +156,7 @@ export class DelovniNalogComponent implements OnInit{
 	
 	}
 	
-	ngOnInit() {	
 	
-		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
-	
-		console.log("iduporabnik: "+localStorage['iduporabnik']);
-		
-		var idUporabnik = localStorage['iduporabnik'];
-		
-		console.log(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`);
-		
-		//this.stevilkaIzvajalca =
-		//this.nazivIzvajalca =
-		//this.stevilkaZdravnika =
-		//this.idIzvajalca = 
-		//this,idZdravnika = 
-		
-		
-		//this.http.get(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`, {headers: headers3});
-		
-		
-		this.http.get(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`, {headers: headers3}).subscribe(data1 => { 
-		
-			//this.data1 = data1.json()
-			//var drek1 : string = JSON.stringify(this.data1);						
-			//var test1 = JSON.parse(drek1);
-			
-			//this.sifraUporabnika = test.priimek;
-			
-			/*
-			this.ime = test.ime;
-			this.ulica = test.ulica;
-			this.postnaStevilka = test.posta.idposta.toString();
-			this.kraj = test.posta.opis;
-			this.telefonskaStevilka = test.telefonskaStevilka;
-			this.email = test.uporabnik.email;
-			this.idPacient = test.idpacient;				
-			 */
-		});
-		
-		console.log(this.sifraUporabnika);
-		
-		
-	}
 	
 	posljiDelovniNalog() {
 	
@@ -224,7 +199,7 @@ export class DelovniNalogComponent implements OnInit{
 		storitev.idvrsta_obiska = this.izbranaStoritev.id;
 		
 		var izvajalecZdravstvenihStoritev = new IzvajalecZdravstvenihStoritev();
-		izvajalecZdravstvenihStoritev.idIzvajalecZdravstvenihStoritev = this.idIzvajalca;
+		izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev = this.idIzvajalca;
 		
 		var zdravstveniDelavec = new ZdravstveniDelavec();
 		zdravstveniDelavec.idzdravstveniDelavec = this.idZdravnika;
