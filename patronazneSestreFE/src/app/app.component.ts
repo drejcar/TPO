@@ -23,6 +23,11 @@ import { UserService } from './prijava/user.service'
 
 		</div>
 	  </header>
+<<<<<<< HEAD
+=======
+
+	  
+>>>>>>> b76987cbc482348ccab55472e6cde7a3058991b3
 	  <router-outlet></router-outlet>
 	  
 	  <footer>@ 2017</footer>
