@@ -37,7 +37,8 @@ export class SpremembaGeslaComponent{
 	let upr = <Upr>({
 		iduporabnik: Number(localStorage.getItem('iduporabnik')),
 		email: localStorage.getItem('email'),
-		geslo: this.model.pwd,
+		//geslo: this.model.pwd,
+		geslo: "jebemtimater",
 		vloga: vlog,
 		zadnjaPrijava: localStorage.getItem('datumZadnjePrijave'),
 	});

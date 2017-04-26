@@ -66,6 +66,8 @@ export class DelovniNalogComponent implements OnInit{
 		
     izbranaStoritev = this.storitve[0];
 	
+	
+	
 	veljavnostNalogaOd: string = "";
 	veljavnostNalogaDo: string = "";
 	veljavnostNalogaVrsta: string = "0";
@@ -75,15 +77,17 @@ export class DelovniNalogComponent implements OnInit{
 	
 	data : any;	
 	data1 : any;
+	data2 : any;
 	
 	sifraUporabnika: string = "";
 	urlParametri: string = "";
 	
 	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
 
-	stevilkaIzvajalca : string = "stevilka izvajalca";
+	stevilkaIzvajalca : string = "rest ocitno ni uspel";
 	nazivIzvajalca : string = "naziv izvajalca";
-	stevilkaZdravnika : string = " stevilka zdravnika";
+	
+	stevilkaZdravstvenegaDelavca : string = "rest ocitno ni uspel";
 	idIzvajalca : number = -1;
 	idZdravnika : number = -2;
 	
@@ -99,6 +103,9 @@ export class DelovniNalogComponent implements OnInit{
 
 	ngOnInit() {	
 	
+		
+		
+	
 		//ce ni zdravnik lahko opravlja samo preventivne obiske	
 		
 		if(localStorage['vloga'] != "Zdravnik") {
@@ -110,6 +117,26 @@ export class DelovniNalogComponent implements OnInit{
 	
 		console.log("iduporabnik: "+localStorage['iduporabnik']);
 		console.log("vloga: "+localStorage['vloga']);
+		
+		
+		
+		this.http.get(`${this.restUrl}/zdravstveniDelavec/${localStorage['iduporabnik']}`, {headers: headers3}).subscribe(data1 => { 
+					
+			this.data1 = data1.json();					
+			var drek1 : string = JSON.stringify(this.data1);					
+			var test1 = JSON.parse(drek1);
+			var lalala : string = test1.ime;			
+			console.log("a dobim kej vn ? : " + lalala);
+			
+			
+			
+			this.stevilkaZdravstvenegaDelavca = test1.sifra;	
+			this.stevilkaIzvajalca = test1.izvajalecZdravstvenihStoritev.stevilkaIzvajalca;
+			this.nazivIzvajalca = test1.izvajalecZdravstvenihStoritev.naziv;
+			
+		});	
+		
+		
 		
 		//var idUporabnik = localStorage['iduporabnik'];		
 		//console.log(`${this.restUrl}/zdravstveniDelavec/${idUporabnik}`);		
