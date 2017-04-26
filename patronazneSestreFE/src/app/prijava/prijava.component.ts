@@ -54,9 +54,7 @@ export class PrijavaComponent implements OnInit{
 			this.router.navigate(['/'+this.person.vloga.opis]);
 	},
 	err => {this.aliJeNapaka = true;
-<<<<<<< HEAD
-	
-=======
+
 			if(localStorage.getItem('attempts') === null){
 				localStorage.setItem('attempts','1');
 			}else{
@@ -83,7 +81,7 @@ export class PrijavaComponent implements OnInit{
 					localStorage.removeItem('attempts');
 				}
 			}
->>>>>>> 6c00b7376109da5d04251e89fd00544d72a0933b
+
 	});
 	
 	
