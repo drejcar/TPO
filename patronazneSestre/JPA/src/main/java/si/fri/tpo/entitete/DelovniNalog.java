@@ -181,13 +181,14 @@ public class DelovniNalog implements Serializable {
 		this.pacients = pacients;
 	}
 	//dodano za trackanje razmerij
+	/*
 	public void setPacient(Pacient pacient){
 		this.pacients.add(pacient);
 		if(!pacient.getDelovniNalogs().contains(this)){
 			pacient.getDelovniNalogs().add(this);
 		}
 	}
-	
+	*/
 	public Set<Zdravilo> getZdravilos() {
 		return this.zdravilos;
 	}
