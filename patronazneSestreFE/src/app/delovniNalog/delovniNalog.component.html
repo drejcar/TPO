@@ -25,15 +25,7 @@
 			<h3>3 - ZAVAROVANA OSEBA</h3>
 			<label>Številka zavarovane osebe</label>
 			<input type="text"  [(ngModel)]="post" id="stevilkaZavarovaneOsebe"  name="krneki5" >
-			
-			<!-- 
-			
-			placeholder= " {{ stevilkaZdravstvenegaZavarovanja }}
-			
-			
-			<label>Datum rojstva</label>
-			<input type="date" id="datumRojstva" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" required> -->
-
+						
 			<label>Priimek</label>
 			<input type="text" id="priimek" placeholder="{{ priimek }}" required>
 
@@ -43,7 +35,7 @@
 			<input type="text" id="ulica" placeholder=" {{ ulica}} " v required minlength="2" maxlength="45">
 
 			<label>Hišna številka</label>
-			<input type="text" id="hisnaStevilka" placeholder="Hišna Številka" required minlength="1" maxlength="5">
+			<input type="text" id="hisnaStevilka" placeholder="{{ hisnaStevilka }}" required minlength="1" maxlength="5">
 
 			<label>Postna številka</label>
 			<input type="text" id="postnaStevilka" placeholder=" {{ postnaStevilka }}" required minlength="4" maxlength="4">
@@ -60,37 +52,96 @@
 			<label>e-pošta</label>
 			<input type="text" id="ePosta" maxlength="45" placeholder=" {{ email }} " required
              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+			 
+			 <input type="button" (click)="pridobiPodatkePacienta()" name="pridobiPodatke" value="pridobi podatke"> 
+			 
 		</div>
 		
-		<input type="button" (click)="test()" name="pridobiPodatke" value="pridobi podatke"> 
+		
+		
+		<div id="zavarovanaOseba" *ngIf="izbranaStoritev.id == 20 || izbranaStoritev.id == 30 ">
+			<h3>3a - ZAVAROVANA OSEBA</h3>
+			<label>Številka zavarovane osebe</label>
+			<input type="text"  [(ngModel)]="post1" id="stevilkaZavarovaneOsebe"  name="krneki5" >
+						
+			<label>Priimek</label>
+			<input type="text" id="priimek" placeholder="{{ priimek1 }}" required>
+
+			<label>Ime</label>
+			<input type="text" id="ime"placeholder="{{ ime1 }}" required>
+			<label>Ulica</label>
+			<input type="text" id="ulica" placeholder=" {{ ulica1}} " v required minlength="2" maxlength="45">
+
+			<label>Hišna številka</label>
+			<input type="text" id="hisnaStevilka" placeholder="{{ hisnaStevilka1 }}" required minlength="1" maxlength="5">
+
+			<label>Postna številka</label>
+			<input type="text" id="postnaStevilka" placeholder=" {{ postnaStevilka1 }}" required minlength="4" maxlength="4">
+
+			<label>Kraj</label>
+			<input type="text" id="kraj" placeholder=" {{ kraj1 }} ">
+
+			<label>Telefonska stevilka</label>
+			<input type="text" id="telefonskaStevilka" placeholder=" {{ telefonskaStevilka1}} " required minlength="12" maxlength="12"
+             pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+               2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+               4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$">
+
+			<label>e-pošta</label>
+			<input type="text" id="ePosta" maxlength="45" placeholder=" {{ email1 }} " required
+             pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$">
+			 
+			 <input type="button" (click)="pridobiPodatkePacienta1()" name="pridobiPodatke" value="pridobi podatke"> 
+			 
+		</div>
+		
+		
 	
 		
 		<div id="veljavnostNaloga">
 			<h3>4 - VELJAVNOST NALOGA</h3>
 			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta"  name="veljavnostNalogaVrsta" value="0">Enkratno<br>
-			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta"  name="veljavnostNalogaVrsta" value="1">Za obdobje
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta"  name="veljavnostNalogaVrsta" value="1">Za obdobje<br>
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta"  name="veljavnostNalogaVrsta" value="2">Interval<br>
 					
 			 <div class="form-group">
 				
-				<label>od</label>
-				<input type="date"  id="veljavnostNalogaOd" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" 
-			    [(ngModel)]="veljavnostNalogaOd" name="datumRojstva1">	
+				
+				<div class="enObDrugem">
+					<label>od</label>
+					<input type="date"  id="veljavnostNalogaOd" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" 
+					[(ngModel)]="veljavnostNalogaOd" name="datumRojstva1">	
+				</div>
 
-				<label>do</label>
-				<input type="date" id="veljavnostNalogaDo" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" 
-			    [(ngModel)]="veljavnostNalogaDo" name="datumRojstva1">	
+					
+					
+				<div class="enObDrugem" *ngIf="veljavnostNalogaVrsta == 1">
+					<label>do</label>
+					<input type="date" id="veljavnostNalogaDo" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" 
+					[(ngModel)]="veljavnostNalogaDo" name="datumRojstva1">	
+				</div>
 				
-				<label>interval</label>
-				<input type="text" [(ngModel)]="veljavnostNalogaInterval" id="stevilkaIzvajalca" name="krneki7">	
+				<div class="enObDrugem" *ngIf="veljavnostNalogaVrsta == 2">
+					<label >interval</label>
+					<input type="text"  [(ngModel)]="veljavnostNalogaInterval" id="stevilkaIzvajalca" name="krneki7">	
+				</div>
+
 				
-				<label>stevilo obiskov</label>
-				<input type="text" [(ngModel)]="veljavnostNalogaSteviloObiskov" id="stevilkaIzvajalca" name="krneki8">	
+				<div class="enObDrugem" *ngIf="veljavnostNalogaVrsta != 0">
+					<label>stevilo obiskov</label>
+					<input type="text" [(ngModel)]="veljavnostNalogaSteviloObiskov" id="stevilkaIzvajalca" name="krneki8">	
+				</div>
 				
-			</div>
-			
-		<input type="checkbox" name="veljavnostNalogaFiksniDatum" value="1">
-			<label>fiksni datum</label>
+				<div class="levo">
+					<input type="checkbox" name="veljavnostNalogaFiksniDatum" value="1">
+					<label>fiksni datum</label>
+				</div>
+				
+			</div>				
+				
 		</div>
+			
+		
 	
 	
 
@@ -105,28 +156,30 @@
 		<div id="bolezen">
 			<h3>6 - BOLEZEN</h3>			
 			<select [(ngModel)]="izbranaBolezen" name="krneki2" >
-				<option *ngFor="let b of bolezni" [ngValue]="b"> {{b.name}} </option>
+				<option *ngFor="let b of bolezni" [ngValue]="b"> {{b.opis}} </option>
 			</select>
 		</div>
 		
 		
-		<div id="material">
+		<div id="material" *ngIf="izbranaStoritev.id == 60">
 			<h3>7 - MATERIAL</h3>			
 			<select [(ngModel)]="izbraniMaterial" name="krneki1" >
-				<option *ngFor="let m of materiali" [ngValue]="m"> {{m.name}} </option>
+				<option *ngFor="let m of materiali" [ngValue]="m"> {{m.opis}} </option>
 			</select>
-		</div>
+			
+			<input type="button" (click)="dodajMaterial()" name="dodajMaterial" value="Dodaj material">
+
+			
+		</div>		
 		
-		
-		
-		
-		
-		
-		<div id="zdravilo">
+		<div id="zdravilo" *ngIf="izbranaStoritev.id == 50">
 			<h3>8 - ZDRAVILO</h3>
 			<select [(ngModel)]="izbranoZdravilo"  name="krneki">
 				<option *ngFor="let z of zdravila" [ngValue]="z"> {{z.name}} </option>
-			</select>			
+			</select>	
+
+			<input type="button" (click)="dodajZdravilo()" name="dodajZdravilo" value="Dodaj zdravilo">
+			
 		</div>
 		
 		
