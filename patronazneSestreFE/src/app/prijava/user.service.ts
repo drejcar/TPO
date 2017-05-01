@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Rx';
 import { Upr } from "./upr"
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch'
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -16,7 +17,7 @@ export class UserService {
   private loggedIn = false;
   private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
   upr: Upr;
-  constructor(private http: Http) {
+  constructor(private http: Http, private router:Router) {
     this.loggedIn = !!localStorage.getItem('username');
 
   }
@@ -68,7 +69,6 @@ export class UserService {
 	localStorage.setItem('password','');
 	localStorage.setItem('vloga','guest');
     this.loggedIn = false;
-	//this.router.navigate(['/dashboard']);
   }
   isLoggedIn() {
     return this.loggedIn;

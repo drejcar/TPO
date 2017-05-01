@@ -68,13 +68,15 @@ export class PrijavaComponent implements OnInit{
 					var d = new Date();
 					var hours = d.getHours();
 					var minutes = d.getMinutes();
+					
 					if(Number(minutes) < 10){
 						var noveminutes = '0'+minutes.toString();
-						
+						minutes = Number(noveminutes);
 					}
 					
-					minutes = Number(noveminutes);
+					
 					var cajt = hours.toString()+minutes.toString();
+					
 					localStorage.setItem('neSme',cajt.toString());
 					
 					
@@ -102,13 +104,14 @@ export class PrijavaComponent implements OnInit{
 		   var hours = d.getHours();
 		   var minutes = d.getMinutes();
 		   var cas = localStorage.getItem('neSme');
+		   	
 		   
 		   
 		   if(Number(minutes) < 10){
 			   var noveminutes = '0'+minutes.toString();
-			   
+				minutes = Number(noveminutes)
 			}
-			minutes = Number(noveminutes)
+			
 			var trenutniCas = hours.toString()+minutes.toString();
 			
 			

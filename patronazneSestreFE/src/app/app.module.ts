@@ -32,6 +32,7 @@ import {SodelavecIzsDashComponent} from "./loggedindash/sodelavecizsdash/sodelav
 import {ZdravnikDashComponent} from "./loggedindash/zdravnikdash/zdravnikdash.component";
 import {AktivacijaComponent} from "./registracija/aktivacija.component";
 import {GuestGuard} from "./_guard/guest.guard";
+import {OdjavaComponent} from "./odjava/odjava.component";
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule],
@@ -39,7 +40,7 @@ import {GuestGuard} from "./_guard/guest.guard";
                   DelovniNalogComponent, EqualValidator,PageNotFoundComponent,Registracija_zdComponent,
                   SpremembaGeslaComponent,AdminDashComponent,PacientDashComponent,
                   PatronaznaSestraDashComponent,PatronaznaSluzbaDashComponent,SodelavecIzsDashComponent,
-                  ZdravnikDashComponent,AktivacijaComponent
+                  ZdravnikDashComponent,AktivacijaComponent,OdjavaComponent
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,GuestGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,

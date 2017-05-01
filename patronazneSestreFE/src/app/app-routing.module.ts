@@ -7,6 +7,7 @@ import { PrijavaComponent }      from './prijava/prijava.component';
 import { RegistracijaFormComponent } from './registracija/registracija.component';
 import { DelovniNalogComponent } from './delovniNalog/delovniNalog.component';
 import { PageNotFoundComponent } from './not-found.component';
+import { OdjavaComponent } from './odjava/odjava.component';
 
 import {PacientGuard} from "./_guard/pacient.guard";
 import {ZdravnikGuard} from "./_guard/zdravnik.guard";
@@ -28,6 +29,7 @@ import {GuestGuard} from "./_guard/guest.guard";
 const routes: Routes = [
   { path: 'dashboard',/* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: DashboardComponent },
   { path: 'prijava', component: PrijavaComponent,/* canActivate: [GuestGuard] */},
+  { path: 'odjava', component: OdjavaComponent},
   { path: 'registracija', component: RegistracijaFormComponent,/* canActivate: [GuestGuard] */ },
   { path: 'delovniNalog', component: DelovniNalogComponent/**,canActivate:[ZdravnikGuard,PatronaznaSluzbaGuard]*/},
   { path: 'registracijazd', component: Registracija_zdComponent },
