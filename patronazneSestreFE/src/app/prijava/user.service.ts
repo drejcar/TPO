@@ -18,7 +18,7 @@ export class UserService {
   private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
   upr: Upr;
   constructor(private http: Http, private router:Router) {
-    this.loggedIn = !!localStorage.getItem('username');
+    this.loggedIn = !!localStorage.getItem('email');
 
   }
 

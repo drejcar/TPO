@@ -10,17 +10,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 	  <header>
 		<nav>
 			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
-			<a routerLink="/registracijazd" routerLinkActive="active">regZd</a>	
-			<a routerLink="/spremembaGesla" routerLinkActive="active">sprGesla</a>	
+			<a [hidden]="!admin" routerLink="/registracijazd" routerLinkActive="active">regZd</a>	
+			<a [hidden]="!aliJeLoginan" routerLink="/spremembaGesla" routerLinkActive="active">sprGesla</a>	
 		</nav>
 		<div id="userProf">{{opis}}</div>
 		<div id="zadnjaPrijava">{{opis2}}</div>
 		<div id="navRight">
 			<a routerLink="/{{prjava2}}" routerLinkActive="active">{{prjava}}</a>
-			/
-			<a routerLink="/registracija" routerLinkActive="active">Registracija</a>
-			/
-			<a routerLink="/delovniNalog" routerLinkActive="active">DelovniNalog</a>
+			
+			<a [hidden]="aliJeLoginan"routerLink="/registracija" routerLinkActive="active">/ Registracija</a>
+			
+			<a [hidden]="!dovoljenjeKreirat" routerLink="/delovniNalog" routerLinkActive="active">/ DelovniNalog</a>
 			<a [hidden]="!mojiDelovniNalog" routerLink ="/delovniNalogi" routerLinkActive="active">/ Moji delovni nalogi</a>
 		</div>
 	  </header>
@@ -34,7 +34,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 })
 export class AppComponent implements OnInit {
   private loggedIn = false;
-  mojiDelovniNalog: boolean = false;
+  mojiDelovniNalog: boolean = true;
+  admin: boolean = false;
+  dovoljenjeKreirat: boolean = true;
+  aliJeLoginan: boolean = false;
   constructor(private http:Http ,private usr:UserService){
     
   }
@@ -51,7 +54,7 @@ export class AppComponent implements OnInit {
   ngOnInit(){
 	  if(localStorage.getItem('vloga') != null){
 		this.vloga = localStorage.getItem('vloga');
-		
+		// dovoljenja in kaj se lahko prikaze
 		if(this.vloga != 'guest'){
 			this.email = localStorage.getItem('email');
 			this.datumZadnjePrijave = localStorage.getItem('datumZadnjePrijave');
@@ -59,14 +62,23 @@ export class AppComponent implements OnInit {
 			this.opis2 = "Zadnja prijava: "+this.datumZadnjePrijave;
 			this.prjava = 'Odjava';
 			this.prjava2 = 'odjava';
+			this.aliJeLoginan = true;
 		}else{
+			this.admin = false;
+			//this.dovoljenjeKreirat = false;
 			this.opis = '';
 			this.opis2 = '';
 			this.prjava = 'Prijava';
 			this.prjava2 = 'prijava';
+			this.aliJeLoginan = false;
 		}
+		//kaj se prikaze glede na vlogo
 		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
-			this.mojiDelovniNalog = true;
+			//this.mojiDelovniNalog = true;
+		}if(this.vloga == 'Administrator'){
+			this.admin = true;
+		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
+			//this.dovoljenjeKreirat = true;
 		}
 		
 	  }
@@ -75,7 +87,7 @@ export class AppComponent implements OnInit {
   change(){
 	  if(localStorage.getItem('vloga') != null){
 		this.vloga = localStorage.getItem('vloga');
-		
+		// dovoljenja in kaj se lahko prikaze
 		if(this.vloga != 'guest'){
 			this.email = localStorage.getItem('email');
 			this.datumZadnjePrijave = localStorage.getItem('datumZadnjePrijave');
@@ -83,15 +95,24 @@ export class AppComponent implements OnInit {
 			this.opis2 = "Zadnja prijava: "+this.datumZadnjePrijave;
 			this.prjava = 'Odjava';
 			this.prjava2 = 'odjava';
+			this.aliJeLoginan = true;
 		}else{
+			//this.dovoljenjeKreirat = false;
 			this.opis = '';
 			this.opis2 = '';
 			this.prjava = 'Prijava';
 			this.prjava2 = 'prijava';
-			this.mojiDelovniNalog = false;
+			//this.mojiDelovniNalog = false;
+			this.admin = false;
+			this.aliJeLoginan = false;
 		}
+		//kaj se prikaze glede na vlogo
 		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
-			this.mojiDelovniNalog = true;
+			//this.mojiDelovniNalog = true;
+		}if(this.vloga == 'Administrator'){
+			this.admin = true;
+		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
+			//this.dovoljenjeKreirat = true;
 		}
 	  }
   }

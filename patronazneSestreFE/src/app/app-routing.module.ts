@@ -26,14 +26,16 @@ import {SodelavecIzsDashComponent} from "./loggedindash/sodelavecizsdash/sodelav
 import {ZdravnikDashComponent} from "./loggedindash/zdravnikdash/zdravnikdash.component";
 import {AktivacijaComponent} from "./registracija/aktivacija.component";
 import {GuestGuard} from "./_guard/guest.guard";
+import {DelovniNalogGuard} from "./_guard/delovniNalog.guard";
+import { IzpisDNGuard } from './_guard/izpisDN.guard';
 
 const routes: Routes = [
   { path: 'dashboard',/* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: DashboardComponent },
-  { path: 'prijava', component: PrijavaComponent,/* canActivate: [GuestGuard] */},
+  { path: 'prijava', component: PrijavaComponent, canActivate: [GuestGuard] },
   { path: 'odjava', component: OdjavaComponent},
-  { path: 'registracija', component: RegistracijaFormComponent,/* canActivate: [GuestGuard] */ },
-  { path: 'delovniNalog', component: DelovniNalogComponent/**,canActivate:[ZdravnikGuard,PatronaznaSluzbaGuard]*/},
-  { path: 'registracijazd', component: Registracija_zdComponent },
+  { path: 'registracija', component: RegistracijaFormComponent, canActivate: [GuestGuard] },
+  { path: 'delovniNalog', component: DelovniNalogComponent/*,canActivate:[DelovniNalogGuard]*/},
+  { path: 'registracijazd', component: Registracija_zdComponent,canActivate:[AdministratorGuard]},
   { path: 'spremembaGesla',component: SpremembaGeslaComponent,/* canActivate: [PacientGuard,AdministratorGuard,
     PatronaznaSestraGuard,PatronaznaSluzbaGuard,SodelavecIZSGuard,ZdravnikGuard]*/  },
   { path: 'Administrator',component: AdminDashComponent, canActivate: [AdministratorGuard] },
@@ -43,7 +45,7 @@ const routes: Routes = [
   { path: 'SodelavecIZS', component: SodelavecIzsDashComponent, canActivate: [SodelavecIZSGuard] },
   { path: 'Zdravnik', component: ZdravnikDashComponent, canActivate: [ZdravnikGuard] },
   { path: 'aktivacija/:id',component: AktivacijaComponent},
-  { path: 'delovniNalogi',component: izpisDelovnihNalogovComponent},
+  { path: 'delovniNalogi',component: izpisDelovnihNalogovComponent/*, canActivate: [IzpisDNGuard]*/},
   //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

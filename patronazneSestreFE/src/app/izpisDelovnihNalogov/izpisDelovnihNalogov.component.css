@@ -1,8 +1,51 @@
-input {
-	width: 200px;	
-}
+div.enObDrugem {	
+	float:left;
+	width: 20vw;
+	margin-left:5px;
+	margin-right:5px;
+	margin-bottom:10px;
 
-div {
+}
+div.levo {	
+	clear: left;
+}
+label.parametri{
+	margin-left:20px;
+	margin-right:20px;
+}
+div.parametri{
+	float:left;
+	margin-left:5px;
+	margin-right:5px;
+	margin-bottom:10px;
+}
+#naslov{
+	margin-left:38%;
+	margin-bottom: 50px;
+}
+#gumb{
+	margin-left:42%;
+	margin-bottom:20px;
+}
+#labelnek{
+	margin-left:44.5%;
+	margin-bottom:20px;
 	
+}
+#filtri{
+	margin-left:70px;
+}
+#linija{
+	border-bottom-width:1px;
+	border-bottom-style:groove;
+	width:100%;
+	margin-bottom:5px;
+	
+	
+}
+#kvadratZaDelovneNaloge{
+	border-bottom-width:1px;
+	border-bottom-style:groove;
+	width:100%;
 	
 }
