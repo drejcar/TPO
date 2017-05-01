@@ -58,10 +58,10 @@ export class DelovniNalogComponent implements OnInit{
 	
 	//materiali = [{'name': 'Epruveta rdeča', 'id': 1}, {'name': 'Epruveta modra', 'id': 2}, {'name': 'Epruveta rumena', 'id': 3}, {'name': 'Epruveta zelena', 'id': 4}];
     	
-	materiali =  [];
+	materiali: any[] = [];
 	izbraniMaterial : any;
 	
-	bolezni = [];
+	bolezni: any[] = [];
 	izbranaBolezen : any;
 	
 	//bolezni = [{'name': 'Viroza', 'id': 1}, {'name': 'Angina', 'id': 2}, {'name': 'Pljučnica', 'id': 2}];
@@ -116,8 +116,8 @@ export class DelovniNalogComponent implements OnInit{
 	telefonskaStevilka1 : string = "";
 	email1 : string = "";
 	
-	zdravilos =  [];
-	materials = [];	
+	zdravilos: any[] =  [];
+	materials: any[] = [];	
 
 	ngOnInit() {	
 	
