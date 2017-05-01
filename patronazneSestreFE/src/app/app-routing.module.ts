@@ -8,6 +8,7 @@ import { RegistracijaFormComponent } from './registracija/registracija.component
 import { DelovniNalogComponent } from './delovniNalog/delovniNalog.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { OdjavaComponent } from './odjava/odjava.component';
+import { izpisDelovnihNalogovComponent } from './izpisDelovnihNalogov/izpisDelovnihNalogov.component';
 
 import {PacientGuard} from "./_guard/pacient.guard";
 import {ZdravnikGuard} from "./_guard/zdravnik.guard";
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'SodelavecIZS', component: SodelavecIzsDashComponent, canActivate: [SodelavecIZSGuard] },
   { path: 'Zdravnik', component: ZdravnikDashComponent, canActivate: [ZdravnikGuard] },
   { path: 'aktivacija/:id',component: AktivacijaComponent},
+  { path: 'delovniNalogi',component: izpisDelovnihNalogovComponent},
   //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

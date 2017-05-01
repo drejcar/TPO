@@ -21,6 +21,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 			<a routerLink="/registracija" routerLinkActive="active">Registracija</a>
 			/
 			<a routerLink="/delovniNalog" routerLinkActive="active">DelovniNalog</a>
+			<a [hidden]="!mojiDelovniNalog" routerLink ="/delovniNalogi" routerLinkActive="active">/ Moji delovni nalogi</a>
 		</div>
 	  </header>
 	  <router-outlet></router-outlet>
@@ -33,6 +34,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 })
 export class AppComponent implements OnInit {
   private loggedIn = false;
+  mojiDelovniNalog: boolean = false;
   constructor(private http:Http ,private usr:UserService){
     
   }
@@ -63,6 +65,10 @@ export class AppComponent implements OnInit {
 			this.prjava = 'Prijava';
 			this.prjava2 = 'prijava';
 		}
+		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
+			this.mojiDelovniNalog = true;
+		}
+		
 	  }
   }
   //zato da lahko klicem iz drugje
@@ -82,6 +88,10 @@ export class AppComponent implements OnInit {
 			this.opis2 = '';
 			this.prjava = 'Prijava';
 			this.prjava2 = 'prijava';
+			this.mojiDelovniNalog = false;
+		}
+		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
+			this.mojiDelovniNalog = true;
 		}
 	  }
   }
