@@ -45,12 +45,6 @@ export class PrijavaComponent implements OnInit{
 			localStorage.setItem('iduporabnik', this.person.iduporabnik.toString());
 			localStorage.setItem('idvloga',this.person.vloga.idvloga.toString());
 			
-			console.log(localStorage['email']);
-			console.log(localStorage['password']);
-			console.log(localStorage['vloga']);
-			console.log(localStorage['datumZadnjePrijave']);
-			console.log("iduporabnik: "+localStorage['iduporabnik']);
-			
 			this.router.navigate(['/'+this.person.vloga.opis]);
 	},
 	err => {this.aliJeNapaka = true;

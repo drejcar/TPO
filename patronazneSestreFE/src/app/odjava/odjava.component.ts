@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule }   from '@angular/forms'; // <-- NgModel lives here
 import { HttpModule }    from '@angular/http';
 import { Router } from '@angular/router';
-
+import { AppComponent } from '../app.component';
 import {UserService} from "../prijava/user.service";
 
 @Component({
@@ -12,10 +12,11 @@ import {UserService} from "../prijava/user.service";
 })
 
 export class OdjavaComponent implements OnInit{
-	constructor(private userService: UserService, private router:Router){}
+	constructor(private userService: UserService, private router:Router,private appcmp: AppComponent){}
 	
 	ngOnInit(){
 		this.userService.logout();
+		this.appcmp.change();
 		setTimeout(() => {
 				this.router.navigate(['']);
 			}, 2500);
