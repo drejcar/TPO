@@ -156,7 +156,7 @@
 		<div id="bolezen">
 			<h3>6 - BOLEZEN</h3>			
 			<select [(ngModel)]="izbranaBolezen" name="krneki2" >
-				<option *ngFor="let b of bolezni" [ngValue]="b"> {{b.name}} </option>
+				<option *ngFor="let b of bolezni" [ngValue]="b"> {{b.opis}} </option>
 			</select>
 		</div>
 		
@@ -164,15 +164,22 @@
 		<div id="material" *ngIf="izbranaStoritev.id == 60">
 			<h3>7 - MATERIAL</h3>			
 			<select [(ngModel)]="izbraniMaterial" name="krneki1" >
-				<option *ngFor="let m of materiali" [ngValue]="m"> {{m.name}} </option>
+				<option *ngFor="let m of materiali" [ngValue]="m"> {{m.opis}} </option>
 			</select>
+			
+			<input type="button" (click)="dodajMaterial()" name="dodajMaterial" value="Dodaj material">
+
+			
 		</div>		
 		
 		<div id="zdravilo" *ngIf="izbranaStoritev.id == 50">
 			<h3>8 - ZDRAVILO</h3>
 			<select [(ngModel)]="izbranoZdravilo"  name="krneki">
 				<option *ngFor="let z of zdravila" [ngValue]="z"> {{z.name}} </option>
-			</select>			
+			</select>	
+
+			<input type="button" (click)="dodajZdravilo()" name="dodajZdravilo" value="Dodaj zdravilo">
+			
 		</div>
 		
 		
