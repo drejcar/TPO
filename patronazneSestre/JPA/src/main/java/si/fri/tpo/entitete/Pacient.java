@@ -160,19 +160,13 @@ public class Pacient implements Serializable {
 	public void setUlica(String ulica) {
 		this.ulica = ulica;
 	}
-<<<<<<< HEAD
-/*
-	public Set<DelovniNalog> getDelovniNalogs() {
-		return this.delovniNalogs;
-	}
-*/
-=======
+
 	/*
 	public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
 	*/
->>>>>>> 324c7ff8e35715b335032d1b778a6350802721fb
+
 	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}
