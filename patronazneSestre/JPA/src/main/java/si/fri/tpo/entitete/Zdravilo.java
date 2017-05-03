@@ -52,11 +52,11 @@ public class Zdravilo implements Serializable {
 	public void setOpis(String opis) {
 		this.opis = opis;
 	}
-
+/*
 	public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
-
+*/
 	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}

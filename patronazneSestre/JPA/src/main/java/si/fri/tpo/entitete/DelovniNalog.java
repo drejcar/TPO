@@ -9,6 +9,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
+import java.util.Date;
 import java.util.Set;
 
 
@@ -34,6 +35,10 @@ public class DelovniNalog implements Serializable {
 	@Column(name="iddelovni_nalog", unique=true, nullable=false)
 	private int iddelovniNalog;
 
+	@Temporal(TemporalType.DATE)
+	@Column(name="datum_izdaje", nullable=false)
+	private Date datumIzdaje;
+	
 	//bi-directional many-to-one association to Bolezen
 	@ManyToOne
 	@JoinColumn(name="idbolezen", nullable=false)
@@ -50,9 +55,17 @@ public class DelovniNalog implements Serializable {
 	private VrstaObiska vrstaObiska;
 
 	//bi-directional many-to-one association to ZdravstveniDelavec
-	@ManyToOne
-	@JoinColumn(name="idzdravstveni_delavec", nullable=false)
-	private ZdravstveniDelavec zdravstveniDelavec;
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+			name="zdravstveni_delavec_has_delovni_nalog"
+			, joinColumns={
+				@JoinColumn(name="delovni_nalog_iddelovni_nalog", nullable=false)
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="zdravstveni_delavec_idzdravstveni_delavec", nullable=false)
+				}
+			)
+	private Set<ZdravstveniDelavec> zdravstveniDelavecs;
 
 	//bi-directional many-to-many association to Material
 	@ManyToMany(fetch=FetchType.EAGER)
@@ -68,7 +81,7 @@ public class DelovniNalog implements Serializable {
 	private Set<Material> materials;
 
 	//bi-directional many-to-one association to Obisk
-	@OneToMany(mappedBy="delovniNalog", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="delovniNalog", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<Obisk> obisks;
 
 	//bi-directional many-to-many association to Pacient
@@ -98,6 +111,8 @@ public class DelovniNalog implements Serializable {
 	private Set<Zdravilo> zdravilos;
 
 	public DelovniNalog() {
+		Date datum = new Date();
+		setDatumIzdaje(datum);
 	}
 
 	public int getIddelovniNalog() {
@@ -133,14 +148,13 @@ public class DelovniNalog implements Serializable {
 	}
 
 
-	/*public ZdravstveniDelavec getZdravstveniDelavec() {
-		return this.zdravstveniDelavec;
+	/*public Set<ZdravstveniDelavec> getZdravstveniDelavecs() {
+		return this.zdravstveniDelavecs;
 	}
 
 	*/
-	public void setZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
-
-		this.zdravstveniDelavec = zdravstveniDelavec;
+	public void setZdravstveniDelavecs(Set<ZdravstveniDelavec> zdravstveniDelavecs) {
+		this.zdravstveniDelavecs = zdravstveniDelavecs;
 	}
 
 	public Set<Material> getMaterials() {
@@ -181,13 +195,14 @@ public class DelovniNalog implements Serializable {
 		this.pacients = pacients;
 	}
 	//dodano za trackanje razmerij
+	/*
 	public void setPacient(Pacient pacient){
 		this.pacients.add(pacient);
 		if(!pacient.getDelovniNalogs().contains(this)){
 			pacient.getDelovniNalogs().add(this);
 		}
 	}
-	
+	*/
 	public Set<Zdravilo> getZdravilos() {
 		return this.zdravilos;
 	}
@@ -195,5 +210,12 @@ public class DelovniNalog implements Serializable {
 	public void setZdravilos(Set<Zdravilo> zdravilos) {
 		this.zdravilos = zdravilos;
 	}
+	
+	public Date getDatumIzdaje() {
+		return this.datumIzdaje;
+	}
 
+	public void setDatumIzdaje(Date datumIzdaje) {
+		this.datumIzdaje = datumIzdaje;
+	}
 }

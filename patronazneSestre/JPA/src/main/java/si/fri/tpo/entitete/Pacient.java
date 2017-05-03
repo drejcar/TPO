@@ -160,22 +160,23 @@ public class Pacient implements Serializable {
 	public void setUlica(String ulica) {
 		this.ulica = ulica;
 	}
-
+/*
 	public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
 	}
-
+*/
 	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;
 	}
 	//dodano za trackanje razmerij
+	/*
 	public void setDelovniNalog(DelovniNalog delovniNalog){
 		this.delovniNalogs.add(delovniNalog);
 		if(!delovniNalog.getPacients().contains(this)){
 			delovniNalog.getPacients().add(this);
 		}
 	}
-	
+	*/
 	public Kontakt getKontakt() {
 		return this.kontakt;
 	}

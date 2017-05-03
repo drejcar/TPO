@@ -1,6 +1,8 @@
 package si.fri.tpo.entitete;
 
 import java.io.Serializable;
+import java.time.LocalDate;
+
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 

@@ -36,8 +36,9 @@ public class ZdravstveniDelavecSB implements ZdravstveniDelavecSBRemote, Zdravst
      */
 	@Override
 	public ZdravstveniDelavec returnZdravstveniDelavec(int id) {
-		
-		return	(ZdravstveniDelavec) em.createNamedQuery("ZdravstveniDelavec.findOne").setParameter("id", id).getSingleResult(); 
+		ZdravstveniDelavec zd = (ZdravstveniDelavec) em.createNamedQuery("ZdravstveniDelavec.findOne").setParameter("id", id).getSingleResult();
+		zd.setDelovniNalogs(null);
+		return zd;
 	}
 	
 	/*
