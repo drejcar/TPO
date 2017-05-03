@@ -25,7 +25,8 @@ import java.util.Set;
 @NamedQueries({
 	@NamedQuery(name="DelovniNalog.findAll", query="SELECT d FROM DelovniNalog d"),
 	@NamedQuery(name="DelovniNalog.findOne",query="SELECT d FROM DelovniNalog d WHERE d.iddelovniNalog = :id"),
-	@NamedQuery(name="DelovniNalog.deleteOne",query="DELETE FROM DelovniNalog d WHERE d.iddelovniNalog = :id")
+	@NamedQuery(name="DelovniNalog.deleteOne",query="DELETE FROM DelovniNalog d WHERE d.iddelovniNalog = :id"),
+	@NamedQuery(name="DelovniNalog.findSpecific",query="SELECT d FROM DelovniNalog d")
 })
 public class DelovniNalog implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -38,6 +39,9 @@ public class DelovniNalog implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="datum_izdaje", nullable=false)
 	private Date datumIzdaje;
+	
+	@Column(name="steviloEpruvet", nullable=true)
+	private int steviloEpruvet;
 	
 	//bi-directional many-to-one association to Bolezen
 	@ManyToOne
@@ -217,5 +221,13 @@ public class DelovniNalog implements Serializable {
 
 	public void setDatumIzdaje(Date datumIzdaje) {
 		this.datumIzdaje = datumIzdaje;
+	}
+	
+	public int getSteviloEpruvet(){
+		return this.steviloEpruvet;
+	}
+	
+	public void setSteviloEpruvet(int steviloEpruvet){
+		this.steviloEpruvet = steviloEpruvet;
 	}
 }
