@@ -1,5 +1,7 @@
 package si.fri.tpo.v1.viri;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -10,6 +12,8 @@ import javax.ws.rs.*;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
+import org.joda.time.*;
+
 import com.sun.mail.iap.Response;
 
 import io.swagger.annotations.Api;
@@ -18,6 +22,7 @@ import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.Obisk;
 import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.DelovniNalogREST;
+
 
 @RequestScoped
 @Path("delovniNalog")
@@ -31,18 +36,78 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 	
 	@POST
 	@Path("")
+	@Consumes(MediaType.APPLICATION_JSON)
 	@ApiOperation(value = "Kreiranje delovnega naloga", notes = "Doda delovni nalog v bazo")
 	public void createDelovniNalog(DelovniNalog delovniNalog,
-									@QueryParam("fixniDatum") int fixniDatum,	//0 - da | 1 - ne
+									@QueryParam("fixniDatum") int fixenDatum,	//0 - da | 1 - ne
 									@QueryParam("obdobje") int obdobje,			//0 - en obisk | 1 - vec obiskov
-									@QueryParam("od") Date od,					//prvi obisk
-									@QueryParam("do") Date doo,					//zakjucek obdobja obiskov
+									@QueryParam("od") String ood,					//prvi obisk
+									@QueryParam("do") String doo,					//zakjucek obdobja obiskov
 									@QueryParam("interval") int interval,		//interval obiskov --> razmik med obiski
-									@QueryParam("stObiskov") int stObiskov)		//stevilo planiranih obiskov
+									@QueryParam("stObiskov") int stObiskov		//stevilo planiranih obiskov
+									)		
 	{
-	
-
 		
+		LocalDate od = LocalDate.parse(ood);
+		
+		if(obdobje == 0){
+			
+			Obisk o = new Obisk();
+			o.setDatumObiska(od.toDate());
+			o.setFixenDatum(fixenDatum);
+			delovniNalog.addObisk(o);
+		
+		}
+		else{
+			
+			if(interval == 0){
+				
+				//za obdobje
+				Obisk o = new Obisk();
+				o.setFixenDatum(fixenDatum);
+				o.setDatumObiska(od.toDate());
+				delovniNalog.addObisk(o);
+				
+				LocalDate firstDate= od;
+				LocalDate lastDate = LocalDate.parse(doo);
+				
+				int steviloDni = Days.daysBetween(firstDate, lastDate).getDays();
+				
+				int naDni = steviloDni/stObiskov;
+				
+				for(int i = 0; i < stObiskov-1; i++){
+					Obisk obisk = new Obisk();
+					firstDate = firstDate.plusDays(naDni);
+					if(firstDate.dayOfWeek().getAsShortText().equals("Sat")){
+						firstDate = firstDate.plusDays(2);
+					}
+					else if(firstDate.dayOfWeek().getAsShortText().equals("Sun")){
+						firstDate = firstDate.plusDays(1);
+					}
+					obisk.setDatumObiska(firstDate.toDate());
+					obisk.setFixenDatum(fixenDatum);
+					delovniNalog.addObisk(obisk);
+				}
+				
+			}
+			else{
+				//za interval
+				Obisk o = new Obisk();
+				o.setFixenDatum(fixenDatum);
+				LocalDate firstDate = new LocalDate(od);
+				int naDni = interval;
+				o.setDatumObiska(od.toDate());
+				delovniNalog.addObisk(o);
+				for(int i = 0; i < stObiskov-1; i++){
+					Obisk obisk = new Obisk();
+					firstDate = firstDate.plusDays(naDni);
+					obisk.setDatumObiska(firstDate.toDate());
+					obisk.setFixenDatum(fixenDatum);
+					delovniNalog.addObisk(obisk);
+				}
+			}
+		}
+	
 		
 		fasada.dodajDelovniNalog(delovniNalog);
 		

@@ -9,6 +9,7 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
+import java.util.Date;
 import java.util.Set;
 
 
@@ -24,7 +25,8 @@ import java.util.Set;
 @NamedQueries({
 	@NamedQuery(name="DelovniNalog.findAll", query="SELECT d FROM DelovniNalog d"),
 	@NamedQuery(name="DelovniNalog.findOne",query="SELECT d FROM DelovniNalog d WHERE d.iddelovniNalog = :id"),
-	@NamedQuery(name="DelovniNalog.deleteOne",query="DELETE FROM DelovniNalog d WHERE d.iddelovniNalog = :id")
+	@NamedQuery(name="DelovniNalog.deleteOne",query="DELETE FROM DelovniNalog d WHERE d.iddelovniNalog = :id"),
+	@NamedQuery(name="DelovniNalog.findSpecific",query="SELECT d FROM DelovniNalog d")
 })
 public class DelovniNalog implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -34,6 +36,13 @@ public class DelovniNalog implements Serializable {
 	@Column(name="iddelovni_nalog", unique=true, nullable=false)
 	private int iddelovniNalog;
 
+	@Temporal(TemporalType.DATE)
+	@Column(name="datum_izdaje", nullable=false)
+	private Date datumIzdaje;
+	
+	@Column(name="steviloEpruvet", nullable=true)
+	private int steviloEpruvet;
+	
 	//bi-directional many-to-one association to Bolezen
 	@ManyToOne
 	@JoinColumn(name="idbolezen", nullable=false)
@@ -50,9 +59,17 @@ public class DelovniNalog implements Serializable {
 	private VrstaObiska vrstaObiska;
 
 	//bi-directional many-to-one association to ZdravstveniDelavec
-	@ManyToOne
-	@JoinColumn(name="idzdravstveni_delavec", nullable=false)
-	private ZdravstveniDelavec zdravstveniDelavec;
+	@ManyToMany(fetch=FetchType.EAGER)
+	@JoinTable(
+			name="zdravstveni_delavec_has_delovni_nalog"
+			, joinColumns={
+				@JoinColumn(name="delovni_nalog_iddelovni_nalog", nullable=false)
+				}
+			, inverseJoinColumns={
+				@JoinColumn(name="zdravstveni_delavec_idzdravstveni_delavec", nullable=false)
+				}
+			)
+	private Set<ZdravstveniDelavec> zdravstveniDelavecs;
 
 	//bi-directional many-to-many association to Material
 	@ManyToMany(fetch=FetchType.EAGER)
@@ -68,7 +85,7 @@ public class DelovniNalog implements Serializable {
 	private Set<Material> materials;
 
 	//bi-directional many-to-one association to Obisk
-	@OneToMany(mappedBy="delovniNalog", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="delovniNalog", fetch=FetchType.EAGER, cascade=CascadeType.ALL)
 	private Set<Obisk> obisks;
 
 	//bi-directional many-to-many association to Pacient
@@ -98,6 +115,8 @@ public class DelovniNalog implements Serializable {
 	private Set<Zdravilo> zdravilos;
 
 	public DelovniNalog() {
+		Date datum = new Date();
+		setDatumIzdaje(datum);
 	}
 
 	public int getIddelovniNalog() {
@@ -133,14 +152,13 @@ public class DelovniNalog implements Serializable {
 	}
 
 
-	/*public ZdravstveniDelavec getZdravstveniDelavec() {
-		return this.zdravstveniDelavec;
+	/*public Set<ZdravstveniDelavec> getZdravstveniDelavecs() {
+		return this.zdravstveniDelavecs;
 	}
 
 	*/
-	public void setZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec) {
-
-		this.zdravstveniDelavec = zdravstveniDelavec;
+	public void setZdravstveniDelavecs(Set<ZdravstveniDelavec> zdravstveniDelavecs) {
+		this.zdravstveniDelavecs = zdravstveniDelavecs;
 	}
 
 	public Set<Material> getMaterials() {
@@ -196,5 +214,20 @@ public class DelovniNalog implements Serializable {
 	public void setZdravilos(Set<Zdravilo> zdravilos) {
 		this.zdravilos = zdravilos;
 	}
+	
+	public Date getDatumIzdaje() {
+		return this.datumIzdaje;
+	}
 
+	public void setDatumIzdaje(Date datumIzdaje) {
+		this.datumIzdaje = datumIzdaje;
+	}
+	
+	public int getSteviloEpruvet(){
+		return this.steviloEpruvet;
+	}
+	
+	public void setSteviloEpruvet(int steviloEpruvet){
+		this.steviloEpruvet = steviloEpruvet;
+	}
 }

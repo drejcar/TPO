@@ -1,0 +1,60 @@
+<h1 id="naslov"> Moji delovni nalogi </h1>
+
+
+<h3 id="labelnek">FILTRI</h3>
+<div id="filtri">
+	<form>
+		<div class="enObDrugem">
+			<label>Vrsta obiska:</label>
+			<select [(ngModel)]="izbraniObisk" class="form-control" name="PovrstaObiska">
+				<option *ngFor="let s of obiski" [ngValue]="s">{{s.name}}</option>
+			</select>
+		</div>
+		
+		<div class="enObDrugem">
+			<label>Izdajatelj:</label>
+			<select [(ngModel)]="izbraniIzdajatelj" class="form-control" name="Poizdajatelj">
+				<option *ngFor="let s of izdajatelji" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
+			</select>
+		</div>
+		
+		<div class="enObDrugem">
+			<label>Pacient:</label>
+			<select [(ngModel)]="izbraniPacient" class="form-control" name="poPacientu">
+				<option *ngFor="let s of pacienti" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
+				
+			</select>
+		</div>
+		
+		<div class="enObDrugem">
+			<label>Patronažna sestra:</label>
+			<select [(ngModel)]="izbranaSestra" class="form-control" name="PoSestri">
+				<option *ngFor="let s of sestre" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
+			</select>
+		</div>
+		<div class="levo">
+			<input type="button" (click)="submit()" id="gumb" name="poisciFiltre" value="Filtriraj">
+		</div>
+	</form>
+</div>
+<h3>Delovni Nalogi</h3>
+<div id="linija"></div>
+
+<div id="kvadratZaDelovneNaloge">
+	
+	<div id="parametri">
+		<label class="parametri">Številka delovnega naloga</label>
+		|
+		<label class="parametri">Izdajatelj</label>
+		|
+		<label class="parametri">Vrsta obiska</label>
+		|
+		<label class="parametri">Patronažna sestra</label>
+		|
+		<label class="parametri">Pacienti</label>
+		|
+		<label class="parametri">Datum izdaje</label>
+		|
+		<label class="parametri">Podrobno</label>
+	</div>
+</div>

@@ -42,7 +42,7 @@ public class ZdravstveniDelavec implements Serializable {
 	private String telefonskaStevilka;
 
 	//bi-directional many-to-one association to DelovniNalog
-	@OneToMany(mappedBy="zdravstveniDelavec",fetch=FetchType.EAGER)
+	@ManyToMany(mappedBy="zdravstveniDelavecs",fetch=FetchType.EAGER)
 	private Set<DelovniNalog> delovniNalogs;
 
 	//bi-directional many-to-one association to IzvajalecZdravstvenihStoritev

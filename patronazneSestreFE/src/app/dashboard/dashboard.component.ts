@@ -1,13 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'my-dashboard',
   templateUrl: './dashboard.component.html'
   //styleUrls: [ './dashboard.component.css' ]
 
 })
-export class DashboardComponent {
+export class DashboardComponent{
+	
   constructor(
     private router:Router){}
   gotoPrijava(): void {
@@ -16,6 +18,7 @@ export class DashboardComponent {
   gotoRegistracija(): void {
     this.router.navigate(['/registracija']);
   }
+  
 
   /*
   sestre: Sestra[] = [];

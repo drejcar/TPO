@@ -23,7 +23,7 @@ export class SpremembaGeslaComponent{
 
   pwd:String='';
   pwd2:String='';
-  model : Object = ({pwd: this.pwd, pwd2: this.pwd2});
+  model = ({'pwd': this.pwd, 'pwd2': this.pwd2});
   submitted=false;
   fail= false;
   onSubmit(){
@@ -37,8 +37,7 @@ export class SpremembaGeslaComponent{
 	let upr = <Upr>({
 		iduporabnik: Number(localStorage.getItem('iduporabnik')),
 		email: localStorage.getItem('email'),
-		//geslo: this.model.pwd,
-		geslo: "jebemtimater",
+		geslo: this.model.pwd,
 		vloga: vlog,
 		zadnjaPrijava: localStorage.getItem('datumZadnjePrijave'),
 	});
