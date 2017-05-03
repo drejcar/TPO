@@ -166,7 +166,7 @@
 			<select [(ngModel)]="izbraniMaterial" name="krneki1" >
 				<option *ngFor="let m of materiali" [ngValue]="m"> {{m.opis}} </option>
 			</select>
-			
+			<input type="text"  [(ngModel)]="stEpruvet" id="steviloEpruvet" name="krneki7">
 			<input type="button" (click)="dodajMaterial()" name="dodajMaterial" value="Dodaj material">
 
 			
