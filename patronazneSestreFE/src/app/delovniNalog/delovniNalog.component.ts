@@ -9,7 +9,9 @@ class delovniNalog {
 	vrstaObiska : Storitev;
 	bolezen : Bolezen;
 	materials : Array<Material>;
-	zdravilos : Array<Zdravilo>;		
+	steviloEpruvet : number;
+	zdravilos : Array<Zdravilo>;
+    obisks : Array<any>;	
 }
 
 class IzvajalecZdravstvenihStoritev {
@@ -117,7 +119,8 @@ export class DelovniNalogComponent implements OnInit{
 	email1 : string = "";
 	
 	zdravilos: any[] =  [];
-	materials: any[] = [];	
+	materials: any[] = [];
+	stEpruvet = 0;
 
 	ngOnInit() {	
 	
@@ -287,7 +290,9 @@ export class DelovniNalogComponent implements OnInit{
 		//dn.materials = [material];
 		//dn.zdravilos = [zdravilo];
 		dn.materials =  this.materials;
+		dn.steviloEpruvet = this.stEpruvet;		
 		dn.zdravilos = this.zdravilos;
+		dn.obisks = [];
 		
 		
 		/* veljavnost naloga */
