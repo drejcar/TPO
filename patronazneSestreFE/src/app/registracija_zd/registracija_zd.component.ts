@@ -116,7 +116,7 @@ export class Registracija_zdComponent implements OnInit {
 	  
   }
   onChangePostnaStevilka(sprememba: String){
-	  console.log(sprememba);
+	  
 	  var devided = sprememba.split(' ');
 	 this.zdravstveniDelavecService.getOkolisByPosta(Number(devided[0])).subscribe(data => {this.okoliss = data;
 	 let i = 0;

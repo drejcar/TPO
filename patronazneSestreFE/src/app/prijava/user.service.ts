@@ -8,6 +8,7 @@ import { Observable } from 'rxjs/Rx';
 import { Upr } from "./upr"
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch'
+import { Router } from '@angular/router';
 
 @Injectable()
 export class UserService {
@@ -16,13 +17,13 @@ export class UserService {
   private loggedIn = false;
   private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
   upr: Upr;
-  constructor(private http: Http) {
-    this.loggedIn = !!localStorage.getItem('username');
+  constructor(private http: Http, private router:Router) {
+    this.loggedIn = !!localStorage.getItem('email');
 
   }
 
   login(prijava:Prijava): Observable<Upr> {
-		console.log(prijava);
+		
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(prijava.mail+':'+prijava.pwd)});
 		this.loggedIn = true;
 		return this.http.get(`${this.baseUrl}/uporabnik/login/${prijava.mail}`, {headers: headers}).map((res) => {return this.mapUporabnik(res)});
@@ -64,11 +65,10 @@ export class UserService {
  }
   logout() {
 
-	localStorage.setItem('username','');
+	localStorage.setItem('email','');
 	localStorage.setItem('password','');
 	localStorage.setItem('vloga','guest');
     this.loggedIn = false;
-	//this.router.navigate(['/dashboard']);
   }
   isLoggedIn() {
     return this.loggedIn;

@@ -45,18 +45,10 @@ export class PrijavaComponent implements OnInit{
 			localStorage.setItem('iduporabnik', this.person.iduporabnik.toString());
 			localStorage.setItem('idvloga',this.person.vloga.idvloga.toString());
 			
-			console.log(localStorage['email']);
-			console.log(localStorage['password']);
-			console.log(localStorage['vloga']);
-			console.log(localStorage['datumZadnjePrijave']);
-			console.log("iduporabnik: "+localStorage['iduporabnik']);
-			
 			this.router.navigate(['/'+this.person.vloga.opis]);
 	},
 	err => {this.aliJeNapaka = true;
-<<<<<<< HEAD
-	
-=======
+
 			if(localStorage.getItem('attempts') === null){
 				localStorage.setItem('attempts','1');
 			}else{
@@ -70,20 +62,22 @@ export class PrijavaComponent implements OnInit{
 					var d = new Date();
 					var hours = d.getHours();
 					var minutes = d.getMinutes();
+					
 					if(Number(minutes) < 10){
 						var noveminutes = '0'+minutes.toString();
-						
+						minutes = Number(noveminutes);
 					}
 					
-					minutes = Number(noveminutes);
+					
 					var cajt = hours.toString()+minutes.toString();
+					
 					localStorage.setItem('neSme',cajt.toString());
 					
 					
 					localStorage.removeItem('attempts');
 				}
 			}
->>>>>>> 6c00b7376109da5d04251e89fd00544d72a0933b
+
 	});
 	
 	
@@ -104,13 +98,14 @@ export class PrijavaComponent implements OnInit{
 		   var hours = d.getHours();
 		   var minutes = d.getMinutes();
 		   var cas = localStorage.getItem('neSme');
+		   	
 		   
 		   
 		   if(Number(minutes) < 10){
 			   var noveminutes = '0'+minutes.toString();
-			   
+				minutes = Number(noveminutes)
 			}
-			minutes = Number(noveminutes)
+			
 			var trenutniCas = hours.toString()+minutes.toString();
 			
 			

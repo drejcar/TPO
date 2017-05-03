@@ -28,7 +28,21 @@ nav {
 }
 
 
-
+#userProf{
+	
+	position: absolute;
+	bottom: 38px;
+	right:0px;
+	color: black;
+	margin: 5px 10px;
+}
+#zadnjaPrijava{
+	position: absolute;
+	bottom: 25px;
+	right: 0px;
+	color: black;
+	margin: 5px 10px;
+}
 footer {
 	bottom: 0px;
 	position: relative;

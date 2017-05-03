@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AppComponent } from '../../app.component';
 
 @Component({
   selector:'zdravnik-dash',
@@ -6,8 +7,12 @@ import { Component } from '@angular/core';
               `,
   styleUrls:[]
 })
-export class ZdravnikDashComponent{
-	constructor(){}
+export class ZdravnikDashComponent implements OnInit{
+	constructor(private appcmp: AppComponent){}
 	neki: String = localStorage.getItem('datumZadnjePrijave')
 	
+	ngOnInit(){
+	  this.appcmp.change();
+	  
+  }
 }
