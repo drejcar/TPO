@@ -34,9 +34,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 })
 export class AppComponent implements OnInit {
   private loggedIn = false;
-  mojiDelovniNalog: boolean = true;
+  mojiDelovniNalog: boolean = false;
   admin: boolean = false;
-  dovoljenjeKreirat: boolean = true;
+  dovoljenjeKreirat: boolean = false;
   aliJeLoginan: boolean = false;
   constructor(private http:Http ,private usr:UserService){
     
@@ -65,7 +65,7 @@ export class AppComponent implements OnInit {
 			this.aliJeLoginan = true;
 		}else{
 			this.admin = false;
-			//this.dovoljenjeKreirat = false;
+			this.dovoljenjeKreirat = false;
 			this.opis = '';
 			this.opis2 = '';
 			this.prjava = 'Prijava';
@@ -74,11 +74,11 @@ export class AppComponent implements OnInit {
 		}
 		//kaj se prikaze glede na vlogo
 		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
-			//this.mojiDelovniNalog = true;
+			this.mojiDelovniNalog = true;
 		}if(this.vloga == 'Administrator'){
 			this.admin = true;
 		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
-			//this.dovoljenjeKreirat = true;
+			this.dovoljenjeKreirat = true;
 		}
 		
 	  }
@@ -97,22 +97,22 @@ export class AppComponent implements OnInit {
 			this.prjava2 = 'odjava';
 			this.aliJeLoginan = true;
 		}else{
-			//this.dovoljenjeKreirat = false;
+			this.dovoljenjeKreirat = false;
 			this.opis = '';
 			this.opis2 = '';
 			this.prjava = 'Prijava';
 			this.prjava2 = 'prijava';
-			//this.mojiDelovniNalog = false;
+			this.mojiDelovniNalog = false;
 			this.admin = false;
 			this.aliJeLoginan = false;
 		}
 		//kaj se prikaze glede na vlogo
 		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
-			//this.mojiDelovniNalog = true;
+			this.mojiDelovniNalog = true;
 		}if(this.vloga == 'Administrator'){
 			this.admin = true;
 		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
-			//this.dovoljenjeKreirat = true;
+			this.dovoljenjeKreirat = true;
 		}
 	  }
   }

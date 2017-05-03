@@ -28,7 +28,7 @@ export class SpremembaGeslaComponent{
   fail= false;
   onSubmit(){
 	  this.fail = false;
-	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@admin:admin')});
+	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
 	var baseUrl: String = 'http://localhost:8080/patronazneSestre/v1/uporabnik';
     let vlog = <Vlog>({
 		idvloga: Number(localStorage.getItem('idvloga')),
