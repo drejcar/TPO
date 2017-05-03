@@ -782,6 +782,19 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		uporabnik.updateUporabnika(u);
 	}
 
+	@Override
+	public List<DelovniNalog> vrniDelovneNalogeZdrDel(int id, Date ood, Date doo, int start, int size) {
+		
+		return delovniNalog.vrniDelovneNalogeZdrDel(id,ood,doo,start,size);
+		
+	}
+
+	@Override
+	public List<DelovniNalog> vrniDelovneNalogeZdrDelAll(int id, int start, int size) {
+		// TODO Auto-generated method stub
+		return delovniNalog.vrniDelovneNalogeZdrDelAll(id,start,size);
+	}
+
 	
 
 	

@@ -67,11 +67,11 @@ public class Obisk implements Serializable {
 	public void setFixenDatum(int fixenDatum) {
 		this.fixenDatum = fixenDatum;
 	}
-
+/*
 	public DelovniNalog getDelovniNalog() {
 		return this.delovniNalog;
 	}
-
+*/
 	public void setDelovniNalog(DelovniNalog delovniNalog) {
 		this.delovniNalog = delovniNalog;
 	}

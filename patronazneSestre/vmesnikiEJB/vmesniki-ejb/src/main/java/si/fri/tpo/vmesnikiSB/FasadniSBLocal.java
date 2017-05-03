@@ -1,5 +1,6 @@
 package si.fri.tpo.vmesnikiSB;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -130,4 +131,6 @@ public interface FasadniSBLocal {
 		void odstraniZrno();
 		public List<Okolis> returnOkolissByPosta(int id);
 		public void posodobiZadnjoPrijavo(int id);
+		public List<DelovniNalog> vrniDelovneNalogeZdrDel(int id, Date ood, Date doo, int start, int size);
+		public List<DelovniNalog> vrniDelovneNalogeZdrDelAll(int id, int start, int size);
 }

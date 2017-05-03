@@ -1,5 +1,6 @@
 package si.fri.tpo.zrna;
 
+import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -96,4 +97,21 @@ public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal
 		return em.createNamedQuery("DelovniNalog.findAll").getResultList();
 	}
 
+	@SuppressWarnings("unchecked")
+	public List<DelovniNalog> vrniDelovneNalogeZdrDel(int id, Date ood, Date doo, int start, int size){
+		List<DelovniNalog> list =  em.createNamedQuery("DelovniNalog.findSpecific").setParameter("id", id)
+																.setParameter("startDate", ood)
+																.setParameter("endDate", doo).getResultList();
+		
+		return list.subList(start, start+size);
+		
+	}
+
+	@Override
+	public List<DelovniNalog> vrniDelovneNalogeZdrDelAll(int id, int start, int size) {
+		@SuppressWarnings("unchecked")
+		List<DelovniNalog> list =  em.createNamedQuery("DelovniNalog.findSpecificAll").setParameter("id", id).getResultList();
+
+		return list.subList(start, start+size);
+	}
 }
