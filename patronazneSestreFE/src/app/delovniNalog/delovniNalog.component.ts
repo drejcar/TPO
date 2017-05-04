@@ -84,6 +84,9 @@ export class DelovniNalogComponent implements OnInit{
 	data1 : any;
 	data2 : any;
 	data3 : any;
+	stObiskov : number = 0;
+	
+	
 	
 	sifraUporabnika: string = "";
 	urlParametri: string = "";
@@ -232,9 +235,7 @@ export class DelovniNalogComponent implements OnInit{
 			this.idPacient = test.idpacient;		
 			this.idOkolisa = test.okolis.idokolis;
 			
-			console.log("id okolisa: " + this.idOkolisa);
-			
-			
+			console.log("id okolisa: " + this.idOkolisa);			
 			
 		},
 		(err) => {console.log(err);});	
@@ -296,11 +297,15 @@ export class DelovniNalogComponent implements OnInit{
 		this.preveriDatum();		
 	
 	}
+	
+	
 		
 	preveriDatum():void {
 	
-		
+		console.log("preberi datum");
 	
+			
+		
 	
 		var date = new Date();
 		
@@ -352,10 +357,12 @@ export class DelovniNalogComponent implements OnInit{
 			else this.dateIsValid = 0;		
 		
 		}	
+		
+		if(this.veljavnostNalogaSteviloObiskov < 1 || this.veljavnostNalogaSteviloObiskov > 9) this.dateIsValid = 0;
 			
 	}
 	
-	posljiDelovniNalog() {
+	posljiDelovniNalog() {		
 	
 		
 			

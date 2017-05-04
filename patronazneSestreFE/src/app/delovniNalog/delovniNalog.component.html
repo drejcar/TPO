@@ -25,7 +25,7 @@
 		<div id="zavarovanaOseba">
 			<h3>3 - ZAVAROVANA OSEBA</h3>
 			<label>Številka zavarovane osebe</label>
-			<input type="text"  [(ngModel)]="post" id="stevilkaZavarovaneOsebe"  name="krneki5" >
+			<input type="text"  [(ngModel)]="post" id="stevilkaZavarovaneOsebe"  name="krneki5333" >
 						
 			<label>Priimek</label>
 			<input type="text" id="priimek" placeholder="{{ priimek }}" required>
@@ -55,16 +55,13 @@
              pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" >			 
 			 
 			 <input type="button" (click)="pridobiPodatkePacienta()" name="pridobiPodatke" value="pridobi podatke"> 
-			 
-					 
-		</div>
-		
-		
+			 					 
+		</div>		
 		
 		<div id="zavarovanaOseba" *ngIf="izbranaStoritev.id == 20 || izbranaStoritev.id == 30 ">
 			<h3>3a - ZAVAROVANA OSEBA</h3>
 			<label>Številka zavarovane osebe</label>
-			<input type="text"  [(ngModel)]="post1" id="stevilkaZavarovaneOsebe"  name="krneki5" >
+			<input type="text"  [(ngModel)]="post1" id="stevilkaZavarovaneOsebe"  name="krneki578" >
 						
 			<label>Priimek</label>
 			<input type="text" id="priimek" placeholder="{{ priimek1 }}" required>
@@ -144,7 +141,7 @@
 				
 				<div class="enObDrugem" *ngIf="veljavnostNalogaVrsta > 0">
 					<label>stevilo obiskov</label>
-					<input type="text" [(ngModel)]="veljavnostNalogaSteviloObiskov" id="stevilkaIzvajalca" name="krneki8">	
+					<input type="text" [(ngModel)]="veljavnostNalogaSteviloObiskov" (change)="preveriDatum()" id="stevilkaIzvajalca" name="krneki8" >	
 				</div>
 				
 				<div class="levo">
