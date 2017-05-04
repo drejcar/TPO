@@ -62,6 +62,9 @@ export class DelovniNalogComponent implements OnInit{
 	bolezni: any[] = [];
 	izbranaBolezen : any;
 	
+	sestre: any[] = [];
+	izbranaSestra : any;
+	
 	zdravila: any[] = [];
 	izbranoZdravilo : any;	
 		
@@ -80,6 +83,7 @@ export class DelovniNalogComponent implements OnInit{
 	data : any;	
 	data1 : any;
 	data2 : any;
+	data3 : any;
 	
 	sifraUporabnika: string = "";
 	urlParametri: string = "";
@@ -104,7 +108,7 @@ export class DelovniNalogComponent implements OnInit{
 	telefonskaStevilka : string = "";
 	email : string = "";
 	idPacient : number = -1;
-	idokolisa : number = -1;
+	idOkolisa : number = -1;
 	
 	stevilkaZdravstvenegaZavarovanja1 : string = "";
 	priimek1 : string = "";
@@ -167,7 +171,7 @@ export class DelovniNalogComponent implements OnInit{
 						
 		});
 		
-		this.http.get(`${this.restUrl}/sifranti/bolezen`, {headers: headers3}).subscribe(data1 => { 
+		this.http.get(`${this.restUrl}/sifranti/zdravilo`, {headers: headers3}).subscribe(data1 => { 
 					
 			this.data1 = data1.json();				
 			var drek1 : string = JSON.stringify(this.data1);			
@@ -177,6 +181,34 @@ export class DelovniNalogComponent implements OnInit{
 						
 		});
 						
+	}
+	
+	pridobiSestre(): void {
+	
+		console.log("izbrano zdravilo: " + this.izbranoZdravilo.opis)
+	
+		console.log("Pridobivam sestro za okolis: " + this.idOkolisa);
+		
+		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});		
+			
+		this.http.get(`${this.restUrl}/zdravstveniDelavec/byOkolis/${this.idOkolisa}`, {headers: headers}).subscribe(data3 => { 		
+			
+			this.data3 = data3.json()
+			var drek : string = JSON.stringify(this.data3);						
+			var test = JSON.parse(drek);
+			
+			this.sestre = test;
+			this.izbranaSestra = this.sestre[0];			
+			this.idSestre = this.izbranaSestra.idzdravstveniDelavec;
+			console.log("sestra " + this.izbranaSestra.ime + ", njen id:  " + this.idSestre);
+			
+			
+			
+		},
+		(err) => {console.log(err);});	
+	
+	
+	
 	}
 		 
 	pridobiPodatkePacienta(): void {	
@@ -202,10 +234,11 @@ export class DelovniNalogComponent implements OnInit{
 			
 			console.log("id okolisa: " + this.idOkolisa);
 			
+			
+			
 		},
 		(err) => {console.log(err);});	
 
-		
 	
 	}	
 	
@@ -265,8 +298,37 @@ export class DelovniNalogComponent implements OnInit{
 	}
 		
 	preveriDatum():void {
-
-		if(this.veljavnostNalogaVrsta == -1 || this.veljavnostNalogaOd == "") {
+	
+		
+	
+	
+		var date = new Date();
+		
+		var mesec = (date.getMonth()+1);
+		var dan = date.getDate();
+		
+		var mesec1 : string = "";
+		var dan1 : string = "";
+		
+		if(mesec < 10) mesec1 = '0'+mesec;
+		if(dan < 10) dan1 = '0'+dan;
+		
+		var datum=date.getFullYear()+'-' + mesec1 + '-'+dan1;
+		
+		
+		console.log("trenutni datum: " + datum);
+		console.log("od datum: " + this.veljavnostNalogaOd);
+		console.log("do datum: " + this.veljavnostNalogaDo);
+		
+		
+		if(this.veljavnostNalogaOd < datum) {
+			
+			console.log("ne mors u preteklost bree");
+			this.dateIsValid = 0;
+		
+		}
+		
+		else if(this.veljavnostNalogaVrsta == -1 || this.veljavnostNalogaOd == "") {
 			
 			this.dateIsValid = 0;
 		
@@ -294,6 +356,8 @@ export class DelovniNalogComponent implements OnInit{
 	}
 	
 	posljiDelovniNalog() {
+	
+		
 			
 		var fiksniDatum = 0;		
 		if(this.veljavnostNalogaFiksniDatum) fiksniDatum = 1;
@@ -331,11 +395,11 @@ export class DelovniNalogComponent implements OnInit{
 		//fakin medicinska sestra fakin robi
 		var sestra = new ZdravstveniDelavec();
 		sestra.idzdravstveniDelavec = this.idSestre;
-
+				
 		
 		var dn = new delovniNalog();
 		dn.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
-		dn.zdravstveniDelavecs = [zdravstveniDelavec];
+		dn.zdravstveniDelavecs = [zdravstveniDelavec, sestra];
 		
 		//ne smeta biti 2 enaka objekta
 		//if(this.izbranaStoritev.id == 20 || this.izbranaStoritev.id == 30) {
@@ -361,6 +425,9 @@ export class DelovniNalogComponent implements OnInit{
 		
 		this.preveriDatum();
 		
+
+				console.log("sestra " + this.izbranaSestra.ime + ", njen id:  " + this.idSestre);
+
 				
 	}
 	
