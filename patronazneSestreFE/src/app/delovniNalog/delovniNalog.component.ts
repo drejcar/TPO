@@ -55,18 +55,15 @@ export class DelovniNalogComponent implements OnInit{
 	post: string = "";
 	post1: string = "";
 	
-	zdravila = [{'name': 'injekcija', 'id': 1}, {'name': 'injekcija1', 'id': 2}];
-	izbranoZdravilo = this.zdravila[0];
 	
-	//materiali = [{'name': 'Epruveta rdeča', 'id': 1}, {'name': 'Epruveta modra', 'id': 2}, {'name': 'Epruveta rumena', 'id': 3}, {'name': 'Epruveta zelena', 'id': 4}];
-    	
 	materiali: any[] = [];
 	izbraniMaterial : any;
 	
 	bolezni: any[] = [];
 	izbranaBolezen : any;
 	
-	//bolezni = [{'name': 'Viroza', 'id': 1}, {'name': 'Angina', 'id': 2}, {'name': 'Pljučnica', 'id': 2}];
+	zdravila: any[] = []:
+	izbranoZdravilo : any;	
 		
 	storitve = [{'name': 'Obisk nosečnice', 'id': 10}, {'name': 'Obisk otročnice', 'id': 20}, {'name': 'Obisk novorojenčka', 'id': 30}, {'name': 'Preventiva starostnika', 'id': 40},
 	{'name': 'Aplikacija injekcije', 'id': 50}, {'name': 'Odvzem krvi', 'id': 60}, {'name': 'Kontrola zdravstvenega stanja', 'id': 70}];
@@ -75,7 +72,7 @@ export class DelovniNalogComponent implements OnInit{
 	
 	veljavnostNalogaOd: string = "";
 	veljavnostNalogaDo: string = "";
-	veljavnostNalogaVrsta: number = 0;
+	veljavnostNalogaVrsta: number = -1;
 	veljavnostNalogaFiksniDatum: boolean = false;
 	veljavnostNalogaInterval: number = 0;
 	veljavnostNalogaSteviloObiskov: number = 1;
@@ -121,16 +118,17 @@ export class DelovniNalogComponent implements OnInit{
 	zdravilos: any[] =  [];
 	materials: any[] = [];
 	stEpruvet = 0;
+	dateIsValid = 0;
 
 	ngOnInit() {	
 	
-		//ce ni zdravnik lahko opravlja samo preventivne obiske			
+		// ce ni zdravnik lahko opravlja samo preventivne obiske			
 		if(localStorage['vloga'] != "Zdravnik") {
 			this.storitve = [{'name': 'Obisk nosečnice', 'id': 10}, {'name': 'Obisk otročnice', 'id': 20}, {'name': 'Obisk novorojenčka', 'id': 30}, {'name': 'Preventiva starostnika', 'id': 40}];
 			this.izbranaStoritev = this.storitve[0];
 		}
 			
-		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
+		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
 	
 		this.http.get(`${this.restUrl}/zdravstveniDelavec/${localStorage['iduporabnik']}`, {headers: headers3}).subscribe(data1 => { 
 					
@@ -166,12 +164,22 @@ export class DelovniNalogComponent implements OnInit{
 			this.izbranaBolezen = this.bolezni[0];
 						
 		});
+		
+		this.http.get(`${this.restUrl}/sifranti/bolezen`, {headers: headers3}).subscribe(data1 => { 
+					
+			this.data1 = data1.json();				
+			var drek1 : string = JSON.stringify(this.data1);			
+			var test1 = JSON.parse(drek1);	
+			this.zdravila = test1;
+			this.izbranoZdravilo = this.zdravila[0];
+						
+		});
 						
 	}
 		 
 	pridobiPodatkePacienta(): void {	
 	
-		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});		
+		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});		
 			
 		this.http.get(`${this.restUrl}/pacient/zz/${this.post}`, {headers: headers}).subscribe(data => { 		
 			
@@ -196,7 +204,7 @@ export class DelovniNalogComponent implements OnInit{
 	
 	pridobiPodatkePacienta1(): void {	
 	
-		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});		
+		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});		
 			
 		this.http.get(`${this.restUrl}/pacient/zz/${this.post1}`, {headers: headers}).subscribe(data2 => { 		
 			
@@ -240,6 +248,35 @@ export class DelovniNalogComponent implements OnInit{
 	
 	}
 	
+	
+	
+		
+	preveriDatum():void {
+
+		if(this.veljavnostNalogaVrsta == -1) {
+			
+			this.dateIsValid = 0;
+		
+		}		
+	
+		else if(this.veljavnostNalogaVrsta != 1 ) {
+			
+			this.dateIsValid = 1;		
+		
+		}
+		
+		else {
+		
+			if(this.veljavnostNalogaOd < this.veljavnostNalogaDo) this.dateIsValid = 1;
+			else this.dateIsValid = 0;		
+		
+		}	
+		
+		console.log(this.veljavnostNalogaOd + " " + this.veljavnostNalogaDo + " " + this.veljavnostNalogaVrsta);
+		console.log("date is valid: " + this.dateIsValid);	
+	
+	}
+	
 	posljiDelovniNalog() {
 			
 		var fiksniDatum = 0;		
@@ -247,9 +284,9 @@ export class DelovniNalogComponent implements OnInit{
 					
 		this.urlParametri = `?fiksniDatum=${fiksniDatum}&stObiskov=${this.veljavnostNalogaSteviloObiskov}&obdobje=${this.veljavnostNalogaVrsta}&interval=${this.veljavnostNalogaInterval}&od=${this.veljavnostNalogaOd}&do=${this.veljavnostNalogaDo}`
 		
-		//console.log(this.urlParametri);
+		console.log(this.urlParametri);
 	
-		var headers1 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail.com:admin')});
+		var headers1 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
 	
 		var pacient = new Pacient();
 		pacient.idpacient = this.idPacient;
@@ -279,39 +316,34 @@ export class DelovniNalogComponent implements OnInit{
 		dn.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
 		dn.zdravstveniDelavec = zdravstveniDelavec;
 		
-		//nekaj ga zjebe ce sta 2 objekta.
+		//ne smeta biti 2 enaka objekta
 		//if(this.izbranaStoritev.id == 20 || this.izbranaStoritev.id == 30) {
 		//	dn.pacients = [pacient, pacient];
 		//} else 
 			dn.pacients = [pacient];
 		
 		dn.vrstaObiska = storitev;
-		dn.bolezen = bolezen;
-		//dn.materials = [material];
-		//dn.zdravilos = [zdravilo];
+		dn.bolezen = bolezen;		
 		dn.materials =  this.materials;
 		dn.steviloEpruvet = this.stEpruvet;		
 		dn.zdravilos = this.zdravilos;
 		dn.obisks = [];
 		
 		
-		/* veljavnost naloga */
-		// v spremenljivkah, pošiljamo v urlju		
-		
-		
+			
 
 		
 		
 		var p4 = JSON.stringify(dn);
-		//console.log(dn);		
 		console.log(p4);
 		
-		//console.log("pacient ali pacienta: " + dn.pacients)
 
 		this.http.post(`${this.restUrl}/delovniNalog`,JSON.stringify(dn), {headers: headers1}).subscribe(
 			res => {console.log(res);}, 
 			(err) => {console.log(err);}
 		);
+		
+		this.preveriDatum();
 		
 				
 	}
@@ -319,6 +351,7 @@ export class DelovniNalogComponent implements OnInit{
 }
 
 		/*
+					******* URL PARAMETRI IZ BACKENDA *****
 			@QueryParam("fixniDatum") int fixniDatum,	//0 - da | 1 - ne
 									@QueryParam("obdobje") int obdobje,			//0 - en obisk | 1 - vec obiskov
 									@QueryParam("od") Date od,					//prvi obisk
@@ -328,5 +361,13 @@ export class DelovniNalogComponent implements OnInit{
 			
 		*/
 		
+		/*
+					*****	HARDCODED STUFF BACKUP ******
+		
+			//zdravila = [{'name': 'injekcija', 'id': 1}, {'name': 'injekcija1', 'id': 2}];	
+			//materiali = [{'name': 'Epruveta rdeča', 'id': 1}, {'name': 'Epruveta modra', 'id': 2}, {'name': 'Epruveta rumena', 'id': 3}, {'name': 'Epruveta zelena', 'id': 4}];
+			//bolezni = [{'name': 'Viroza', 'id': 1}, {'name': 'Angina', 'id': 2}, {'name': 'Pljučnica', 'id': 2}];
+
+		*/
 		
 		

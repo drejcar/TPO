@@ -100,9 +100,9 @@
 		
 		<div id="veljavnostNaloga">
 			<h3>4 - VELJAVNOST NALOGA</h3>
-			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta"  name="veljavnostNalogaVrsta" value="0">Enkratno<br>
-			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta"  name="veljavnostNalogaVrsta" value="1">Za obdobje<br>
-			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta"  name="veljavnostNalogaVrsta" value="2">Interval<br>
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta" (change)="preveriDatum()" name="veljavnostNalogaVrsta" value="0">Enkratno<br>
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta" (change)="preveriDatum()" name="veljavnostNalogaVrsta" value="1">Za obdobje<br>
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta" (change)="preveriDatum()" name="veljavnostNalogaVrsta" value="2">Interval<br>
 					
 			 <div class="form-group">
 				
@@ -110,7 +110,7 @@
 				<div class="enObDrugem">
 					<label>od</label>
 					<input type="date"  id="veljavnostNalogaOd" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" 
-					[(ngModel)]="veljavnostNalogaOd" name="datumRojstva1">	
+					[(ngModel)]="veljavnostNalogaOd"  (change)="preveriDatum()" name="datumRojstva1" required="required">	
 				</div>
 
 					
@@ -118,7 +118,7 @@
 				<div class="enObDrugem" *ngIf="veljavnostNalogaVrsta == 1">
 					<label>do</label>
 					<input type="date" id="veljavnostNalogaDo" placeholder="01-01-1900" min="1900-01-01" max="2017-04-14" 
-					[(ngModel)]="veljavnostNalogaDo" name="datumRojstva1">	
+					[(ngModel)]="veljavnostNalogaDo" (change)="preveriDatum()" name="datumRojstva1">	
 				</div>
 				
 				<div class="enObDrugem" *ngIf="veljavnostNalogaVrsta == 2">
@@ -127,7 +127,7 @@
 				</div>
 
 				
-				<div class="enObDrugem" *ngIf="veljavnostNalogaVrsta != 0">
+				<div class="enObDrugem" *ngIf="veljavnostNalogaVrsta > 0">
 					<label>stevilo obiskov</label>
 					<input type="text" [(ngModel)]="veljavnostNalogaSteviloObiskov" id="stevilkaIzvajalca" name="krneki8">	
 				</div>
@@ -184,7 +184,7 @@
 		
 		
 		
-		<input type="button" (click)="posljiDelovniNalog()" name="posljiDelovniNalog" value="posljiDelovniNalog">
+		<input type="button" (click)="posljiDelovniNalog()" [disabled]="dateIsValid < 1"  name="posljiDelovniNalog" value="posljiDelovniNalog" class="btn btn-success">
 	
 		
 	</form>
