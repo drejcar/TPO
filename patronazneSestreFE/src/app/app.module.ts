@@ -13,6 +13,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
 import { EqualValidator } from './equal-validator.directive';
 
+import {izpisDNService} from './izpisDelovnihNalogov/izpisDN.service';
 import {UporabnikService} from "./registracija/uporabnik.service";
 import { zdravstveniDelavecService } from "./registracija_zd/zdravstveniDelavec.service";
 import {UserService} from "./prijava/user.service";
@@ -48,7 +49,7 @@ import { IzpisDNGuard } from './_guard/izpisDN.guard';
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,GuestGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,
-				  DelovniNalogGuard,IzpisDNGuard,
+				  DelovniNalogGuard,IzpisDNGuard,izpisDNService
                 ],
   bootstrap:    [ AppComponent ]
 })

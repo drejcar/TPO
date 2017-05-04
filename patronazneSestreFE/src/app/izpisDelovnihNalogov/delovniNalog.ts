@@ -10,6 +10,7 @@ export class delovniNalog {
 
 export class IzvajalecZdravstvenihStoritev {
 	idizvajalecZdravstvenihStoritev : number;
+	naziv: String;
 }
 
 export class ZdravstveniDelavec {

@@ -42,7 +42,27 @@
 
 <div id="kvadratZaDelovneNaloge">
 	
-	<div id="parametri">
+	<table>
+		<tr>
+			<th>Številka delovnega naloga</th>
+			<th>Izdajatelj</th>
+			<th>Vrsta obiska</th>
+			<th>Patronažna sestra</th>
+			<th>Pacienti</th>
+			<th>Datum izdaje</th>
+			<th>Podrobno</th>
+		</tr>
+		<tr *ngFor="let s of delovniNalogi">
+			<td>{{s.idDelovnegaNaloga}}</td>
+			<td>{{s.izdajatelj}}</td>
+			<td>{{s.vrstaObiska}}</td>
+			<td>{{s.patronaznaSestra}}</td>
+			<td>{{s.pacienti}}</td>
+			<td>{{s.datumIzdaje}}</td>
+			<td>Podrobno</td>
+		</tr>
+	</table>
+	<!--<div id="parametri">
 		<label class="parametri">Številka delovnega naloga</label>
 		|
 		<label class="parametri">Izdajatelj</label>
@@ -57,4 +77,19 @@
 		|
 		<label class="parametri">Podrobno</label>
 	</div>
+	<div id="parametri" *ngFor="let s of delovniNalogi">
+		<label class="parametri">{{s.idDelovnegaNaloga}}</label>
+		|
+		<label class="parametri">{{s.izdajatelj}}</label>
+		|
+		<label class="parametri">{{s.vrstaObiska}}</label>
+		|
+		<label class="parametri">{{s.patronaznaSestra}}</label>
+		|
+		<label class="parametri">{{s.pacienti}}</label>
+		|
+		<label class="parametri">{{s.datumIzdaje}}</label>
+		|
+		<label class="parametri">Podrobnosti</label>
+	</div>-->
 </div>

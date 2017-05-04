@@ -10,9 +10,10 @@ import { UporabnikZd } from '../ZdravstveniDelavec';
 @Injectable()
 export class zdravstveniDelavecService{
  private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
- private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@admin:admin')});
- constructor(private http : Http){}
  
+ private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
+ constructor(private http : Http){}
+
  save(zdravstveniDelavec: ZdravstveniDelavec,check: boolean): Observable<Response>{
 	 let okoli = <Okolis>({
 		idokolis: zdravstveniDelavec.okolis.idokolis,
@@ -42,15 +43,16 @@ export class zdravstveniDelavecService{
 		okolis: okoli,
 	 });
 	 
-	 this.headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@admin:admin')});
+	 this.headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 	 
   return this.http.post(`${this.baseUrl}/zdravstveniDelavec`,JSON.stringify(zdr), {headers: this.headers});
  }
  getVloge(): Observable<Vloga[]> {
-	 this.headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@admin:admin')});
+	 this.headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 	 return this.http.get(`${this.baseUrl}/sifranti/vloga`, {headers: this.headers}).map((response: Response) => response.json());
  }
  getIzvajalecZdravstvenihStoritev(): Observable<IzvajalecZdravstvenihStoritev[]>{
+	 this.headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 	 return this.http.get(`${this.baseUrl}/izvajalecZdravstvenihStoritev/`, {headers: this.headers}).map((response: Response) => response.json());
  }
  
