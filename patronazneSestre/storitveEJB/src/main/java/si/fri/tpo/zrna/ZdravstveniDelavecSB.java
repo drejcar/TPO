@@ -86,4 +86,12 @@ public class ZdravstveniDelavecSB implements ZdravstveniDelavecSBRemote, Zdravst
 		
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ZdravstveniDelavec> returnPatronazneSestre(int id) {
+
+		return em.createNamedQuery("ZdravstveniDelavec.findByOkolis").setParameter("id", id).getResultList();
+		
+	}
+
 }

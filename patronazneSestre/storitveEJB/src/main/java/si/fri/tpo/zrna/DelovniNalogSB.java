@@ -103,15 +103,31 @@ public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal
 																.setParameter("startDate", ood)
 																.setParameter("endDate", doo).getResultList();
 		
-		return list.subList(start, start+size);
-		
+		if(list.size() <= start){
+			return null;
+		}
+		else if(list.size() <= start+size){
+			return list.subList(start, list.size());
+		}
+		else{
+			return list.subList(start, start+size);
+		}
+				
 	}
 
 	@Override
 	public List<DelovniNalog> vrniDelovneNalogeZdrDelAll(int id, int start, int size) {
 		@SuppressWarnings("unchecked")
 		List<DelovniNalog> list =  em.createNamedQuery("DelovniNalog.findSpecificAll").setParameter("id", id).getResultList();
-
-		return list.subList(start, start+size);
+		
+		if(list.size() <= start){
+			return null;
+		}
+		else if(list.size() <= start+size){
+			return list.subList(start, list.size());
+		}
+		else{
+			return list.subList(start, start+size);
+		}
 	}
 }

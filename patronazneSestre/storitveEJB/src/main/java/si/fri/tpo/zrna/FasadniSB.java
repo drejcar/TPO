@@ -797,8 +797,12 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		return delovniNalog.vrniDelovneNalogeZdrDelAll(id,start,size);
 	}
 
-	
-
-	
+	@Override
+	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
+	public List<ZdravstveniDelavec> returnPatronazneSestre(int id) {
+		
+		return zdravstveniDelavc.returnPatronazneSestre(id);
+		
+	}
 
 }

@@ -19,7 +19,8 @@ import java.util.Set;
 @NamedQueries({
 	@NamedQuery(name="ZdravstveniDelavec.findAll", query="SELECT z FROM ZdravstveniDelavec z"),
 	@NamedQuery(name="ZdravstveniDelavec.findOne",query="SELECT z FROM ZdravstveniDelavec z WHERE z.uporabnik.iduporabnik = :id "),
-	@NamedQuery(name="ZdravstveniDelavec.deleteOne",query="DELETE FROM ZdravstveniDelavec z WHERE z.idzdravstveniDelavec = :id")
+	@NamedQuery(name="ZdravstveniDelavec.deleteOne",query="DELETE FROM ZdravstveniDelavec z WHERE z.idzdravstveniDelavec = :id"),
+	@NamedQuery(name="ZdravstveniDelavec.findByOkolis",query="SELECT z FROM ZdravstveniDelavec z WHERE z.okolis.idokolis=:id")
 })
 public class ZdravstveniDelavec implements Serializable {
 	private static final long serialVersionUID = 1L;
