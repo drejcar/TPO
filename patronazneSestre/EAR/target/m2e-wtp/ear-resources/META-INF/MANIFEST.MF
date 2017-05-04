@@ -1,5 +1,10 @@
 Manifest-Version: 1.0
+<<<<<<< HEAD
 Built-By: root
 Build-Jdk: 1.8.0_111
+=======
+Built-By: hp_stream
+Build-Jdk: 1.8.0_131
+>>>>>>> 6f89a30b075b7f75c2600d9a94bc44ee1d45c5c6
 Created-By: Maven Integration for Eclipse
 
