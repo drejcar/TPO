@@ -14,7 +14,8 @@
 			<input type="text" [(ngModel)]="nazivIzvajalca" name="krneki10">
 		</div>
 
-
+		<!-- tuki dropdown za sestre -->
+		
 		<div id="zdravnik">
 			<h3>2 - ZDRAVNIK</h3>
 			<label>številka zdravnika</label>
@@ -93,6 +94,17 @@
 			 
 			 <input type="button" (click)="pridobiPodatkePacienta1()" name="pridobiPodatke" value="pridobi podatke"> 
 			 
+			 <!--		
+			 
+			 <div id="sestra">
+			<h3>3a - medicinska sestra</h3>			
+			<select [(ngModel)]="izbranaSestra" name="krneki2" >
+				<option *ngFor="let s of sestre" [ngValue]="s"> {{s.id}} </option>
+			</select>
+			</div>
+			
+			-->
+			 
 		</div>
 		
 		
@@ -100,9 +112,9 @@
 		
 		<div id="veljavnostNaloga">
 			<h3>4 - VELJAVNOST NALOGA</h3>
-			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta" (change)="preveriDatum()" name="veljavnostNalogaVrsta" value="0">Enkratno<br>
-			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta" (change)="preveriDatum()" name="veljavnostNalogaVrsta" value="1">Za obdobje<br>
-			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta" (change)="preveriDatum()" name="veljavnostNalogaVrsta" value="2">Interval<br>
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta" (change)="ponastaviDatum()" name="veljavnostNalogaVrsta" value="0">Enkratno<br>
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta" (change)="ponastaviDatum()" name="veljavnostNalogaVrsta" value="1">Za obdobje<br>
+			<input type="radio" [(ngModel)]="veljavnostNalogaVrsta" (change)="ponastaviDatum()" name="veljavnostNalogaVrsta" value="2">Interval<br>
 					
 			 <div class="form-group">
 				
@@ -123,7 +135,7 @@
 				
 				<div class="enObDrugem" *ngIf="veljavnostNalogaVrsta == 2">
 					<label >interval</label>
-					<input type="text"  [(ngModel)]="veljavnostNalogaInterval" id="stevilkaIzvajalca" name="krneki7">	
+					<input type="text"  [(ngModel)]="veljavnostNalogaInterval" (change)="preveriDatum()" id="stevilkaIzvajalca" name="krneki7">	
 				</div>
 
 				

@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 class delovniNalog {
 	izvajalecZdravstvenihStoritev : IzvajalecZdravstvenihStoritev;
-	zdravstveniDelavec : ZdravstveniDelavec;
+	zdravstveniDelavecs : Array<ZdravstveniDelavec>;
 	pacients :  Array<Pacient>;
 	vrstaObiska : Storitev;
 	bolezen : Bolezen;
@@ -62,7 +62,7 @@ export class DelovniNalogComponent implements OnInit{
 	bolezni: any[] = [];
 	izbranaBolezen : any;
 	
-	zdravila: any[] = []:
+	zdravila: any[] = [];
 	izbranoZdravilo : any;	
 		
 	storitve = [{'name': 'Obisk nosečnice', 'id': 10}, {'name': 'Obisk otročnice', 'id': 20}, {'name': 'Obisk novorojenčka', 'id': 30}, {'name': 'Preventiva starostnika', 'id': 40},
@@ -92,6 +92,7 @@ export class DelovniNalogComponent implements OnInit{
 	stevilkaZdravstvenegaDelavca : string = "rest ocitno ni uspel";
 	idIzvajalca : number = -1;
 	idZdravnika : number = -1;
+	idSestre : number = -1;
 	
 	stevilkaZdravstvenegaZavarovanja : string = "";
 	priimek : string = "";
@@ -103,7 +104,7 @@ export class DelovniNalogComponent implements OnInit{
 	telefonskaStevilka : string = "";
 	email : string = "";
 	idPacient : number = -1;
-	idPacient1 : number = -1;
+	idokolisa : number = -1;
 	
 	stevilkaZdravstvenegaZavarovanja1 : string = "";
 	priimek1 : string = "";
@@ -114,6 +115,7 @@ export class DelovniNalogComponent implements OnInit{
 	kraj1 : string = "";
 	telefonskaStevilka1 : string = "";
 	email1 : string = "";
+	idPacient1 : number = -1;
 	
 	zdravilos: any[] =  [];
 	materials: any[] = [];
@@ -195,10 +197,15 @@ export class DelovniNalogComponent implements OnInit{
 			this.kraj = test.posta.opis;
 			this.telefonskaStevilka = test.telefonskaStevilka;
 			this.email = test.uporabnik.email;
-			this.idPacient = test.idpacient;			
+			this.idPacient = test.idpacient;		
+			this.idOkolisa = test.okolis.idokolis;
+			
+			console.log("id okolisa: " + this.idOkolisa);
 			
 		},
-		(err) => {console.log(err);});		
+		(err) => {console.log(err);});	
+
+		
 	
 	}	
 	
@@ -249,19 +256,31 @@ export class DelovniNalogComponent implements OnInit{
 	}
 	
 	
+	ponastaviDatum() :void {
 	
+		this.veljavnostNalogaOd = "";
+		this.veljavnostNalogaDo = "";
+		this.preveriDatum();		
+	
+	}
 		
 	preveriDatum():void {
 
-		if(this.veljavnostNalogaVrsta == -1) {
+		if(this.veljavnostNalogaVrsta == -1 || this.veljavnostNalogaOd == "") {
 			
 			this.dateIsValid = 0;
 		
 		}		
 	
-		else if(this.veljavnostNalogaVrsta != 1 ) {
+		else if(this.veljavnostNalogaVrsta != 1) {
 			
-			this.dateIsValid = 1;		
+			this.dateIsValid = 1;	
+
+			if(this.veljavnostNalogaVrsta == 2 && this.veljavnostNalogaInterval < 1) {
+				
+				this.dateIsValid = 0;
+			
+			}			
 		
 		}
 		
@@ -271,10 +290,7 @@ export class DelovniNalogComponent implements OnInit{
 			else this.dateIsValid = 0;		
 		
 		}	
-		
-		console.log(this.veljavnostNalogaOd + " " + this.veljavnostNalogaDo + " " + this.veljavnostNalogaVrsta);
-		console.log("date is valid: " + this.dateIsValid);	
-	
+			
 	}
 	
 	posljiDelovniNalog() {
@@ -312,9 +328,14 @@ export class DelovniNalogComponent implements OnInit{
 		var zdravstveniDelavec = new ZdravstveniDelavec();
 		zdravstveniDelavec.idzdravstveniDelavec = this.idZdravnika;
 		
+		//fakin medicinska sestra fakin robi
+		var sestra = new ZdravstveniDelavec();
+		sestra.idzdravstveniDelavec = this.idSestre;
+
+		
 		var dn = new delovniNalog();
 		dn.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
-		dn.zdravstveniDelavec = zdravstveniDelavec;
+		dn.zdravstveniDelavecs = [zdravstveniDelavec];
 		
 		//ne smeta biti 2 enaka objekta
 		//if(this.izbranaStoritev.id == 20 || this.izbranaStoritev.id == 30) {
@@ -327,18 +348,13 @@ export class DelovniNalogComponent implements OnInit{
 		dn.materials =  this.materials;
 		dn.steviloEpruvet = this.stEpruvet;		
 		dn.zdravilos = this.zdravilos;
-		dn.obisks = [];
-		
-		
-			
-
-		
+		dn.obisks = [];	
 		
 		var p4 = JSON.stringify(dn);
 		console.log(p4);
 		
 
-		this.http.post(`${this.restUrl}/delovniNalog`,JSON.stringify(dn), {headers: headers1}).subscribe(
+		this.http.post(`${this.restUrl}/delovniNalog${this.urlParametri}`,JSON.stringify(dn), {headers: headers1}).subscribe(
 			res => {console.log(res);}, 
 			(err) => {console.log(err);}
 		);
