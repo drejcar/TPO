@@ -153,11 +153,11 @@ public class DelovniNalog implements Serializable {
 	}
 
 
-	/*public Set<ZdravstveniDelavec> getZdravstveniDelavecs() {
+	public Set<ZdravstveniDelavec> getZdravstveniDelavecs() {
 		return this.zdravstveniDelavecs;
 	}
 
-	*/
+	
 	public void setZdravstveniDelavecs(Set<ZdravstveniDelavec> zdravstveniDelavecs) {
 		this.zdravstveniDelavecs = zdravstveniDelavecs;
 	}

@@ -52,6 +52,7 @@ export class AppComponent implements OnInit {
   name = 'Angular';
   log=this.usr.isLoggedIn()
   ngOnInit(){
+	  localStorage.setItem('vloga','guest');
 	  if(localStorage.getItem('vloga') != null){
 		this.vloga = localStorage.getItem('vloga');
 		// dovoljenja in kaj se lahko prikaze
