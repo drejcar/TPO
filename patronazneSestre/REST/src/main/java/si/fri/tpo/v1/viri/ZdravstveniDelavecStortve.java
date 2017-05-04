@@ -68,5 +68,12 @@ public class ZdravstveniDelavecStortve implements ZdravstveniDelavecREST {
 		
 		return fasada.returnZdravstveniDelavec(id);
 	}
-
+	
+	@GET
+	@Path("/byOkolis/{id}")
+	@ApiOperation(value = "Pridobi zdravstvenega delavca glede na okoliš", notes = "Pridobi zdravstvenega delavca iz baze glede na njegov okoliš", code = 200)
+	public List<ZdravstveniDelavec> returnPatronazneSestre(@PathParam("id") int id){
+		
+		return fasada.returnPatronazneSestre(id);
+	}
 }

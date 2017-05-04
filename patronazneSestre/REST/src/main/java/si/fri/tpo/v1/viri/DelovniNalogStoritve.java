@@ -114,6 +114,25 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 	}
 
 	@GET
+	@Path("/zdravstveniDelavecId/{id}")
+	@ApiOperation(value="Vrni delovne naloge zdravstvenega delavca glede na poddano obdobje in število podanih zadetkov",code=200,response=DelovniNalog.class)
+	public List<DelovniNalog> returnDelovniNalologsZdravstvenegaDelavca(@PathParam("id") int id, 
+																		@QueryParam("od") String ood,
+																		@QueryParam("do") String doo, 
+																		@QueryParam("start") int start, 
+																		@QueryParam("size") int size){
+			
+		if(ood != null){
+			LocalDate oood = LocalDate.parse(ood);
+			LocalDate dooo = LocalDate.parse(doo);
+			List<DelovniNalog> list = fasada.vrniDelovneNalogeZdrDel(id, oood.toDate(), dooo.toDate(), start, size);
+			return list;
+		}else{
+			return fasada.vrniDelovneNalogeZdrDelAll(id,start,size);
+		}
+	}
+	
+	@GET
 	@Path("")
 	@ApiOperation(value = "Vrni delovne naloge", notes = "Vrne seznam vseh delovnih nalog",code = 200, response = DelovniNalog.class)
 	public List<DelovniNalog> returnDelovniNalogs() {
