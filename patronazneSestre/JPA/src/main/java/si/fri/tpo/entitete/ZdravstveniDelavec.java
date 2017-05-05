@@ -106,9 +106,9 @@ public class ZdravstveniDelavec implements Serializable {
 		this.telefonskaStevilka = telefonskaStevilka;
 	}
 
-	public Set<DelovniNalog> getDelovniNalogs() {
+	/*public Set<DelovniNalog> getDelovniNalogs() {
 		return this.delovniNalogs;
-	}
+	}*/
 
 	public void setDelovniNalogs(Set<DelovniNalog> delovniNalogs) {
 		this.delovniNalogs = delovniNalogs;

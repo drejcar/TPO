@@ -1,8 +1,8 @@
 div.enObDrugem {	
 	float:left;
-	width: 20vw;
-	margin-left:5px;
-	margin-right:5px;
+	width: 15vw;
+	margin-left:0px;
+	margin-right:0px;
 	margin-bottom:10px;
 
 }
@@ -48,4 +48,20 @@ div.parametri{
 	border-bottom-style:groove;
 	width:100%;
 	
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #448cff;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
 }

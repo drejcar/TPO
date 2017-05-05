@@ -7,6 +7,7 @@
 		<div class="enObDrugem">
 			<label>Vrsta obiska:</label>
 			<select [(ngModel)]="izbraniObisk" class="form-control" name="PovrstaObiska">
+				<option></option>
 				<option *ngFor="let s of obiski" [ngValue]="s">{{s.name}}</option>
 			</select>
 		</div>
@@ -14,13 +15,15 @@
 		<div class="enObDrugem">
 			<label>Izdajatelj:</label>
 			<select [(ngModel)]="izbraniIzdajatelj" class="form-control" name="Poizdajatelj">
-				<option *ngFor="let s of izdajatelji" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
+				<option></option>
+				<option *ngFor="let s of izdajatelji" [ngValue]="s">{{s.sifra}}</option>
 			</select>
 		</div>
 		
 		<div class="enObDrugem">
 			<label>Pacient:</label>
 			<select [(ngModel)]="izbraniPacient" class="form-control" name="poPacientu">
+				<option></option>
 				<option *ngFor="let s of pacienti" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
 				
 			</select>
@@ -29,11 +32,21 @@
 		<div class="enObDrugem">
 			<label>Patronažna sestra:</label>
 			<select [(ngModel)]="izbranaSestra" class="form-control" name="PoSestri">
-				<option *ngFor="let s of sestre" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
+				<option></option>
+				<option *ngFor="let s of sestre" [ngValue]="s">{{s.sifra}}</option>
+				
 			</select>
 		</div>
+		<div class="enObDrugem">
+			<label for="datumIzdajeOd">Datum Izdaje Od</label>
+			<input type="date" class="form-control" name="datumIzdajeOd" placeholder="05-05-2017" [(ngModel)]="izbraniDatumIzdajeOd">
+		</div>
+		<div class="enObDrugem">
+			<label for="datumIzdajeDo">Datum Izdaje Do</label>
+			<input type="date" class="form-control" name="datumIzdajeDo" placeholder="05-05-2017" [(ngModel)]="izbraniDatumIzdajeDo">
+		</div>
 		<div class="levo">
-			<input type="button" (click)="submit()" id="gumb" name="poisciFiltre" value="Filtriraj">
+			<input type="button" (click)="Onsubmit()" id="gumb" name="poisciFiltre" value="Filtriraj">
 		</div>
 	</form>
 </div>
@@ -42,7 +55,27 @@
 
 <div id="kvadratZaDelovneNaloge">
 	
-	<div id="parametri">
+	<table>
+		<tr>
+			<th>Številka delovnega naloga</th>
+			<th>Izdajatelj</th>
+			<th>Vrsta obiska</th>
+			<th>Patronažna sestra</th>
+			<th>Pacienti</th>
+			<th>Datum izdaje</th>
+			<th>Podrobno</th>
+		</tr>
+		<tr *ngFor="let s of delovniNalogi">
+			<td>{{s.idDelovnegaNaloga}}</td>
+			<td>{{s.izdajatelj}}</td>
+			<td>{{s.vrstaObiska}}</td>
+			<td>{{s.patronaznaSestra}}</td>
+			<td>{{s.pacienti}}</td>
+			<td>{{s.datumIzdaje}}</td>
+			<td>Podrobno</td>
+		</tr>
+	</table>
+	<!--<div id="parametri">
 		<label class="parametri">Številka delovnega naloga</label>
 		|
 		<label class="parametri">Izdajatelj</label>
@@ -57,4 +90,19 @@
 		|
 		<label class="parametri">Podrobno</label>
 	</div>
+	<div id="parametri" *ngFor="let s of delovniNalogi">
+		<label class="parametri">{{s.idDelovnegaNaloga}}</label>
+		|
+		<label class="parametri">{{s.izdajatelj}}</label>
+		|
+		<label class="parametri">{{s.vrstaObiska}}</label>
+		|
+		<label class="parametri">{{s.patronaznaSestra}}</label>
+		|
+		<label class="parametri">{{s.pacienti}}</label>
+		|
+		<label class="parametri">{{s.datumIzdaje}}</label>
+		|
+		<label class="parametri">Podrobnosti</label>
+	</div>-->
 </div>

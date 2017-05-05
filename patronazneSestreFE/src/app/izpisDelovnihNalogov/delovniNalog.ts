@@ -7,17 +7,36 @@ export class delovniNalog {
 	materials : Array<Material>;
 	zdravilos : Array<Zdravilo>;		
 }
-
+export class dN{
+	constructor(
+	 idDelovnegaNaloga: number,
+	 izdajatelj: String,
+	 vrstaObiska: String,
+	 patronaznaSestra: String,
+	 pacienti: String,
+	 datumIzdaje: String,
+	 ){}
+}
 export class IzvajalecZdravstvenihStoritev {
 	idizvajalecZdravstvenihStoritev : number;
+	naziv: String;
 }
 
 export class ZdravstveniDelavec {
-	idzdravstveniDelavec : number;
+	constructor(
+	ime: String,
+	priimek: String,
+	id : number,
+	){}
+	
 }
 	
 export class Pacient {
-	idpacient : number;	
+	constructor(
+	ime: String,
+	priimek: String,
+	id: number,
+	){}
 }
 
 export class Material {
