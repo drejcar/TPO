@@ -67,7 +67,9 @@ export class UserService {
 
 	localStorage.setItem('email','');
 	localStorage.setItem('password','');
+	localStorage.setItem('iduporabnik','');
 	localStorage.setItem('vloga','guest');
+	localStorage.removeItem('idZdravstvenegaDelavca');
     this.loggedIn = false;
   }
   isLoggedIn() {

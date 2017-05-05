@@ -31,9 +31,9 @@ import { IzpisDNGuard } from './_guard/izpisDN.guard';
 
 const routes: Routes = [
   { path: 'dashboard',/* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: DashboardComponent },
-  { path: 'prijava', component: PrijavaComponent, canActivate: [GuestGuard] },
+  { path: 'prijava', component: PrijavaComponent/*, canActivate: [GuestGuard] */},
   { path: 'odjava', component: OdjavaComponent},
-  { path: 'registracija', component: RegistracijaFormComponent, canActivate: [GuestGuard] },
+  { path: 'registracija', component: RegistracijaFormComponent/*, canActivate: [GuestGuard] */},
   { path: 'delovniNalog', component: DelovniNalogComponent,canActivate:[DelovniNalogGuard]},
   { path: 'registracijazd', component: Registracija_zdComponent,canActivate:[AdministratorGuard]},
   { path: 'spremembaGesla',component: SpremembaGeslaComponent,/* canActivate: [PacientGuard,AdministratorGuard,

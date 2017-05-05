@@ -33,6 +33,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 	//podrobniOpis = [{''}]
 	ngOnInit(){
 		//poiscemo zdravstvenega delavca
+		
 		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});	
 		
 		//rest klic za iskanje zdravstvenih delavcev
@@ -40,7 +41,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 			this.res = res.json();
 			var vmesna = JSON.stringify(this.res);
 			var dobiZd = JSON.parse(vmesna);
-			console.log(dobiZd.idzdravstveniDelavec);
+			
 			localStorage.setItem('idZdravstvenegaDelavca',dobiZd.idzdravstveniDelavec.toString());
 			//preverimo kdo želi videti svoje delovne naloge
 			
@@ -54,7 +55,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 			}
 		});
 		
-		
+		setTimeout(() => {
 		//TODO rest klic za pridobivanje delovnega naloga
 		
 		if(localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba'){
@@ -79,8 +80,10 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 						}
 					}
 					if(this.aliObstaja == false){
-						this.obiski[j].name = dn.vrstaObiska.opis;
-						this.obiski[j].id = dn.vrstaObiska.idvrstaObiska;
+						let obisk = <any> ({'name':'','id':0});
+						obisk.name = dn.vrstaObiska.opis;
+						obisk.id = dn.vrstaObiska.idvrstaObiska;
+						this.obiski[j] = obisk;
 						j = j+1;
 					}
 					//TODO izpis vseh pacientov for loop
@@ -160,8 +163,10 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 						}
 					}
 					if(this.aliObstaja == false){
-						this.obiski[j].name = dn.vrstaObiska.opis;
-						this.obiski[j].id = dn.vrstaObiska.idvrstaObiska;
+						let obisk = <any> ({'name':'','id':''});
+						obisk.name = dn.vrstaObiska.opis;
+						obisk.id = dn.vrstaObiska.idvrstaObiska;
+						this.obiski[j] = obisk;
 						j = j+1;
 					}
 					//TODO izpis vseh pacientov for loop
@@ -195,20 +200,22 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 							
 							//pregled Sester
 							
-						}
-						for(let zd of this.izdajatelji){
-							if(zd.id == zdr.idzdravstveniDelavec){
-								this.aliObstaja = true;
+						}else{
+							for(let zd of this.izdajatelji){
+								if(zd.id == zdr.idzdravstveniDelavec){
+									this.aliObstaja = true;
+								}
 							}
+							if(this.aliObstaja == false){	
+								let noviZdr = <any> ({sifra:'',id:0});
+								noviZdr.sifra = zdr.sifra;
+								noviZdr.id = zdr.idzdravstveniDelavec;
+								this.izdajatelji[m] = noviZdr;
+								m = m+1;
+							}
+							
+							delovniN.izdajatelj = zdr.sifra;
 						}
-						if(this.aliObstaja == false){	
-							let noviZdr = <any> ({sifra:'',id:0});
-							noviZdr.sifra = zdr.sifra;
-							noviZdr.id = zdr.idzdravstveniDelavec;
-							this.izdajatelji[m] = noviZdr;
-							m = m+1;
-						}
-						delovniN.izdajatelj = zdr.sifra;
 					}
 					
 					
@@ -222,6 +229,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 			});
 			
 		}
+		},1000);
 		
 	}
 	Onsubmit(){

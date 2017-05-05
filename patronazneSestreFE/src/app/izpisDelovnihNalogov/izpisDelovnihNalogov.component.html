@@ -34,6 +34,7 @@
 			<select [(ngModel)]="izbranaSestra" class="form-control" name="PoSestri">
 				<option></option>
 				<option *ngFor="let s of sestre" [ngValue]="s">{{s.sifra}}</option>
+				
 			</select>
 		</div>
 		<div class="enObDrugem">
@@ -59,7 +60,7 @@
 			<th>Številka delovnega naloga</th>
 			<th>Izdajatelj</th>
 			<th>Vrsta obiska</th>
-			<th>Patronažne sestre</th>
+			<th>Patronažna sestra</th>
 			<th>Pacienti</th>
 			<th>Datum izdaje</th>
 			<th>Podrobno</th>

@@ -16,8 +16,8 @@ export class izpisDNService{
 		
 		
 		var date = new Date();
-		var datum=date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();
+		var datum=date.getFullYear()+'-' + (date.getMonth()+1) + '-'+(date.getDate());
 		console.log(datum);
-		return this.http.get(`${this.baseUrl}/delovniNalog/zdravstveniDelavecId/${idZD}?od=2017-1-1&do=${datum}&start=0&size=2`, {headers: this.headers}).map((response: Response) => response.json());
+		return this.http.get(`${this.baseUrl}/delovniNalog/zdravstveniDelavecId/${idZD}?od=2017-1-1&do=${datum}&start=0&size=10`, {headers: this.headers}).map((response: Response) => response.json());
 	}
 }
