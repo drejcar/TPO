@@ -8,6 +8,7 @@ import { PrijavaComponent } from './prijava/prijava.component';
 import { RegistracijaFormComponent } from './registracija/registracija.component';
 import { DelovniNalogComponent } from './delovniNalog/delovniNalog.component';
 import { PageNotFoundComponent } from './not-found.component';
+import { podrobnostiDNComponent } from './podrobnostiDN/podrobnostiDN.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
@@ -45,7 +46,7 @@ import { IzpisDNGuard } from './_guard/izpisDN.guard';
                   DelovniNalogComponent, EqualValidator,PageNotFoundComponent,Registracija_zdComponent,
                   SpremembaGeslaComponent,AdminDashComponent,PacientDashComponent,
                   PatronaznaSestraDashComponent,PatronaznaSluzbaDashComponent,SodelavecIzsDashComponent,
-                  ZdravnikDashComponent,AktivacijaComponent,OdjavaComponent,izpisDelovnihNalogovComponent
+                  ZdravnikDashComponent,AktivacijaComponent,OdjavaComponent,izpisDelovnihNalogovComponent,podrobnostiDNComponent
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,GuestGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,

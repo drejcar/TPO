@@ -1,0 +1,163 @@
+<h1 id="naslov">Delovni Nalog #{{idDelovnegaNaloga}}</h1>
+
+
+<div id="enVelikKvadrat">
+	<div id="manjsiKvadrat">
+		<div class="miniNaslovi">
+			<label class="levo">1 - Izvajalec zdravstvenih storitev</label>
+		</div>
+		<div class="enObDrugem">
+			<label class="parametri" id="izv">Naziv:
+				<label id="izvNaziv"class="text">{{izvNaziv}}</label>
+			</label>
+			<label class="parametri">Številka izvajalca:
+				<label class="text">{{izvSifra}}</label>
+			</label>
+			<label class="parametri">Naslov:
+				<label class="text">{{izvNaslov}}</label>
+			</label>
+		</div>
+		<div class="miniNaslovi">
+			<label class="levo">2 - Izdajatelj</label>
+		</div>
+		<div class="enObDrugem">
+			<label class="parametri" id="izd">Šifra izdajatelja:
+				<label class="text">{{izdSifra}}</label>
+			</label>
+			<label class="parametri">Ime izdajatelja:
+				<label class="text">{{izdIme}}</label>
+			</label>
+			<label class="parametri">Priimek izdajatelja:
+				<label class="text">{{izdPriimek}}</label>
+			</label>
+		</div>
+		<div class="miniNaslovi">
+			<label class="levo">3 - Patronažna sestra</label>
+		</div>
+		<div class="enObDrugem">
+			<label class="parametri">Šifra sestre:
+				<label class="text">{{sestraSifra}}</label>
+			</label>
+			<label class="parametri">Okolis:
+				<label class="text">{{sestraOkolis}}</label>
+			</label>
+			<br/>
+			<label class="parametri">Ime sestre:
+				<label class="text">{{sestraIme}}</label>
+			</label>
+			<label class="parametri">Priimek sestre:
+				<label class="text">{{sestraPriimek}}</label>
+			</label>
+		</div>
+		<div class="miniNaslovi">
+			<label  class="levo">4 - Zavarovana oseba</label>
+		</div>
+		<div class="enObDrugem">
+			<label class="parametri">Ime pacienta:
+				<label class="text">{{pacIme}}</label>
+			</label>
+			<label class="parametri">Priimek pacienta:
+				<label class="text">{{pacPriimek}}</label>
+			</label>
+			<label class="parametri">Številka zdravstvenega zavarovanja:
+				<label class="text">{{pacSZZ}}</label>
+			</label>
+			<label class="parametri">Naslov:
+				<label class="text">{{pacNaslov}}</label>
+			</label>
+			<label class="parametri">Datum rojstva:
+				<label class="text">{{pacDatumRojstva}}</label>
+			</label>
+			<label class="parametri">Telefonska številka:
+				<label class="text">{{pacTelefon}}</label>
+			</label>
+			<label class="parametri">e-pošta:
+				<label class="text">{{pacPosta}}</label>
+			</label>
+		</div>
+		<div [hidden]="!aliJePraviObisk" class="miniNaslovi">
+			<label  class="levo">4b - Zavarovana oseba</label>
+		</div>
+		<div [hidden]="!aliJePraviObisk" class="enObDrugem">
+			<label class="parametri">Ime pacienta:
+				<label class="text">{{pacIme2}}</label>
+			</label>
+			<label class="parametri">Priimek pacienta:
+				<label class="text">{{pacPriimek2}}</label>
+			</label>
+			<label class="parametri">Številka zdravstvenega zavarovanja:
+				<label class="text">{{pacSZZ2}}</label>
+			</label>
+			<label class="parametri">Naslov:
+				<label class="text">{{pacNaslov2}}</label>
+			</label>
+			<label class="parametri">Datum rojstva:
+				<label class="text">{{pacDatumRojstva2}}</label>
+			</label>
+			<label class="parametri">Telefonska številka:
+				<label class="text">{{pacTelefon2}}</label>
+			</label>
+			<label class="parametri">e-pošta:
+				<label class="text">{{pacPosta2}}</label>
+			</label>
+		</div>
+		
+		<div class="miniNaslovi">
+			<label class="levo">5 - Obiski</label>
+		</div>
+		<div class="enObDrugemDve">
+			<label class="parametri">Vrsta storitve:
+				<label class="text">{{obiskVrstaStoritve}}</label>
+			</label>
+			<label class="parametri">Bolezen:
+				<label class="text">{{obiskBolezen}}</label>
+			</label>
+			<br/>
+			<br/>
+			<table>
+				<tr>
+					<th class="obiski">Id obiska</th>
+					<td class="obiski" *ngFor="let s of obiskiDatumi" >{{s.idObiska}}</td>
+				</tr>
+				<tr>
+					<th class="obiski">Datum obiska</th>
+					<td class="obiski" *ngFor="let s of obiskiDatumi" >{{s.datumObiska}}</td>
+				</tr>
+				<tr>
+					<th class="obiski">Fiksni datum</th>
+					<td class="obiski" *ngFor="let s of obiskiDatumi" >{{s.fiksniDatum}}</td>
+				</tr>
+			</table>
+		</div>
+		<div [hidden]="!aliJeInjekcija" class="miniNaslovi2">
+			<label class="levo">6 - Zdravila</label>
+		</div>
+		<div [hidden]="!aliJeInjekcija" class="enObDrugemTri">
+			<table>
+				<tr>
+					<th class="zgornji">Id zdravila</th>
+					<td class="desni zgornji" *ngFor="let s of zdravila" >{{s.idZdravila}}</td>
+				</tr>
+				<tr>
+					<th>Tip zdravila</th>
+					<td class="desni" *ngFor="let s of zdravila">{{s.tipZdravila}}</td>
+				</tr>
+			</table>
+		</div>
+		<div [hidden]="!aliJeOdvzemKrvi" class="miniNaslovi2">
+			<label class="levo">6 - Material</label>
+		</div>
+		<div [hidden]="!aliJeOdvzemKrvi" class="enObDrugemDve">
+			<table>
+				<tr>
+					<th class="zgornji">Tip materiala</th>
+					<td class="desni zgornji"></td>
+				</tr>
+				<tr>
+					<th>Kolicina</th>
+					<td class="desni"></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</div>
