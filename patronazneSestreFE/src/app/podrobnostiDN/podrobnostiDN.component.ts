@@ -49,7 +49,7 @@ export class podrobnostiDNComponent implements OnInit{
 	pacTelefon2='';
 	pacPosta2='';
 	
-	obiskiDatumi= [{'idObiska':0,'datumObiska':'','fiksniDatum':''}];
+	obiskiDatumi= [{'idObiska':0,'datumObiska':'','fiksniDatum':'','opravljen':''}];
 	obiskVrstaStoritve='';
 	obiskBolezen='';
 	
@@ -117,10 +117,15 @@ export class podrobnostiDNComponent implements OnInit{
 			//obiski
 			let j = 0;
 			for(let i of this.delovniNalog.obisks){
-				let novObisk = <any> ({'idObiska':0,'datumObiska':'','fiksniDatum':''});
+				let novObisk = <any> ({'idObiska':0,'datumObiska':'','fiksniDatum':'','opravljen':''});
 				novObisk.idObiska = i.idobisk;
 				novObisk.datumObiska = i.datumObiska;
-				if(i.fixenDatum == 0){
+				if(i.opravljen == 0){
+					novObisk.opravljen = 'Neopravljen';
+				}else{
+					novObisk.opravljen = 'Opravljen';
+				}
+				if(i.fixenDatum == 1){
 					novObisk.fiksniDatum = 'Ne';
 				}else{
 					novObisk.fiksniDatum = 'Da';
@@ -129,7 +134,9 @@ export class podrobnostiDNComponent implements OnInit{
 				j = j+1;
 			}
 			this.obiskVrstaStoritve = this.delovniNalog.vrstaObiska.opis;
-			this.obiskBolezen = this.delovniNalog.bolezen.opis;
+			
+			
+				
 			
 			//material če je prava vrsta obiska
 			if(this.delovniNalog.vrstaObiska.idvrstaObiska == 60){
@@ -138,13 +145,15 @@ export class podrobnostiDNComponent implements OnInit{
 				for(let i of this.delovniNalog.materials){
 					let novMaterial = <any> ({'tipMateriala':'','kolicina':0});
 					novMaterial.tipMateriala = i.opis;
-					novMaterial.kolicina = i.steviloEpruvet;
+					novMaterial.kolicina = this.delovniNalog.steviloEpruvet;
 					this.material[j] = novMaterial;
 					j = j+1;
 				}
 			}else if(this.delovniNalog.vrstaObiska.idvrstaObiska == 50){
 				j = 0;
+				
 				this.aliJeInjekcija = true;
+				this.obiskBolezen = this.delovniNalog.bolezen.opis;
 				for(let i of this.delovniNalog.zdravilos){
 					let novZdravilo = <any> ({'idZdravila':0,'tipZdravila':''});
 					novZdravilo.idZdravila = i.idzdravilo;
