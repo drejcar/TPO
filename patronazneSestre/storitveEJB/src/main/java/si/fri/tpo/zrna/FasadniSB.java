@@ -147,6 +147,8 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	@RolesAllowed({"Zdravnik","PatronaznaSluzba","Administrator"})
 	public void dodajDelovniNalog(DelovniNalog dn) {
 		
+		//dodaj patronazno sluzbo
+				
 		delovniNalog.dodajDelovniNalog(dn);
 		delovniNalog.odstraniZrno();
 
@@ -803,6 +805,12 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		
 		return zdravstveniDelavc.returnPatronazneSestre(id);
 		
+	}
+
+	@Override
+	public ZdravstveniDelavec returnPatronaznaSluzbaByIzvajalec(int izvajalec) {
+		
+		return zdravstveniDelavc.patronaznaSluzbaById(izvajalec);
 	}
 
 }

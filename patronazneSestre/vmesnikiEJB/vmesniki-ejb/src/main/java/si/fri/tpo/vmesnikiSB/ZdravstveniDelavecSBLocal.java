@@ -17,4 +17,5 @@ public interface ZdravstveniDelavecSBLocal {
 	void deleteZdravstveniDelavec(int id); //brisanje zdravstvenega delavca
 	void odstraniZrno(); // za odstranjevanje zrna
 	public List<ZdravstveniDelavec> returnPatronazneSestre(int id);
+	public ZdravstveniDelavec patronaznaSluzbaById(int izvajalec);
 }

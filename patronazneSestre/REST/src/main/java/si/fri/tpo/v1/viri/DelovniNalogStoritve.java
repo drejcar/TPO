@@ -20,6 +20,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.Obisk;
+import si.fri.tpo.entitete.ZdravstveniDelavec;
 import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.DelovniNalogREST;
 
@@ -141,6 +142,12 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 				}
 			}
 		}
+		
+		int izvajalec = delovniNalog.getIzvajalecZdravstvenihStoritev().getIdizvajalecZdravstvenihStoritev();
+		
+		ZdravstveniDelavec patronaznaSluzba = fasada.returnPatronaznaSluzbaByIzvajalec(izvajalec);
+		
+		delovniNalog.getZdravstveniDelavecs().add(patronaznaSluzba);
 		
 		fasada.dodajDelovniNalog(delovniNalog);
 		
