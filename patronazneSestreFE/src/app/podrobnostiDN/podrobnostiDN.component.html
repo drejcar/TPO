@@ -127,6 +127,10 @@
 					<th class="obiski">Fiksni datum</th>
 					<td class="obiski" *ngFor="let s of obiskiDatumi" >{{s.fiksniDatum}}</td>
 				</tr>
+				<tr>
+					<th class="obiski">Opravljenost</th>
+					<td class="obiski" *ngFor="let s of obiskiDatumi" >{{s.opravljen}}</td>
+				</tr>
 			</table>
 		</div>
 		<div [hidden]="!aliJeInjekcija" class="miniNaslovi2">
@@ -154,7 +158,7 @@
 					<td class="desni zgornji" *ngFor="let s of material">{{s.tipMateriala}}</td>
 				</tr>
 				<tr>
-					<th>Kolicina</th>
+					<th>Količina</th>
 					<td class="desni" *ngFor="let s of material">{{s.kolicina}}</td>
 				</tr>
 			</table>

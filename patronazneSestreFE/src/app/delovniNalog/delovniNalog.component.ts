@@ -371,10 +371,11 @@ export class DelovniNalogComponent implements OnInit{
 	
 		
 			
-		var fiksniDatum = 0;		
-		if(this.veljavnostNalogaFiksniDatum) fiksniDatum = 1;
+		var fiksniDatum = 1;		
+		console.log(this.veljavnostNalogaFiksniDatum);
+		if(this.veljavnostNalogaFiksniDatum){ fiksniDatum = 0;}
 					
-		this.urlParametri = `?fiksniDatum=${fiksniDatum}&stObiskov=${this.veljavnostNalogaSteviloObiskov}&obdobje=${this.veljavnostNalogaVrsta}&interval=${this.veljavnostNalogaInterval}&od=${this.veljavnostNalogaOd}&do=${this.veljavnostNalogaDo}`
+		this.urlParametri = `?fixniDatum=${fiksniDatum}&stObiskov=${this.veljavnostNalogaSteviloObiskov}&obdobje=${this.veljavnostNalogaVrsta}&interval=${this.veljavnostNalogaInterval}&od=${this.veljavnostNalogaOd}&do=${this.veljavnostNalogaDo}`
 		
 		console.log(this.urlParametri);
 	
