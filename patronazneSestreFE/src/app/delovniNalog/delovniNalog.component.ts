@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Http, Headers } from '@angular/http';
 import { FormsModule } from '@angular/forms';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Location } from '@angular/common';
 
 class delovniNalog {
 	izvajalecZdravstvenihStoritev : IzvajalecZdravstvenihStoritev;
@@ -50,11 +52,14 @@ class Storitev {
 
 export class DelovniNalogComponent implements OnInit{	
 	
-	constructor(private http: Http) {}
+	constructor(private http: Http,private router:Router) {}
 	
 	post: string = "";
 	post1: string = "";
 	
+	pokaziBolezen: boolean = false;
+	uspesnoPoslan: boolean = false;
+	napaka:boolean = false;
 	
 	materiali: any[] = [];
 	izbraniMaterial : any;
@@ -186,15 +191,15 @@ export class DelovniNalogComponent implements OnInit{
 						
 	}
 	
-	pridobiSestre(): void {
+	pridobiSestre(okolisPacienta: number): void {
 	
 		console.log("izbrano zdravilo: " + this.izbranoZdravilo.opis)
 	
-		console.log("Pridobivam sestro za okolis: " + this.idOkolisa);
+		console.log("Pridobivam sestro za okolis: " + okolisPacienta);
 		
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});		
 			
-		this.http.get(`${this.restUrl}/zdravstveniDelavec/byOkolis/${this.idOkolisa}`, {headers: headers}).subscribe(data3 => { 		
+		this.http.get(`${this.restUrl}/zdravstveniDelavec/byOkolis/${okolisPacienta}`, {headers: headers}).subscribe(data3 => { 		
 			
 			this.data3 = data3.json()
 			var drek : string = JSON.stringify(this.data3);						
@@ -234,7 +239,7 @@ export class DelovniNalogComponent implements OnInit{
 			this.email = test.uporabnik.email;
 			this.idPacient = test.idpacient;		
 			this.idOkolisa = test.okolis.idokolis;
-			
+			this.pridobiSestre(this.idOkolisa);
 			console.log("id okolisa: " + this.idOkolisa);			
 			
 		},
@@ -283,7 +288,8 @@ export class DelovniNalogComponent implements OnInit{
 		
 		console.log("dodaj zdravilo");		
 		var zdravilo = new Zdravilo();
-		zdravilo.idzdravilo = this.izbranoZdravilo.id;		
+		console.log(this.izbranoZdravilo.idzdravilo);
+		zdravilo.idzdravilo = this.izbranoZdravilo.idzdravilo;		
 		this.zdravilos.push(zdravilo);			
 		console.log(this.zdravilos);
 	
@@ -387,9 +393,14 @@ export class DelovniNalogComponent implements OnInit{
 		var zdravilo = new Zdravilo();
 		zdravilo.idzdravilo = this.izbranoZdravilo.id;
 		
-		var bolezen = new Bolezen();
-		bolezen.idbolezen = this.izbranaBolezen.idbolezen;
 		
+		var bolezen = new Bolezen();
+		if(this.pokaziBolezen == true){
+		
+			bolezen.idbolezen = this.izbranaBolezen.idbolezen;
+		}else{
+			bolezen = null;
+		}
 		var storitev = new Storitev();
 		storitev.idvrstaObiska = this.izbranaStoritev.id;
 		
@@ -399,10 +410,9 @@ export class DelovniNalogComponent implements OnInit{
 		var zdravstveniDelavec = new ZdravstveniDelavec();
 		zdravstveniDelavec.idzdravstveniDelavec = this.idZdravnika;
 		
-		//fakin medicinska sestra fakin robi
+		//fakin medicinska sestra fakin robi, popravljeno
 		var sestra = new ZdravstveniDelavec();
-		sestra.idzdravstveniDelavec = this.idSestre;
-				
+		sestra.idzdravstveniDelavec = this.izbranaSestra.idzdravstveniDelavec;;
 		
 		var dn = new delovniNalog();
 		dn.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
@@ -414,6 +424,7 @@ export class DelovniNalogComponent implements OnInit{
 		//} else 
 			dn.pacients = [pacient];
 		
+		console.log(this.zdravilos);
 		dn.vrstaObiska = storitev;
 		dn.bolezen = bolezen;		
 		dn.materials =  this.materials;
@@ -426,8 +437,17 @@ export class DelovniNalogComponent implements OnInit{
 		
 
 		this.http.post(`${this.restUrl}/delovniNalog${this.urlParametri}`,JSON.stringify(dn), {headers: headers1}).subscribe(
-			res => {console.log(res);}, 
-			(err) => {console.log(err);}
+			res => {console.log(res);
+				this.uspesnoPoslan = true;
+				setTimeout(() => {
+				location.reload();
+				//this.uspesnoPoslan = false;
+				
+			}, 2000);
+			}, 
+			(err) => {console.log(err);
+				this.napaka = true;
+			}
 		);
 		
 		this.preveriDatum();
@@ -437,8 +457,17 @@ export class DelovniNalogComponent implements OnInit{
 
 				
 	}
+	onChangeStoritev(storitev: any){
+		if(storitev.id == 50){
+			this.pokaziBolezen = true;
+		}else{
+			this.pokaziBolezen = false;
+		}
 	
+	}
 }
+
+
 
 		/*
 					******* URL PARAMETRI IZ BACKENDA *****

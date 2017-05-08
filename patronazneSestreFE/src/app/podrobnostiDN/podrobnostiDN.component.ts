@@ -129,7 +129,9 @@ export class podrobnostiDNComponent implements OnInit{
 				j = j+1;
 			}
 			this.obiskVrstaStoritve = this.delovniNalog.vrstaObiska.opis;
-			this.obiskBolezen = this.delovniNalog.bolezen.opis;
+			
+			
+				
 			
 			//material če je prava vrsta obiska
 			if(this.delovniNalog.vrstaObiska.idvrstaObiska == 60){
@@ -138,13 +140,15 @@ export class podrobnostiDNComponent implements OnInit{
 				for(let i of this.delovniNalog.materials){
 					let novMaterial = <any> ({'tipMateriala':'','kolicina':0});
 					novMaterial.tipMateriala = i.opis;
-					novMaterial.kolicina = i.steviloEpruvet;
+					novMaterial.kolicina = this.delovniNalog.steviloEpruvet;
 					this.material[j] = novMaterial;
 					j = j+1;
 				}
 			}else if(this.delovniNalog.vrstaObiska.idvrstaObiska == 50){
 				j = 0;
+				
 				this.aliJeInjekcija = true;
+				this.obiskBolezen = this.delovniNalog.bolezen.opis;
 				for(let i of this.delovniNalog.zdravilos){
 					let novZdravilo = <any> ({'idZdravila':0,'tipZdravila':''});
 					novZdravilo.idZdravila = i.idzdravilo;

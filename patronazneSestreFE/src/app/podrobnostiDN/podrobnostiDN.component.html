@@ -109,7 +109,7 @@
 			<label class="parametri">Vrsta storitve:
 				<label class="text">{{obiskVrstaStoritve}}</label>
 			</label>
-			<label class="parametri">Bolezen:
+			<label [hidden]="!aliJeInjekcija" class="parametri">Bolezen:
 				<label class="text">{{obiskBolezen}}</label>
 			</label>
 			<br/>
@@ -151,11 +151,11 @@
 			<table>
 				<tr>
 					<th class="zgornji">Tip materiala</th>
-					<td class="desni zgornji"></td>
+					<td class="desni zgornji" *ngFor="let s of material">{{s.tipMateriala}}</td>
 				</tr>
 				<tr>
 					<th>Kolicina</th>
-					<td class="desni"></td>
+					<td class="desni" *ngFor="let s of material">{{s.kolicina}}</td>
 				</tr>
 			</table>
 		</div>

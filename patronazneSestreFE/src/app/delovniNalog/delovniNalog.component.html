@@ -2,7 +2,7 @@
 
 
 
-<div id="delovniNalogMain">
+<div [hidden]="uspesnoPoslan" id="delovniNalogMain">
 
 	<form>
 		<div id="izvajalec">
@@ -93,20 +93,12 @@
 			 <input type="button" (click)="pridobiPodatkePacienta1()" name="pridobiPodatke" value="pridobi podatke"> 
 			 			 
 		</div>
-		
+			<label>Patronažna sestra</label>
 			<div id="sestra">						
 				<select [(ngModel)]="izbranaSestra" name="krneki22" >
 					<option *ngFor="let s of sestre" [ngValue]="s"> {{s.ime}}  {{s.priimek}} </option>
 				</select>
-			</div>		
-			
-		
-		
-			<input type="button" (click)="pridobiSestre()" name="pridobiSestro" value="pridobiSestro"> 	
-		
-		
-			
-		
+			</div>		 	
 		
 	
 		
@@ -159,15 +151,15 @@
 
 		<div id="storitev">
 		<h3>5 - STORITEV</h3>			
-		<select [(ngModel)]="izbranaStoritev" name="krneki3" >
+		<select [(ngModel)]="izbranaStoritev" name="krneki3" (ngModelChange)="onChangeStoritev($event)">
 			<option *ngFor="let s of storitve" [ngValue]="s"> {{s.name}} </option>
 		</select>
 		</div>
 		
 		
-		<div id="bolezen">
+		<div *ngIf='pokaziBolezen' id="bolezen">
 			<h3>6 - BOLEZEN</h3>			
-			<select [(ngModel)]="izbranaBolezen" name="krneki2" >
+			<select [(ngModel)]="izbranaBolezen" name="krneki2">
 				<option *ngFor="let b of bolezni" [ngValue]="b"> {{b.opis}} </option>
 			</select>
 		</div>
@@ -212,4 +204,10 @@
 	
 	
 
+</div>
+<div [hidden]="!uspesnoPoslan">
+	<h3>Delovni Nalog je bil uspešno poslan!</h3>
+</div>
+<div [hidden]="!napaka">
+	<h3>Prišlo je do napake pri kreiranju delovnega naloga</h3>
 </div>
