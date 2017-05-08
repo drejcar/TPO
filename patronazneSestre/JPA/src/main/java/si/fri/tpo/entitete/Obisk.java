@@ -36,12 +36,16 @@ public class Obisk implements Serializable {
 	@Column(name="fixen_datum", nullable=false)
 	private int fixenDatum;
 
+	@Column(name="opravljen", nullable=false)
+	private int opravljen;
+	
 	//bi-directional many-to-one association to DelovniNalog
 	@ManyToOne
 	@JoinColumn(name="iddelovni_nalog", nullable=false)
 	private DelovniNalog delovniNalog;
 
 	public Obisk() {
+		this.setOpravljen(0);
 	}
 
 	public int getIdobisk() {
@@ -76,4 +80,10 @@ public class Obisk implements Serializable {
 		this.delovniNalog = delovniNalog;
 	}
 
+	public void setOpravljen(int opravljen){
+		this.opravljen = opravljen;
+	}
+	public int getOpravljen(){
+		return this.opravljen;
+	}
 }

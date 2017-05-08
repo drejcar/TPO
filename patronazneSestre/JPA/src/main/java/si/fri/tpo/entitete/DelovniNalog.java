@@ -46,7 +46,7 @@ public class DelovniNalog implements Serializable {
 	
 	//bi-directional many-to-one association to Bolezen
 	@ManyToOne
-	@JoinColumn(name="idbolezen", nullable=false)
+	@JoinColumn(name="idbolezen", nullable=true)
 	private Bolezen bolezen;
 
 	//bi-directional many-to-one association to IzvajalecZdravstvenihStoritev

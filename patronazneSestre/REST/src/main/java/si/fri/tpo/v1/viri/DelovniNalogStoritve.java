@@ -101,6 +101,12 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 				for(int i = 0; i < stObiskov-1; i++){
 					Obisk obisk = new Obisk();
 					firstDate = firstDate.plusDays(naDni);
+					if(firstDate.dayOfWeek().getAsShortText().equals("Sat")){
+						firstDate = firstDate.plusDays(2);
+					}
+					else if(firstDate.dayOfWeek().getAsShortText().equals("Sun")){
+						firstDate = firstDate.plusDays(1);
+					}
 					obisk.setDatumObiska(firstDate.toDate());
 					obisk.setFixenDatum(fixenDatum);
 					delovniNalog.addObisk(obisk);
