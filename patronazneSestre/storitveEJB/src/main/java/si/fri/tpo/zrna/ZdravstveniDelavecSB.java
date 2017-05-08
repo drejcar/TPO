@@ -101,4 +101,10 @@ public class ZdravstveniDelavecSB implements ZdravstveniDelavecSBRemote, Zdravst
 		
 	}
 
+	@Override
+	public ZdravstveniDelavec patronaznaSluzbaById(int izvajalec) {
+
+		return (ZdravstveniDelavec) em.createNamedQuery("ZdravstveniDelavec.findPatronaznaSluzba").setParameter("id", izvajalec).getSingleResult();
+	}
+
 }
