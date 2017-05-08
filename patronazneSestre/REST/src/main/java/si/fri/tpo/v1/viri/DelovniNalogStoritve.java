@@ -53,8 +53,12 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 		if(obdobje == 0){
 			
 			Obisk o = new Obisk();
+			
 			o.setDatumObiska(od.toDate());
+			o.setDejanskiDatumObiska(od.toDate());
+			
 			o.setFixenDatum(fixenDatum);
+			
 			delovniNalog.addObisk(o);
 		
 		}
@@ -64,8 +68,12 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 				
 				//za obdobje
 				Obisk o = new Obisk();
+				
 				o.setFixenDatum(fixenDatum);
 				o.setDatumObiska(od.toDate());
+				
+				o.setDejanskiDatumObiska(od.toDate());
+				
 				delovniNalog.addObisk(o);
 				
 				LocalDate firstDate= od;
@@ -77,15 +85,21 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 				
 				for(int i = 0; i < stObiskov-1; i++){
 					Obisk obisk = new Obisk();
+					
 					firstDate = firstDate.plusDays(naDni);
+					
 					if(firstDate.dayOfWeek().getAsShortText().equals("Sat")){
 						firstDate = firstDate.plusDays(2);
 					}
 					else if(firstDate.dayOfWeek().getAsShortText().equals("Sun")){
 						firstDate = firstDate.plusDays(1);
 					}
+					
 					obisk.setDatumObiska(firstDate.toDate());
+					obisk.setDejanskiDatumObiska(firstDate.toDate());
+					
 					obisk.setFixenDatum(fixenDatum);
+					
 					delovniNalog.addObisk(obisk);
 				}
 				
@@ -93,27 +107,40 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 			else{
 				//za interval
 				Obisk o = new Obisk();
+				
 				o.setFixenDatum(fixenDatum);
+
 				LocalDate firstDate = new LocalDate(od);
 				int naDni = interval;
+				
 				o.setDatumObiska(od.toDate());
+				o.setDejanskiDatumObiska(od.toDate());
+				
 				delovniNalog.addObisk(o);
+				
 				for(int i = 0; i < stObiskov-1; i++){
+					
 					Obisk obisk = new Obisk();
+					
 					firstDate = firstDate.plusDays(naDni);
+					
 					if(firstDate.dayOfWeek().getAsShortText().equals("Sat")){
 						firstDate = firstDate.plusDays(2);
 					}
 					else if(firstDate.dayOfWeek().getAsShortText().equals("Sun")){
 						firstDate = firstDate.plusDays(1);
 					}
+					
 					obisk.setDatumObiska(firstDate.toDate());
+					obisk.setDejanskiDatumObiska(firstDate.toDate());
+					
 					obisk.setFixenDatum(fixenDatum);
+					
 					delovniNalog.addObisk(obisk);
+					
 				}
 			}
 		}
-	
 		
 		fasada.dodajDelovniNalog(delovniNalog);
 		
@@ -129,13 +156,21 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 																		@QueryParam("size") int size){
 			
 		if(ood != null){
+			
 			LocalDate oood = LocalDate.parse(ood);
 			LocalDate dooo = LocalDate.parse(doo);
+		
 			List<DelovniNalog> list = fasada.vrniDelovneNalogeZdrDel(id, oood.toDate(), dooo.toDate(), start, size);
+			
 			return list;
-		}else{
-			return fasada.vrniDelovneNalogeZdrDelAll(id,start,size);
+		
 		}
+		else{
+			
+			return fasada.vrniDelovneNalogeZdrDelAll(id,start,size);
+		
+		}
+	
 	}
 	
 	@GET
