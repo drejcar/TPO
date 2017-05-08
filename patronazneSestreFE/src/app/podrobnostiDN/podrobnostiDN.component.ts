@@ -49,7 +49,7 @@ export class podrobnostiDNComponent implements OnInit{
 	pacTelefon2='';
 	pacPosta2='';
 	
-	obiskiDatumi= [{'datumObiska':'','fiksniDatum':'','opravljen':''}];
+	obiskiDatumi= [{'datumObiska':'','fiksniDatum':'','opravljen':'','dejanskiDatum':''}];
 	obiskVrstaStoritve='';
 	obiskBolezen='';
 	
@@ -117,9 +117,10 @@ export class podrobnostiDNComponent implements OnInit{
 			//obiski
 			let j = 0;
 			for(let i of this.delovniNalog.obisks){
-				let novObisk = <any> ({'datumObiska':'','fiksniDatum':'','opravljen':''});
+				let novObisk = <any> ({'datumObiska':'','fiksniDatum':'','opravljen':'','dejanskiDatum':''});
 				
 				novObisk.datumObiska = i.datumObiska;
+				novObisk.dejanskiDatum = i.dejanskiDatumObiska;
 				if(i.opravljen == 0){
 					novObisk.opravljen = 'Neopravljen';
 				}else{

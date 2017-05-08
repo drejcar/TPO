@@ -41,7 +41,6 @@
 			<label class="parametri">Okolis:
 				<label class="text">{{sestraOkolis}}</label>
 			</label>
-			<br/>
 			<label class="parametri">Ime sestre:
 				<label class="text">{{sestraIme}}</label>
 			</label>
@@ -118,6 +117,10 @@
 				<tr>
 					<th class="obiski">Predvideni datum obiska</th>
 					<td class="obiski" *ngFor="let s of obiskiDatumi" >{{s.datumObiska}}</td>
+				</tr>
+				<tr>
+					<th class="obiski">Dejanski datum obiska</th>
+					<td class="obiski" *ngFor="let s of obiskiDatumi" >{{s.dejanskiDatum}}</td>
 				</tr>
 				<tr>
 					<th class="obiski">Fiksni datum</th>

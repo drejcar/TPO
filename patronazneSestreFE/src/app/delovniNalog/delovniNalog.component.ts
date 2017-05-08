@@ -363,7 +363,7 @@ export class DelovniNalogComponent implements OnInit{
 		
 		}	
 		
-		if(this.veljavnostNalogaSteviloObiskov < 1 || this.veljavnostNalogaSteviloObiskov > 9) this.dateIsValid = 0;
+		if(this.veljavnostNalogaSteviloObiskov < 1 || this.veljavnostNalogaSteviloObiskov > 10) this.dateIsValid = 0;
 			
 	}
 	
