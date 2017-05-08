@@ -12,16 +12,16 @@ export class izpisDNService{
 	constructor(private http: Http){}
 	
 	getDelovneNaloge(idZD: number) : Observable<any> {
-		console.log(idZD);
+		
 		
 		
 		var date = new Date();
 		var datum=date.getFullYear()+'-' + (date.getMonth()+1) + '-'+(date.getDate());
-		console.log(datum);
+		
 		return this.http.get(`${this.baseUrl}/delovniNalog/zdravstveniDelavecId/${idZD}?od=2017-1-1&do=${datum}&start=0&size=10`, {headers: this.headers}).map((response: Response) => response.json());
 	}
 	getDelovniNalog(idDN:number): Observable<any> {
-		console.log(idDN);
+		
 		return this.http.get(`${this.baseUrl}/delovniNalog/${idDN}`,{headers: this.headers}).map((response: Response) => response.json());
 	}
 }

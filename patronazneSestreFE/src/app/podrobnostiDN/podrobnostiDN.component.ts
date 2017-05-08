@@ -49,7 +49,7 @@ export class podrobnostiDNComponent implements OnInit{
 	pacTelefon2='';
 	pacPosta2='';
 	
-	obiskiDatumi= [{'idObiska':0,'datumObiska':'','fiksniDatum':'','opravljen':''}];
+	obiskiDatumi= [{'datumObiska':'','fiksniDatum':'','opravljen':''}];
 	obiskVrstaStoritve='';
 	obiskBolezen='';
 	
@@ -117,8 +117,8 @@ export class podrobnostiDNComponent implements OnInit{
 			//obiski
 			let j = 0;
 			for(let i of this.delovniNalog.obisks){
-				let novObisk = <any> ({'idObiska':0,'datumObiska':'','fiksniDatum':'','opravljen':''});
-				novObisk.idObiska = i.idobisk;
+				let novObisk = <any> ({'datumObiska':'','fiksniDatum':'','opravljen':''});
+				
 				novObisk.datumObiska = i.datumObiska;
 				if(i.opravljen == 0){
 					novObisk.opravljen = 'Neopravljen';
@@ -133,6 +133,20 @@ export class podrobnostiDNComponent implements OnInit{
 				this.obiskiDatumi[j] = novObisk;
 				j = j+1;
 			}
+			//bubble sort za sortiranje datume obiskov
+			for(var i=0; i < this.obiskiDatumi.length -1 ; i++) {
+				for(var x=0; x < this.obiskiDatumi.length - 1; x++) {
+					var parts:any[] = this.obiskiDatumi[x].datumObiska.split('-');
+					var prvi = parts[0]+parts[1]+parts[2];
+					parts = this.obiskiDatumi[x+1].datumObiska.split('-');
+					var drugi = parts[0]+parts[1]+parts[2];
+					if(Number(prvi) > Number(drugi)) {
+						var theGreater = this.obiskiDatumi[x];
+						this.obiskiDatumi[x] = this.obiskiDatumi[x + 1]; 
+						this.obiskiDatumi[x+1] = theGreater;
+					}
+				}
+			}	
 			this.obiskVrstaStoritve = this.delovniNalog.vrstaObiska.opis;
 			
 			
