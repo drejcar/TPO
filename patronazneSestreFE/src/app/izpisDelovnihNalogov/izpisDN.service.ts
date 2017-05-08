@@ -20,4 +20,8 @@ export class izpisDNService{
 		console.log(datum);
 		return this.http.get(`${this.baseUrl}/delovniNalog/zdravstveniDelavecId/${idZD}?od=2017-1-1&do=${datum}&start=0&size=10`, {headers: this.headers}).map((response: Response) => response.json());
 	}
+	getDelovniNalog(idDN:number): Observable<any> {
+		console.log(idDN);
+		return this.http.get(`${this.baseUrl}/delovniNalog/${idDN}`,{headers: this.headers}).map((response: Response) => response.json());
+	}
 }

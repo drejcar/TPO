@@ -128,7 +128,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	// *** klici za delovni nalog ***
 
 	@Override
-	@RolesAllowed({"Zdravnik","PatronaznaSluzba"})
+	@RolesAllowed({"Zdravnik","PatronaznaSluzba","Administrator","PatronaznaSestra"})
 	public DelovniNalog vrniDelovniNalog(int id) {
 		DelovniNalog nov = delovniNalog.vrniDelovniNalog(id);
 		delovniNalog.odstraniZrno();

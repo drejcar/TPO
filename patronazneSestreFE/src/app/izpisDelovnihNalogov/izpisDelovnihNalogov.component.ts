@@ -29,7 +29,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 	izbraniDatumIzdajeDo = '';
 	delovniNalogiVsi: any[];
 	//delovniNalogi: dN[] = [];
-	delovniNalogi:dN[] = [{idDelovnegaNaloga:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',datumIzdaje:''}];
+	delovniNalogi:dN[] = [{idDelovnegaNaloga:'',izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',datumIzdaje:''}];
 	//podrobniOpis = [{''}]
 	ngOnInit(){
 		//poiscemo zdravstvenega delavca
@@ -296,5 +296,8 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 					i = i+1;
 				}
 		}
+	}
+	OnSub(vrednost:number){
+		this.router.navigate(['/podrobnosti/${vrednost}']);
 	}
 }
