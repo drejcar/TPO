@@ -58,7 +58,6 @@ export class DelovniNalogComponent implements OnInit{
 	post1: string = "";
 	
 	pokaziBolezen: boolean = false;
-	uspesnoPoslan: boolean = false;
 	napaka:boolean = false;
 	
 	materiali: any[] = [];
@@ -438,12 +437,9 @@ export class DelovniNalogComponent implements OnInit{
 
 		this.http.post(`${this.restUrl}/delovniNalog${this.urlParametri}`,JSON.stringify(dn), {headers: headers1}).subscribe(
 			res => {console.log(res);
-				this.uspesnoPoslan = true;
-				setTimeout(() => {
-				location.reload();
-				//this.uspesnoPoslan = false;
+				this.napaka = false;
+				this.router.navigate(['/uspeh']);
 				
-			}, 2000);
 			}, 
 			(err) => {console.log(err);
 				this.napaka = true;

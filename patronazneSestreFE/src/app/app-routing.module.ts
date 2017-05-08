@@ -29,6 +29,7 @@ import {AktivacijaComponent} from "./registracija/aktivacija.component";
 import {GuestGuard} from "./_guard/guest.guard";
 import {DelovniNalogGuard} from "./_guard/delovniNalog.guard";
 import { IzpisDNGuard } from './_guard/izpisDN.guard';
+import { preusmeriComponent } from './delovniNalog/preusmeri.component';
 
 const routes: Routes = [
   { path: 'dashboard',/* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: DashboardComponent },
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path: 'aktivacija/:id',component: AktivacijaComponent},
   { path: 'delovniNalogi',component: izpisDelovnihNalogovComponent, canActivate: [IzpisDNGuard]},
   { path: 'podrobnosti/:id',component: podrobnostiDNComponent/*, canActivate: [IzpisDNGuard]*/},
+  { path: 'uspeh',component: preusmeriComponent,canActivate:[DelovniNalogGuard]},
   //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },
