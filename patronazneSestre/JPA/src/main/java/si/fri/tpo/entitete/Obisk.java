@@ -32,6 +32,11 @@ public class Obisk implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name="datum_obiska", nullable=false)
 	private Date datumObiska;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name="dejanski_datum_obiska", nullable=false)
+	private Date dejanskiDatumObiska;
+
 
 	@Column(name="fixen_datum", nullable=false)
 	private int fixenDatum;
@@ -45,7 +50,7 @@ public class Obisk implements Serializable {
 	private DelovniNalog delovniNalog;
 
 	public Obisk() {
-		this.setOpravljen(0);
+		this.setOpravljen(0); // 0 - ni opravljen; 1 - je opravjen
 	}
 
 	public int getIdobisk() {
@@ -85,5 +90,13 @@ public class Obisk implements Serializable {
 	}
 	public int getOpravljen(){
 		return this.opravljen;
+	}
+	
+	public void setDejanskiDatumObiska(Date dejanskiDatumObiska){
+		this.dejanskiDatumObiska = dejanskiDatumObiska;
+	}
+	
+	public Date getDejanskiDatumObiska(){
+		return this.dejanskiDatumObiska;
 	}
 }
