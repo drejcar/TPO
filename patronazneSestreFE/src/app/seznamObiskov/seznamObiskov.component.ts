@@ -29,6 +29,7 @@ export class seznamObiskovComponent implements OnInit{
 	izbraniDejanskiDatumOd='';
 	izbraniDejanskiDatumDo='';
 	
+	sekundarnaTabelaObiskovVsi: any[];
 	izbranaOpravljenost = this.opravljenost[0];
 	izbraniIzdajatelj = this.izdajatelji[0];
 	izbraniObisk = this.obiski[0];
@@ -60,7 +61,7 @@ export class seznamObiskovComponent implements OnInit{
 			}
 			});
 		setTimeout(() => {
-		if(localStorage['vloga'] == 'Zdravnik'){
+		/*if(localStorage['vloga'] == 'Zdravnik'){
 			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca'))).subscribe(res => {this.tabelaObiskovVsi = res;
 				let i = 0; //stevec za obiske
 				let d = 0; //stevec za paciente
@@ -147,8 +148,8 @@ export class seznamObiskovComponent implements OnInit{
 				}
 				this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
-			});
-		}else if(localStorage['vloga'] == 'PatronaznaSestra'){
+			});*/
+		if(localStorage['vloga'] == 'PatronaznaSestra'){
 			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca'))).subscribe(res => {this.tabelaObiskovVsi = res;
 				let i = 0; //stevec za obiske
 				let d = 0; //stevec za paciente
@@ -238,9 +239,13 @@ export class seznamObiskovComponent implements OnInit{
 				}
 				this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
+				
 			});
-		}else if(localStorage['vloga'] == 'PatronaznaSluzba'){
+		}else if(localStorage['vloga'] == 'PatronaznaSluzba' || localStorage['vloga'] == 'Zdravnik'){
+			
 			this.DNService.getDelovneNalogePrekIzv(Number(localStorage.getItem('idIzv'))).subscribe(res => {this.tabelaObiskovVsi = res;
+		
+				
 				let i = 0; //stevec za obiske
 				let d = 0; //stevec za paciente
 				let j = 0; //stevec za vrste obiskov
@@ -341,6 +346,7 @@ export class seznamObiskovComponent implements OnInit{
 				}
 				this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
+				this.Onsubmit();
 			});
 			
 		}

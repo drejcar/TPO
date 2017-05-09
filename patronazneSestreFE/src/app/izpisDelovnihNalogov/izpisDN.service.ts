@@ -26,6 +26,12 @@ export class izpisDNService{
 	}
 	getDelovneNalogePrekIzv(izvId:number): Observable<any> {
 		console.log(izvId);
+		
 		return this.http.get(`${this.baseUrl}/delovniNalog/izvajalecZdr/${izvId}?start=0&size=10`,{headers: this.headers}).map((response: Response) => response.json());
+	}
+	getDelovneNalogePrekIzv2(izvId:number,start:number): Observable<any> {
+		console.log(izvId);
+		console.log(start);
+		return this.http.get(`${this.baseUrl}/delovniNalog/izvajalecZdr/${izvId}?start=${start}&size=10`,{headers: this.headers}).map((response: Response) => response.json());
 	}
 }

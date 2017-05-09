@@ -43,6 +43,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 			var dobiZd = JSON.parse(vmesna);
 			
 			localStorage.setItem('idZdravstvenegaDelavca',dobiZd.idzdravstveniDelavec.toString());
+			localStorage.setItem('idIzv',dobiZd.izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev);
 			//preverimo kdo želi videti svoje delovne naloge
 			
 			if(localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba'){
@@ -59,13 +60,13 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 		//TODO rest klic za pridobivanje delovnega naloga
 		
 		if(localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba'){
-			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca'))).subscribe(res => {this.delovniNalogiVsi = res;
-				console.log(this.delovniNalogiVsi[0]);
+			this.DNService.getDelovneNalogePrekIzv(Number(localStorage.getItem('idIzv'))).subscribe(res => {this.delovniNalogiVsi = res;
+				
 				let i = 0; //stevec za delovneNaloge
 				let d = 0; //stevec za paciente
 				let j = 0; //stevec za vrste obiskov
 				let m = 0; //stevec za zdravstvene delavce
-				
+				let n = 1; //stevec za zdravstvene delavce izd
 				//setanje izpisa delovnih nalogov ob initializaciji
 				for(let dn of this.delovniNalogiVsi){
 					let delovniN = <any> ({idDelovnegaNaloga:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',datumIzdaje:''});
@@ -126,6 +127,21 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 								m = m+1;
 							}
 						}else{
+							this.aliObstaja = false;
+							for(let zd of this.izdajatelji){
+								if(zd.id == zdr.idzdravstveniDelavec){
+									this.aliObstaja = true;
+									break;
+								}
+							}
+							
+							if(this.aliObstaja == false){
+								let novZd = <any> ({sifra:'',id:0});
+								novZd.sifra = zdr.sifra;
+								novZd.id = zdr.idzdravstveniDelavec;
+								this.izdajatelji[n] = novZd;
+								n = n+1;
+							}
 							delovniN.izdajatelj = zdr.sifra;
 						}
 					}
@@ -137,7 +153,8 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 					//stevec ++
 					i = i+1;
 				}
-				this.delovniNalogiVsi = this.delovniNalogi;	
+				this.delovniNalogiVsi = this.delovniNalogi;
+				this.Onsubmit();
 			});
 			
 		}else if(localStorage['vloga'] == 'PatronaznaSestra'){
