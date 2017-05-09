@@ -1,0 +1,101 @@
+<h1 id="naslov"> Seznam obiskov </h1>
+
+
+<h3 id="labelnek">FILTRI</h3>
+
+	<form>
+	<div id="filtri">
+			<div class="enObDrugem">
+				<label>Vrsta obiska:</label>
+				<select [(ngModel)]="izbraniObisk" class="form-control" name="PovrstaObiska">
+					<option></option>
+					<option *ngFor="let s of obiski" [ngValue]="s">{{s.name}}</option>
+				</select>
+			</div>
+			
+			<div class="enObDrugem">
+				<label>Izdajatelj:</label>
+				<select [(ngModel)]="izbraniIzdajatelj" class="form-control" name="Poizdajatelj">
+					<option></option>
+					<option *ngFor="let s of izdajatelji" [ngValue]="s">{{s.sifra}}</option>
+				</select>
+			</div>
+			
+			<div class="enObDrugem">
+				<label>Pacient:</label>
+				<select [(ngModel)]="izbraniPacient" class="form-control" name="poPacientu">
+					<option></option>
+					<option *ngFor="let s of pacienti" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
+					
+				</select>
+			</div>
+			
+			<div class="enObDrugem">
+				<label>Patronažna sestra:</label>
+				<select [(ngModel)]="izbranaSestra" class="form-control" name="poSestri">
+					<option></option>
+					<option *ngFor="let s of sestre" [ngValue]="s">{{s.sifra}}</option>
+				</select>
+			</div>
+			<div class="enObDrugem">
+				<label>Opravljen</label>
+				<select [(ngModel)]="izbranaOpravljenost" class="form-control" name="poOpravljenosti">
+					<option *ngFor="let s of opravljenost" [ngValue]="s">{{s.opravljenost}}</option>
+				</select>
+			</div>
+		</div>
+		<div id="filtri2">
+			<div class="enObDrugemDatumi">
+				<label for="predvideniDatumOd">Predvideni datum obiska od</label>
+				<input type="date" class="form-control" name="predvideniDatumOd" placeholder="05-05-2017" [(ngModel)]="izbraniPredvideniDatumOd">
+			</div>
+			<div class="enObDrugemDatumi">
+				<label for="predvideniDatumDo">Predvideni datum obiska Do</label>
+				<input type="date" class="form-control" name="predvideniDatumDo" placeholder="05-05-2017" [(ngModel)]="izbraniPredvideniDatumDo">
+			</div>
+			<div class="enObDrugemDatumi">
+				<label for="dejanskiDatumOd">Dejanski datum Od</label>
+				<input type="date" class="form-control" name="dejanskiDatumOd" placeholder="05-05-2017" [(ngModel)]="izbraniDejanskiDatumOd">
+			</div>
+			<div class="enObDrugemDatumi">
+				<label for="dejanskiDatumDo">Dejanski datum Do</label>
+				<input type="date" class="form-control" name="dejanskiDatumDo" placeholder="05-05-2017" [(ngModel)]="izbraniDejanskiDatumDo">
+			</div>
+		</div>
+		<div class="levo">
+			<input type="button" (click)="Onsubmit()" id="gumb" name="poisciFiltre" value="Filtriraj">
+		</div>
+		
+	</form>
+
+<h3>Obiski</h3>
+<div id="linija"></div>
+
+<div id="kvadratZaDelovneNaloge">
+	
+	<table>
+		<tr>
+			<th>Id obiska</th>
+			<th>Izdajatelj</th>
+			<th>Vrsta obiska</th>
+			<th>Patronažna sestra</th>
+			<th>Pacienti</th>
+			<th>Predvideni datum obiska</th>
+			<th>Dejanski datum obiska</th>
+			<th>Opravljen</th>
+			<th>Podrobno</th>
+		</tr>
+		<tr *ngFor="let s of tabelaDejanskiObiskov">
+			<td>{{s.idObiska}}</td>
+			<td>{{s.izdajatelj}}</td>
+			<td>{{s.vrstaObiska}}</td>
+			<td>{{s.patronaznaSestra}}</td>
+			<td>{{s.pacienti}}</td>
+			<td>{{s.predvideniDatumObiska}}</td>
+			<td>{{s.dejanskiDatumObiska}}</td>
+			<td>{{s.opravljenost}}</td>
+			<td><a>Podrobnosti</a></td>
+		</tr>
+	</table>
+	
+</div>

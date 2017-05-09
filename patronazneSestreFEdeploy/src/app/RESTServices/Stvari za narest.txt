@@ -1,0 +1,4 @@
+Registracija uporabnika,
+registracija zdravstvenih delavcev,
+spreminjanje gesla uporabnika,
+oddajanje delovnega naloga

@@ -1,0 +1,125 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Registracija zdravstvenega delavca</h1>
+    <form (ngSubmit)="onSubmit(registracijaForm)" #registracijaForm="ngForm">
+      <div class="form-group">
+        <label for="email">Elektronska pošta</label>
+        <input type="email" class="form-control" id="email"
+               maxlength="45" placeholder="elektronska pošta" required
+               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+               [(ngModel)]="model2.email" name="email"
+               #email="ngModel">
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger">
+          Vnesite veljavno elektronsko pošto
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ime">Ime</label>
+        <input type="text" class="form-control" id="ime"
+               placeholder="ime" required
+               [(ngModel)]="model.ime" name="ime"
+               #ime="ngModel">
+        <div [hidden]="ime.valid || ime.pristine"
+             class="alert alert-danger">
+          Vnesite ime
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="priimek">Priimek</label>
+        <input type="text" class="form-control" id="priimek"
+               placeholder="priimek" required
+               [(ngModel)]="model.priimek" name="priimek"
+               #priimek="ngModel">
+        <div [hidden]="priimek.valid || priimek.pristine"
+             class="alert alert-danger">
+          Vnesite priimek
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="geslo">Željeno geslo</label>
+        <input type="password" class="form-control" id="geslo"
+               required minlength="8" validateEqual="pwd2" reverse="true"
+               [(ngModel)]="model2.geslo" name="geslo"
+               #geslo="ngModel">
+        <div [hidden]="geslo.valid || geslo.pristine"
+             class="alert alert-danger">
+          Vnesite željeno geslo (dolžina mora biti vsaj 8 znakov)
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="pwd2">Ponovite geslo</label>
+        <input type="password" class="form-control" id="pwd2"
+               required validateEqual="geslo"
+               [(ngModel)]="model3.pwd2" name="pwd2"
+               #pwd2="ngModel">
+        <div [hidden]="pwd2.valid || pwd2.pristine"
+             class="alert alert-danger">
+          Gesli se morata ujemati
+        </div>
+      </div>
+      <div class="form-group">
+      	<label for="sifra">Sifra zdravstvenega delavca</label>
+      	<input type="sifra" class="form-control" id="sifra"
+      			required minlength="5" maxlength="5" [(ngModel)]="model.sifra" name="sifra" #sifra="ngModel">
+      	<div [hidden]="sifra.valid || sifra.pristine" class="alert alert-danger">
+      		Vnesite Šifro zdravstvenega delavca (dolžina mora biti vsaj 5 znakov)
+      	</div>
+      </div>
+      <div class="form-group">
+        <label for="telefonskaStevilka">Telefonska številka</label>
+        <input type="text" class="form-control" id="telefonskaStevilka"
+               placeholder="+38600000000" required minlength="12" maxlength="12"
+               [(ngModel)]="model.telefonskaStevilka" name="telefonskaStevilka" pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+               2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+               4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$"
+               #telefonskaStevilka="ngModel">
+        <div [hidden]="telefonskaStevilka.valid || telefonskaStevilka.pristine"
+             class="alert alert-danger">
+          Vnesite vašo telefonsko Številko
+        </div>
+      </div>
+      <div class="form-group">
+		<label for="izvajalecZdravstvenihStoritev">Izvajalec Zdravstvenih Storitev</label>
+        <select class="form-control" id="izvajalecZdravstvenihStoritev"
+          required 
+		  [(ngModel)]="model.izvajalecZdravstvenihStoritev" (ngModelChange)="onChangePostnaStevilka($event)" name="izvajalecZdravstvenihStoritev"
+		  #izvajalecZdravstvenihStoritev="ngModel">
+		  
+		  <option *ngFor="let izv of izvajaleciZdravstvenihStoritev" [value]="izv.posta.idposta+' '+izv.idizvajalecZdravstvenihStoritev">{{izv.naziv}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+	  <label for="vloga">Vloga</label>
+        <select class="form-control" id="vloga"
+          required 
+		  [(ngModel)]="model2.vloga" name="vloga"
+		  #vloga="ngModel" (ngModelChange)="onChangeVloga($event)">
+		  
+		  <option *ngFor="let vloga of vloge" [value]="vloga.opis+' '+vloga.idvloga">{{vloga.opis}}</option>
+        </select>
+      </div>
+      <div class="form-group" *ngIf='ifpatronaz'>
+        <label for="okolis">Okoliš</label>
+        <select class="form-control" id="okolis"
+                required
+                [(ngModel)]="model.okolis" name="okolis"
+                #okolis="ngModel">
+          <option *ngFor="let okolis of okolisi" [value]="okolis">{{okolis.opis}}</option>
+        </select>
+        <div [hidden]="okolis.valid || okolis.pristine" class="alert alert-danger">
+          Izberite okoliš
+        </div>
+      </div>
+      <button type="submit"
+              class="btn btn-success" [disabled]="!registracijaForm.form.valid">Registracija</button>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    <h2>Registrirali ste novega zdravstvenega delavca </h2>
+  </div>
+  <div *ngIf="novBool">
+    <h2>Prišlo je do težave pri kreiranju novega zdravstvenega delavca</h2>
+	<h3>Ponovno preverite vnešene podatke</h3>
+  </div>
+</div>

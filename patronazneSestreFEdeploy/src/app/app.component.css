@@ -1,0 +1,63 @@
+header {
+	background: #448cff;
+	width: 98.6vw;
+	height: 20vh;
+	position: relative;
+	color: black;
+	margin: 0;
+}
+
+nav {
+	position: absolute;
+	bottom: 0;
+	width: 45vw;
+	color: black;
+	margin: 5px 10px;
+}
+
+#navRight {
+	position: absolute;
+	bottom: 0;
+	right:0;
+	color: black;
+	margin: 5px 10px;
+}
+#404{
+  background:#448cff;
+  text-align:center;
+}
+
+
+#userProf{
+	
+	position: absolute;
+	bottom: 38px;
+	right:0px;
+	color: black;
+	margin: 5px 10px;
+}
+#zadnjaPrijava{
+	position: absolute;
+	bottom: 25px;
+	right: 0px;
+	color: black;
+	margin: 5px 10px;
+}
+footer {
+	bottom: 0px;
+	position: relative;
+	background: #448cff;
+	width: 98.6vw;
+	margin-top:10px;
+	top: 40vh;
+}
+
+router-outlet{
+  padding-top:20vh;
+  margin: auto;
+  position: absolute;
+}
+
+
+a:link {color:black; }
+a:visited  {color:black;}

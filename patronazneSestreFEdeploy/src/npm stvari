@@ -1,0 +1,5 @@
+npm install angular2-acl --save
+npm install --save-dev @types/node
+npm install --save @types/base-64
+npm install angular2-auth
+npm install angular2-jwt
