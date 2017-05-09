@@ -130,4 +130,20 @@ public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal
 			return list.subList(start, start+size);
 		}
 	}
+
+	@Override
+	public List<DelovniNalog> vrniDelovneNalogeIzvAll(int id, int start, int size) {
+		@SuppressWarnings("unchecked")
+		List<DelovniNalog> list =  em.createNamedQuery("DelovniNalog.findSpecificAllIzv").setParameter("id", id).getResultList();
+		
+		if(list.size() <= start){
+			return null;
+		}
+		else if(list.size() <= start+size){
+			return list.subList(start, list.size());
+		}
+		else{
+			return list.subList(start, start+size);
+		}
+	}
 }

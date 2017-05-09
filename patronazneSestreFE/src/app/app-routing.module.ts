@@ -10,6 +10,7 @@ import { PageNotFoundComponent } from './not-found.component';
 import { OdjavaComponent } from './odjava/odjava.component';
 import { izpisDelovnihNalogovComponent } from './izpisDelovnihNalogov/izpisDelovnihNalogov.component';
 import { podrobnostiDNComponent } from './podrobnostiDN/podrobnostiDN.component';
+import { seznamObiskovComponent } from './seznamObiskov/seznamObiskov.component';
 
 import {PacientGuard} from "./_guard/pacient.guard";
 import {ZdravnikGuard} from "./_guard/zdravnik.guard";
@@ -50,6 +51,7 @@ const routes: Routes = [
   { path: 'delovniNalogi',component: izpisDelovnihNalogovComponent, canActivate: [IzpisDNGuard]},
   { path: 'podrobnosti/:id',component: podrobnostiDNComponent/*, canActivate: [IzpisDNGuard]*/},
   { path: 'uspeh',component: preusmeriComponent,canActivate:[DelovniNalogGuard]},
+  { path: 'seznamObiskov',component: seznamObiskovComponent,canActivate:[IzpisDNGuard]},
   //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

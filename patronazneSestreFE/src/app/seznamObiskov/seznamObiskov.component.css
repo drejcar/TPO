@@ -4,7 +4,15 @@ div.enObDrugem {
 	margin-left:2px;
 	margin-right:2px;
 	margin-bottom:10px;
+}
+div.enObDrugemDatumi{
+	float:left;
+	width: 15vw;
+	margin-left:2px;
+	margin-right:2px;
+	margin-bottom:10px;
 
+	
 }
 div.levo {	
 	clear: left;
@@ -24,7 +32,7 @@ div.parametri{
 	margin-bottom: 50px;
 }
 #gumb{
-	margin-left:42%;
+	margin-left:45%;
 	margin-bottom:20px;
 }
 #labelnek{
@@ -33,7 +41,12 @@ div.parametri{
 	
 }
 #filtri{
-	margin-left:70px;
+	margin-left:8vw;
+	float:left;
+}
+#filtri2{
+	margin-left:16vw;
+	float:left;
 }
 #linija{
 	border-bottom-width:1px;

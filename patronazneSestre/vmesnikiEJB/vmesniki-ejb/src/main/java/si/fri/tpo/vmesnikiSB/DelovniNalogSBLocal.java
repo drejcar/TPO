@@ -19,4 +19,5 @@ public interface DelovniNalogSBLocal {
 	void odstraniZrno(); //odstranjevanje zrna
 	public List<DelovniNalog> vrniDelovneNalogeZdrDel(int id, Date ood, Date doo, int start, int size);
 	public List<DelovniNalog> vrniDelovneNalogeZdrDelAll(int id, int start, int size);
+	public List<DelovniNalog> vrniDelovneNalogeIzvAll(int id, int start,int size);
 }

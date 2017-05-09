@@ -279,7 +279,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 				console.log(od);
 				console.log(datDo);
 				console.log(dtmizdaje);
-				if((Number(dtmizdaje) >= Number(od) && Number(dtmizdaje) < Number(datDo)) || (datDo == '' && Number(dtmizdaje) >= Number(od)) || (od == '' && Number(dtmizdaje) < Number(datDo)) || (datDo == '' && od == '')){
+				if((Number(dtmizdaje) >= Number(od) && Number(dtmizdaje) <= Number(datDo)) || (datDo == '' && Number(dtmizdaje) >= Number(od)) || (od == '' && Number(dtmizdaje) <= Number(datDo)) || (datDo == '' && od == '')){
 					tabelaIfov[4] = true;
 				}
 				for(let d of tabelaIfov){

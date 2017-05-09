@@ -410,6 +410,7 @@ export class DelovniNalogComponent implements OnInit{
 		var zdravstveniDelavec = new ZdravstveniDelavec();
 		zdravstveniDelavec.idzdravstveniDelavec = this.idZdravnika;
 		
+		
 		//fakin medicinska sestra fakin robi, popravljeno
 		var sestra = new ZdravstveniDelavec();
 		sestra.idzdravstveniDelavec = this.izbranaSestra.idzdravstveniDelavec;;

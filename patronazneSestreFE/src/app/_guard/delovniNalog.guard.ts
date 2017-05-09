@@ -7,7 +7,7 @@ export class DelovniNalogGuard implements CanActivate {
   constructor(private router:Router,private user: UserService) {}
 
   canActivate() {
-    if(localStorage.getItem('vloga') == 'Zdravnik' || localStorage.getItem('vloga') == 'PatronaznaSestra'){
+    if(localStorage.getItem('vloga') == 'Zdravnik' || localStorage.getItem('vloga') == 'PatronaznaSluzba'){
 		return true;
 	}else{
 		this.router.navigate(['**']);

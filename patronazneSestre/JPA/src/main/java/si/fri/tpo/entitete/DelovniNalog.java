@@ -27,7 +27,8 @@ import java.util.Set;
 	@NamedQuery(name="DelovniNalog.findOne",query="SELECT d FROM DelovniNalog d WHERE d.iddelovniNalog = :id"),
 	@NamedQuery(name="DelovniNalog.deleteOne",query="DELETE FROM DelovniNalog d WHERE d.iddelovniNalog = :id"),
 	@NamedQuery(name="DelovniNalog.findSpecific",query="SELECT d FROM DelovniNalog d INNER JOIN d.zdravstveniDelavecs z WHERE z.idzdravstveniDelavec=:id AND d.datumIzdaje BETWEEN :startDate AND :endDate"),
-	@NamedQuery(name="DelovniNalog.findSpecificAll",query="SELECT d FROM DelovniNalog d INNER JOIN d.zdravstveniDelavecs z WHERE z.idzdravstveniDelavec=:id")
+	@NamedQuery(name="DelovniNalog.findSpecificAll",query="SELECT d FROM DelovniNalog d INNER JOIN d.zdravstveniDelavecs z WHERE z.idzdravstveniDelavec=:id"),
+	@NamedQuery(name="DelovniNalog.findSpecificAllIzv",query="SELECT d FROM DelovniNalog d INNER JOIN d.izvajalecZdravstvenihStoritev z WHERE z.idizvajalecZdravstvenihStoritev=:id")
 })
 public class DelovniNalog implements Serializable {
 	private static final long serialVersionUID = 1L;

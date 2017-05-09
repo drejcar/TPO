@@ -143,16 +143,26 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 			}
 		}
 		
-		int izvajalec = delovniNalog.getIzvajalecZdravstvenihStoritev().getIdizvajalecZdravstvenihStoritev();
+		/*int izvajalec = delovniNalog.getIzvajalecZdravstvenihStoritev().getIdizvajalecZdravstvenihStoritev();
 		
 		ZdravstveniDelavec patronaznaSluzba = fasada.returnPatronaznaSluzbaByIzvajalec(izvajalec);
 		
-		delovniNalog.getZdravstveniDelavecs().add(patronaznaSluzba);
+		delovniNalog.getZdravstveniDelavecs().add(patronaznaSluzba);*/
 		
 		fasada.dodajDelovniNalog(delovniNalog);
 		
 	}
-
+	@GET
+	@Path("/izvajalecZdr/{id}")
+	@ApiOperation(value="vrni delovne naloge glede na podanega izvajalca zdravstvenih storitev",code=200,response=DelovniNalog.class)
+	public List<DelovniNalog> returnDelovniNalogIzv(@PathParam("id") int id, 
+													@QueryParam("start") int start, 
+													@QueryParam("size") int size){
+			
+		
+		return fasada.vrniDelovneNalogeIzvAll(id, start, size);
+		
+	}
 	@GET
 	@Path("/zdravstveniDelavecId/{id}")
 	@ApiOperation(value="Vrni delovne naloge zdravstvenega delavca glede na poddano obdobje in število podanih zadetkov",code=200,response=DelovniNalog.class)
@@ -209,7 +219,6 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 	@Path("{id}")
 	@ApiOperation(value = "vrni delovni nalog", notes = "Vrne specificni delovni nalog",code = 200, response = DelovniNalog.class)
 	public DelovniNalog returnDelovniNalog(@PathParam("id") int id) {
-		
 		
 		return fasada.vrniDelovniNalog(id);
 	}

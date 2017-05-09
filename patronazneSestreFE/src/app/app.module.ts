@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule}   from '@angular/forms'; // <-- NgModel lives here
 import { HttpModule }    from '@angular/http';
 
+
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { PrijavaComponent } from './prijava/prijava.component';
 import { RegistracijaFormComponent } from './registracija/registracija.component';
@@ -10,6 +11,7 @@ import { DelovniNalogComponent } from './delovniNalog/delovniNalog.component';
 import { PageNotFoundComponent } from './not-found.component';
 import { podrobnostiDNComponent } from './podrobnostiDN/podrobnostiDN.component';
 import { preusmeriComponent } from './delovniNalog/preusmeri.component';
+import { seznamObiskovComponent } from './seznamObiskov/seznamObiskov.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
@@ -49,7 +51,7 @@ import { IzpisDNGuard } from './_guard/izpisDN.guard';
                   SpremembaGeslaComponent,AdminDashComponent,PacientDashComponent,
                   PatronaznaSestraDashComponent,PatronaznaSluzbaDashComponent,SodelavecIzsDashComponent,
                   ZdravnikDashComponent,AktivacijaComponent,OdjavaComponent,izpisDelovnihNalogovComponent,podrobnostiDNComponent,
-				  preusmeriComponent
+				  preusmeriComponent,seznamObiskovComponent
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,GuestGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,

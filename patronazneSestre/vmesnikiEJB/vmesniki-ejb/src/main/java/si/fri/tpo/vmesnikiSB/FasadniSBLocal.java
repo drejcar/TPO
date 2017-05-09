@@ -133,6 +133,7 @@ public interface FasadniSBLocal {
 		public void posodobiZadnjoPrijavo(int id);
 		public List<DelovniNalog> vrniDelovneNalogeZdrDel(int id, Date ood, Date doo, int start, int size);
 		public List<DelovniNalog> vrniDelovneNalogeZdrDelAll(int id, int start, int size);
+		public List<DelovniNalog> vrniDelovneNalogeIzvAll(int id, int start,int size);
 		public List<ZdravstveniDelavec> returnPatronazneSestre(int id);
 		public ZdravstveniDelavec returnPatronaznaSluzbaByIzvajalec(int izvajalec);
 }
