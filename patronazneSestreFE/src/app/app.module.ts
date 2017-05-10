@@ -12,6 +12,8 @@ import { PageNotFoundComponent } from './not-found.component';
 import { podrobnostiDNComponent } from './podrobnostiDN/podrobnostiDN.component';
 import { preusmeriComponent } from './delovniNalog/preusmeri.component';
 import { seznamObiskovComponent } from './seznamObiskov/seznamObiskov.component';
+import { DatePipe } from '@angular/common';
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent }  from './app.component';
@@ -56,7 +58,7 @@ import {PlaniranjeObiskovComponent} from "./planiranjeObiskov/planiranjeObiskov.
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,GuestGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,
-				          DelovniNalogGuard,IzpisDNGuard,izpisDNService
+				          DelovniNalogGuard,IzpisDNGuard,izpisDNService,DatePipe
                 ],
   bootstrap:    [ AppComponent ]
 })
