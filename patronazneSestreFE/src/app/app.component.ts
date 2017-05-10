@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 			<a [hidden]="!admin" routerLink="/registracijazd" routerLinkActive="active">regZd</a>	
 			<a [hidden]="!aliJeLoginan" routerLink="/spremembaGesla" routerLinkActive="active">sprGesla</a>	
 			<a [hidden]="!mojiDelovniNalog" routerLink="/seznamObiskov" routerLinkActive="active">Seznam obiskov</a>
+			<a [hidden]="!patronaznaSestra" routerLink="/planiranjeObiskov" routerLinkActive="active">Planiranje obiskov</a>
 		</nav>
 		<div id="userProf">{{opis}}</div>
 		<div id="zadnjaPrijava">{{opis2}}</div>
@@ -31,16 +32,17 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
   `,
 	styleUrls: [ './app.component.css' ],
-	
+
 })
 export class AppComponent implements OnInit {
   private loggedIn = false;
   mojiDelovniNalog: boolean = false;
   admin: boolean = false;
+  patronaznaSestra: boolean = false;
   dovoljenjeKreirat: boolean = false;
   aliJeLoginan: boolean = false;
   constructor(private http:Http ,private usr:UserService){
-    
+
   }
   opis: String = '';
   opis2: String = '';
@@ -49,7 +51,7 @@ export class AppComponent implements OnInit {
   prjava2: String = 'prijava';
   email: String = '';
   datumZadnjePrijave: String = '';
-  
+
   name = 'Angular';
   log=this.usr.isLoggedIn()
   ngOnInit(){
@@ -66,6 +68,7 @@ export class AppComponent implements OnInit {
 			this.aliJeLoginan = true;
 		}else{
 			this.admin = false;
+      this.patronaznaSestra=false;
 			this.dovoljenjeKreirat = false;
 			this.opis = '';
 			this.opis2 = '';
@@ -80,8 +83,10 @@ export class AppComponent implements OnInit {
 			this.admin = true;
 		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
 			this.dovoljenjeKreirat = true;
+		}if(this.vloga == 'PatronaznaSestra'){
+        this.patronaznaSestra=true;
 		}
-		
+
 	  }
   }
   //zato da lahko klicem iz drugje
@@ -105,6 +110,7 @@ export class AppComponent implements OnInit {
 			this.prjava2 = 'prijava';
 			this.mojiDelovniNalog = false;
 			this.admin = false;
+      this.patronaznaSestra=false;
 			this.aliJeLoginan = false;
 		}
 		//kaj se prikaze glede na vlogo
@@ -114,6 +120,8 @@ export class AppComponent implements OnInit {
 			this.admin = true;
 		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
 			this.dovoljenjeKreirat = true;
+		}if(this.vloga =='Patronazna sestra'){
+        this.patronaznaSestra=true;
 		}
 	  }
   }
