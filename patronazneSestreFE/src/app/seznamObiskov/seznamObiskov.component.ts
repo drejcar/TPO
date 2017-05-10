@@ -29,7 +29,9 @@ export class seznamObiskovComponent implements OnInit{
 	izbraniDejanskiDatumOd='';
 	izbraniDejanskiDatumDo='';
 	
+	
 	sekundarnaTabelaObiskovVsi: any[];
+	sekundarnaTabelaObiskovDejanski: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''}]
 	izbranaOpravljenost = this.opravljenost[0];
 	izbraniIzdajatelj = this.izdajatelji[0];
 	izbraniObisk = this.obiski[0];
@@ -48,7 +50,7 @@ export class seznamObiskovComponent implements OnInit{
 				this.res = res.json();
 				var vmesna = JSON.stringify(this.res);
 				var dobiZd = JSON.parse(vmesna);
-				console.log(dobiZd);
+				
 				localStorage.setItem('idZdravstvenegaDelavca',dobiZd.idzdravstveniDelavec.toString());
 				localStorage.setItem('idIzv',dobiZd.izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev);
 			if(localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba'){
@@ -150,7 +152,7 @@ export class seznamObiskovComponent implements OnInit{
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
 			});*/
 		if(localStorage['vloga'] == 'PatronaznaSestra'){
-			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca'))).subscribe(res => {this.tabelaObiskovVsi = res;
+			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca')),0).subscribe(res => {this.tabelaObiskovVsi = res;
 				let i = 0; //stevec za obiske
 				let d = 0; //stevec za paciente
 				let j = 0; //stevec za vrste obiskov
@@ -239,12 +241,12 @@ export class seznamObiskovComponent implements OnInit{
 				}
 				this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
-				
+				this.Onsubmit();
 			});
 		}else if(localStorage['vloga'] == 'PatronaznaSluzba' || localStorage['vloga'] == 'Zdravnik'){
 			
-			this.DNService.getDelovneNalogePrekIzv(Number(localStorage.getItem('idIzv'))).subscribe(res => {this.tabelaObiskovVsi = res;
 		
+			this.DNService.getDelovneNalogePrekIzv2(Number(localStorage.getItem('idIzv')),0).subscribe(res => {this.tabelaObiskovVsi = res;
 				
 				let i = 0; //stevec za obiske
 				let d = 0; //stevec za paciente
@@ -371,14 +373,12 @@ export class seznamObiskovComponent implements OnInit{
 	}
 
 	
-	
 	Onsubmit(){
 		let i = 0;
 		var predvideniOd = '';
 		var predvideniDo = '';
 		var dejanskiOd = '';
 		var dejanskiDo = '';
-		
 		//datumi 7
 		if(this.izbraniPredvideniDatumOd != ''){
 			var parts: any[] = this.izbraniPredvideniDatumOd.split('-');
@@ -401,8 +401,6 @@ export class seznamObiskovComponent implements OnInit{
 		
 		for(let ob of this.tabelaObiskovVsi){
 			let test = true;
-			console.log(ob);
-			console.log(ob.predvideniDatumObiska);
 			var parts:any[] = ob.predvideniDatumObiska.split('-');
 			var predD = parts[0]+parts[1]+parts[2];
 			parts = ob.dejanskiDatumObiska.split('-');
@@ -416,7 +414,6 @@ export class seznamObiskovComponent implements OnInit{
 					
 				tabelaIfov[1] = true;
 			}
-			console.log(this.izbraniPacient.ime);
 			if(ob.pacienti.indexOf(this.izbraniPacient.ime+" "+this.izbraniPacient.priimek)>=0 || this.izbraniPacient.ime == '' || this.izbraniPacient.ime == undefined){
 					
 				tabelaIfov[2] = true;
@@ -447,12 +444,10 @@ export class seznamObiskovComponent implements OnInit{
 				}
 			}
 			if(test == true){
-				console.log("prislo je do konca!!");
 				obisk = ob;
 				this.tabelaDejanskiObiskov[i] = obisk;
 				i = i+1;
 			}
-			
 		}
 	}
 	

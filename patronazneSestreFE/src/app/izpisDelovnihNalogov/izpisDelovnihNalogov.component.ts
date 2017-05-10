@@ -158,9 +158,8 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 			});
 			
 		}else if(localStorage['vloga'] == 'PatronaznaSestra'){
-			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca'))).subscribe(res => {this.delovniNalogiVsi = res;
+			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca')),0).subscribe(res => {this.delovniNalogiVsi = res;
 			
-				console.log(this.delovniNalogiVsi[0]);
 				let i = 0; //stevec za delovneNaloge
 				let d = 0; //stevec za paciente
 				let j = 0; //stevec za vrste obiskov
@@ -251,9 +250,6 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 	}
 	Onsubmit(){
 		let i = 0;
-		console.log(this.izbraniDatumIzdajeOd);
-		console.log(this.izbraniDatumIzdajeDo);
-		console.log(this.delovniNalogiVsi);
 		var od = '';
 		var datDo = '';
 		if(this.izbraniDatumIzdajeOd != ''){
@@ -282,7 +278,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 					
 					tabelaIfov[1] = true;
 				}
-				console.log(this.izbraniPacient.ime);
+				
 				if(delovni.pacienti.indexOf(this.izbraniPacient.ime+" "+this.izbraniPacient.priimek)>=0 || this.izbraniPacient.ime == '' || this.izbraniPacient.ime == undefined){
 					
 					tabelaIfov[2] = true;
@@ -293,9 +289,6 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 					
 					tabelaIfov[3] = true;
 				}
-				console.log(od);
-				console.log(datDo);
-				console.log(dtmizdaje);
 				if((Number(dtmizdaje) >= Number(od) && Number(dtmizdaje) <= Number(datDo)) || (datDo == '' && Number(dtmizdaje) >= Number(od)) || (od == '' && Number(dtmizdaje) <= Number(datDo)) || (datDo == '' && od == '')){
 					tabelaIfov[4] = true;
 				}
@@ -307,7 +300,6 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 				}
 				
 				if(test == true){
-					console.log("prislo je do konca!!");
 					delovniN = delovni;
 					this.delovniNalogi[i] = delovniN;
 					i = i+1;

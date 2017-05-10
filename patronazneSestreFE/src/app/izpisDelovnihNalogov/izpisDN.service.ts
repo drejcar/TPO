@@ -11,14 +11,12 @@ export class izpisDNService{
 	private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
 	constructor(private http: Http){}
 	
-	getDelovneNaloge(idZD: number) : Observable<any> {
-		
-		
+	getDelovneNaloge(idZD: number,idStart:number) : Observable<any> {
 		
 		var date = new Date();
 		var datum=date.getFullYear()+'-' + (date.getMonth()+1) + '-'+(date.getDate());
 		
-		return this.http.get(`${this.baseUrl}/delovniNalog/zdravstveniDelavecId/${idZD}?od=2017-1-1&do=${datum}&start=0&size=10`, {headers: this.headers}).map((response: Response) => response.json());
+		return this.http.get(`${this.baseUrl}/delovniNalog/zdravstveniDelavecId/${idZD}?od=2017-1-1&do=${datum}&start=${idStart}&size=10`, {headers: this.headers}).map((response: Response) => response.json());
 	}
 	getDelovniNalog(idDN:number): Observable<any> {
 		
