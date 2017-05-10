@@ -31,7 +31,6 @@ import {GuestGuard} from "./_guard/guest.guard";
 import {DelovniNalogGuard} from "./_guard/delovniNalog.guard";
 import { IzpisDNGuard } from './_guard/izpisDN.guard';
 import { preusmeriComponent } from './delovniNalog/preusmeri.component';
-import {PlaniranjeObiskovComponent} from "./planiranjeObiskov/planiranjeObiskov.component";
 
 const routes: Routes = [
   { path: 'dashboard',/* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: DashboardComponent },
@@ -53,7 +52,6 @@ const routes: Routes = [
   { path: 'podrobnosti/:id',component: podrobnostiDNComponent/*, canActivate: [IzpisDNGuard]*/},
   { path: 'uspeh',component: preusmeriComponent,canActivate:[DelovniNalogGuard]},
   { path: 'seznamObiskov',component: seznamObiskovComponent,canActivate:[IzpisDNGuard]},
-  { path: 'planiranjeObiskov',component:PlaniranjeObiskovComponent,canActivate:[PatronaznaSestraGuard] },
   //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

@@ -42,7 +42,6 @@ import {DelovniNalogGuard} from "./_guard/delovniNalog.guard";
 import {OdjavaComponent} from "./odjava/odjava.component";
 import { izpisDelovnihNalogovComponent } from './izpisDelovnihNalogov/izpisDelovnihNalogov.component';
 import { IzpisDNGuard } from './_guard/izpisDN.guard';
-import {PlaniranjeObiskovComponent} from "./planiranjeObiskov/planiranjeObiskov.component";
 
 
 @NgModule({
@@ -52,11 +51,11 @@ import {PlaniranjeObiskovComponent} from "./planiranjeObiskov/planiranjeObiskov.
                   SpremembaGeslaComponent,AdminDashComponent,PacientDashComponent,
                   PatronaznaSestraDashComponent,PatronaznaSluzbaDashComponent,SodelavecIzsDashComponent,
                   ZdravnikDashComponent,AktivacijaComponent,OdjavaComponent,izpisDelovnihNalogovComponent,podrobnostiDNComponent,
-				          preusmeriComponent,seznamObiskovComponent,PlaniranjeObiskovComponent
+				  preusmeriComponent,seznamObiskovComponent
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,GuestGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,
-				          DelovniNalogGuard,IzpisDNGuard,izpisDNService
+				  DelovniNalogGuard,IzpisDNGuard,izpisDNService
                 ],
   bootstrap:    [ AppComponent ]
 })
