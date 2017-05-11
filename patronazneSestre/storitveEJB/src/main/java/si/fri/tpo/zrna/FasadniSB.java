@@ -23,6 +23,7 @@ import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.IzvajalecZdravstvenihStoritev;
 import si.fri.tpo.entitete.Kontakt;
 import si.fri.tpo.entitete.Material;
+import si.fri.tpo.entitete.Obisk;
 import si.fri.tpo.entitete.Okolis;
 import si.fri.tpo.entitete.Pacient;
 import si.fri.tpo.entitete.Posta;
@@ -817,6 +818,13 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
 	public List<DelovniNalog> vrniDelovneNalogeIzvAll(int id, int start, int size) {
 		return delovniNalog.vrniDelovneNalogeIzvAll(id, start, size);
+	}
+
+	@Override
+	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
+	public void updateObisk(Obisk ob) {
+		delovniNalog.updateObisk(ob);
+		
 	}
 
 }

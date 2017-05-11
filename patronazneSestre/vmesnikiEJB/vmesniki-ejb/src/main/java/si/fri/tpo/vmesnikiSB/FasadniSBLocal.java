@@ -11,6 +11,7 @@ import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.IzvajalecZdravstvenihStoritev;
 import si.fri.tpo.entitete.Kontakt;
 import si.fri.tpo.entitete.Material;
+import si.fri.tpo.entitete.Obisk;
 import si.fri.tpo.entitete.Okolis;
 import si.fri.tpo.entitete.Pacient;
 import si.fri.tpo.entitete.Posta;
@@ -40,6 +41,7 @@ public interface FasadniSBLocal {
 	void dodajDelovniNalog(DelovniNalog dn); //dodajanje novega delovnega naloga
 	void updateDelovniNalog(DelovniNalog dn); //updatanje ze obstojecega delovnega naloga
 	void deleteDelovniNalog(int id); //odstranjevanje delovnega naloga po id-ju
+	void updateObisk(Obisk ob);
 	
 	//**funkcije za Sifrante**
 	
