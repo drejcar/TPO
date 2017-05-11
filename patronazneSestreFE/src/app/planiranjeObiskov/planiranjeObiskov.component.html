@@ -4,14 +4,15 @@
 		<div id="filtri2">
 			<div class="enObDrugemDatumi">
 				<label id="labelZaDan">Izberi dan</label>
-				<input type="date" class="form-control" name="datum" placeholder="05-05-2017" [(ngModel)] ="izbraniDatum">
+				<input type="date" class="form-control" name="datum" placeholder="05-05-2017" min="2017-05-12"
+               [(ngModel)] ="izbraniDatum">
 			</div>
 		</div>
 		<div class="levo">
 			<input type="button" (click)="Onsubmit()" id="gumb" name="poisciFiltre" value="Izberi datum">
 		</div>
 	</form>
-	
+
 <h3>Plan obiskov za izbrani datum</h3>
 <div id="linija"></div>
 
@@ -33,7 +34,7 @@
 			<td class="prva" [hidden] ="!aliJeVecji"><a routerLink="/podrobnosti/{{s.idDelovniNalog}}" routerLinkActive="active">Delovni nalog</a></td>
 			<td class="prva" [hidden] ="!aliJeVecji">{{s.dodaj}}</td>
 		</tr>
-		
+
 	</table>
 </div>
 
