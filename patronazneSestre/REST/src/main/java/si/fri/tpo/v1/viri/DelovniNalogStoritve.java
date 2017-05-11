@@ -217,10 +217,15 @@ public class DelovniNalogStoritve implements DelovniNalogREST {
 
 	@GET
 	@Path("{id}")
-	@ApiOperation(value = "vrni delovni nalog", notes = "Vrne specificni delovni nalog",code = 200, response = DelovniNalog.class)
+	@ApiOperation(value = "Vrni delovni nalog", notes = "Vrne specificni delovni nalog",code = 200, response = DelovniNalog.class)
 	public DelovniNalog returnDelovniNalog(@PathParam("id") int id) {
 		
 		return fasada.vrniDelovniNalog(id);
 	}
-
+	@PUT
+	@Path("/obisk")
+	@ApiOperation(value="Posodobi obisk",notes="Posodobi dejanski datum obiska",code=200)
+	public void updateObisk(Obisk ob){
+		fasada.updateObisk(ob);
+	}
 }

@@ -68,7 +68,7 @@ export class AppComponent implements OnInit {
 			this.aliJeLoginan = true;
 		}else{
 			this.admin = false;
-      this.patronaznaSestra=false;
+			this.patronaznaSestra=false;
 			this.dovoljenjeKreirat = false;
 			this.opis = '';
 			this.opis2 = '';
@@ -79,12 +79,13 @@ export class AppComponent implements OnInit {
 		//kaj se prikaze glede na vlogo
 		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
 			this.mojiDelovniNalog = true;
+			if(this.vloga =='PatronaznaSestra'){
+				this.patronaznaSestra=true;
+			}
 		}if(this.vloga == 'Administrator'){
 			this.admin = true;
 		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
 			this.dovoljenjeKreirat = true;
-		}if(this.vloga == 'PatronaznaSestra'){
-        this.patronaznaSestra=true;
 		}
 
 	  }
@@ -110,18 +111,20 @@ export class AppComponent implements OnInit {
 			this.prjava2 = 'prijava';
 			this.mojiDelovniNalog = false;
 			this.admin = false;
-      this.patronaznaSestra=false;
+			this.patronaznaSestra=false;
 			this.aliJeLoginan = false;
 		}
+		
 		//kaj se prikaze glede na vlogo
 		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
 			this.mojiDelovniNalog = true;
+			if(this.vloga =='PatronaznaSestra'){
+				this.patronaznaSestra=true;
+			}
 		}if(this.vloga == 'Administrator'){
 			this.admin = true;
 		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
 			this.dovoljenjeKreirat = true;
-		}if(this.vloga =='Patronazna sestra'){
-        this.patronaznaSestra=true;
 		}
 	  }
   }

@@ -88,22 +88,28 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 						j = j+1;
 					}
 					//TODO izpis vseh pacientov for loop
-					delovniN.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
+
 					//dodaj v subseznam pacientov
+					for(let pac of dn.pacients){
 					this.aliObstaja = false;
-					for(let pacient of this.pacienti){
-						if(pacient.id == dn.pacients[0].idpacient){
-							this.aliObstaja = true;
-							break;
+
+							delovniN.pacienti = pac.ime+' '+pac.priimek+' '+delovniN.pacienti;
+
+						for(let pacient of this.pacienti){
+
+							if(pacient.id == pac.idpacient){
+								this.aliObstaja = true;
+								break;
+							}
 						}
-					}
-					if(this.aliObstaja == false){
-						let pacien = <any>({idpacient:0,ime:'',priimek:''});
-						pacien.id = dn.pacients[0].idpacient;
-						pacien.ime = dn.pacients[0].ime;
-						pacien.priimek = dn.pacients[0].priimek;
-						this.pacienti[d] = pacien;
-						d = d+1;
+						if(this.aliObstaja == false){
+							let pacien = <any>({idpacient:0,ime:'',priimek:''});
+							pacien.id = pac.idpacient;
+							pacien.ime = pac.ime;
+							pacien.priimek = pac.priimek;
+							this.pacienti[d] = pacien;
+							d = d+1;
+						}
 					}
 					//setanje patronaznih sester
 
@@ -190,7 +196,9 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 					//dodaj v subseznam pacientov
 					for(let pac of dn.pacients){
 					this.aliObstaja = false;
-						delovniN.pacients = pac.ime+' '+pac.priimek+' '+delovniN.pacients;
+
+							delovniN.pacienti = pac.ime+' '+pac.priimek+' '+delovniN.pacienti;
+
 						for(let pacient of this.pacienti){
 
 							if(pacient.id == pac.idpacient){
@@ -212,7 +220,8 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 					for(let zdr of dn.zdravstveniDelavecs){
 						this.aliObstaja = false;
 						if(zdr.okolis != null){
-							delovniN.patronaznaSestra = zdr.ime+" "+zdr.priimek+" "+delovniN.patronaznaSestra;
+
+							delovniN.patronaznaSestra = zdr.sifra+" "+delovniN.patronaznaSestra;
 
 							//pregled Sester
 

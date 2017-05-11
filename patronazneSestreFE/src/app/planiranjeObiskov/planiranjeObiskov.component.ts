@@ -21,9 +21,12 @@ export class PlaniranjeObiskovComponent implements OnInit{
 	aliJeVecji: boolean = false;
 	tabelaDejanskiObiskovFixenDat: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:undefined}];
 	tabelaObiskovVsi: any[];
+	tabelaObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0}];
+	tabelaObiskovFix: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0}];
 	tabelaDejanskiObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0}];
 
-
+	tabelaDelovnihNalogov: any[];
+	delovniNalog: any;
 
 	ngOnInit(){
 		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
@@ -42,11 +45,12 @@ export class PlaniranjeObiskovComponent implements OnInit{
 					let d = 0; //stevec za paciente
 					let j = 0; //stevec za vrste obiskov
 					let m = 0; //stevec za zdravstvene delavce
-
+					this.tabelaDelovnihNalogov = this.tabelaObiskovVsi;
 					var date = new Date();
 					var datum=date.getFullYear()+'-' + (date.getMonth()+1) + '-'+(date.getDate()+1);
 					let newDate = new Date(datum);
 					this.izbraniDatum = this.datePipe.transform(newDate,'yyyy-MM-dd');
+					var datum = this.izbraniDatum;
 					for(let dn of this.tabelaObiskovVsi){
 						for(let ob of dn.obisks){
 
@@ -69,6 +73,7 @@ export class PlaniranjeObiskovComponent implements OnInit{
 							obisk.dejanskiDatumObiska = ob.dejanskiDatumObiska;
 
 							//zapisovanje objekta v dejanski
+							console.log(ob.fixenDatum);
 							if(obisk.dejanskiDatumObiska == datum && ob.fixenDatum == 0){
 								obisk.dodaj = 'Fiksni datum';
 								obisk.fiksniDatum = 'DA';
@@ -92,7 +97,7 @@ export class PlaniranjeObiskovComponent implements OnInit{
 							}
 						}
 						this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
-						this.tabelaObiskovVsi = this.tabelaDejanskiObiskov.concat(this.tabelaDejanskiObiskovFixenDat);
+						console.log(this.tabelaDelovnihNalogov);
 						console.log(this.tabelaDejanskiObiskovFixenDat[0].idObiska);
 						if(this.tabelaDejanskiObiskovFixenDat[0].idObiska != 0){
 							console.log("prslo je sm")
@@ -102,7 +107,6 @@ export class PlaniranjeObiskovComponent implements OnInit{
 							this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
 							this.aliJeVecji = false;
 						}
-
 					}
 
 				});
@@ -170,4 +174,144 @@ export class PlaniranjeObiskovComponent implements OnInit{
 			this.aliJeVecji = false;
 		}
 	}
+
+	dodajKDnevu(event: any){
+		console.log(event);
+		var i = 0;
+		var j = 0;
+		this.tabelaDejanskiObiskovFixenDat = [];
+		this.tabelaDejanskiObiskovFixenDat[0] = ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:undefined})
+		this.tabelaDejanskiObiskov = [];
+		this.tabelaDejanskiObiskov[0] = ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0});
+		var datum = this.izbraniDatum;
+		console.log(this.izbraniDatum);
+		console.log(this.tabelaDelovnihNalogov);
+		for(let obi of this.tabelaObiskovVsi){
+			if(event == obi.idObiska){
+				obi.dejanskiDatumObiska = datum;
+				var neki = false;
+				for(let d of this.tabelaDelovnihNalogov){
+					for(let b of d.obisks){
+						if(b.idobisk == obi.idObiska){
+							this.delovniNalog = d;
+							neki = true;
+							break;
+						}
+
+					}
+					if(neki == true){
+						break;
+					}
+				}
+				this.DNService.updateDatum(obi,this.delovniNalog).subscribe(res => {console.log("uspeh")},err => {console.log("neuspeh")});
+				//TODO tuki pride rest klic za spremembo datuma znotraj baze;
+				break;
+			}
+		}
+		for(let ob of this.tabelaObiskovVsi){
+
+
+			if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'DA'){
+				ob.dodaj = 'Fiksni datum';
+				ob.fiksniDatum = 'DA';
+				this.tabelaDejanskiObiskovFixenDat[j] = ob;
+				j = j+1;
+
+			}else if(ob.fiksniDatum == 'DA' && ob.dejanskiDatumObiska != datum){
+				ob.dodaj = 'Fiksni datum';
+				ob.fiksniDatum = 'DA';
+				this.tabelaDejanskiObiskov[i] = ob;
+				i=i+1;
+			}else if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'NE'){
+
+				ob.dodaj = 'Odstrani';
+				ob.fiksniDatum = 'NE';
+				this.tabelaDejanskiObiskovFixenDat[j] = ob;
+				j = j+1;
+			}else{
+				ob.dodaj = 'Dodaj';
+				ob.fiksniDatum = 'NE';
+				this.tabelaDejanskiObiskov[i] = ob;
+				i = i+1;
+			}
+		}
+		if(this.tabelaDejanskiObiskovFixenDat[0].idObiska != 0){
+
+			this.aliJeVecji = true;
+		}else{
+			this.aliJeVecji = false;
+		}
+	}
+	odstraniIzDneva(event: any){
+		var i = 0;
+		var j = 0;
+		this.tabelaDejanskiObiskovFixenDat = [];
+		this.tabelaDejanskiObiskovFixenDat[0] = ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:undefined})
+		this.tabelaDejanskiObiskov = [];
+		this.tabelaDejanskiObiskov[0] = ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0});
+		var parts: any[] = this.izbraniDatum.split('-');
+		var datum = parts[0]+'-'+parts[1]+'-'+(Number(parts[2])+1).toString();
+		console.log(this.tabelaDelovnihNalogov);
+		for(let obi of this.tabelaObiskovVsi){
+			if(event == obi.idObiska){
+				console.log(obi.dejanskiDatumObiska);
+				console.log(datum);
+				obi.dejanskiDatumObiska = datum;
+				var neki = false;
+				for(let d of this.tabelaDelovnihNalogov){
+					for(let b of d.obisks){
+						if(b.idobisk == obi.idObiska){
+							this.delovniNalog = d;
+							neki = true;
+							break;
+						}
+
+					}
+					if(neki == true){
+						break;
+					}
+				}
+				this.DNService.updateDatum(obi,this.delovniNalog).subscribe(res => {console.log("uspeh")},err => {console.log("neuspeh")});
+				//TODO tuki pride rest klic za spremembo datuma znotraj baze;
+				break;
+			}
+		}
+		datum = this.izbraniDatum;
+		for(let ob of this.tabelaObiskovVsi){
+
+
+			if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'DA'){
+				ob.dodaj = 'Fiksni datum';
+				ob.fiksniDatum = 'DA';
+				this.tabelaDejanskiObiskovFixenDat[j] = ob;
+				j = j+1;
+
+			}else if(ob.fiksniDatum == 'DA' && ob.dejanskiDatumObiska != datum){
+				ob.dodaj = 'Fiksni datum';
+				ob.fiksniDatum = 'DA';
+				this.tabelaDejanskiObiskov[i] = ob;
+				i=i+1;
+			}else if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'NE'){
+
+				ob.dodaj = 'Odstrani';
+				ob.fiksniDatum = 'NE';
+				this.tabelaDejanskiObiskovFixenDat[j] = ob;
+				j = j+1;
+			}else{
+				ob.dodaj = 'Dodaj';
+				ob.fiksniDatum = 'NE';
+				this.tabelaDejanskiObiskov[i] = ob;
+				i = i+1;
+			}
+		}
+		this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
+		if(this.tabelaDejanskiObiskovFixenDat[0].idObiska != 0){
+
+			this.aliJeVecji = true;
+		}else{
+			this.aliJeVecji = false;
+		}
+
+	}
+
 }

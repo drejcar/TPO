@@ -30,11 +30,10 @@
 			<td class="prva" [hidden] ="!aliJeVecji">{{s.idObiska}}</td>
 			<td class="prva" [hidden] ="!aliJeVecji">{{s.predvideniDatumObiska}}</td>
 			<td class="prva" [hidden] ="!aliJeVecji">{{s.dejanskiDatumObiska}}</td>
-			<td class="prva" [hidden] ="!aliJeVecji">{{s.fiksniDatum}}
+			<td class="prva" [hidden] ="!aliJeVecji">{{s.fiksniDatum}}</td>
 			<td class="prva" [hidden] ="!aliJeVecji"><a routerLink="/podrobnosti/{{s.idDelovniNalog}}" routerLinkActive="active">Delovni nalog</a></td>
-			<td class="prva" [hidden] ="!aliJeVecji">{{s.dodaj}}</td>
+			<td class="prva" [hidden] ="!aliJeVecji"><input *ngIf="(s.fiksniDatum === 'NE')" type="button" class="btn-link" [(ngModel)]="s.dodaj" (click)="odstraniIzDneva(s.idObiska)" value="{{s.dodaj}}"></td>
 		</tr>
-
 	</table>
 </div>
 
@@ -55,9 +54,9 @@
 			<td>{{s.idObiska}}</td>
 			<td>{{s.predvideniDatumObiska}}</td>
 			<td>{{s.dejanskiDatumObiska}}</td>
-			<td>{{s.fiksniDatum}}
+			<td>{{s.fiksniDatum}}</td>
 			<td><a routerLink="/podrobnosti/{{s.idDelovniNalog}}" routerLinkActive="active">Delovni nalog</a></td>
-			<td>{{s.dodaj}}</td>
+			<td><input *ngIf="(s.fiksniDatum === 'NE')" type="button" class="btn-link" [(ngModel)]="s.dodaj" (click)="dodajKDnevu(s.idObiska)" value="{{s.dodaj}}"></td>
 		</tr>
 	</table>
 </div>

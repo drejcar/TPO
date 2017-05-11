@@ -6,6 +6,9 @@ import java.time.LocalDate;
 import javax.persistence.*;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SelectBeforeUpdate;
+
 import java.util.Date;
 
 
@@ -14,6 +17,8 @@ import java.util.Date;
  * 
  */
 @Entity
+@DynamicUpdate(value=true)
+@SelectBeforeUpdate(value=true) 
 @XmlRootElement
 @Table(name="obisk")
 @NamedQueries({
@@ -21,6 +26,7 @@ import java.util.Date;
 	@NamedQuery(name="Obisk.findOne",query="SELECT o FROM Obisk o WHERE o.idobisk = :id"),
 	@NamedQuery(name="Obisk.deleteOne",query="DELETE FROM Obisk o WHERE o.idobisk = :id")
 })
+
 public class Obisk implements Serializable {
 	private static final long serialVersionUID = 1L;
 

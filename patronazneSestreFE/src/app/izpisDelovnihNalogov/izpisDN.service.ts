@@ -4,6 +4,14 @@ import { Injectable } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http, Response, Headers} from '@angular/http';
 import { delovniNalog, IzvajalecZdravstvenihStoritev, ZdravstveniDelavec, Pacient, Material, Zdravilo, Bolezen, Storitev} from './delovniNalog';
+class Obisk{
+	idobisk:number;
+	datumObiska:String;
+	fixenDatum:number;
+	delovniNalog:delovniNalog;
+	opravljen:number;
+	dejanskiDatumObiska:number;
+}
 
 @Injectable()
 export class izpisDNService{
@@ -32,4 +40,24 @@ export class izpisDNService{
 		console.log(start);
 		return this.http.get(`${this.baseUrl}/delovniNalog/izvajalecZdr/${izvId}?start=${start}&size=10`,{headers: this.headers}).map((response: Response) => response.json());
 	}
+
+
+	updateDatum(obi: any,delovniNalog:any): Observable<any> {
+		var fixen = 0;
+		if(obi.fiksniDatum == 'NE'){
+			fixen = 1;
+		}
+		var opravljen = 0;
+		console.log(delovniNalog);
+		let obisk = <Obisk>({
+			idobisk: obi.idObiska,
+			datumObiska: obi.predvideniDatumObiska,
+			fixenDatum: fixen,
+			delovniNalog: delovniNalog,
+			opravljen:	opravljen,
+			dejanskiDatumObiska: obi.dejanskiDatumObiska,
+		});
+		return this.http.put(`${this.baseUrl}/delovniNalog/obisk`,JSON.stringify(obisk),{headers: this.headers});
+	}
 }
+

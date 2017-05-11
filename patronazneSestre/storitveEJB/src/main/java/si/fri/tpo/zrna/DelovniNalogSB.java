@@ -14,6 +14,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import si.fri.tpo.entitete.DelovniNalog;
+import si.fri.tpo.entitete.Obisk;
 import si.fri.tpo.entitete.Pacient;
 import si.fri.tpo.vmesnikiSB.DelovniNalogSBLocal;
 import si.fri.tpo.vmesnikiSB.DelovniNalogSBRemote;
@@ -145,5 +146,14 @@ public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal
 		else{
 			return list.subList(start, start+size);
 		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.DelovniNalogSBLocal#updateObisk(si.fri.tpo.entitete.Obisk)
+	 */
+	@Override
+	public void updateObisk(Obisk ob) {
+		em.merge(ob);
 	}
 }
