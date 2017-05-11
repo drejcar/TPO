@@ -19,6 +19,7 @@ module.exports.translate = function(load){
 
   load.source = load.source
     .replace(templateUrlRegex, function(match, quote, url){
+      //noinspection JSAnnotator
       let resolvedUrl = url;
 
       if (url.startsWith('.')) {

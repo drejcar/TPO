@@ -13,7 +13,7 @@ var http_1 = require("@angular/http");
 var zdravstveniDelavecService = (function () {
     function zdravstveniDelavecService(http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:8080/patronazneSestre/v1';
+        this.baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin@admin:admin') });
     }
     zdravstveniDelavecService.prototype.save = function (zdravstveniDelavec, check) {

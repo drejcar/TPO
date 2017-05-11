@@ -17,7 +17,7 @@ var UserService = (function () {
     function UserService(http) {
         this.http = http;
         this.loggedIn = false;
-        this.baseUrl = 'http://localhost:8080/patronazneSestre/v1';
+        this.baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
         this.loggedIn = !!localStorage.getItem('username');
     }
     UserService.prototype.login = function (prijava) {

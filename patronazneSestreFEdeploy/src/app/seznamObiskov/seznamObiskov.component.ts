@@ -12,9 +12,9 @@ import { izpisDNService } from '../izpisDelovnihNalogov/izpisDN.service';
 })
 
 export class seznamObiskovComponent implements OnInit{
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http, private DNService: izpisDNService){}
-	
+
 	res:any;
 	aliObstaja: boolean = false;
 	obiski = [{'name': '','id':0}];
@@ -22,28 +22,28 @@ export class seznamObiskovComponent implements OnInit{
 	sestre = [{'sifra':'','id':0}];
 	izdajatelji= [{'sifra':'','id':0}];
 	opravljenost=[{'opravljenost':''},{'opravljenost':'Opravljen'},{'opravljenost':'Neopravljen'}];
-	
-	
+
+
 	izbraniPredvideniDatumOd='';
 	izbraniPredvideniDatumDo='';
 	izbraniDejanskiDatumOd='';
 	izbraniDejanskiDatumDo='';
-	
+
 	sekundarnaTabelaObiskovVsi: any[];
 	izbranaOpravljenost = this.opravljenost[0];
 	izbraniIzdajatelj = this.izdajatelji[0];
 	izbraniObisk = this.obiski[0];
 	izbraniPacient = this.pacienti[0];
 	izbranaSestra = this.sestre[0];
-	
+
 	tabelaObiskovVsi: any[];
 	tabelaDejanskiObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''}]
 	izvajalecZdravstvenihStoritev:number= 0;
-	
+
 	ngOnInit(){
-		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});	
-		
-		
+		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
+
+
 			this.http.get(`${this.restUrl}/zdravstveniDelavec/${localStorage['iduporabnik']}`, {headers: headers3}).subscribe(res => {
 				this.res = res.json();
 				var vmesna = JSON.stringify(this.res);
@@ -57,7 +57,7 @@ export class seznamObiskovComponent implements OnInit{
 			}else if(localStorage['vloga'] == 'PatronaznaSestra'){
 				this.sestre[0].sifra = dobiZd.sifra;
 				this.sestre[0].id = dobiZd.idzdravstveniDelavec;
-					
+
 			}
 			});
 		setTimeout(() => {
@@ -67,14 +67,14 @@ export class seznamObiskovComponent implements OnInit{
 				let d = 0; //stevec za paciente
 				let j = 0; //stevec za vrste obiskov
 				let m = 0; //stevec za zdravstvene delavce
-			
+
 				for(let dn of this.tabelaObiskovVsi){
 					for(let ob of dn.obisks){
 						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''});
 						this.aliObstaja = false;
 						obisk.idObiska = ob.idobisk;
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
-						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek; 
+						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
 						}else{
@@ -86,7 +86,7 @@ export class seznamObiskovComponent implements OnInit{
 							this.aliObstaja = false;
 							if(zdr.okolis != null){
 								obisk.patronaznaSestra = zdr.sifra+" "+obisk.patronaznaSestra;
-								
+
 								//pregled Sester
 								for(let ses of this.sestre){
 									if(ses.id == zdr.idzdravstveniDelavec){
@@ -105,7 +105,7 @@ export class seznamObiskovComponent implements OnInit{
 								obisk.izdajatelj = zdr.sifra;
 							}
 						}
-						
+
 						//datumi
 						obisk.predvideniDatumObiska = ob.datumObiska;
 						obisk.dejanskiDatumObiska = ob.dejanskiDatumObiska;
@@ -143,8 +143,8 @@ export class seznamObiskovComponent implements OnInit{
 						this.pacienti[d] = pacien;
 						d = d+1;
 					}
-					
-					
+
+
 				}
 				this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
@@ -155,15 +155,15 @@ export class seznamObiskovComponent implements OnInit{
 				let d = 0; //stevec za paciente
 				let j = 0; //stevec za vrste obiskov
 				let m = 0; //stevec za zdravstvene delavce
-				
-			
+
+
 				for(let dn of this.tabelaObiskovVsi){
 					for(let ob of dn.obisks){
 						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''});
 						this.aliObstaja = false;
 						obisk.idObiska = ob.idobisk;
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
-						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek; 
+						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
 						}else{
@@ -175,7 +175,7 @@ export class seznamObiskovComponent implements OnInit{
 							this.aliObstaja = false;
 							if(zdr.okolis != null){
 								obisk.patronaznaSestra = zdr.sifra+" "+obisk.patronaznaSestra;
-								
+
 							}else{
 								for(let zdravnik of this.izdajatelji){
 									if(zdravnik.id == zdr.idzdravstveniDelavec){
@@ -190,11 +190,11 @@ export class seznamObiskovComponent implements OnInit{
 									this.izdajatelji[m] = noviZdr;
 									m = m+1;
 								}
-								
+
 								obisk.izdajatelj = zdr.sifra;
 							}
 						}
-						
+
 						//datumi
 						obisk.predvideniDatumObiska = ob.datumObiska;
 						obisk.dejanskiDatumObiska = ob.dejanskiDatumObiska;
@@ -217,7 +217,7 @@ export class seznamObiskovComponent implements OnInit{
 						this.obiski[j] = obisk;
 						j = j+1;
 					}
-					
+
 					//dodaj v subseznam pacientov
 					this.aliObstaja = false;
 					for(let pacient of this.pacienti){
@@ -234,18 +234,18 @@ export class seznamObiskovComponent implements OnInit{
 						this.pacienti[d] = pacien;
 						d = d+1;
 					}
-					
-					
+
+
 				}
 				this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
-				
+
 			});
 		}else if(localStorage['vloga'] == 'PatronaznaSluzba' || localStorage['vloga'] == 'Zdravnik'){
-			
+
 			this.DNService.getDelovneNalogePrekIzv(Number(localStorage.getItem('idIzv'))).subscribe(res => {this.tabelaObiskovVsi = res;
-		
-				
+
+
 				let i = 0; //stevec za obiske
 				let d = 0; //stevec za paciente
 				let j = 0; //stevec za vrste obiskov
@@ -257,7 +257,7 @@ export class seznamObiskovComponent implements OnInit{
 						this.aliObstaja = false;
 						obisk.idObiska = ob.idobisk;
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
-						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek; 
+						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
 						}else{
@@ -269,7 +269,7 @@ export class seznamObiskovComponent implements OnInit{
 							this.aliObstaja = false;
 							if(zdr.okolis != null){
 								obisk.patronaznaSestra = zdr.sifra+" "+obisk.patronaznaSestra;
-								
+
 								//pregled Sester
 								for(let ses of this.sestre){
 									if(ses.id == zdr.idzdravstveniDelavec){
@@ -302,7 +302,7 @@ export class seznamObiskovComponent implements OnInit{
 								obisk.izdajatelj = zdr.sifra;
 							}
 						}
-						
+
 						//datumi
 						obisk.predvideniDatumObiska = ob.datumObiska;
 						obisk.dejanskiDatumObiska = ob.dejanskiDatumObiska;
@@ -341,16 +341,16 @@ export class seznamObiskovComponent implements OnInit{
 						this.pacienti[d] = pacien;
 						d = d+1;
 					}
-					
-					
+
+
 				}
 				this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
 				this.Onsubmit();
 			});
-			
+
 		}
-		
+
 	},1000);
 	}
 	bubbleSort(tabela: any[]): any[]{
@@ -362,7 +362,7 @@ export class seznamObiskovComponent implements OnInit{
 				var drugi = parts[0]+parts[1]+parts[2];
 				if(Number(prvi) > Number(drugi)) {
 					var theGreater = tabela[x];
-					tabela[x] = tabela[x + 1]; 
+					tabela[x] = tabela[x + 1];
 					tabela[x+1] = theGreater;
 				}
 			}
@@ -370,15 +370,15 @@ export class seznamObiskovComponent implements OnInit{
 		return tabela;
 	}
 
-	
-	
+
+
 	Onsubmit(){
 		let i = 0;
 		var predvideniOd = '';
 		var predvideniDo = '';
 		var dejanskiOd = '';
 		var dejanskiDo = '';
-		
+
 		//datumi 7
 		if(this.izbraniPredvideniDatumOd != ''){
 			var parts: any[] = this.izbraniPredvideniDatumOd.split('-');
@@ -398,7 +398,7 @@ export class seznamObiskovComponent implements OnInit{
 		}
 		let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''});
 		this.tabelaDejanskiObiskov = [];
-		
+
 		for(let ob of this.tabelaObiskovVsi){
 			let test = true;
 			console.log(ob);
@@ -408,36 +408,36 @@ export class seznamObiskovComponent implements OnInit{
 			parts = ob.dejanskiDatumObiska.split('-');
 			var dejanD = parts[0]+parts[1]+parts[2];
 			var tabelaIfov = [false,false,false,false,false,false,false];
-			
+
 			if(ob.vrstaObiska == this.izbraniObisk.name || this.izbraniObisk.name == '' || this.izbraniObisk.name == undefined){
 				tabelaIfov[0] = true;
 			}
 			if(ob.izdajatelj == this.izbraniIzdajatelj.sifra || this.izbraniIzdajatelj.sifra == '' || this.izbraniIzdajatelj.sifra == undefined){
-					
+
 				tabelaIfov[1] = true;
 			}
 			console.log(this.izbraniPacient.ime);
 			if(ob.pacienti.indexOf(this.izbraniPacient.ime+" "+this.izbraniPacient.priimek)>=0 || this.izbraniPacient.ime == '' || this.izbraniPacient.ime == undefined){
-					
+
 				tabelaIfov[2] = true;
 			}
-				
-				
+
+
 			if(ob.patronaznaSestra.indexOf(this.izbranaSestra.sifra)>=0 || this.izbranaSestra.sifra == '' || this.izbranaSestra.sifra == undefined){
-					
+
 				tabelaIfov[3] = true;
 			}
 			if(ob.opravljenost == this.izbranaOpravljenost.opravljenost || this.izbranaOpravljenost.opravljenost == '' || this.izbranaOpravljenost.opravljenost == undefined){
-				
+
 				tabelaIfov[4] = true;
 			}
-			
+
 			if((Number(predD) >= Number(predvideniOd) && Number(predD) <= Number(predvideniDo)) || (predvideniDo == '' && Number(predD) >= Number(predvideniOd)) || (predvideniOd == '' && Number(predD) <= Number(predvideniDo)) || (predvideniDo == '' && predvideniOd == '')){
-			
+
 				tabelaIfov[5] = true;
 			}
 			if((Number(dejanD) >= Number(dejanskiOd) && Number(dejanD) <= Number(dejanskiDo)) || (dejanskiDo == '' && Number(dejanD) >= Number(dejanskiOd)) || (dejanskiOd == '' && Number(dejanD) <= Number(dejanskiDo)) || (dejanskiDo == '' && dejanskiOd == '')){
-			
+
 				tabelaIfov[6] = true;
 			}
 			for(let d of tabelaIfov){
@@ -452,9 +452,9 @@ export class seznamObiskovComponent implements OnInit{
 				this.tabelaDejanskiObiskov[i] = obisk;
 				i = i+1;
 			}
-			
+
 		}
 	}
-	
-		
+
+
 }
