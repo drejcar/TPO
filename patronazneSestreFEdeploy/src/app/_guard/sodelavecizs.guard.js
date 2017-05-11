@@ -9,13 +9,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
-var user_service_1 = require("../user.service");
+var user_service_1 = require("../prijava/user.service");
 var SodelavecIZSGuard = (function () {
     function SodelavecIZSGuard(user) {
         this.user = user;
     }
     SodelavecIZSGuard.prototype.canActivate = function () {
-        return this.user.isLoggedIn();
+        return (localStorage.getItem('vloga') == 'SodelavecIZS');
     };
     return SodelavecIZSGuard;
 }());

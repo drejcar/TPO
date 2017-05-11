@@ -1,6 +1,6 @@
 "use strict";
 var Pacient = (function () {
-    function Pacient(hisnaStevilka, ime, priimek, stevilkaZdravstvenegaZavarovanja, telefonskaStevilka, ulica, posta, spol, uporabnik) {
+    function Pacient(hisnaStevilka, ime, priimek, stevilkaZdravstvenegaZavarovanja, telefonskaStevilka, ulica, posta, spol, uporabnik, okolis, datumRojstva, kontakt) {
     }
     return Pacient;
 }());
@@ -29,4 +29,29 @@ var Vloga = (function () {
     return Vloga;
 }());
 exports.Vloga = Vloga;
+var Okolis = (function () {
+    function Okolis(idokolis, opis, posta) {
+    }
+    return Okolis;
+}());
+exports.Okolis = Okolis;
+var Kontakts = (function () {
+    function Kontakts(ime, priimek, telefonskaStevilka, ulica, hisnaStevilka, posta, sorodstvenoRazmerje) {
+        this.ime = ime;
+        this.priimek = priimek;
+        this.telefonskaStevilka = telefonskaStevilka;
+        this.ulica = ulica;
+        this.hisnaStevilka = hisnaStevilka;
+        this.posta = posta;
+        this.sorodstvenoRazmerje = sorodstvenoRazmerje;
+    }
+    return Kontakts;
+}());
+exports.Kontakts = Kontakts;
+var sorodstvenoRazmerje = (function () {
+    function sorodstvenoRazmerje(idsorodstvenoRazmerje, opis) {
+    }
+    return sorodstvenoRazmerje;
+}());
+exports.sorodstvenoRazmerje = sorodstvenoRazmerje;
 //# sourceMappingURL=Pacient.js.map

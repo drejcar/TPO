@@ -13,16 +13,17 @@ var http_1 = require("@angular/http");
 require("rxjs/add/operator/toPromise");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
+var router_1 = require("@angular/router");
 var UserService = (function () {
-    function UserService(http) {
+    function UserService(http, router) {
         this.http = http;
+        this.router = router;
         this.loggedIn = false;
         this.baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
-        this.loggedIn = !!localStorage.getItem('username');
+        this.loggedIn = !!localStorage.getItem('email');
     }
     UserService.prototype.login = function (prijava) {
         var _this = this;
-        console.log(prijava);
         var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(prijava.mail + ':' + prijava.pwd) });
         this.loggedIn = true;
         return this.http.get(this.baseUrl + "/uporabnik/login/" + prijava.mail, { headers: headers }).map(function (res) { return _this.mapUporabnik(res); });
@@ -51,11 +52,12 @@ var UserService = (function () {
         return uporabnik;
     };
     UserService.prototype.logout = function () {
-        localStorage.setItem('username', '');
+        localStorage.setItem('email', '');
         localStorage.setItem('password', '');
+        localStorage.setItem('iduporabnik', '');
         localStorage.setItem('vloga', 'guest');
+        localStorage.removeItem('idZdravstvenegaDelavca');
         this.loggedIn = false;
-        //this.router.navigate(['/dashboard']);
     };
     UserService.prototype.isLoggedIn = function () {
         return this.loggedIn;
@@ -64,7 +66,7 @@ var UserService = (function () {
 }());
 UserService = __decorate([
     core_1.Injectable(),
-    __metadata("design:paramtypes", [http_1.Http])
+    __metadata("design:paramtypes", [http_1.Http, router_1.Router])
 ], UserService);
 exports.UserService = UserService;
 //# sourceMappingURL=user.service.js.map
