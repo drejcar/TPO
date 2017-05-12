@@ -4,8 +4,7 @@ import { AppComponent } from '../../app.component';
 @Component({
   selector:'pacient-dash',
   template: `<p>Prijavljeni ste kot pacient, datum zadnje prijave: {{neki}}</p>
-              `,
-  styleUrls:[]
+              `
 })
 export class PacientDashComponent implements OnInit{
 	constructor(private appcmp: AppComponent){}

@@ -141,7 +141,7 @@ export class DelovniNalogComponent implements OnInit{
 			this.izbranaStoritev = this.storitve[0];
 		}
 
-		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
+		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 
 		this.http.get(`${this.restUrl}/zdravstveniDelavec/${localStorage['iduporabnik']}`, {headers: headers3}).subscribe(data1 => {
 
@@ -196,7 +196,7 @@ export class DelovniNalogComponent implements OnInit{
 
 		console.log("Pridobivam sestro za okolis: " + okolisPacienta);
 
-		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
+		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 
 		this.http.get(`${this.restUrl}/zdravstveniDelavec/byOkolis/${okolisPacienta}`, {headers: headers}).subscribe(data3 => {
 
@@ -220,7 +220,7 @@ export class DelovniNalogComponent implements OnInit{
 
 	pridobiPodatkePacienta(): void {
 
-		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
+		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 
 		this.http.get(`${this.restUrl}/pacient/zz/${this.post}`, {headers: headers}).subscribe(data => {
 
@@ -249,7 +249,7 @@ export class DelovniNalogComponent implements OnInit{
 
 	pridobiPodatkePacienta1(): void {
 
-		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
+		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 
 		this.http.get(`${this.restUrl}/pacient/zz/${this.post1}`, {headers: headers}).subscribe(data2 => {
 
@@ -379,7 +379,7 @@ export class DelovniNalogComponent implements OnInit{
 
 		console.log(this.urlParametri);
 
-		var headers1 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
+		var headers1 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 
 		var pacient = new Pacient();
 		pacient.idpacient = this.idPacient;
