@@ -11,6 +11,6 @@ export class PacientDashComponent implements OnInit{
 	neki: String = localStorage.getItem['datumZadnjePrijave'];
 	ngOnInit(){
 	  this.appcmp.change();
-	  
+
   }
 }

@@ -9,9 +9,9 @@ import { AppComponent } from '../../app.component';
 export class ZdravnikDashComponent implements OnInit{
 	constructor(private appcmp: AppComponent){}
 	neki: String = localStorage.getItem('datumZadnjePrijave')
-	
+
 	ngOnInit(){
 	  this.appcmp.change();
-	  
+
   }
 }
