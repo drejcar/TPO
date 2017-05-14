@@ -35,7 +35,7 @@ export class PrijavaComponent implements OnInit{
   onSubmit() {
 	this.aliJeNapaka = false;
 	
-	
+	setTimeout(() => {
     this.userService.login(this.model).subscribe(data => {this.person = data
 			
 			localStorage.setItem('email',this.person.email.toString());
@@ -78,7 +78,7 @@ export class PrijavaComponent implements OnInit{
 			}
 
 	});
-	
+	},500);
 	
 	
 	/*localStorage.setItem('vloga',this.person.vloga.idvloga.toLocaleString());

@@ -15,7 +15,7 @@ import { Kontakts } from "../Pacient";
 
 @Injectable()
 export class UporabnikService{
- private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
+ private baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
  private headers = new Headers({'Content-Type': 'application/json'});
  constructor(private http : Http){}
 
@@ -27,7 +27,7 @@ export class UporabnikService{
 		sp = 2;
 	}
 	var devided = upr.postnaStevilka.split(' ');
-	
+
 	let spol = <Spol>({
 		idspol: sp,
 		opis: upr.spol,
@@ -39,7 +39,7 @@ export class UporabnikService{
 
 
 	});
-	
+
 	//vloga
 	let vloga = <Vloga>({
 		idvloga: 7,
@@ -56,7 +56,7 @@ export class UporabnikService{
 		idposta: Number(devided2[0]),
 		opis: devided2[1],
 	});
-	
+
 	let kontakt = <Kontakts> ({
 		ime: kontaktnov.kime,
 		priimek: kontaktnov.kpriimek,
@@ -68,11 +68,11 @@ export class UporabnikService{
 	});
 	if(dodaj == false){
 		kontakt = null;
-		
-		
+
+
 	}
 	//filamo json pacient
-	
+
 	let pacient = <Pacient>({
 		ime: upr.ime,
 		priimek: upr.priimek,
@@ -87,7 +87,7 @@ export class UporabnikService{
 		datumRojstva: upr.datumRojstva,
 		kontakt: kontakt,
 	});
-	
+
 	return this.http.post(`${this.baseUrl}/registracija`,JSON.stringify(pacient), {headers: this.headers});
  }
 
@@ -99,12 +99,12 @@ export class UporabnikService{
 	 return this.http.get(`${this.baseUrl}/registracija/spol`, {headers: this.headers}).map((response: Response) => response.json());
 
  }
- 
+
  getRazmerje(): Observable<sorodstvenoRazmerje[]>{
    return this.http.get(`${this.baseUrl}/registracija/sorodstvenoRazmerje`, {headers: this.headers}).map((response: Response) => response.json());
 
  }
- 
+
  getOkolisByPosta(post: number): Observable<Okolis[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/okolisByPosta/${post}`, {headers: this.headers}).map((response: Response) => response.json());
 

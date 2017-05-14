@@ -14,7 +14,7 @@ var http_1 = require("@angular/http");
 var PacientService = (function () {
     function PacientService(http) {
         this.http = http;
-        this.baseUrl = 'localhost:8080/patronazneSestre/v1';
+        this.baseUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
     }
     //service za prejemanje pacienta
     PacientService.prototype.get = function (zz) {

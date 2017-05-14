@@ -13,7 +13,7 @@ var http_1 = require("@angular/http");
 var UporabnikService = (function () {
     function UporabnikService(http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:8080/patronazneSestre/v1/';
+        this.baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/';
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('guest@guest:guest') });
     }
     UporabnikService.prototype.save = function (upr) {

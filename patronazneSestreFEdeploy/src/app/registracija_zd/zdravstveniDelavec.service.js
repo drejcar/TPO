@@ -13,8 +13,8 @@ var http_1 = require("@angular/http");
 var zdravstveniDelavecService = (function () {
     function zdravstveniDelavecService(http) {
         this.http = http;
-        this.baseUrl = 'http://localhost:8080/patronazneSestre/v1';
-        this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin@admin:admin') });
+        this.baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin:admin') });
     }
     zdravstveniDelavecService.prototype.save = function (zdravstveniDelavec, check) {
         var okoli = ({
@@ -43,14 +43,15 @@ var zdravstveniDelavecService = (function () {
             izvajalecZdravstvenihStoritev: izv,
             okolis: okoli,
         });
-        this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin@admin:admin') });
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         return this.http.post(this.baseUrl + "/zdravstveniDelavec", JSON.stringify(zdr), { headers: this.headers });
     };
     zdravstveniDelavecService.prototype.getVloge = function () {
-        this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin@admin:admin') });
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         return this.http.get(this.baseUrl + "/sifranti/vloga", { headers: this.headers }).map(function (response) { return response.json(); });
     };
     zdravstveniDelavecService.prototype.getIzvajalecZdravstvenihStoritev = function () {
+        this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         return this.http.get(this.baseUrl + "/izvajalecZdravstvenihStoritev/", { headers: this.headers }).map(function (response) { return response.json(); });
     };
     zdravstveniDelavecService.prototype.getOkolisByPosta = function (post) {

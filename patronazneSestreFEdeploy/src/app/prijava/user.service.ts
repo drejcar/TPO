@@ -15,7 +15,7 @@ export class UserService {
 
 
   private loggedIn = false;
-  private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
+  private baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
   upr: Upr;
   constructor(private http: Http, private router:Router) {
     this.loggedIn = !!localStorage.getItem('email');
@@ -23,11 +23,11 @@ export class UserService {
   }
 
   login(prijava:Prijava): Observable<Upr> {
-		
+
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(prijava.mail+':'+prijava.pwd)});
 		this.loggedIn = true;
 		return this.http.get(`${this.baseUrl}/uporabnik/login/${prijava.mail}`, {headers: headers}).map((res) => {return this.mapUporabnik(res)});
-		
+
 
 
   }

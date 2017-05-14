@@ -18,4 +18,16 @@ var Uporabnik = (function () {
     return Uporabnik;
 }());
 exports.Uporabnik = Uporabnik;
+var Okolis = (function () {
+    function Okolis(idokolis, opis, posta) {
+    }
+    return Okolis;
+}());
+exports.Okolis = Okolis;
+var Posta = (function () {
+    function Posta(idposta, opis) {
+    }
+    return Posta;
+}());
+exports.Posta = Posta;
 //# sourceMappingURL=uporabnik.js.map

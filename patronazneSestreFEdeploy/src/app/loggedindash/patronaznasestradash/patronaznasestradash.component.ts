@@ -9,6 +9,8 @@ export class PatronaznaSestraDashComponent implements OnInit{
 	constructor(private appcmp: AppComponent){}
 	neki: String = localStorage.getItem['datumZadnjePrijave'];
 	ngOnInit(){
+
+
 	  this.appcmp.change();
 
   }

@@ -14,19 +14,19 @@ import { Vloga } from './vrniPacient';
 export class PacientService{
  private baseUrl: String = 'localhost:8080/patronazneSestre/v1';
  constructor(private http : Http){}
- 
+
  //service za prejemanje pacienta
  get(zz: number): Observable<Pacient> {
 	 /*var username = localStorage.getItem('username');
 	 var pass = localStorage.getItem('password');*/
 	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin@gmail:admin')});
-	
+
 	let pacient$ = this.http.get(`${this.baseUrl}/pacient/zz/${zz}`, {headers: headers}).map((res) => { return this.mapPacient(res)});
-	
+
 	return pacient$
-	
+
  }
- 
+
  //vmesna funkcija
  mapPacient(response: Response): Pacient{
   return this.toPacient(response.json());
@@ -44,7 +44,7 @@ export class PacientService{
 	spol: r.spol,
 	uporabnik: r.uporabnik,
   });
-  
+
   return pacient;
 }
 

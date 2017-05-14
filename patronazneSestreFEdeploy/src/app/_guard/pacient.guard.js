@@ -10,13 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // logged-in.guard.ts
 var core_1 = require("@angular/core");
-var user_service_1 = require("../user.service");
+var user_service_1 = require("../prijava/user.service");
 var PacientGuard = (function () {
     function PacientGuard(user) {
         this.user = user;
     }
     PacientGuard.prototype.canActivate = function () {
-        return this.user.isLoggedIn();
+        return (localStorage.getItem('vloga') == 'Pacient');
     };
     return PacientGuard;
 }());

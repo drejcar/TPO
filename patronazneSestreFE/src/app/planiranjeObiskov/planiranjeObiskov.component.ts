@@ -15,7 +15,7 @@ import { DatePipe } from '@angular/common';
 export class PlaniranjeObiskovComponent implements OnInit{
 	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
 	constructor(private router:Router, private http:Http,private DNService: izpisDNService,private datePipe: DatePipe){}
-	
+
 	res: any;
 	izbraniDatum='';
 	aliJeVecji: boolean = false;
@@ -24,21 +24,22 @@ export class PlaniranjeObiskovComponent implements OnInit{
 	tabelaObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0}];
 	tabelaObiskovFix: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0}];
 	tabelaDejanskiObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0}];
+
 	tabelaDelovnihNalogov: any[];
 	delovniNalog: any;
 
 	ngOnInit(){
-		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});	
+		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 		this.http.get(`${this.restUrl}/zdravstveniDelavec/${localStorage['iduporabnik']}`, {headers: headers3}).subscribe(res => {
 			this.res = res.json();
 			var vmesna = JSON.stringify(this.res);
 			var dobiZd = JSON.parse(vmesna);
-			
+
 			localStorage.setItem('idZdravstvenegaDelavca',dobiZd.idzdravstveniDelavec.toString());
 					localStorage.setItem('idIzv',dobiZd.izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev);
 		});
 		setTimeout(() => {
-		
+
 			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca')),0).subscribe(res => {this.tabelaObiskovVsi = res;
 					let i = 0; //stevec za obiske
 					let d = 0; //stevec za paciente
@@ -52,25 +53,25 @@ export class PlaniranjeObiskovComponent implements OnInit{
 					var datum = this.izbraniDatum;
 					for(let dn of this.tabelaObiskovVsi){
 						for(let ob of dn.obisks){
-							
+
 							let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0});
 							obisk.idDelovniNalog = dn.iddelovniNalog;
-							
+
 							obisk.idObiska = ob.idobisk;
 							obisk.vrstaObiska = dn.vrstaObiska.opis;
-							obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek; 
+							obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 							if(ob.opravljen == 0){
 								obisk.opravljenost = 'Neopravljen';
 							}else{
-								
+
 								continue;
-								
+
 							}
-							
+
 							//datumi
 							obisk.predvideniDatumObiska = ob.datumObiska;
 							obisk.dejanskiDatumObiska = ob.dejanskiDatumObiska;
-							
+
 							//zapisovanje objekta v dejanski
 							console.log(ob.fixenDatum);
 							if(obisk.dejanskiDatumObiska == datum && ob.fixenDatum == 0){
@@ -85,7 +86,7 @@ export class PlaniranjeObiskovComponent implements OnInit{
 								i=i+1;
 							}else if(obisk.dejanskiDatumObiska == datum && ob.fixenDatum == 1){
 								obisk.dodaj = 'Odstrani';
-								obisk.fiksniDatum = 'NE'; 
+								obisk.fiksniDatum = 'NE';
 								this.tabelaDejanskiObiskovFixenDat[j] = obisk;
 								j = j+1;
 							}else{
@@ -94,7 +95,7 @@ export class PlaniranjeObiskovComponent implements OnInit{
 								this.tabelaDejanskiObiskov[i] = obisk;
 								i = i+1;
 							}
-						}	
+						}
 						this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 						console.log(this.tabelaDelovnihNalogov);
 						console.log(this.tabelaDejanskiObiskovFixenDat[0].idObiska);
@@ -106,9 +107,8 @@ export class PlaniranjeObiskovComponent implements OnInit{
 							this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
 							this.aliJeVecji = false;
 						}
-						
 					}
-		
+
 				});
 		},1000);
 	}
@@ -121,7 +121,7 @@ export class PlaniranjeObiskovComponent implements OnInit{
 				var drugi = parts[0]+parts[1]+parts[2];
 				if(Number(prvi) > Number(drugi)) {
 					var theGreater = tabela[x];
-					tabela[x] = tabela[x + 1]; 
+					tabela[x] = tabela[x + 1];
 					tabela[x+1] = theGreater;
 				}
 			}
@@ -138,34 +138,34 @@ export class PlaniranjeObiskovComponent implements OnInit{
 		this.tabelaDejanskiObiskovFixenDat[0] = ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:undefined});
 		//var parts: any[] = this.izbraniDatum.split('-');
 		var datum = this.izbraniDatum;/*parts[0]+parts[1]+parts[2];*/
-		
+
 		for(let ob of this.tabelaObiskovVsi){
 			if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'DA'){
 				ob.dodaj = 'Fiksni datum';
 				ob.fiksniDatum = 'DA';
 				this.tabelaDejanskiObiskovFixenDat[j] = ob;
 				j = j+1;
-				
+
 			}else if(ob.fiksniDatum == 'DA' && ob.dejanskiDatumObiska != datum){
 				ob.dodaj = 'Fiksni datum';
 				ob.fiksniDatum = 'DA';
 				this.tabelaDejanskiObiskov[i] = ob;
 				i=i+1;
 			}else if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'NE'){
-				
+
 				ob.dodaj = 'Odstrani';
-				ob.fiksniDatum = 'NE'; 
+				ob.fiksniDatum = 'NE';
 				this.tabelaDejanskiObiskovFixenDat[j] = ob;
 				j = j+1;
 			}else{
 				ob.dodaj = 'Dodaj';
 				ob.fiksniDatum = 'NE';
 				this.tabelaDejanskiObiskov[i] = ob;
-				i = i+1;		
+				i = i+1;
 			}
 		}
-		
-		
+
+
 		//preveri ce je manjsi ali vecji od 2
 		if(this.tabelaDejanskiObiskovFixenDat[0].idObiska != 0){
 			console.log("prslo je sm")
@@ -174,7 +174,7 @@ export class PlaniranjeObiskovComponent implements OnInit{
 			this.aliJeVecji = false;
 		}
 	}
-	
+
 	dodajKDnevu(event: any){
 		console.log(event);
 		var i = 0;
@@ -197,7 +197,7 @@ export class PlaniranjeObiskovComponent implements OnInit{
 							neki = true;
 							break;
 						}
-						
+
 					}
 					if(neki == true){
 						break;
@@ -209,34 +209,34 @@ export class PlaniranjeObiskovComponent implements OnInit{
 			}
 		}
 		for(let ob of this.tabelaObiskovVsi){
-			
-			
+
+
 			if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'DA'){
 				ob.dodaj = 'Fiksni datum';
 				ob.fiksniDatum = 'DA';
 				this.tabelaDejanskiObiskovFixenDat[j] = ob;
 				j = j+1;
-				
+
 			}else if(ob.fiksniDatum == 'DA' && ob.dejanskiDatumObiska != datum){
 				ob.dodaj = 'Fiksni datum';
 				ob.fiksniDatum = 'DA';
 				this.tabelaDejanskiObiskov[i] = ob;
 				i=i+1;
 			}else if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'NE'){
-				
+
 				ob.dodaj = 'Odstrani';
-				ob.fiksniDatum = 'NE'; 
+				ob.fiksniDatum = 'NE';
 				this.tabelaDejanskiObiskovFixenDat[j] = ob;
 				j = j+1;
 			}else{
 				ob.dodaj = 'Dodaj';
 				ob.fiksniDatum = 'NE';
 				this.tabelaDejanskiObiskov[i] = ob;
-				i = i+1;		
+				i = i+1;
 			}
 		}
 		if(this.tabelaDejanskiObiskovFixenDat[0].idObiska != 0){
-			
+
 			this.aliJeVecji = true;
 		}else{
 			this.aliJeVecji = false;
@@ -265,7 +265,7 @@ export class PlaniranjeObiskovComponent implements OnInit{
 							neki = true;
 							break;
 						}
-						
+
 					}
 					if(neki == true){
 						break;
@@ -278,40 +278,40 @@ export class PlaniranjeObiskovComponent implements OnInit{
 		}
 		datum = this.izbraniDatum;
 		for(let ob of this.tabelaObiskovVsi){
-			
-			
+
+
 			if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'DA'){
 				ob.dodaj = 'Fiksni datum';
 				ob.fiksniDatum = 'DA';
 				this.tabelaDejanskiObiskovFixenDat[j] = ob;
 				j = j+1;
-				
+
 			}else if(ob.fiksniDatum == 'DA' && ob.dejanskiDatumObiska != datum){
 				ob.dodaj = 'Fiksni datum';
 				ob.fiksniDatum = 'DA';
 				this.tabelaDejanskiObiskov[i] = ob;
 				i=i+1;
 			}else if(ob.dejanskiDatumObiska == datum && ob.fiksniDatum == 'NE'){
-				
+
 				ob.dodaj = 'Odstrani';
-				ob.fiksniDatum = 'NE'; 
+				ob.fiksniDatum = 'NE';
 				this.tabelaDejanskiObiskovFixenDat[j] = ob;
 				j = j+1;
 			}else{
 				ob.dodaj = 'Dodaj';
 				ob.fiksniDatum = 'NE';
 				this.tabelaDejanskiObiskov[i] = ob;
-				i = i+1;		
+				i = i+1;
 			}
 		}
 		this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 		if(this.tabelaDejanskiObiskovFixenDat[0].idObiska != 0){
-			
+
 			this.aliJeVecji = true;
 		}else{
 			this.aliJeVecji = false;
 		}
-		
+
 	}
-	
+
 }

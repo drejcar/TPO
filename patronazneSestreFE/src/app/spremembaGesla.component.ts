@@ -42,11 +42,11 @@ export class SpremembaGeslaComponent{
 		zadnjaPrijava: localStorage.getItem('datumZadnjePrijave'),
 	});
 	console.log(upr);
-	
+
 	this.http.put(`${baseUrl}`,JSON.stringify(upr),{headers: headers}).subscribe(res =>{
 		this.submitted = true;
 	},
 	err => {this.fail = true;});
-  
+
   }
   }

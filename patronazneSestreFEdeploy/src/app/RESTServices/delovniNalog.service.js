@@ -13,7 +13,7 @@ var http_1 = require("@angular/http");
 var UporabnikService = (function () {
     function UporabnikService(http) {
         this.http = http;
-        this.baseUrl = 'localhost:8080/patronazneSestre/v1/';
+        this.baseUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/';
     }
     return UporabnikService;
 }());
