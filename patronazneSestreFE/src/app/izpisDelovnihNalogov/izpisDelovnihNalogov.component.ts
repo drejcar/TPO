@@ -17,10 +17,10 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 	constructor(private router:Router, private http: Http,private DNService: izpisDNService){}
 	res: any;
 	aliObstaja: boolean = false;
-	izdajatelji= [{'sifra':'','id':0}];
+	izdajatelji= [{'ime':'','sifra':'','id':0}];
 	obiski = [{'name': '','id':0}];
 	pacienti = [{'ime':'','priimek':'','id':0}];
-	sestre = [{'sifra':'','id':0}];
+	sestre = [{'ime':'','sifra':'','id':0}];
 	izbraniIzdajatelj = this.izdajatelji[0];
 	izbraniObisk = this.obiski[0];
 	izbraniPacient = this.pacienti[0];
@@ -47,9 +47,11 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 			//preverimo kdo želi videti svoje delovne naloge
 
 			if(localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba'){
+				this.izdajatelji[0].ime = dobiZd.ime+' '+dobiZd.priimek;
 				this.izdajatelji[0].sifra = dobiZd.sifra;
 				this.izdajatelji[0].id = dobiZd.idzdravstveniDelavec;
 			}else if(localStorage['vloga'] == 'PatronaznaSestra'){
+				this.sestre[0].ime = dobiZd.ime+' '+dobiZd.priimek;
 				this.sestre[0].sifra = dobiZd.sifra;
 				this.sestre[0].id = dobiZd.idzdravstveniDelavec;
 
@@ -59,7 +61,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 		setTimeout(() => {
 		//TODO rest klic za pridobivanje delovnega naloga
 
-		if(localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba'){
+		if(localStorage['vloga'] == 'PatronaznaSluzba'){
 			this.DNService.getDelovneNalogePrekIzv(Number(localStorage.getItem('idIzv'))).subscribe(res => {this.delovniNalogiVsi = res;
 
 				let i = 0; //stevec za delovneNaloge
@@ -116,7 +118,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 					for(let zdr of dn.zdravstveniDelavecs){
 						this.aliObstaja = false;
 						if(zdr.okolis != null){
-							delovniN.patronaznaSestra = zdr.sifra+" "+delovniN.patronaznaSestra;
+							delovniN.patronaznaSestra = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"] "+delovniN.patronaznaSestra;
 
 							//pregled Sester
 							for(let ses of this.sestre){
@@ -126,7 +128,8 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 								}
 							}
 							if(this.aliObstaja == false){
-								let novaS = <any> ({sifra:'',id:0})
+								let novaS = <any> ({ime:'',sifra:'',id:0})
+								novaS.ime = zdr.ime+' '+zdr.priimek;
 								novaS.sifra = zdr.sifra;
 								novaS.id = zdr.idzdravstveniDelavec;
 								this.sestre[m] = novaS
@@ -142,13 +145,14 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 							}
 
 							if(this.aliObstaja == false){
-								let novZd = <any> ({sifra:'',id:0});
+								let novZd = <any> ({ime:'',sifra:'',id:0});
+								novZd.ime = zdr.ime+' '+zdr.priimek; 
 								novZd.sifra = zdr.sifra;
 								novZd.id = zdr.idzdravstveniDelavec;
 								this.izdajatelji[n] = novZd;
 								n = n+1;
 							}
-							delovniN.izdajatelj = zdr.sifra;
+							delovniN.izdajatelj = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"]";
 						}
 					}
 
@@ -163,7 +167,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 				this.Onsubmit();
 			});
 
-		}else if(localStorage['vloga'] == 'PatronaznaSestra'){
+		}else if(localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSestra'){
 			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca')),0).subscribe(res => {this.delovniNalogiVsi = res;
 
 				let i = 0; //stevec za delovneNaloge
@@ -221,25 +225,41 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 						this.aliObstaja = false;
 						if(zdr.okolis != null){
 
-							delovniN.patronaznaSestra = zdr.sifra+" "+delovniN.patronaznaSestra;
+							delovniN.patronaznaSestra = zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+delovniN.patronaznaSestra;
 
 							//pregled Sester
-
+							for(let ses of this.sestre){
+								if(ses.id == zdr.idzdravstveniDelavec){
+									this.aliObstaja = true;
+									break;
+								}
+							}
+							if(this.aliObstaja == false){
+								let novaS = <any> ({ime:'',sifra:'',id:0})
+								novaS.ime = zdr.ime+' '+zdr.priimek;
+								novaS.sifra = zdr.sifra;
+								novaS.id = zdr.idzdravstveniDelavec;
+								this.sestre[m] = novaS
+								m = m+1;
+							}
+							
 						}else{
+							this.aliObstaja = false;
 							for(let zd of this.izdajatelji){
 								if(zd.id == zdr.idzdravstveniDelavec){
 									this.aliObstaja = true;
 								}
 							}
 							if(this.aliObstaja == false){
-								let noviZdr = <any> ({sifra:'',id:0});
+								let noviZdr = <any> ({ime:'',sifra:'',id:0});
+								noviZdr.ime = zdr.ime+' '+zdr.priimek;
 								noviZdr.sifra = zdr.sifra;
 								noviZdr.id = zdr.idzdravstveniDelavec;
 								this.izdajatelji[m] = noviZdr;
 								m = m+1;
 							}
 
-							delovniN.izdajatelj = zdr.sifra;
+							delovniN.izdajatelj = zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+']';
 						}
 					}
 
@@ -254,7 +274,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 			});
 
 		}
-		},1000);
+		},1200);
 
 	}
 	Onsubmit(){
@@ -283,7 +303,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 				}
 
 
-				if(delovni.izdajatelj == this.izbraniIzdajatelj.sifra || this.izbraniIzdajatelj.sifra == '' || this.izbraniIzdajatelj.sifra == undefined){
+				if(delovni.izdajatelj.indexOf(this.izbraniIzdajatelj.sifra)>=0 || this.izbraniIzdajatelj.sifra == '' || this.izbraniIzdajatelj.sifra == undefined){
 
 					tabelaIfov[1] = true;
 				}
