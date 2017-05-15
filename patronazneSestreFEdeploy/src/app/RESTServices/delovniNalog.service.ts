@@ -6,7 +6,7 @@ import { Uporabnik } from '../uporabnik';
 
 @Injectable()
 export class UporabnikService{
- private baseUrl: String = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/';
+ private baseUrl: String = 'localhost:8080/patronazneSestre/v1/';
  constructor(private http : Http){}
 
  /*

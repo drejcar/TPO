@@ -15,7 +15,7 @@ import { Kontakts } from "../Pacient";
 
 @Injectable()
 export class UporabnikService{
- private baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+ private baseUrl: String = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
  private headers = new Headers({'Content-Type': 'application/json'});
  constructor(private http : Http){}
 

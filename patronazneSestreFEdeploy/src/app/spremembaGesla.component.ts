@@ -29,7 +29,7 @@ export class SpremembaGeslaComponent{
   onSubmit(){
 	  this.fail = false;
 	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
-	var baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/uporabnik';
+	var baseUrl: String = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/uporabnik';
     let vlog = <Vlog>({
 		idvloga: Number(localStorage.getItem('idvloga')),
 		opis: localStorage.getItem('vloga'),

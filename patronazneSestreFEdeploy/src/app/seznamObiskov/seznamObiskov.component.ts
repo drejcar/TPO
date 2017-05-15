@@ -12,15 +12,15 @@ import { izpisDNService } from '../izpisDelovnihNalogov/izpisDN.service';
 })
 
 export class seznamObiskovComponent implements OnInit{
-	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+	private restUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http, private DNService: izpisDNService){}
 
 	res:any;
 	aliObstaja: boolean = false;
 	obiski = [{'name': '','id':0}];
 	pacienti = [{'ime':'','priimek':'','id':0}];
-	sestre = [{'sifra':'','id':0}];
-	izdajatelji= [{'sifra':'','id':0}];
+	sestre = [{'ime':'','sifra':'','id':0}];
+	izdajatelji= [{'ime':'','sifra':'','id':0}];
 	opravljenost=[{'opravljenost':''},{'opravljenost':'Opravljen'},{'opravljenost':'Neopravljen'}];
 
 
@@ -54,9 +54,11 @@ export class seznamObiskovComponent implements OnInit{
 				localStorage.setItem('idZdravstvenegaDelavca',dobiZd.idzdravstveniDelavec.toString());
 				localStorage.setItem('idIzv',dobiZd.izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev);
 			if(localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba'){
+				this.izdajatelji[0].ime = dobiZd.ime+" "+dobiZd.priimek;
 				this.izdajatelji[0].sifra = dobiZd.sifra;
 				this.izdajatelji[0].id = dobiZd.idzdravstveniDelavec;
 			}else if(localStorage['vloga'] == 'PatronaznaSestra'){
+				this.sestre[0].ime = dobiZd.ime+" "+dobiZd.priimek;
 				this.sestre[0].sifra = dobiZd.sifra;
 				this.sestre[0].id = dobiZd.idzdravstveniDelavec;
 
@@ -151,7 +153,7 @@ export class seznamObiskovComponent implements OnInit{
 				this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
 			});*/
-		if(localStorage['vloga'] == 'PatronaznaSestra'){
+		if(localStorage['vloga'] == 'PatronaznaSestra' || localStorage['vloga'] == 'Zdravnik'){
 			this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca')),0).subscribe(res => {this.tabelaObiskovVsi = res;
 				let i = 0; //stevec za obiske
 				let d = 0; //stevec za paciente
@@ -176,7 +178,23 @@ export class seznamObiskovComponent implements OnInit{
 						for(let zdr of dn.zdravstveniDelavecs){
 							this.aliObstaja = false;
 							if(zdr.okolis != null){
-								obisk.patronaznaSestra = zdr.sifra+" "+obisk.patronaznaSestra;
+								obisk.patronaznaSestra =zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+obisk.patronaznaSestra;
+
+								//pregled Sester
+								for(let ses of this.sestre){
+									if(ses.id == zdr.idzdravstveniDelavec){
+										this.aliObstaja = true;
+										break;
+									}
+								}
+								if(this.aliObstaja == false){
+									let novaS = <any> ({ime:'',sifra:'',id:0});
+									novaS.ime = zdr.ime+' '+zdr.priimek;
+									novaS.sifra = zdr.sifra;
+									novaS.id = zdr.idzdravstveniDelavec;
+									this.sestre[m] = novaS
+									m = m+1;
+								}
 
 							}else{
 								for(let zdravnik of this.izdajatelji){
@@ -186,14 +204,15 @@ export class seznamObiskovComponent implements OnInit{
 									}
 								}
 								if(this.aliObstaja == false){
-									let noviZdr = <any>({sifra:'',id:0});
+									let noviZdr = <any>({ime:'',sifra:'',id:0});
+									noviZdr.ime = zdr.ime+' '+zdr.priimek;
 									noviZdr.sifra = zdr.sifra;
 									noviZdr.id = zdr.idzdravstveniDelavec;
 									this.izdajatelji[m] = noviZdr;
 									m = m+1;
 								}
 
-								obisk.izdajatelj = zdr.sifra;
+								obisk.izdajatelj = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"]";
 							}
 						}
 
@@ -243,7 +262,7 @@ export class seznamObiskovComponent implements OnInit{
 				this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
 				this.Onsubmit();
 			});
-		}else if(localStorage['vloga'] == 'PatronaznaSluzba' || localStorage['vloga'] == 'Zdravnik'){
+		}else if(localStorage['vloga'] == 'PatronaznaSluzba'){
 
 
 			this.DNService.getDelovneNalogePrekIzv2(Number(localStorage.getItem('idIzv')),0).subscribe(res => {this.tabelaObiskovVsi = res;
@@ -270,7 +289,7 @@ export class seznamObiskovComponent implements OnInit{
 						for(let zdr of dn.zdravstveniDelavecs){
 							this.aliObstaja = false;
 							if(zdr.okolis != null){
-								obisk.patronaznaSestra = zdr.sifra+" "+obisk.patronaznaSestra;
+								obisk.patronaznaSestra = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"] "+obisk.patronaznaSestra;
 
 								//pregled Sester
 								for(let ses of this.sestre){
@@ -280,7 +299,8 @@ export class seznamObiskovComponent implements OnInit{
 									}
 								}
 								if(this.aliObstaja == false){
-									let novaS = <any> ({sifra:'',id:0});
+									let novaS = <any> ({ime:'',sifra:'',id:0});
+									novaS.ime = zdr.ime+" "+zdr.priimek;
 									novaS.sifra = zdr.sifra;
 									novaS.id = zdr.idzdravstveniDelavec;
 									this.sestre[m] = novaS
@@ -295,13 +315,14 @@ export class seznamObiskovComponent implements OnInit{
 									}
 								}
 								if(this.aliObstaja == false){
-									let noviZdr = <any>({sifra:'',id:0});
+									let noviZdr = <any>({ime:'',sifra:'',id:0});
+									noviZdr.ime = zdr.ime+" "+zdr.priimek;
 									noviZdr.sifra = zdr.sifra;
 									noviZdr.id = zdr.idzdravstveniDelavec;
 									this.izdajatelji[n] = noviZdr;
 									n = n+1;
 								}
-								obisk.izdajatelj = zdr.sifra;
+								obisk.izdajatelj = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"]";
 							}
 						}
 
@@ -410,7 +431,7 @@ export class seznamObiskovComponent implements OnInit{
 			if(ob.vrstaObiska == this.izbraniObisk.name || this.izbraniObisk.name == '' || this.izbraniObisk.name == undefined){
 				tabelaIfov[0] = true;
 			}
-			if(ob.izdajatelj == this.izbraniIzdajatelj.sifra || this.izbraniIzdajatelj.sifra == '' || this.izbraniIzdajatelj.sifra == undefined){
+			if(ob.izdajatelj.indexOf(this.izbraniIzdajatelj.sifra) >=0 || this.izbraniIzdajatelj.sifra == '' || this.izbraniIzdajatelj.sifra == undefined){
 
 				tabelaIfov[1] = true;
 			}

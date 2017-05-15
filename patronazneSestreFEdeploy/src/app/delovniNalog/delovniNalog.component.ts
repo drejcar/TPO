@@ -95,7 +95,7 @@ export class DelovniNalogComponent implements OnInit{
 	sifraUporabnika: string = "";
 	urlParametri: string = "";
 
-	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+	private restUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 
 	stevilkaIzvajalca : string = "rest ocitno ni uspel";
 	nazivIzvajalca : string = "naziv izvajalca";
@@ -420,10 +420,11 @@ export class DelovniNalogComponent implements OnInit{
 		dn.zdravstveniDelavecs = [zdravstveniDelavec, sestra];
 
 		//ne smeta biti 2 enaka objekta
-		//if(this.izbranaStoritev.id == 20 || this.izbranaStoritev.id == 30) {
-		//	dn.pacients = [pacient, pacient];
-		//} else
+		if(this.izbranaStoritev.id == 20 || this.izbranaStoritev.id == 30) {
+			dn.pacients = [pacient, pacient1];
+		} else {
 			dn.pacients = [pacient];
+		}
 
 		console.log(this.zdravilos);
 		dn.vrstaObiska = storitev;
