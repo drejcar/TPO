@@ -19,7 +19,7 @@ var UserService = (function () {
         this.http = http;
         this.router = router;
         this.loggedIn = false;
-        this.baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+        this.baseUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
         this.loggedIn = !!localStorage.getItem('email');
     }
     UserService.prototype.login = function (prijava) {

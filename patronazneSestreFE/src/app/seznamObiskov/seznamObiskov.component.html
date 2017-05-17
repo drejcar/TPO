@@ -17,7 +17,7 @@
 				<label>Izdajatelj:</label>
 				<select [(ngModel)]="izbraniIzdajatelj" class="form-control" name="Poizdajatelj">
 					<option></option>
-					<option *ngFor="let s of izdajatelji" [ngValue]="s">{{s.sifra}}</option>
+					<option *ngFor="let s of izdajatelji" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
 				</select>
 			</div>
 			
@@ -34,7 +34,7 @@
 				<label>Patronažna sestra:</label>
 				<select [(ngModel)]="izbranaSestra" class="form-control" name="poSestri">
 					<option></option>
-					<option *ngFor="let s of sestre" [ngValue]="s">{{s.sifra}}</option>
+					<option *ngFor="let s of sestre" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
 				</select>
 			</div>
 			<div class="enObDrugem">

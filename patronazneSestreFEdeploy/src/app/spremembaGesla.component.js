@@ -30,7 +30,7 @@ var SpremembaGeslaComponent = (function () {
         var _this = this;
         this.fail = false;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin:admin') });
-        var baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/uporabnik';
+        var baseUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/uporabnik';
         var vlog = ({
             idvloga: Number(localStorage.getItem('idvloga')),
             opis: localStorage.getItem('vloga'),
