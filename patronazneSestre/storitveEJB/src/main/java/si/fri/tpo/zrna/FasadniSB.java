@@ -258,7 +258,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// zdravilo
 	@Override
-	@RolesAllowed({"Administrator","guest"})
+	@RolesAllowed({"Administrator","guest","Zdravnik","PatronaznaSluzba"})
 	public List<Zdravilo> returnZdravilas() {
 		List<Zdravilo> list = sifranti.returnZdravilas();
 		sifranti.odstraniZrno();
@@ -267,7 +267,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// material
 	@Override
-	@RolesAllowed({"Administrator","guest"})
+	@RolesAllowed({"Administrator","guest","Zdravnik","PatronaznaSluzba"})
 	public List<Material> returnMaterials() {
 		List<Material> list = sifranti.returnMaterials();
 		sifranti.odstraniZrno();
@@ -331,7 +331,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// bolezen
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSluzba"})
 	public List<Bolezen> returnBolezens() {
 		List<Bolezen> list = sifranti.returnBolezens();
 		sifranti.odstraniZrno();
@@ -496,7 +496,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// bolezen
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSluzba"})
 	public Bolezen returnBolezen(int id) {
 		Bolezen nova = sifranti.returnBolezen(id);
 		sifranti.odstraniZrno();
@@ -721,7 +721,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	// *** klici za Izvajalca zdravstvenih storitev ***
 
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSluzba"})
 	public IzvajalecZdravstvenihStoritev returnIzvajalecZdravstvenihStoritev(int id) {
 		IzvajalecZdravstvenihStoritev nov = izs.returnIzvajalecZdravstvenihStoritev(id);
 		izs.odstraniZrno();
@@ -809,6 +809,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
 	public ZdravstveniDelavec returnPatronaznaSluzbaByIzvajalec(int izvajalec) {
 		
 		return zdravstveniDelavc.patronaznaSluzbaById(izvajalec);
