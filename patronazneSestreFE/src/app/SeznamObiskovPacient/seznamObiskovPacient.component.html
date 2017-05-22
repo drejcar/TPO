@@ -1,10 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+<h1 id="naslov">Moji obiski</h1>
+<form>
+	<div id="filtri2">
+		<div class="enObDrugemDatumi">
+			<label id="labl">Pacienti</label>
+			<select [(ngModel)]="izbraniPacient" class="form-control" name="poPacientu">
+				<option *ngFor="let s of pacienti" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
+			</select>
+		</div>
+		<div [hidden]="vecJihJe" class="levo">
+			<input type="button" (click)="Onsubmit()" id="gumb" name="poisciFiltre" value="Najdi obiske">
+		</div>
+	</div>
+</form>
 
-</body>
-</html>
+
+<h3>Obiski</h3>
+<div id="linija"></div>
+
+<div id="kvadratZaDelovneNaloge">
+		
+	<table>
+		<tr>
+			<th>Id obiska</th>
+			<th>Izdajatelj</th>
+			<th>Vrsta obiska</th>
+			<th>Patronažna sestra</th>
+			<th>Pacienti</th>
+			<th>Dejanski datum obiska</th>
+			<th>Podrobno</th>
+		</tr>
+		<tr *ngFor="let s of tabelaDejanskiObiskov">
+			<td>{{s.idObiska}}</td>
+			<td>{{s.izdajatelj}}</td>
+			<td>{{s.vrstaObiska}}</td>
+			<td>{{s.patronaznaSestra}}</td>
+			<td>{{s.pacienti}}</td>
+			<td>{{s.dejanskiDatumObiska}}</td>
+			<td><a>{{s.podrobno}}</a></td>
+		</tr>
+	</table>
+		
+</div>

@@ -18,6 +18,7 @@ import io.swagger.annotations.ApiOperation;
 import si.fri.tpo.entitete.Uporabnik;
 import si.fri.tpo.entitete.Vloga;
 import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
+import si.fri.tpo.vmesnikiSB.NoAuthSBLocal;
 import si.fri.tpo.vmesniki_ws.UporabnikREST;
 
 @RequestScoped
@@ -28,8 +29,24 @@ import si.fri.tpo.vmesniki_ws.UporabnikREST;
 public class UporabnikStoritve implements UporabnikREST {
 	@EJB
 	private FasadniSBLocal fasada;
+	@EJB
+	private NoAuthSBLocal noAuth;
 	
 	
+	@POST
+	@Path("/pozabuGeslo/{mail}")
+	@ApiOperation(value = "spremeni geslo od neznanega uporabnika", notes = "poslje mail",code = 200)
+	public void pozabilGeslo(@PathParam("mail") String mail){
+		noAuth.pozabilGeslo(mail);
+		
+	} 
+	@GET
+	@Path("/getUporabnik/{id}")
+	@ApiOperation(value="dobimo novega uporabnika", notes = "za spremembo gesla",code = 200 )
+	public Uporabnik vrniUporabnikaZIdjem(@PathParam("id") int id){
+		return noAuth.returnUporabnikaPoIdju(id);
+		
+	}
 	@POST
 	@Path("")
 	@ApiOperation(value = "Dodaj uporabnika", notes = "Doda uporabnika v bazo", code = 200)

@@ -10,6 +10,7 @@ import javax.ejb.TransactionManagementType;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.Pacient;
 import si.fri.tpo.vmesnikiSB.PacientSBLocal;
 import si.fri.tpo.vmesnikiSB.PacientSBRemote;
@@ -96,6 +97,27 @@ public class PacientSB implements PacientSBRemote, PacientSBLocal {
 	@Remove
 	public void odstraniZrno() {
 		
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.PacientSBLocal#returnDelovniNalogPoPacientu(int)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<DelovniNalog> returnDelovniNalogPoPacientu(int id) {
+		
+		return (List<DelovniNalog>) em.createNamedQuery("DelovniNalog.findSpecificPacient").setParameter("id", id).getResultList();
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.PacientSBLocal#returnPacientPoUporabniku(int)
+	 */
+	@Override
+	public Pacient returnPacientPoUporabniku(int id) {
+		
+		return (Pacient) em.createNamedQuery("Pacient.findOneUporabnik").setParameter("id", id).getSingleResult();
 	}
 
 	

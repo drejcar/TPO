@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.ejb.Local;
 
+import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.Pacient;
 
 //interface za funkcije pacienta
@@ -16,6 +17,8 @@ public interface PacientSBLocal {
 	void updatePacient(Pacient pacient); //updatanje pacienta
 	void deletePacient(int id); // brisanje pacienta
 	public Pacient returnPacientZZ(String stevilkaZZ); // iskanje pacienta po ZZ
+	public List<DelovniNalog> returnDelovniNalogPoPacientu(int id); //iskanje dn po pacientu
+	public Pacient returnPacientPoUporabniku(int id); //vrne pacienta glede na idUporabnika
 	void odstraniZrno();
 	
 }
