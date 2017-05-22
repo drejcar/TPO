@@ -11,7 +11,7 @@ class delovniNalog {
 	vrstaObiska : Storitev;
 	bolezen : Bolezen;
 	materials : Array<Material>;
-	steviloEpruvet : number;
+	steviloEpruvet : String;
 	zdravilos : Array<Zdravilo>;
     obisks : Array<any>;
 }
@@ -95,7 +95,7 @@ export class DelovniNalogComponent implements OnInit{
 	sifraUporabnika: string = "";
 	urlParametri: string = "";
 
-	private restUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 
 	stevilkaIzvajalca : string = "rest ocitno ni uspel";
 	nazivIzvajalca : string = "naziv izvajalca";
@@ -131,6 +131,7 @@ export class DelovniNalogComponent implements OnInit{
 	zdravilos: any[] =  [];
 	materials: any[] = [];
 	stEpruvet = 0;
+	epruvete:String = "";
 	dateIsValid = 0;
 
 	ngOnInit() {
@@ -277,6 +278,7 @@ export class DelovniNalogComponent implements OnInit{
 		console.log("dodaj material");
 		var material = new Material();
 		material.idmaterial = this.izbraniMaterial.idmaterial;
+		this.epruvete = this.izbraniMaterial.idmaterial.toString()+this.stEpruvet.toString()+" "+this.epruvete;
 		this.materials.push(material);
 		console.log(this.materials);
 		console.log("id ustvarjenega materiala: " + material.idmaterial)
@@ -430,7 +432,7 @@ export class DelovniNalogComponent implements OnInit{
 		dn.vrstaObiska = storitev;
 		dn.bolezen = bolezen;
 		dn.materials =  this.materials;
-		dn.steviloEpruvet = this.stEpruvet;
+		dn.steviloEpruvet = this.epruvete;
 		dn.zdravilos = this.zdravilos;
 		dn.obisks = [];
 

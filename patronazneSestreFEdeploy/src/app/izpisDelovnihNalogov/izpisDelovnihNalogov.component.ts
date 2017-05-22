@@ -13,7 +13,7 @@ import { izpisDNService } from './izpisDN.service';
 })
 
 export class izpisDelovnihNalogovComponent implements OnInit{
-	private restUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http,private DNService: izpisDNService){}
 	res: any;
 	aliObstaja: boolean = false;

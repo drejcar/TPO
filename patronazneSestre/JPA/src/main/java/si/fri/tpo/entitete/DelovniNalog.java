@@ -42,8 +42,8 @@ public class DelovniNalog implements Serializable {
 	@Column(name="datum_izdaje", nullable=false)
 	private Date datumIzdaje;
 	
-	@Column(name="steviloEpruvet", nullable=true)
-	private int steviloEpruvet;
+	@Column(name="steviloEpruvet", nullable=true, length=1024)
+	private String steviloEpruvet;
 	
 	//bi-directional many-to-one association to Bolezen
 	@ManyToOne
@@ -225,11 +225,11 @@ public class DelovniNalog implements Serializable {
 		this.datumIzdaje = datumIzdaje;
 	}
 	
-	public int getSteviloEpruvet(){
+	public String getSteviloEpruvet(){
 		return this.steviloEpruvet;
 	}
 	
-	public void setSteviloEpruvet(int steviloEpruvet){
+	public void setSteviloEpruvet(String steviloEpruvet){
 		this.steviloEpruvet = steviloEpruvet;
 	}
 }
