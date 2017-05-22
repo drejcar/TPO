@@ -678,6 +678,18 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		return nov;
 	}
 	
+	@Override
+	@RolesAllowed({"Pacient"})
+	public Pacient returnPacientPoUporabnikaID(int id) {
+		return pacienti.returnPacientPoUporabniku(id);
+	}
+	@Override
+	@RolesAllowed({"Pacient"})
+	public List<DelovniNalog> returnDelovniNalogPoPacientu(int id) {
+		
+		return pacienti.returnDelovniNalogPoPacientu(id);
+	}
+	
 	// *** klici za kontakt ***
 
 	@Override
@@ -717,6 +729,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		kontakti.odstraniZrno();
 
 	}
+	
 
 	// *** klici za Izvajalca zdravstvenih storitev ***
 
@@ -827,5 +840,6 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		delovniNalog.updateObisk(ob);
 		
 	}
+
 
 }

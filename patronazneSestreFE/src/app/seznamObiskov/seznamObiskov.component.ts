@@ -242,6 +242,7 @@ export class seznamObiskovComponent implements OnInit{
 					//dodaj v subseznam pacientov
 					this.aliObstaja = false;
 					for(let pacient of this.pacienti){
+						this.aliObstaja = false;
 						if(pacient.id == dn.pacients[0].idpacient){
 							this.aliObstaja = true;
 							break;

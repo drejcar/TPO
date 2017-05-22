@@ -1,0 +1,90 @@
+div.enObDrugem {	
+	float:left;
+	width: 15vw;
+	margin-left:45%;
+	margin-bottom:20px;
+}
+div.enObDrugemDatumi{
+	float:left;
+	width: 15vw;
+	margin-left:39vw;
+	margin-right:2px;
+	margin-bottom:10px;
+
+}
+div.levo {	
+	clear: left;
+}
+label.parametri{
+	margin-left:20px;
+	margin-right:20px;
+}
+div.parametri{
+	float:left;
+	margin-left:5px;
+	margin-right:5px;
+	margin-bottom:10px;
+}
+#labl{
+	margin-left:67px;
+	
+}
+#naslov{
+	margin-left:41%;
+	margin-bottom: 50px;
+}
+#gumb{
+	margin-left:43.5%;
+	margin-bottom:20px;
+}
+#labelnek{
+	margin-left:44.5%;
+	margin-bottom:20px;
+	
+}
+#filtri{
+	float:left;
+	width:30vw;
+	
+}
+#filtri2{
+	
+	float:left;
+	width:100%;
+
+}
+#linija{
+	border-bottom-width:1px;
+	border-bottom-style:groove;
+	width:100%;
+	margin-bottom:5px;
+	
+	
+}
+#kvadratZaDelovneNaloge{
+	border-bottom-width:1px;
+	border-bottom-style:groove;
+	width:100%;
+}
+#klikZaPreusmerjanje{
+	background:none;
+	border:none;
+	margin:0;
+	padding:0;
+	color: blue;	
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td, th {
+    border: 1px solid #448cff;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}

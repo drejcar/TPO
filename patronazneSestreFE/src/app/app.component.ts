@@ -19,9 +19,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 		<div id="zadnjaPrijava">{{opis2}}</div>
 		<div id="navRight">
 			<a routerLink="/{{prjava2}}" routerLinkActive="active">{{prjava}}</a>
-			
+			<a [hidden]="!aliJePacient" routerLink="/seznamObiskovPacient" routerLinkActive="active">/ Moji obiski</a>
 			<a [hidden]="aliJeLoginan"routerLink="/registracija" routerLinkActive="active">/ Registracija</a>
-			
 			<a [hidden]="!dovoljenjeKreirat" routerLink="/delovniNalog" routerLinkActive="active">/ DelovniNalog</a>
 			<a [hidden]="!mojiDelovniNalog" routerLink ="/delovniNalogi" routerLinkActive="active">/ Moji delovni nalogi</a>
 		</div>
@@ -41,6 +40,7 @@ export class AppComponent implements OnInit {
   patronaznaSestra: boolean = false;
   dovoljenjeKreirat: boolean = false;
   aliJeLoginan: boolean = false;
+  aliJePacient: boolean = false;
   constructor(private http:Http ,private usr:UserService){
 
   }
@@ -75,6 +75,7 @@ export class AppComponent implements OnInit {
 			this.prjava = 'Prijava';
 			this.prjava2 = 'prijava';
 			this.aliJeLoginan = false;
+			this.aliJePacient = false;
 		}
 		//kaj se prikaze glede na vlogo
 		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
@@ -86,6 +87,9 @@ export class AppComponent implements OnInit {
 			this.admin = true;
 		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
 			this.dovoljenjeKreirat = true;
+		}
+		if(this.vloga == 'Pacient'){
+			this.aliJePacient = true;
 		}
 
 	  }
@@ -104,6 +108,7 @@ export class AppComponent implements OnInit {
 			this.prjava2 = 'odjava';
 			this.aliJeLoginan = true;
 		}else{
+			this.aliJePacient = false;
 			this.dovoljenjeKreirat = false;
 			this.opis = '';
 			this.opis2 = '';
@@ -125,6 +130,9 @@ export class AppComponent implements OnInit {
 			this.admin = true;
 		}if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba'){
 			this.dovoljenjeKreirat = true;
+		}
+		if(this.vloga == 'Pacient'){
+			this.aliJePacient = true;
 		}
 	  }
   }
