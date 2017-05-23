@@ -42,7 +42,7 @@ public class UporabnikStoritve implements UporabnikREST {
 	} 
 	@GET
 	@Path("/getUporabnik/{id}")
-	@ApiOperation(value="dobimo novega uporabnika", notes = "za spremembo gesla",code = 200 )
+	@ApiOperation(value="dobimo uporabnika", notes = "za spremembo gesla",code = 200 )
 	public Uporabnik vrniUporabnikaZIdjem(@PathParam("id") int id){
 		return noAuth.returnUporabnikaPoIdju(id);
 		

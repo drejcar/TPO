@@ -679,7 +679,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 	
 	@Override
-	@RolesAllowed({"Pacient"})
+	@RolesAllowed({"Pacient","Zdravnik","PatronaznaSestra"})
 	public Pacient returnPacientPoUporabnikaID(int id) {
 		return pacienti.returnPacientPoUporabniku(id);
 	}
