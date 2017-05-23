@@ -39,6 +39,7 @@ import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesnikiSB.FasadniSBRemote;
 import si.fri.tpo.vmesnikiSB.IzvajalecZdravstvenihStoritevSBLocal;
 import si.fri.tpo.vmesnikiSB.KontaktSBLocal;
+import si.fri.tpo.vmesnikiSB.ObiskSBLocal;
 import si.fri.tpo.vmesnikiSB.PacientSBLocal;
 import si.fri.tpo.vmesnikiSB.SifrantiSBLocal;
 import si.fri.tpo.vmesnikiSB.UporabnikSBLocal;
@@ -69,6 +70,8 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	private IzvajalecZdravstvenihStoritevSBLocal izs;
 	@EJB
 	private EmailSBLocal email;
+	@EJB
+	private ObiskSBLocal  obisk;
 	/**
 	 * Default constructor.
 	 */
@@ -841,5 +844,9 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		
 	}
 
-
+	@Override
+	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
+	public void updObisk(Obisk ob){
+		obisk.updateObisk(ob);
+	}
 }

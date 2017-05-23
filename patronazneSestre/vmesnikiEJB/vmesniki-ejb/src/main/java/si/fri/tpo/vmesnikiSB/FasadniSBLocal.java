@@ -140,4 +140,5 @@ public interface FasadniSBLocal {
 		public List<DelovniNalog> vrniDelovneNalogeIzvAll(int id, int start,int size);
 		public List<ZdravstveniDelavec> returnPatronazneSestre(int id);
 		public ZdravstveniDelavec returnPatronaznaSluzbaByIzvajalec(int izvajalec);
+		void updObisk(Obisk obisk);
 }
