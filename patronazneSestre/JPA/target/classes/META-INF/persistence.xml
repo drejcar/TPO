@@ -4,11 +4,15 @@
 	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 	<persistence-unit name="JPA" transaction-type="JTA">
 		<jta-data-source>java:/MySqlDS</jta-data-source>
+		<class>si.fri.tpo.entitete.Aktivnost</class>
+		<class>si.fri.tpo.entitete.Bolezen</class>
 		<class>si.fri.tpo.entitete.DelovniNalog</class>
 		<class>si.fri.tpo.entitete.IzvajalecZdravstvenihStoritev</class>
 		<class>si.fri.tpo.entitete.Kontakt</class>
 		<class>si.fri.tpo.entitete.Material</class>
+		<class>si.fri.tpo.entitete.Meritev</class>
 		<class>si.fri.tpo.entitete.Obisk</class>
+		<class>si.fri.tpo.entitete.Okolis</class>
 		<class>si.fri.tpo.entitete.Pacient</class>
 		<class>si.fri.tpo.entitete.Posta</class>
 		<class>si.fri.tpo.entitete.SorodstvenoRazmerje</class>
@@ -18,9 +22,12 @@
 		<class>si.fri.tpo.entitete.VrstaObiska</class>
 		<class>si.fri.tpo.entitete.Zdravilo</class>
 		<class>si.fri.tpo.entitete.ZdravstveniDelavec</class>
-		<class>si.fri.tpo.entitete.Bolezen</class>
-		<class>si.fri.tpo.entitete.Aktivnost</class>
-		<class>si.fri.tpo.entitete.Meritev</class>
-		<class>si.fri.tpo.entitete.Okolis</class>
+		<class>si.fri.tpo.entitete.PorociloAplikacijaInjekcije</class>
+		<class>si.fri.tpo.entitete.PorociloKontrolaZdravstvenegaStanja</class>
+		<class>si.fri.tpo.entitete.PorociloObiskNosecnice</class>
+		<class>si.fri.tpo.entitete.PorociloObiskNovorojencka</class>
+		<class>si.fri.tpo.entitete.PorociloObiskOtrocnice</class>
+		<class>si.fri.tpo.entitete.PorociloOdvzemKrvi</class>
+		<class>si.fri.tpo.entitete.PorociloPreventivaStarostnika</class>
 	</persistence-unit>
 </persistence>
