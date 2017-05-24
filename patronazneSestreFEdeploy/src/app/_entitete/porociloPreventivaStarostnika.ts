@@ -1,7 +1,7 @@
 export class porociloPreventivaStarostnika{
   constructor(
     //public idporociloPreventivaStarostnika:number,
-    public akt15:String,
+    public akt10:String,
     public akt100a:String,
     public akt100b:String,
     public akt110:String,
