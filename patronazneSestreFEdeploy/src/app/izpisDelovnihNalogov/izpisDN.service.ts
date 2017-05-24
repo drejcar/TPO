@@ -16,7 +16,7 @@ class Obisk{
 @Injectable()
 export class izpisDNService{
 	private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
-	private baseUrl: String = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+	private baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private http: Http){}
 
 	getDelovneNaloge(idZD: number,idStart:number) : Observable<any> {

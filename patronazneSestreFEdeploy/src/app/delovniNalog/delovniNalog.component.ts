@@ -95,7 +95,7 @@ export class DelovniNalogComponent implements OnInit{
 	sifraUporabnika: string = "";
 	urlParametri: string = "";
 
-	private restUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 
 	stevilkaIzvajalca : string = "rest ocitno ni uspel";
 	nazivIzvajalca : string = "naziv izvajalca";
