@@ -23,6 +23,8 @@ export class SpremembaGeslaComponent{
 
   pwd:String='';
   pwd2:String='';
+  
+  
   model = ({'pwd': this.pwd, 'pwd2': this.pwd2});
   submitted=false;
   fail= false;

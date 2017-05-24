@@ -114,6 +114,8 @@ public interface FasadniSBLocal {
 		void updatePacient(Pacient pacient); //updatanje pacienta
 		void deletePacient(int id); // brisanje pacienta
 		public Pacient returnPacientZZ(String stevilkaZZ); // vracanje pacienta glede na stevilkoZZ
+		public Pacient returnPacientPoUporabnikaID(int id); //vracanje pacienta glede na id uporabnika
+		public List<DelovniNalog> returnDelovniNalogPoPacientu(int id); //vracanje delovne naloge kjer je pacient
 		
 		//klici za kontakt
 		public Kontakt returnKontakt(int id); //klic za vracanje enega kontakta
@@ -138,4 +140,5 @@ public interface FasadniSBLocal {
 		public List<DelovniNalog> vrniDelovneNalogeIzvAll(int id, int start,int size);
 		public List<ZdravstveniDelavec> returnPatronazneSestre(int id);
 		public ZdravstveniDelavec returnPatronaznaSluzbaByIzvajalec(int izvajalec);
+		void updObisk(Obisk obisk);
 }

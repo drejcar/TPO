@@ -15,6 +15,7 @@ import si.fri.tpo.entitete.Spol;
 import si.fri.tpo.entitete.Uporabnik;
 import si.fri.tpo.entitete.Vloga;
 import si.fri.tpo.vmesnikiSB.EmailSBLocal;
+import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesnikiSB.NoAuthSBLocal;
 import si.fri.tpo.vmesnikiSB.NoAuthSBRemote;
 import si.fri.tpo.vmesnikiSB.PacientSBLocal;
@@ -62,6 +63,7 @@ public class NoAuthSB implements NoAuthSBRemote, NoAuthSBLocal {
 		email.sendEmail(to, "Aktivacija uporabniškega računa: pacient", sb.toString());
 	
     }
+    
     
     @Override
 	public List<Okolis> returnOkolissByPosta(int id) {
@@ -115,5 +117,24 @@ public class NoAuthSB implements NoAuthSBRemote, NoAuthSBLocal {
 		return list;
 	
     }
+    @Override
+    public Uporabnik returnUporabnikaPoIdju(int id){
+    	return uporabnik.najdiUporabnik(id); 
+    	
+    }
+	@Override
+	public void pozabilGeslo(String mail) {
+		Uporabnik u = uporabnik.returnUporabnikEmail(mail);
+		int id = u.getIduporabnik();
+		String to = u.getEmail();
+		StringBuilder sb = new StringBuilder();
+		sb.append("Pozdravljeni! ");
+		sb.append("Prišla je zahteva po spremembi gesla na portalu PatronažnaSlužba. S klikom na priloženo povezavo bo vaša sprememba gesla zaključena. ");
+		sb.append("<a href='http://localhost:3000/pozabilGeslo/");
+		sb.append(id);
+		sb.append("'>Spremeni geslo</a>");
+		email.sendEmail(to, "Pozabljeno geslo", sb.toString());
+		
+	}
     
 }

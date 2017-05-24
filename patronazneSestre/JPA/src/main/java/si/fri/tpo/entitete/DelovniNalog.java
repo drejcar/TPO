@@ -28,6 +28,7 @@ import java.util.Set;
 	@NamedQuery(name="DelovniNalog.deleteOne",query="DELETE FROM DelovniNalog d WHERE d.iddelovniNalog = :id"),
 	@NamedQuery(name="DelovniNalog.findSpecific",query="SELECT d FROM DelovniNalog d INNER JOIN d.zdravstveniDelavecs z WHERE z.idzdravstveniDelavec=:id AND d.datumIzdaje BETWEEN :startDate AND :endDate"),
 	@NamedQuery(name="DelovniNalog.findSpecificAll",query="SELECT d FROM DelovniNalog d INNER JOIN d.zdravstveniDelavecs z WHERE z.idzdravstveniDelavec=:id"),
+	@NamedQuery(name="DelovniNalog.findSpecificPacient",query="SELECT d FROM DelovniNalog d INNER JOIN d.pacients z WHERE z.idpacient =:id"),
 	@NamedQuery(name="DelovniNalog.findSpecificAllIzv",query="SELECT d FROM DelovniNalog d INNER JOIN d.izvajalecZdravstvenihStoritev z WHERE z.idizvajalecZdravstvenihStoritev=:id")
 })
 public class DelovniNalog implements Serializable {
@@ -42,8 +43,8 @@ public class DelovniNalog implements Serializable {
 	@Column(name="datum_izdaje", nullable=false)
 	private Date datumIzdaje;
 	
-	@Column(name="steviloEpruvet", nullable=true)
-	private int steviloEpruvet;
+	@Column(name="steviloEpruvet", nullable=true, length=1024)
+	private String steviloEpruvet;
 	
 	//bi-directional many-to-one association to Bolezen
 	@ManyToOne
@@ -225,11 +226,11 @@ public class DelovniNalog implements Serializable {
 		this.datumIzdaje = datumIzdaje;
 	}
 	
-	public int getSteviloEpruvet(){
+	public String getSteviloEpruvet(){
 		return this.steviloEpruvet;
 	}
 	
-	public void setSteviloEpruvet(int steviloEpruvet){
+	public void setSteviloEpruvet(String steviloEpruvet){
 		this.steviloEpruvet = steviloEpruvet;
 	}
 }

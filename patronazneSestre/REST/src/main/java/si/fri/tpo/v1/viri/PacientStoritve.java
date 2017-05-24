@@ -11,6 +11,7 @@ import javax.ws.rs.core.MediaType;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.Pacient;
 import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.PacientREST;
@@ -72,5 +73,16 @@ public class PacientStoritve implements PacientREST {
 	public Pacient returnPacientZZ(@PathParam("id") String stevilkaZZ) {
 		return fasada.returnPacientZZ(stevilkaZZ);
 	}
-
+	@GET
+	@Path("/dn/{id}")
+	@ApiOperation(value="vrne delovne naloge od pacienta", notes = "Vrni delovne naloge glede na pacienta", code=200,response = DelovniNalog.class)
+	public List<DelovniNalog>returnDelovniNalogPoPacient(@PathParam("id") int id){
+		return fasada.returnDelovniNalogPoPacientu(id);
+	}
+	@GET
+	@Path("/uporabnikId/{id}")
+	@ApiOperation(value="vrne pacienta glede na idUporabnika", notes="Vrne pacienta glede na idUporabnika", code=200, response= Pacient.class)
+	public Pacient returnPacientPoUporabnikId(@PathParam("id") int id){
+		return fasada.returnPacientPoUporabnikaID(id);
+	}
 }

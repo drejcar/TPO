@@ -39,6 +39,7 @@ import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesnikiSB.FasadniSBRemote;
 import si.fri.tpo.vmesnikiSB.IzvajalecZdravstvenihStoritevSBLocal;
 import si.fri.tpo.vmesnikiSB.KontaktSBLocal;
+import si.fri.tpo.vmesnikiSB.ObiskSBLocal;
 import si.fri.tpo.vmesnikiSB.PacientSBLocal;
 import si.fri.tpo.vmesnikiSB.SifrantiSBLocal;
 import si.fri.tpo.vmesnikiSB.UporabnikSBLocal;
@@ -69,6 +70,8 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	private IzvajalecZdravstvenihStoritevSBLocal izs;
 	@EJB
 	private EmailSBLocal email;
+	@EJB
+	private ObiskSBLocal  obisk;
 	/**
 	 * Default constructor.
 	 */
@@ -258,7 +261,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// zdravilo
 	@Override
-	@RolesAllowed({"Administrator","guest"})
+	@RolesAllowed({"Administrator","guest","Zdravnik","PatronaznaSluzba"})
 	public List<Zdravilo> returnZdravilas() {
 		List<Zdravilo> list = sifranti.returnZdravilas();
 		sifranti.odstraniZrno();
@@ -267,7 +270,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// material
 	@Override
-	@RolesAllowed({"Administrator","guest"})
+	@RolesAllowed({"Administrator","guest","Zdravnik","PatronaznaSluzba"})
 	public List<Material> returnMaterials() {
 		List<Material> list = sifranti.returnMaterials();
 		sifranti.odstraniZrno();
@@ -331,7 +334,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// bolezen
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSluzba"})
 	public List<Bolezen> returnBolezens() {
 		List<Bolezen> list = sifranti.returnBolezens();
 		sifranti.odstraniZrno();
@@ -496,7 +499,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	// bolezen
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSluzba"})
 	public Bolezen returnBolezen(int id) {
 		Bolezen nova = sifranti.returnBolezen(id);
 		sifranti.odstraniZrno();
@@ -678,6 +681,18 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		return nov;
 	}
 	
+	@Override
+	@RolesAllowed({"Pacient","Zdravnik","PatronaznaSestra"})
+	public Pacient returnPacientPoUporabnikaID(int id) {
+		return pacienti.returnPacientPoUporabniku(id);
+	}
+	@Override
+	@RolesAllowed({"Pacient"})
+	public List<DelovniNalog> returnDelovniNalogPoPacientu(int id) {
+		
+		return pacienti.returnDelovniNalogPoPacientu(id);
+	}
+	
 	// *** klici za kontakt ***
 
 	@Override
@@ -717,11 +732,12 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		kontakti.odstraniZrno();
 
 	}
+	
 
 	// *** klici za Izvajalca zdravstvenih storitev ***
 
 	@Override
-	@RolesAllowed({"Administrator"})
+	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSluzba"})
 	public IzvajalecZdravstvenihStoritev returnIzvajalecZdravstvenihStoritev(int id) {
 		IzvajalecZdravstvenihStoritev nov = izs.returnIzvajalecZdravstvenihStoritev(id);
 		izs.odstraniZrno();
@@ -809,6 +825,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
 	public ZdravstveniDelavec returnPatronaznaSluzbaByIzvajalec(int izvajalec) {
 		
 		return zdravstveniDelavc.patronaznaSluzbaById(izvajalec);
@@ -827,4 +844,9 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		
 	}
 
+	@Override
+	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
+	public void updObisk(Obisk ob){
+		obisk.updateObisk(ob);
+	}
 }

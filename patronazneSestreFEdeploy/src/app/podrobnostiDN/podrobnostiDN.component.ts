@@ -160,7 +160,15 @@ export class podrobnostiDNComponent implements OnInit{
 				for(let i of this.delovniNalog.materials){
 					let novMaterial = <any> ({'tipMateriala':'','kolicina':0});
 					novMaterial.tipMateriala = i.opis;
-					novMaterial.kolicina = this.delovniNalog.steviloEpruvet;
+					var devide:any[] = this.delovniNalog.steviloEpruvet.split(" ");
+					var stEpr = 0;
+					for(let st of devide){
+						if(Number(st.charAt(0)) == i.idmaterial){
+							stEpr = st.substring(1,st.length);
+							break;
+						}
+					}
+					novMaterial.kolicina = Number(stEpr);
 					this.material[j] = novMaterial;
 					j = j+1;
 				}
