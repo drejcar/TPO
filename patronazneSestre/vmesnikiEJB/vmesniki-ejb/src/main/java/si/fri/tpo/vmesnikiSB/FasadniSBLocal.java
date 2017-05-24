@@ -141,4 +141,6 @@ public interface FasadniSBLocal {
 		public List<ZdravstveniDelavec> returnPatronazneSestre(int id);
 		public ZdravstveniDelavec returnPatronaznaSluzbaByIzvajalec(int izvajalec);
 		void updObisk(Obisk obisk);
+		List<Obisk> getObiskiByMaticna(int idMaticna, Date ood, Date doo);
+		List<Obisk> getObiskiNadomescanja(int idMaticna, Date ood, Date doo);
 }
