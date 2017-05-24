@@ -60,19 +60,21 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Obisk> getObisksDN(int idMaticna, Date ood, Date doo){
 		
 		List<DelovniNalog> dn = em.createNamedQuery("DelovniNalog.findSpecificAll").setParameter("id", idMaticna).getResultList();
 		
 		List<Obisk> obiski = new ArrayList<Obisk>();
-		
+		//preglej vse delovne naloge
 		for(int i = 0; i < dn.size(); i++){
-			
+			//preglej en delovni nalog
 			DelovniNalog d = dn.get(i);
 			
 			Set<Obisk> ob = d.getObisks();
 			
+			//iterator za obiske na delovnem nalogu
 			Iterator<Obisk> iter = ob.iterator();
 			
 			while(iter.hasNext()){
@@ -86,6 +88,7 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 		return obiski;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Obisk> getObisksNadomescanja(int idMaticna, Date ood, Date doo) {
 	

@@ -14,6 +14,7 @@ import java.util.Set;
  * The persistent class for the zdravstveni_delavec database table.
  * 
  */
+
 @Entity
 @XmlRootElement
 @Table(name="zdravstveni_delavec")

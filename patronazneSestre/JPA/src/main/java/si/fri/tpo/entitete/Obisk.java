@@ -23,7 +23,7 @@ import java.util.Date;
 	@NamedQuery(name="Obisk.findAll", query="SELECT o FROM Obisk o"),
 	@NamedQuery(name="Obisk.findOne",query="SELECT o FROM Obisk o WHERE o.idobisk = :id"),
 	@NamedQuery(name="Obisk.deleteOne",query="DELETE FROM Obisk o WHERE o.idobisk = :id"),
-	@NamedQuery(name="Obisk.getByNadomestna",query="SELECT o FROM Obisk o WHERE o.opravljen=0 AND o.datumObiska BETWEEN :startDate AND :endDate AND o.nadomestnaSestra.idzdravstveniDelavec=:id")
+	@NamedQuery(name="Obisk.getByNadomestna",query="SELECT o FROM Obisk o WHERE o.opravljen=0 AND o.nadomestnaSestra.idzdravstveniDelavec=:id AND o.datumObiska BETWEEN :startDate AND :endDate")
 })
 public class Obisk implements Serializable {
 	private static final long serialVersionUID = 1L;

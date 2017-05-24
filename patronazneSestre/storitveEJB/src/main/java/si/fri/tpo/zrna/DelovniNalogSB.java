@@ -101,8 +101,8 @@ public class DelovniNalogSB implements DelovniNalogSBRemote, DelovniNalogSBLocal
 	@SuppressWarnings("unchecked")
 	public List<DelovniNalog> vrniDelovneNalogeZdrDel(int id, Date ood, Date doo, int start, int size){
 		List<DelovniNalog> list =  em.createNamedQuery("DelovniNalog.findSpecific").setParameter("id", id)
-																.setParameter("startDate", ood)
-																.setParameter("endDate", doo).getResultList();
+																				   .setParameter("startDate", ood)
+																				   .setParameter("endDate", doo).getResultList();
 		
 		if(list.size() <= start){
 			return null;

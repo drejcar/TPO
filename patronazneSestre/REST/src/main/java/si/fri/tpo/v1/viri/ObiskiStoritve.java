@@ -53,6 +53,7 @@ public class ObiskiStoritve implements ObiskiREST {
 				fasada.updObisk(o);
 			}
 		}
+		
 		if(nadomescanjaObiski.isEmpty()!= true){
 			for(int i = 0; i < nadomescanjaObiski.size(); i++){
 				Obisk o = nadomescanjaObiski.get(i);
@@ -61,5 +62,4 @@ public class ObiskiStoritve implements ObiskiREST {
 			}
 		}
 	}
-	
 }
