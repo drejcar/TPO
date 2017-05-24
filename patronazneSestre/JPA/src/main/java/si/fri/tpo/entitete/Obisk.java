@@ -22,7 +22,8 @@ import java.util.Date;
 @NamedQueries({
 	@NamedQuery(name="Obisk.findAll", query="SELECT o FROM Obisk o"),
 	@NamedQuery(name="Obisk.findOne",query="SELECT o FROM Obisk o WHERE o.idobisk = :id"),
-	@NamedQuery(name="Obisk.deleteOne",query="DELETE FROM Obisk o WHERE o.idobisk = :id")
+	@NamedQuery(name="Obisk.deleteOne",query="DELETE FROM Obisk o WHERE o.idobisk = :id"),
+	@NamedQuery(name="Obisk.getByNadomestna",query="SELECT o FROM Obisk o WHERE o.opravljen=0 AND o.datumObiska BETWEEN :startDate AND :endDate AND o.nadomestnaSestra.idzdravstveniDelavec=:id")
 })
 public class Obisk implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -86,6 +87,10 @@ public class Obisk implements Serializable {
 	@JoinColumn(name="idporocilo_preventiva_starostnika")
 	private PorociloPreventivaStarostnika porociloPreventivaStarostnika;
 
+	@ManyToOne
+	@JoinColumn(name="id_nadomestna_sestra", nullable=true)
+	private ZdravstveniDelavec nadomestnaSestra;
+	
 	public Obisk() {
 		this.setOpravljen(0); // 0 - ni opravljen; 1 - je opravjen
 	}
@@ -200,5 +205,8 @@ public class Obisk implements Serializable {
 */
 	public void setDelovniNalog(DelovniNalog delovniNalog) {
 		this.delovniNalog = delovniNalog;
+	}
+	public void setNadomestnaSestra(ZdravstveniDelavec zd){
+		this.nadomestnaSestra = zd;
 	}
 }

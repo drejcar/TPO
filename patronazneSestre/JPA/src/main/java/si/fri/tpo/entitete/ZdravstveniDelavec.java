@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 import org.hibernate.annotations.Cascade;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -64,6 +65,9 @@ public class ZdravstveniDelavec implements Serializable {
 	@JoinColumn(name="iduporabnik", nullable=true)
 	private Uporabnik uporabnik;
 
+	@OneToMany(mappedBy="nadomestnaSestra")
+	private List<Obisk> obisks;
+	
 	public ZdravstveniDelavec() {
 	}
 
