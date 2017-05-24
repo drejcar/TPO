@@ -20,7 +20,7 @@ var izpisDNService = (function () {
     function izpisDNService(http) {
         this.http = http;
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
-        this.baseUrl = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+        this.baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
     }
     izpisDNService.prototype.getDelovneNaloge = function (idZD, idStart) {
         var date = new Date();
