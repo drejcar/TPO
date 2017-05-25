@@ -1,0 +1,48 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Nadomeščanje</h1>
+    <form (ngSubmit)="onSubmit()" #nadomescanjaForm="ngForm">
+      <div class="form-group">
+        <label>Odsotna sestra:</label>
+        <div class="form-group">
+          <select [(ngModel)]="izbranaSestra" class="form-control" name="poSestri">
+            <option></option>
+            <option *ngFor="let s of sestre" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
+          </select>
+        </div>
+        <label>Nadomestna sestra:</label>
+        <div class="form-group">
+          <select [(ngModel)]="nadomestnaSestra" class="form-control" name="nadomestnaSestra">
+            <option></option>
+            <option *ngFor="let n of nadsestre" [ngValue]="n">{{n.ime+" ["+n.sifra+"]"}}</option>
+          </select>
+        </div>
+        <label>Interval nadomeščanja:</label>
+        <div class="enObDrugem">
+          <label for="od">OD</label>
+          <input type="date" class="form-control" id="od"
+                 placeholder="02-06-2017" min="2017-06-02" required
+                 [(ngModel)]="model.od" name="od"
+                 #od="ngModel">
+          <div [hidden]="od.valid || od.pristine"
+               class="alert alert-danger">
+            Vnesite datum začetka nadomeščanja!
+          </div>
+        </div>
+        <div class="enObDrugem">
+          <label for="do">DO</label>
+          <input type="date" class="form-control" id="do"
+                 placeholder="02-06-2017" min="2017-06-02" required
+                 [(ngModel)]="model.do" name="do"
+                 #do="ngModel">
+          <div [hidden]="do.valid || do.pristine"
+               class="alert alert-danger">
+            Vnesite datum konca nadomeščanja!
+          </div>
+        </div>
+        <button type="submit" class="btn btn-info">Dodaj nadomestno sestro</button>
+        <button type="submit" class="btn btn-success" [disabled]="!nadomescanjeForm.form.valid">Potrdi nadomeščanje</button>
+      </div>
+    </form>
+  </div>
+</div>
