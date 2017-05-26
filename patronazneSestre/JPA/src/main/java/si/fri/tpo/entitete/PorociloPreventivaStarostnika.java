@@ -3,7 +3,7 @@ package si.fri.tpo.entitete;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -17,62 +17,88 @@ public class PorociloPreventivaStarostnika implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idporocilo_preventiva_starostnika")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idporocilo_preventiva_starostnika", unique=true, nullable=false)
 	private int idporociloPreventivaStarostnika;
 
+	@Column(nullable=false, length=1024)
 	private String akt10;
 
+	@Column(length=1024)
 	private String akt100a;
 
+	@Column(length=1024)
 	private String akt100b;
 
+	@Column(length=1024)
 	private String akt110;
 
+	@Column(length=1024)
 	private String akt120a;
 
+	@Column(length=1024)
 	private String akt120b;
 
+	@Column(length=1024)
 	private String akt120c;
 
+	@Column(length=1024)
 	private String akt120d;
 
+	@Column(length=1024)
 	private String akt120e;
 
+	@Column(length=1024)
 	private String akt130;
 
+	@Column(length=1024)
 	private String akt140;
 
+	@Column(nullable=false, length=45)
 	private String akt150a;
 
+	@Column(length=45)
 	private String akt150b;
 
+	@Column(length=1024)
 	private String akt150c;
 
+	@Column(length=1024)
 	private String akt160;
 
+	@Column(length=1024)
 	private String akt170;
 
+	@Column(nullable=false, length=1024)
 	private String akt20;
 
+	@Column(nullable=false, precision=10)
 	private BigDecimal akt30a;
 
+	@Column(nullable=false, precision=10)
 	private BigDecimal akt30b;
 
+	@Column(nullable=false)
 	private int akt40;
 
+	@Column(nullable=false)
 	private int akt50;
 
+	@Column(nullable=false)
 	private int akt60;
 
+	@Column(nullable=false)
 	private int akt70;
 
+	@Column(length=1024)
 	private String akt80;
 
+	@Column(length=1024)
 	private String akt90;
 
 	//bi-directional many-to-one association to Obisk
 	@OneToMany(mappedBy="porociloPreventivaStarostnika")
-	private List<Obisk> obisks;
+	private Set<Obisk> obisks;
 
 	public PorociloPreventivaStarostnika() {
 	}
@@ -284,12 +310,12 @@ public class PorociloPreventivaStarostnika implements Serializable {
 	public void setAkt90(String akt90) {
 		this.akt90 = akt90;
 	}
-/*
-	public List<Obisk> getObisks() {
+
+	public Set<Obisk> getObisks() {
 		return this.obisks;
 	}
 
-	public void setObisks(List<Obisk> obisks) {
+	public void setObisks(Set<Obisk> obisks) {
 		this.obisks = obisks;
 	}
 
@@ -306,5 +332,5 @@ public class PorociloPreventivaStarostnika implements Serializable {
 
 		return obisk;
 	}
-*/
+
 }

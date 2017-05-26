@@ -56,7 +56,7 @@ public class NoAuthSB implements NoAuthSBRemote, NoAuthSBLocal {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Pozdravljeni! ");
 		sb.append("Zahvaljujemo se vam za resgistracijo na portalu PatronažnaSlužba. S klikom na priloženo povezavo bo vaša registracija zaključena. ");
-		sb.append("<a href='http://localhost:3000/aktivacija/");
+		sb.append("<a href='http://rogla.fri1.uni-lj.si/patronazneSestreFEdeploy/aktivacija/");
 		sb.append(id);
 		sb.append("'>Aktivacija</a>");
 			
@@ -130,7 +130,7 @@ public class NoAuthSB implements NoAuthSBRemote, NoAuthSBLocal {
 		StringBuilder sb = new StringBuilder();
 		sb.append("Pozdravljeni! ");
 		sb.append("Prišla je zahteva po spremembi gesla na portalu PatronažnaSlužba. S klikom na priloženo povezavo bo vaša sprememba gesla zaključena. ");
-		sb.append("<a href='http://localhost:3000/pozabilGeslo/");
+		sb.append("<a href='http://rogla.fri1.uni-lj.si/patronazneSestreFEdeploy/pozabilGeslo/");
 		sb.append(id);
 		sb.append("'>Spremeni geslo</a>");
 		email.sendEmail(to, "Pozabljeno geslo", sb.toString());

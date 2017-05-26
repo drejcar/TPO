@@ -2,7 +2,7 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -16,7 +16,8 @@ public class PorociloOdvzemKrvi implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idporocilo_odvzem_krvi")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idporocilo_odvzem_krvi", unique=true, nullable=false)
 	private int idporociloOdvzemKrvi;
 
 	private int akt10modra;
@@ -27,11 +28,12 @@ public class PorociloOdvzemKrvi implements Serializable {
 
 	private int akt10zelena;
 
+	@Column(length=1024)
 	private String akt20;
 
 	//bi-directional many-to-one association to Obisk
 	@OneToMany(mappedBy="porociloOdvzemKrvi")
-	private List<Obisk> obisks;
+	private Set<Obisk> obisks;
 
 	public PorociloOdvzemKrvi() {
 	}
@@ -83,12 +85,12 @@ public class PorociloOdvzemKrvi implements Serializable {
 	public void setAkt20(String akt20) {
 		this.akt20 = akt20;
 	}
-/*
-	public List<Obisk> getObisks() {
+
+	public Set<Obisk> getObisks() {
 		return this.obisks;
 	}
 
-	public void setObisks(List<Obisk> obisks) {
+	public void setObisks(Set<Obisk> obisks) {
 		this.obisks = obisks;
 	}
 
@@ -105,5 +107,5 @@ public class PorociloOdvzemKrvi implements Serializable {
 
 		return obisk;
 	}
-*/
+
 }

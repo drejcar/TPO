@@ -35,16 +35,14 @@ public class ObiskiStoritve implements ObiskiREST {
 		LocalDate oood = LocalDate.parse(ood);
 		LocalDate dooo = LocalDate.parse(doo);
 		
-		List<Obisk> maticniObiski = fasada.getObiskiByMaticna(idMaticna,oood.toDate(),dooo.toDate());
+		ZdravstveniDelavec nadomestnaSestra = fasada.returnZdravstveniDelavec(idNadomestna);
+		
+		List<Obisk> maticniObiski = fasada.getObiskiByMaticna(idMaticna,oood.toDate(),dooo.toDate(),nadomestnaSestra);
 		
 		//pridobi vse obiske idMaticne znotraj intervala(predviden datum) kjer je ze nadomestna
 		
-		List<Obisk> nadomescanjaObiski = fasada.getObiskiNadomescanja(idMaticna, oood.toDate(), dooo.toDate());
-		
-		//pridobi objekt nadomestne sestre
-		
-		ZdravstveniDelavec nadomestnaSestra = fasada.returnZdravstveniDelavec(idNadomestna);
-		
+		//List<Obisk> nadomescanjaObiski = fasada.getObiskiNadomescanja(idMaticna, oood.toDate(), dooo.toDate());
+				
 		//dodeli vse obiske idNadomestna
 		if(maticniObiski.isEmpty() != true){
 			for(int i = 0; i < maticniObiski.size(); i++){
@@ -53,7 +51,7 @@ public class ObiskiStoritve implements ObiskiREST {
 				fasada.updObisk(o);
 			}
 		}
-		
+		/*
 		if(nadomescanjaObiski.isEmpty()!= true){
 			for(int i = 0; i < nadomescanjaObiski.size(); i++){
 				Obisk o = nadomescanjaObiski.get(i);
@@ -61,5 +59,6 @@ public class ObiskiStoritve implements ObiskiREST {
 				fasada.updObisk(o);
 			}
 		}
+		*/
 	}
 }

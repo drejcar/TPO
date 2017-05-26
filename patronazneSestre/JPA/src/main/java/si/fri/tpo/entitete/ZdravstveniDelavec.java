@@ -67,7 +67,7 @@ public class ZdravstveniDelavec implements Serializable {
 	private Uporabnik uporabnik;
 
 	@OneToMany(mappedBy="nadomestnaSestra")
-	private List<Obisk> obisks;
+	private Set<Obisk> obisks;
 	
 	public ZdravstveniDelavec() {
 	}

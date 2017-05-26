@@ -2,7 +2,6 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
-import java.util.List;
 
 
 /**
@@ -16,46 +15,74 @@ public class PorociloObiskNovorojencka implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idporocilo_obisk_novorojencka")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idporocilo_obisk_novorojencka", unique=true, nullable=false)
 	private int idporociloObiskNovorojencka;
 
+	@Column(length=1024)
 	private String akt10;
 
+	@Column(nullable=false, length=45)
 	private String akt100a;
 
+	@Column(length=1024)
 	private String akt100b;
 
+	@Column(nullable=false, length=1024)
 	private String akt110;
 
+	@Column(nullable=false, length=1024)
 	private String akt120;
 
+	@Column(nullable=false, length=1024)
 	private String akt130;
 
+	@Column(nullable=false, length=1024)
 	private String akt140;
 
+	@Column(length=1024)
 	private String akt20;
 
+	@Column(length=1024)
 	private String akt30;
 
+	@Column(length=1024)
 	private String akt40;
 
+	@Column(length=1024)
 	private String akt50;
 
+	@Column(nullable=false)
 	private int akt60;
 
+	@Column(nullable=false)
 	private int akt70;
 
+	@Column(nullable=false, length=45)
 	private String akt80;
 
+	@Column(length=1024)
 	private String akt80b;
 
+	@Column(nullable=false, length=45)
 	private String akt90a;
 
+	@Column(length=1024)
 	private String akt90b;
 
+	@Column(nullable=false, length=45)
+	private String ime;
+
+	@Column(nullable=false, length=45)
+	private String priimek;
+
+	@Column(name="stevilka_zdravstvenega_zavarovanja", nullable=false, length=45)
+	private String stevilkaZdravstvenegaZavarovanja;
+
 	//bi-directional many-to-one association to Obisk
-	@OneToMany(mappedBy="porociloObiskNovorojencka")
-	private List<Obisk> obisks;
+	@ManyToOne
+	@JoinColumn(name="obisk_idobisk", nullable=false)
+	private Obisk obisk;
 
 	public PorociloObiskNovorojencka() {
 	}
@@ -203,27 +230,37 @@ public class PorociloObiskNovorojencka implements Serializable {
 	public void setAkt90b(String akt90b) {
 		this.akt90b = akt90b;
 	}
-/*
-	public List<Obisk> getObisks() {
-		return this.obisks;
+
+	public String getIme() {
+		return this.ime;
 	}
 
-	public void setObisks(List<Obisk> obisks) {
-		this.obisks = obisks;
+	public void setIme(String ime) {
+		this.ime = ime;
 	}
 
-	public Obisk addObisk(Obisk obisk) {
-		getObisks().add(obisk);
-		obisk.setPorociloObiskNovorojencka(this);
-
-		return obisk;
+	public String getPriimek() {
+		return this.priimek;
 	}
 
-	public Obisk removeObisk(Obisk obisk) {
-		getObisks().remove(obisk);
-		obisk.setPorociloObiskNovorojencka(null);
-
-		return obisk;
+	public void setPriimek(String priimek) {
+		this.priimek = priimek;
 	}
-*/
+
+	public String getStevilkaZdravstvenegaZavarovanja() {
+		return this.stevilkaZdravstvenegaZavarovanja;
+	}
+
+	public void setStevilkaZdravstvenegaZavarovanja(String stevilkaZdravstvenegaZavarovanja) {
+		this.stevilkaZdravstvenegaZavarovanja = stevilkaZdravstvenegaZavarovanja;
+	}
+
+	public Obisk getObisk() {
+		return this.obisk;
+	}
+
+	public void setObisk(Obisk obisk) {
+		this.obisk = obisk;
+	}
+
 }
