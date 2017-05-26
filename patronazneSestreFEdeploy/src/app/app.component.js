@@ -21,6 +21,7 @@ var AppComponent = (function () {
         this.patronaznaSestra = false;
         this.dovoljenjeKreirat = false;
         this.aliJeLoginan = false;
+        this.aliJePacient = false;
         this.opis = '';
         this.opis2 = '';
         this.prjava = 'Prijava';
@@ -53,6 +54,7 @@ var AppComponent = (function () {
                 this.prjava = 'Prijava';
                 this.prjava2 = 'prijava';
                 this.aliJeLoginan = false;
+                this.aliJePacient = false;
             }
             //kaj se prikaze glede na vlogo
             if (this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba') {
@@ -66,6 +68,9 @@ var AppComponent = (function () {
             }
             if (this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba') {
                 this.dovoljenjeKreirat = true;
+            }
+            if (this.vloga == 'Pacient') {
+                this.aliJePacient = true;
             }
         }
     };
@@ -84,6 +89,7 @@ var AppComponent = (function () {
                 this.aliJeLoginan = true;
             }
             else {
+                this.aliJePacient = false;
                 this.dovoljenjeKreirat = false;
                 this.opis = '';
                 this.opis2 = '';
@@ -107,6 +113,9 @@ var AppComponent = (function () {
             if (this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSluzba') {
                 this.dovoljenjeKreirat = true;
             }
+            if (this.vloga == 'Pacient') {
+                this.aliJePacient = true;
+            }
         }
     };
     return AppComponent;
@@ -114,7 +123,7 @@ var AppComponent = (function () {
 AppComponent = __decorate([
     core_1.Component({
         selector: 'my-app',
-        template: "\n\n\t  <header>\n\t\t<nav>\n\t\t\t<a routerLink=\"/dashboard\" routerLinkActive=\"active\">Domov</a>\n\t\t\t<a [hidden]=\"!admin\" routerLink=\"/registracijazd\" routerLinkActive=\"active\">regZd</a>\t\n\t\t\t<a [hidden]=\"!aliJeLoginan\" routerLink=\"/spremembaGesla\" routerLinkActive=\"active\">sprGesla</a>\t\n\t\t\t<a [hidden]=\"!mojiDelovniNalog\" routerLink=\"/seznamObiskov\" routerLinkActive=\"active\">Seznam obiskov</a>\n\t\t\t<a [hidden]=\"!patronaznaSestra\" routerLink=\"/planiranjeObiskov\" routerLinkActive=\"active\">Planiranje obiskov</a>\n\t\t</nav>\n\t\t<div id=\"userProf\">{{opis}}</div>\n\t\t<div id=\"zadnjaPrijava\">{{opis2}}</div>\n\t\t<div id=\"navRight\">\n\t\t\t<a routerLink=\"/{{prjava2}}\" routerLinkActive=\"active\">{{prjava}}</a>\n\t\t\t\n\t\t\t<a [hidden]=\"aliJeLoginan\"routerLink=\"/registracija\" routerLinkActive=\"active\">/ Registracija</a>\n\t\t\t\n\t\t\t<a [hidden]=\"!dovoljenjeKreirat\" routerLink=\"/delovniNalog\" routerLinkActive=\"active\">/ DelovniNalog</a>\n\t\t\t<a [hidden]=\"!mojiDelovniNalog\" routerLink =\"/delovniNalogi\" routerLinkActive=\"active\">/ Moji delovni nalogi</a>\n\t\t</div>\n\t  </header>\n\t  <router-outlet></router-outlet>\n\t  \n\t  <footer>@ 2017</footer>\n\n  ",
+        template: "\n\n\t  <header>\n\t\t<nav>\n\t\t\t<a routerLink=\"/dashboard\" routerLinkActive=\"active\">Domov</a>\n\t\t\t<a [hidden]=\"!admin\" routerLink=\"/registracijazd\" routerLinkActive=\"active\">regZd</a>\t\n\t\t\t<a [hidden]=\"!aliJeLoginan\" routerLink=\"/spremembaGesla\" routerLinkActive=\"active\">sprGesla</a>\t\n\t\t\t<a [hidden]=\"!mojiDelovniNalog\" routerLink=\"/seznamObiskov\" routerLinkActive=\"active\">Seznam obiskov</a>\n\t\t\t<a [hidden]=\"!patronaznaSestra\" routerLink=\"/planiranjeObiskov\" routerLinkActive=\"active\">Planiranje obiskov</a>\n\t\t</nav>\n\t\t<div id=\"userProf\">{{opis}}</div>\n\t\t<div id=\"zadnjaPrijava\">{{opis2}}</div>\n\t\t<div id=\"navRight\">\n\t\t\t<a routerLink=\"/{{prjava2}}\" routerLinkActive=\"active\">{{prjava}}</a>\n\t\t\t<a [hidden]=\"!aliJePacient\" routerLink=\"/seznamObiskovPacient\" routerLinkActive=\"active\">/ Moji obiski</a>\n\t\t\t<a [hidden]=\"aliJeLoginan\"routerLink=\"/registracija\" routerLinkActive=\"active\">/ Registracija</a>\n\t\t\t<a [hidden]=\"!dovoljenjeKreirat\" routerLink=\"/delovniNalog\" routerLinkActive=\"active\">/ DelovniNalog</a>\n\t\t\t<a [hidden]=\"!mojiDelovniNalog\" routerLink =\"/delovniNalogi\" routerLinkActive=\"active\">/ Moji delovni nalogi</a>\n\t\t</div>\n\t  </header>\n\t  <router-outlet></router-outlet>\n\t  \n\t  <footer>@ 2017</footer>\n\n  ",
         styleUrls: ['./app.component.css'],
     }),
     __metadata("design:paramtypes", [http_1.Http, user_service_1.UserService])

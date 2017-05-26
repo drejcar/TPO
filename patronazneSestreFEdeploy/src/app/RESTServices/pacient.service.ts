@@ -12,7 +12,7 @@ import { Vloga } from './vrniPacient';
 //klasa za service
 @Injectable()
 export class PacientService{
- private baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+ private baseUrl: String = 'rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
  constructor(private http : Http){}
 
  //service za prejemanje pacienta
