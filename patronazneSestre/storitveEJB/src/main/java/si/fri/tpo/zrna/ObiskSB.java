@@ -13,6 +13,7 @@ import javax.persistence.PersistenceContext;
 
 import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.Obisk;
+import si.fri.tpo.entitete.ZdravstveniDelavec;
 import si.fri.tpo.vmesnikiSB.ObiskSBLocal;
 import si.fri.tpo.vmesnikiSB.ObiskSBRemote;
 
@@ -60,32 +61,42 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<Obisk> getObisksDN(int idMaticna, Date ood, Date doo){
+	public List<Obisk> getObisksDN(int idMaticna, Date ood, Date doo, ZdravstveniDelavec nadomestna){
 		
 		List<DelovniNalog> dn = em.createNamedQuery("DelovniNalog.findSpecificAll").setParameter("id", idMaticna).getResultList();
 		
 		List<Obisk> obiski = new ArrayList<Obisk>();
-		
+		//preglej vse delovne naloge
 		for(int i = 0; i < dn.size(); i++){
-			
+			//preglej en delovni nalog
 			DelovniNalog d = dn.get(i);
 			
 			Set<Obisk> ob = d.getObisks();
 			
+			//iterator za obiske na delovnem nalogu
 			Iterator<Obisk> iter = ob.iterator();
+			
+			boolean dnPopravljen = false;
 			
 			while(iter.hasNext()){
 				Obisk obisk = (Obisk) iter.next();
 				if(obisk.getDatumObiska().after(ood) && obisk.getDatumObiska().before(doo) && obisk.getOpravljen() == 0){
 					obiski.add(obisk);
+					if(!dnPopravljen){
+						//dodaj nadomestno na delovni nalog
+						d.getZdravstveniDelavecs().add(nadomestna);
+						dnPopravljen = true;
+					}
 				}
 			}
+			em.merge(d);
 		}
-		
 		return obiski;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Obisk> getObisksNadomescanja(int idMaticna, Date ood, Date doo) {
 	
