@@ -51,26 +51,28 @@ export class UporabnikService{
 		vloga: vloga
 	});
 	console.log(dodaj+"\n");
-	var devided2 = kontaktnov.kpostnaStevilka.split(' ');
-	let posta2 = <Posta>({
-		idposta: Number(devided2[0]),
-		opis: devided2[1],
-	});
+	
+	
+		var devided2 = kontaktnov.kpostnaStevilka.split(' ');
+		let posta2 = <Posta>({
+			idposta: Number(devided2[0]),
+			opis: devided2[1],
+		});
 
-	let kontakt = <Kontakts> ({
-		ime: kontaktnov.kime,
-		priimek: kontaktnov.kpriimek,
-		telefonskaStevilka: kontaktnov.ktel,
-		ulica: kontaktnov.kulica,
-		hisnaStevilka: kontaktnov.khisnaStevilka,
-		posta: posta2,
-		sorodstvenoRazmerje: kontaktnov.krazmerje,
-	});
+		let kontakt = <Kontakts> ({
+			ime: kontaktnov.kime,
+			priimek: kontaktnov.kpriimek,
+			telefonskaStevilka: kontaktnov.ktel,
+			ulica: kontaktnov.kulica,
+			hisnaStevilka: kontaktnov.khisnaStevilka,
+			posta: posta2,
+			sorodstvenoRazmerje: kontaktnov.krazmerje,
+		});
 	if(dodaj == false){
+	
 		kontakt = null;
-
-
 	}
+	
 	//filamo json pacient
 
 	let pacient = <Pacient>({
@@ -99,14 +101,16 @@ export class UporabnikService{
 		opis: devided[1],
 	});
 	upr.posta = posta;
-	
+	let kontakt: Kontakts = null;
+	console.log(dodaj);
+	if(dodaj == true){
 	var devided3 = kontaktnov.kpostnaStevilka.split(' ');
 		let posta2 = <Posta>({
 			idposta: Number(devided3[0]),
 			opis: devided3[1],
 		});
 		console.log(kontaktnov.krazmerje);
-		let kontakt = <Kontakts> ({ 
+		kontakt = <Kontakts> ({ 
 			ime: kontaktnov.kime,
 			priimek: kontaktnov.kpriimek,
 			telefonskaStevilka: kontaktnov.ktel,
@@ -116,16 +120,14 @@ export class UporabnikService{
 			sorodstvenoRazmerje: kontaktnov.krazmerje,
 		});
 	
-	if(dodaj == false){
-		kontakt = null;
 	}	
-	
-	upr.kontakt = kontakt;
-	
-	
-	
-	console.log(upr)
+	console.log(kontakt);
+	if(dodaj == true){
+		upr.kontakt = kontakt;
+	}
+	console.log(upr);
 	console.log(JSON.stringify(upr));
+	
 	var headers2 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 	return this.http.put(`${this.baseUrl}/pacient`,JSON.stringify(upr), {headers: headers2});
 	

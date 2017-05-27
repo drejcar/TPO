@@ -10,6 +10,7 @@ import { Posta } from '../Pacient';
 import { Okolis } from '../Pacient';
 import { Pacient } from '../Pacient';
 import { Kontakt } from '../registracija/kontakt';
+import { Kontakts } from '../Pacient';
 import { sorodstvenoRazmerje } from "../registracija/kontakt";
 @Component({
   selector: 'uporabniskiProfil',
@@ -47,6 +48,7 @@ export class UporabniskiProfilComponent implements OnInit{
 	krazmerja: any[] = [{}];
 	glavni = 0;
 	
+	kontakts: Kontakts = null;
 	posta = ({'idposta':0,'opis':''});
 	kontakt:any = ({'kime':this.kime,'kpriimek':this.kpriimek,'ktel':this.ktel,'kulica':this.kulica,'khisnaStevilka':this.khisnaStevilka,'kpostnaStevilka':this.kpostneStevilke[0],'krazmerje':this.krazmerja[0]});
 	spol = ({'idspol':0,'opis':''});
@@ -54,7 +56,7 @@ export class UporabniskiProfilComponent implements OnInit{
 	okolis = ({'idokolis':0,'opis':'','posta':this.posta2,});
 	vloga = ({'idvloga':0,'opis':''});
 	uporabnik = ({'iduporabnik':0,'aktivirajDo':'','zadnjaPrijava':'','email':'','geslo':'','vloga':this.vloga});
-	model:any[] = [{'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakt,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':this.okolis,'uporabnik':this.uporabnik}];
+	model:any[] = [{'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakts,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':this.okolis,'uporabnik':this.uporabnik}];
 	postneStevilke: any[] = [{}];
 	model2:any[] = [{'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakt,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':'','uporabnik':this.uporabnik}];
 	model3:any[] = [{}]; /*= [{'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakt,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':this.okolis,'uporabnik':this.uporabnik}];*/
@@ -63,7 +65,7 @@ export class UporabniskiProfilComponent implements OnInit{
 	
 		console.log(localStorage['iduporabnik']);
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
-		this.model[0] = ({'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakt,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':this.okolis,'uporabnik':this.uporabnik});
+		this.model[0] = ({'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakts,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':this.okolis,'uporabnik':this.uporabnik});
 		this.http.get(`${this.restUrl}/pacient/uporabnikId/${localStorage['iduporabnik']}`, {headers: headers}).map((response: Response) => response.json()).subscribe(res => {this.res = res;
 		var vmesna = JSON.stringify(this.res);
 		var dobiUporabnika = JSON.parse(vmesna);
@@ -141,8 +143,11 @@ export class UporabniskiProfilComponent implements OnInit{
 			let nov = <any> ({
 				idpacient: this.glavni,
 			});
-			var novi = ({'idpacient':njegovi.idpacient,'hisnaStevilka':njegovi.hisnaStevilka,'ime':njegovi.ime,'priimek':njegovi.priimek,'stevilkaZdravstvenegaZavarovanja':njegovi.stevilkaZdravstvenegaZavarovanja,'telefonskaStevilka':njegovi.telefonskaStevilka,'ulica':njegovi.ulica,'datumRojstva':njegovi.datumRojstva,'kontakt':njegovi.kontakt,'posta':njegovi.posta,'sorodstvenoRazmerje':njegovi.sorodstvenoRazmerje,'spol':njegovi.spol,'okolis':njegovi.okolis,'uporabnik':njegovi.uporabnik,'pacient':nov});
+			var tabela: Okolis[] = [{'idokolis': 1,'opis': '','idposta':1000}];
+			var novi = ({'idpacient':njegovi.idpacient,'hisnaStevilka':njegovi.hisnaStevilka,'ime':njegovi.ime,'priimek':njegovi.priimek,'stevilkaZdravstvenegaZavarovanja':njegovi.stevilkaZdravstvenegaZavarovanja,'telefonskaStevilka':njegovi.telefonskaStevilka,'ulica':njegovi.ulica,'datumRojstva':njegovi.datumRojstva,'posta':njegovi.posta,'sorodstvenoRazmerje':njegovi.sorodstvenoRazmerje,'spol':njegovi.spol,'okolis':njegovi.okolis,'uporabnik':njegovi.uporabnik,'pacient':nov,'oko':tabela});
+			tabela = this.najdiOkolise(njegovi.posta.idposta);
 			console.log(novi.okolis.opis);
+			novi.oko = tabela;
 			this.model2[d] = novi;	
 			d = d+1;
 		}
@@ -151,7 +156,31 @@ export class UporabniskiProfilComponent implements OnInit{
 	
 	}
 	
-	onChangePostnaStevilka(sprememba: String){
+	najdiOkolise(postnaSt: number): Okolis[]{
+		var tabela: Okolis[] = [{'idokolis': 0,'opis': 'iscem okolise','idposta':1000}];
+		setTimeout(() => {
+		this.uporabnikService.getOkolisByPosta(postnaSt).subscribe(data => {this.okoliss = data;
+		let i = 0;
+			for(let entry of this.okoliss){
+				tabela[i] = entry;
+				i = i+1;
+			}
+			
+		});
+		},500);
+		return tabela;
+	}
+	onChangePostnaStevilkaB(sprememba: String,ime: String){
+		var devided = sprememba.split(' ');
+		for(let b of this.model2){
+			if(b.ime == ime){
+				b.oko = this.najdiOkolise(Number(devided[0]));
+				break;
+			}
+		}
+	}
+	onChangePostnaStevilka(sprememba: String,ime: String){
+	  console.log(ime);
 	  var devided = sprememba.split(' ');
 	  this.uporabnikService.getOkolisByPosta(Number(devided[0])).subscribe(data => {this.okoliss = data;
 	  let i = 0;
@@ -165,27 +194,22 @@ export class UporabniskiProfilComponent implements OnInit{
 
 	  
 	}
-	onChangePostnaStevilka2(sprememba: String){
+	onChangePostnaStevilka2(sprememba: String,ime: String){
 	  var devided = sprememba.split(' ');
-	  console.log("hello");
-	  this.uporabnikService.getOkolisByPosta(Number(devided[0])).subscribe(data => {this.okoliss = data;
-	  let i = 0;
-	  for(let entry of this.okoliss){
-
-		  this.okolisis[i] = entry;
-
-		  i = i+1;
-	  }
-	  });
-
-	  
+	  for(let b of this.model3){
+			if(b.ime == ime){
+				b.oko = this.najdiOkolise(Number(devided[0]));
+				break;
+			}
+		} 
 	}
 	dodajPacienta(){
 		console.log(this.spoli[0].opis);
 		let nov = <any> ({
 			idpacient: this.glavni,
 		});
-		this.model3[this.stevec]= ({'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','posta':this.posta,'spol':this.spol,'okolis':this.okolis,'uporabnik':null,'sorodstvenoRazmerje':'','pacient':nov});
+		var tabela: Okolis[] = [{'idokolis': 0,'opis': 'ni izbrana posta','idposta':1000}];
+		this.model3[this.stevec]= ({'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','posta':this.posta,'spol':this.spol,'okolis':this.okolis,'uporabnik':null,'sorodstvenoRazmerje':'','pacient':nov,'oko':tabela});
 		this.stevec = this.stevec+1;
 		this.dodajPac = true;
 	}
@@ -215,43 +239,42 @@ export class UporabniskiProfilComponent implements OnInit{
 		
 		this.model[0].posta = this.postSt;
 		this.model[0].okolis = this.izbrOkolis;
-		if(this.dodaj == true){
-			this.model[0].kontakt = this.kontakt;
-		}else{
-			this.model[0].kontakt = null;
-		}
+		
 		
 		this.model[0].pacients = [];
-		for(let n of this.model2){
-			let posta = n.posta;
-			if(typeof n.posta != 'object'){
-				var devided1 = n.posta.split(' ');
-				posta = <Posta>({
-					idposta: Number(devided1[0]),
-					opis: devided1[1],
-				});
+		if(this.model2[0].ime != ""){
+			for(let n of this.model2){
+				delete n.oko;
+				let posta = n.posta;
+				if(typeof n.posta != 'object'){
+					var devided1 = n.posta.split(' ');
+					posta = <Posta>({
+						idposta: Number(devided1[0]),
+						opis: devided1[1],
+					});
+					
+					n.posta = posta;
+				}
+				if(typeof n.okolis != 'object'){
+					var devided2= n.okolis.split(' ');
+								
+					
+					let okolis = <Okolis>({
+						idokolis: Number(devided2[1]),
+						opis: devided2[0].toString(),
+						posta: posta
+					});
+					
+					n.okolis = okolis;
+				}
+				this.model[0].pacients.push(n);
 				
-				n.posta = posta;
 			}
-			if(typeof n.okolis != 'object'){
-				var devided2= n.okolis.split(' ');
-							
-				
-				let okolis = <Okolis>({
-					idokolis: Number(devided2[1]),
-					opis: devided2[0].toString(),
-					posta: posta
-				});
-				
-				n.okolis = okolis;
-			}
-			this.model[0].pacients.push(n);
-			
 		}
-		
 		console.log(this.model3[0]);
 		if(this.dodajPac == true){
 			for(let nk of this.model3){
+					delete nk.oko;
 					var devided1 = nk.posta.split(' ');
 						let posta = <Posta>({
 							idposta: Number(devided1[0]),
@@ -267,17 +290,18 @@ export class UporabniskiProfilComponent implements OnInit{
 							idspol: sp,
 							opis: nk.spol,
 						});
-						var devided2= nk.okolis.split(' ');
+						console.log(nk.okolis.opis);
+						/*var devided2= nk.okolis.split(' ');
 						
 						
 						let okolis = <Okolis>({
 							idokolis: Number(devided2[1]),
 							opis: devided2[0].toString(),
 							posta: posta
-						});
+						});*/
 						nk.posta = posta;
 						nk.spol = spol;
-						nk.okolis = okolis;
+						//nk.okolis = okolis;
 					for(let raz of this.krazmerja){				
 						if(nk.sorodstvenoRazmerje == raz.opis){
 							console.log("NAJDU");
@@ -292,8 +316,10 @@ export class UporabniskiProfilComponent implements OnInit{
 				
 			}
 		}
-		
+		console.log(this.dodaj);
+		console.log(this.kontakt);
 		this.kontakt.krazmerje = this.izbranoRazmerje;
+		console.log(this.model[0]);
 		this.uporabnikService.update(this.model[0],this.dodaj,this.kontakt).subscribe(
             (r: Response) => {console.log('success');},
 			err => {console.log(err);}

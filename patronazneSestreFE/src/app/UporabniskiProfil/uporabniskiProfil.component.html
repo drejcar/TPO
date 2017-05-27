@@ -2,6 +2,7 @@
 <div class="container">
   <div [hidden]="submitted">
     <h1>Uporabniški profil</h1>
+	<div id="linija"></div>
     <form (ngSubmit)="onSubmit()" #registracijaForm="ngForm">
 	<div *ngFor="let s of model">
       <div class="form-group">
@@ -153,8 +154,10 @@
       </div>
 	  <div *ngIf="vec">
 		<h2>Moji pacienti</h2>
+		<div id="linija"></div>
 		<div id="dodajanjePacienta" *ngFor="let b of model2">
 			<h3>Moj pacient {{b.ime}}</h3>
+			<div id="linija"></div>
 			<div class="form-group">
 			<label for="ime">Ime</label>
 			<input type="text" class="form-control" id="ime"
@@ -189,7 +192,7 @@
 				   #hisnaStevilka="ngModel">
 			<select class="form-control" id="postnaStevilka"
 				   required
-				   [(ngModel)]="b.posta" (ngModelChange)="onChangePostnaStevilka($event)" name="postnaStevilka"
+				   [(ngModel)]="b.posta" (ngModelChange)="onChangePostnaStevilkaB($event,b.ime)" name="postnaStevilka"
 				   #postnaStevilka="ngModel" [ngModelOptions]="{standalone: true}">				  
 				   <option *ngFor="let postnaStevilka of postneStevilke" [selected]="postnaStevilka == (b.posta.idposta+' '+b.posta.opis)">{{postnaStevilka}}</option>
 			</select>
@@ -226,7 +229,7 @@
 					required
 					[(ngModel)]="b.okolis" name="okolis"
 					#okolis="ngModel" [ngModelOptions]="{standalone: true}">
-			  <option *ngFor="let okolise of okolisi" [selected]="b.okolis.idokolis == okolise.idokolis">{{okolise.opis+" "+okolise.idokolis}}</option>
+			  <option *ngFor="let okolise of b.oko" [selected]="b.okolis.idokolis == okolise.idokolis">{{okolise.opis+" "+okolise.idokolis}}</option>
 			</select>
 			<div [hidden]="okolis.valid || okolis.pristine" class="alert alert-danger">
 			  Izberite okoliš
@@ -239,6 +242,7 @@
 		
 			<div *ngFor = "let otrok of model3">
 			<h3>Novi pacient</h3>
+			<div id="linija"></div>
 				<div class="form-group">
 			<label for="ime">Ime</label>
 			<input type="text" class="form-control"
@@ -273,7 +277,7 @@
 				   [(ngModel)]="otrok.hisnaStevilka" [ngModelOptions]="{standalone: true}">
 			<select class="form-control" 
 				   required
-				   [(ngModel)]="otrok.posta" (ngModelChange)="onChangePostnaStevilka2($event)"
+				   [(ngModel)]="otrok.posta" (ngModelChange)="onChangePostnaStevilka2($event,otrok.ime)"
 				   [ngModelOptions]="{standalone: true}">
 				   <option *ngFor="let postnaStevilka of postneStevilke" [value]="postnaStevilka">{{postnaStevilka}}</option>
 			</select>
@@ -299,8 +303,7 @@
 					required
 					[(ngModel)]="otrok.okolis" [ngModelOptions]="{standalone: true}"
 					name="okolis" #okolis="ngModel">
-					<option></option>
-			  <option *ngFor="let okolis of okolisis">{{okolis.opis+" "+okolis.idokolis}}</option>
+			  <option *ngFor="let okolis of otrok.oko" [ngValue]="okolis">{{okolis.opis+" "+okolis.idokolis}}</option>
 			</select>
 		  </div>
 		  <label for="krazmerje">Sorodstveno razmerje</label>
