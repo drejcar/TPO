@@ -76,7 +76,7 @@ public class Pacient implements Serializable {
 	private Pacient pacient;
 
 	//bi-directional many-to-one association to Pacient
-	@OneToMany(mappedBy="pacient", fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="pacient", fetch=FetchType.EAGER,cascade = CascadeType.ALL)
 	private Set<Pacient> pacients;
 
 	//bi-directional many-to-one association to Posta
@@ -188,9 +188,9 @@ public class Pacient implements Serializable {
 		this.kontakt = kontakt;
 	}
 
-	public Pacient getPacient() {
+	/*public Pacient getPacient() {
 		return this.pacient;
-	}
+	}*/
 
 	public void setPacient(Pacient pacient) {
 		this.pacient = pacient;

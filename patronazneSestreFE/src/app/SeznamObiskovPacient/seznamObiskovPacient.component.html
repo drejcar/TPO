@@ -7,7 +7,7 @@
 				<option *ngFor="let s of pacienti" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
 			</select>
 		</div>
-		<div [hidden]="vecJihJe" class="levo">
+		<div [hidden]="!vecJihJe" class="levo">
 			<input type="button" (click)="Onsubmit()" id="gumb" name="poisciFiltre" value="Najdi obiske">
 		</div>
 	</div>

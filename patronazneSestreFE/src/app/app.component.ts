@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 			<a [hidden]="!aliJeLoginan" routerLink="/spremembaGesla" routerLinkActive="active">sprGesla</a>	
 			<a [hidden]="!mojiDelovniNalog" routerLink="/seznamObiskov" routerLinkActive="active">Seznam obiskov</a>
 			<a [hidden]="!patronaznaSestra" routerLink="/planiranjeObiskov" routerLinkActive="active">Planiranje obiskov</a>
+			<a [hidden]="!aliJePacient" routerLink="/uporabniskiProfil" routerLinkActive="active">Moj profil</a>
 		</nav>
 		<div id="userProf">{{opis}}</div>
 		<div id="zadnjaPrijava">{{opis2}}</div>
