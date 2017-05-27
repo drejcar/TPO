@@ -23,8 +23,7 @@ var ZdravnikDashComponent = (function () {
 ZdravnikDashComponent = __decorate([
     core_1.Component({
         selector: 'zdravnik-dash',
-        template: "<p>Prijavljeni ste kot zdravnik, datum zadnje prijave: {{neki}}</p>\n              ",
-        styleUrls: []
+        template: "<p>Prijavljeni ste kot zdravnik, datum zadnje prijave: {{neki}}</p>\n              "
     }),
     __metadata("design:paramtypes", [app_component_1.AppComponent])
 ], ZdravnikDashComponent);

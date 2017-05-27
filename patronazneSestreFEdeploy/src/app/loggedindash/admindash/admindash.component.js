@@ -23,8 +23,7 @@ var AdminDashComponent = (function () {
 AdminDashComponent = __decorate([
     core_1.Component({
         selector: 'admin-dash',
-        template: "<p>Prijavljeni ste kot administrator, datum zadnje prijave: {{neki}}</p>\n              ",
-        styleUrls: []
+        template: "<p>Prijavljeni ste kot administrator, datum zadnje prijave: {{neki}}</p>\n              "
     }),
     __metadata("design:paramtypes", [app_component_1.AppComponent])
 ], AdminDashComponent);

@@ -35,6 +35,10 @@ var delovniNalog_guard_1 = require("./_guard/delovniNalog.guard");
 var izpisDN_guard_1 = require("./_guard/izpisDN.guard");
 var preusmeri_component_1 = require("./delovniNalog/preusmeri.component");
 var planiranjeObiskov_component_1 = require("./planiranjeObiskov/planiranjeObiskov.component");
+var seznamObiskovPacient_component_1 = require("./SeznamObiskovPacient/seznamObiskovPacient.component");
+var uporabniskiProfil_component_1 = require("./UporabniskiProfil/uporabniskiProfil.component");
+var pozabljenoGeslo_component_1 = require("./PozabljenoGeslo/pozabljenoGeslo.component");
+var pozabilGeslo_component_1 = require("./PozabljenoGeslo/pozabilGeslo.component");
 var routes = [
     { path: 'dashboard', /* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: dashboard_component_1.DashboardComponent },
     { path: 'prijava', component: prijava_component_1.PrijavaComponent /*, canActivate: [GuestGuard] */ },
@@ -56,6 +60,10 @@ var routes = [
     { path: 'uspeh', component: preusmeri_component_1.preusmeriComponent, canActivate: [delovniNalog_guard_1.DelovniNalogGuard] },
     { path: 'seznamObiskov', component: seznamObiskov_component_1.seznamObiskovComponent, canActivate: [izpisDN_guard_1.IzpisDNGuard] },
     { path: 'planiranjeObiskov', component: planiranjeObiskov_component_1.PlaniranjeObiskovComponent, canActivate: [patronaznasestra_guard_1.PatronaznaSestraGuard] },
+    { path: 'seznamObiskovPacient', component: seznamObiskovPacient_component_1.SeznamObiskovPacientComponent, canActivate: [pacient_guard_1.PacientGuard] },
+    { path: 'uporabniskiProfil', component: uporabniskiProfil_component_1.UporabniskiProfilComponent, canActivate: [pacient_guard_1.PacientGuard] },
+    { path: 'PozabljenoGeslo', component: pozabljenoGeslo_component_1.PozabljenoGesloComponent },
+    { path: 'pozabilGeslo/:id', component: pozabilGeslo_component_1.pozabilGesloComponent },
     //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: '**', component: not_found_component_1.PageNotFoundComponent },

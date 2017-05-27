@@ -1,0 +1,159 @@
+
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Uporabniški profil</h1>
+    <form (ngSubmit)="onSubmit()" #registracijaForm="ngForm" *ngFor="let s of model">
+      <div class="form-group">
+        <label for="mail">Elektronska pošta</label>
+        <input type="email" class="form-control" id="email"
+               maxlength="45" placeholder="elektronska pošta" required
+               pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+               [(ngModel)]="s.uporabnik.email" name="mail"
+               #mail="ngModel">
+        <div [hidden]="mail.valid || mail.pristine"
+             class="alert alert-danger">
+          Vnesite veljavno elektronsko pošto
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="ime">Ime</label>
+        <input type="text" class="form-control" id="ime"
+               placeholder="ime" required
+               [(ngModel)]="s.ime" name="ime"
+               #ime="ngModel" value={{s.ime}}>
+      </div>
+      <div class="form-group">
+        <label for="priimek">Priimek</label>
+        <input type="text" class="form-control" id="priimek"
+               placeholder="priimek" required
+               [(ngModel)]="s.priimek" name="priimek"
+               #priimek="ngModel" value={{s.priimek}}>
+        
+      </div>
+      <div class="form-group">
+        <label for="stKartice">Številka zdravstvene kartice</label>
+        <input type="text" disabled class="form-control" id="stKartice"
+               placeholder="00000000000" required minlength="11" maxlength="11"
+               [(ngModel)]="s.stevilkaZdravstvenegaZavarovanja" name="stKartice"
+               #stKartice="ngModel">
+      </div>
+      <div class="form-group">
+        <label for="tel">Telefonska številka</label>
+        <input type="text" class="form-control" id="tel"
+               placeholder="+38600000000" required minlength="12" maxlength="12"
+               [(ngModel)]="s.telefonskaStevilka" name="tel" pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+               2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+               4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$"
+               #tel="ngModel">
+        <div [hidden]="tel.valid || tel.pristine"
+             class="alert alert-danger">
+          Vnesite vašo telefonsko Številko
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Naslov</label>
+        <input type="text" class="form-control" id="ulica"
+               placeholder="Ulica" required minlength="2" maxlength="45"
+               [(ngModel)]="s.ulica" name="ulica"
+               #ulica="ngModel">
+        <input type="text" class="form-control" id="hisnaStevilka"
+               placeholder="Hišna Številka" required minlength="1" maxlength="5"
+               [(ngModel)]="s.hisnaStevilka" name="hisnaStevilka"
+               #hisnaStevilka="ngModel">
+        <select class="form-control" id="postnaStevilka"
+               required
+               [(ngModel)]="s.posta.idposta" (ngModelChange)="onChangePostnaStevilka($event)" name="postnaStevilka"
+               #postnaStevilka="ngModel">
+			   <option *ngFor="let postnaStevilka of postneStevilke" [value]="postnaStevilka">{{postnaStevilka}}</option>
+		</select>
+        <div [hidden]="ulica.valid || ulica.pristine ||
+                       hisnaStevilka.valid || hisnaStevilka.pristine ||
+                       postnaStevilka.valid || postnaStevilka.pristine"
+             class="alert alert-danger">
+          Vnesite vaš naslov
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="datumRojstva">Datum rojstva</label>
+        <input disabled type="date" class="form-control" id="datumRojstva"
+               placeholder="01-01-1900" min="1900-01-01" max="2017-05-12" required
+               [(ngModel)]="s.datumRojstva" name="datumRojstva"
+               #datumRojstva="ngModel">
+        <div [hidden]="datumRojstva.valid || datumRojstva.pristine"
+             class="alert alert-danger">
+          Vnesite datum rojstva
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="spol">Spol</label>
+        <select disabled class="form-control" id="spol"
+                required
+                [(ngModel)]="s.spol.opis" name="spol"
+                #spol="ngModel">
+          <option *ngFor="let spol of spoli" [value]="spol">{{spol}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="okolis">Okoliš</label>
+        <select class="form-control" id="okolis"
+                required
+                [(ngModel)]="s.okolis.opis" name="okolis"
+                #okolis="ngModel">
+          <option *ngFor="let okolis of okolisi" [value]="okolis">{{s.okolis.opis}}</option>
+        </select>
+        <div [hidden]="okolis.valid || okolis.pristine" class="alert alert-danger">
+          Izberite okoliš
+        </div>
+      </div>
+      <button type="button" class="btn btn-info" (click)="dodaj = !dodaj">Dodaj kontakt</button>
+      <div *ngIf="dodaj">
+        <h3>Podatki o kontaktni osebi</h3>
+        <label for="kime">Ime</label>
+        <input type="text" class="form-control" id="kime"
+               placeholder="ime" required
+               [(ngModel)]="kontakt.kime" name="kime"
+               #kime="ngModel">
+        <label for="kpriimek">Priimek</label>
+        <input type="text" class="form-control" id="kpriimek"
+               placeholder="priimek" required
+               [(ngModel)]="kontakt.kpriimek" name="kpriimek"
+               #kontaktPriimek="ngModel">
+        <label for="ktel">Telefonska številka</label>
+        <input type="text" class="form-control" id="ktel"
+               placeholder="+38600000000" required minlength="12" maxlength="12"
+               [(ngModel)]="kontakt.ktel" name="ktel" pattern="\+(9[976]\d|8[987530]\d|6[987]\d|5[90]\d|42\d|3[875]\d|
+               2[98654321]\d|9[8543210]|8[6421]|6[6543210]|5[87654321]|
+               4[987654310]|3[9643210]|2[70]|7|1)\d{1,14}$"
+               #ktel="ngModel">
+        <label>Naslov</label>
+        <input type="text" class="form-control" id="kulica"
+               placeholder="Ulica" required minlength="2" maxlength="45"
+               [(ngModel)]="kontakt.kulica" name="kulica"
+               #kulica="ngModel">
+        <input type="text" class="form-control" id="khisnaStevilka"
+               placeholder="Hišna Številka" required minlength="1" maxlength="5"
+               [(ngModel)]="kontakt.khisnaStevilka" name="khisnaStevilka"
+               #khisnaStevilka="ngModel">
+        <select class="form-control" id="kpostnaStevilka"
+                required
+                [(ngModel)]="kontakt.kpostnaStevilka" name="kpostnaStevilka"
+                #kpostnaStevilka="ngModel">
+          <option *ngFor="let kpostnaStevilka of kpostnestevilke" [value]="kpostnaStevilka">{{kpostnaStevilka}}</option>
+        </select>
+        <label for="krazmerje">Sorodstveno razmerje</label>
+        <select class="form-control" id="krazmerje"
+                required
+                [(ngModel)]="kontakt.krazmerje" name="krazmerje"
+                #kontaktRazmerje="ngModel">
+          <option *ngFor="let krazmerje of krazmerja" [value]="krazmerje">{{krazmerje.opis}}</option>
+        </select>
+		<br/>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Popravi podatke</button>
+    </form>
+  </div>
+  <div [hidden]="!submitted">
+    
+  </div>
+</div>
+

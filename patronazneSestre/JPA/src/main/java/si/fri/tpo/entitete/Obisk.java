@@ -8,6 +8,7 @@ import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SelectBeforeUpdate;
 
 import java.util.Date;
+import java.util.Set;
 
 
 /**
@@ -29,70 +30,67 @@ public class Obisk implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
 	private int idobisk;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="datum_obiska")
+	@Column(name="datum_obiska", nullable=false)
 	private Date datumObiska;
 
 	@Temporal(TemporalType.DATE)
-	@Column(name="dejanski_datum_obiska")
+	@Column(name="dejanski_datum_obiska", nullable=false)
 	private Date dejanskiDatumObiska;
 
-	@Column(name="fixen_datum")
+	@Column(name="fixen_datum", nullable=false)
 	private int fixenDatum;
-/*
-	@Column(name="iddelovni_nalog")
-	private int iddelovniNalog;
-*/
-	private int opravljen;
-	
-	//bi-directional many-to-one association to DelovniNalog
-	@ManyToOne
-	@JoinColumn(name="iddelovni_nalog", nullable=false)
-	private DelovniNalog delovniNalog;
-
-	//bi-directional many-to-one association to PorociloAplikacijaInjekcije
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idporocilo_aplikacija_injekcije")
-	private PorociloAplikacijaInjekcije porociloAplikacijaInjekcije;
-
-	//bi-directional many-to-one association to PorociloKontrolaZdravstvenegaStanja
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idporocilo_kontrola_zdravstvenega_stanja")
-	private PorociloKontrolaZdravstvenegaStanja porociloKontrolaZdravstvenegaStanja;
-
-	//bi-directional many-to-one association to PorociloObiskNosecnice
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idporocilo_obisk_nosecnice")
-	private PorociloObiskNosecnice porociloObiskNosecnice;
-
-	//bi-directional many-to-one association to PorociloObiskNovorojencka
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idporocilo_obisk_novorojencka")
-	private PorociloObiskNovorojencka porociloObiskNovorojencka;
-
-	//bi-directional many-to-one association to PorociloObiskOtrocnice
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idobiskotrocnice")
-	private PorociloObiskOtrocnice porociloObiskOtrocnice;
-
-	//bi-directional many-to-one association to PorociloOdvzemKrvi
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idporocilo_odvzem_krvi")
-	private PorociloOdvzemKrvi porociloOdvzemKrvi;
-
-	//bi-directional many-to-one association to PorociloPreventivaStarostnika
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="idporocilo_preventiva_starostnika")
-	private PorociloPreventivaStarostnika porociloPreventivaStarostnika;
 
 	@ManyToOne
 	@JoinColumn(name="id_nadomestna_sestra", nullable=true)
 	private ZdravstveniDelavec nadomestnaSestra;
-	
+
+	@ManyToOne
+	@JoinColumn(name="iddelovni_nalog", nullable=false)
+	private DelovniNalog delovniNalog;
+
+	@Column(nullable=false)
+	private int opravljen;
+
+	//bi-directional many-to-one association to PorociloAplikacijaInjekcije
+	@ManyToOne
+	@JoinColumn(name="idporocilo_aplikacija_injekcije")
+	private PorociloAplikacijaInjekcije porociloAplikacijaInjekcije;
+
+	//bi-directional many-to-one association to PorociloKontrolaZdravstvenegaStanja
+	@ManyToOne
+	@JoinColumn(name="idporocilo_kontrola_zdravstvenega_stanja")
+	private PorociloKontrolaZdravstvenegaStanja porociloKontrolaZdravstvenegaStanja;
+
+	//bi-directional many-to-one association to PorociloObiskNosecnice
+	@ManyToOne
+	@JoinColumn(name="idporocilo_obisk_nosecnice")
+	private PorociloObiskNosecnice porociloObiskNosecnice;
+
+	//bi-directional many-to-one association to PorociloObiskOtrocnice
+	@ManyToOne
+	@JoinColumn(name="idobiskotrocnice")
+	private PorociloObiskOtrocnice porociloObiskOtrocnice;
+
+	//bi-directional many-to-one association to PorociloOdvzemKrvi
+	@ManyToOne
+	@JoinColumn(name="idporocilo_odvzem_krvi")
+	private PorociloOdvzemKrvi porociloOdvzemKrvi;
+
+	//bi-directional many-to-one association to PorociloPreventivaStarostnika
+	@ManyToOne
+	@JoinColumn(name="idporocilo_preventiva_starostnika")
+	private PorociloPreventivaStarostnika porociloPreventivaStarostnika;
+
+	//bi-directional many-to-one association to PorociloObiskNovorojencka
+	@OneToMany(mappedBy="obisk")
+	private Set<PorociloObiskNovorojencka> porociloObiskNovorojenckas;
+
 	public Obisk() {
-		this.setOpravljen(0); // 0 - ni opravljen; 1 - je opravjen
 	}
 
 	public int getIdobisk() {
@@ -126,15 +124,17 @@ public class Obisk implements Serializable {
 	public void setFixenDatum(int fixenDatum) {
 		this.fixenDatum = fixenDatum;
 	}
-/*
-	public int getIddelovniNalog() {
-		return this.iddelovniNalog;
+
+	/*
+	public DelovniNalog getDelovniNalog() {
+		return this.delovniNalog;
+	}
+	 */
+	
+	public void setDelovniNalog(DelovniNalog delovniNalog) {
+		this.delovniNalog = delovniNalog;
 	}
 
-	public void setIddelovniNalog(int iddelovniNalog) {
-		this.iddelovniNalog = iddelovniNalog;
-	}
-*/
 	public int getOpravljen() {
 		return this.opravljen;
 	}
@@ -167,14 +167,6 @@ public class Obisk implements Serializable {
 		this.porociloObiskNosecnice = porociloObiskNosecnice;
 	}
 
-	public PorociloObiskNovorojencka getPorociloObiskNovorojencka() {
-		return this.porociloObiskNovorojencka;
-	}
-
-	public void setPorociloObiskNovorojencka(PorociloObiskNovorojencka porociloObiskNovorojencka) {
-		this.porociloObiskNovorojencka = porociloObiskNovorojencka;
-	}
-
 	public PorociloObiskOtrocnice getPorociloObiskOtrocnice() {
 		return this.porociloObiskOtrocnice;
 	}
@@ -198,15 +190,32 @@ public class Obisk implements Serializable {
 	public void setPorociloPreventivaStarostnika(PorociloPreventivaStarostnika porociloPreventivaStarostnika) {
 		this.porociloPreventivaStarostnika = porociloPreventivaStarostnika;
 	}
-/*
-	public DelovniNalog getDelovniNalog() {
-		return this.delovniNalog;
+
+	public Set<PorociloObiskNovorojencka> getPorociloObiskNovorojenckas() {
+		return this.porociloObiskNovorojenckas;
 	}
-*/
-	public void setDelovniNalog(DelovniNalog delovniNalog) {
-		this.delovniNalog = delovniNalog;
+
+	public void setPorociloObiskNovorojenckas(Set<PorociloObiskNovorojencka> porociloObiskNovorojenckas) {
+		this.porociloObiskNovorojenckas = porociloObiskNovorojenckas;
+	}
+
+	public PorociloObiskNovorojencka addPorociloObiskNovorojencka(PorociloObiskNovorojencka porociloObiskNovorojencka) {
+		getPorociloObiskNovorojenckas().add(porociloObiskNovorojencka);
+		porociloObiskNovorojencka.setObisk(this);
+
+		return porociloObiskNovorojencka;
+	}
+
+	public PorociloObiskNovorojencka removePorociloObiskNovorojencka(PorociloObiskNovorojencka porociloObiskNovorojencka) {
+		getPorociloObiskNovorojenckas().remove(porociloObiskNovorojencka);
+		porociloObiskNovorojencka.setObisk(null);
+
+		return porociloObiskNovorojencka;
 	}
 	public void setNadomestnaSestra(ZdravstveniDelavec zd){
 		this.nadomestnaSestra = zd;
+	}
+	public ZdravstveniDelavec getNadomestnaSestra(){
+		return this.nadomestnaSestra;
 	}
 }

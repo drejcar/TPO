@@ -1,0 +1,32 @@
+<div class="container">
+  <div [hidden]="submitted">
+    <h1>Obisk: vnos</h1>
+    <form (ngSubmit)="onSubmit()" #nadomescanjaForm="ngForm">
+      <div class="form-group">
+        <div ngIf="aplikacijaInjekcije">
+
+        </div>
+        <div ngIf="kontrolaZdravstvenegaStanja">
+
+        </div>
+        <div ngIf="obiskNosecnice">
+
+        </div>
+        <div ngIf="obiskNovorojencka">
+
+        </div>
+        <div ngIf="obiskOtrocnice">
+
+        </div>
+        <div ngIf="odvzemKrvi">
+
+        </div>
+        <div ngIf="preventivaStarostnika">
+
+        </div>
+        <button type="submit" class="btn btn-info">Dodaj nadomestno sestro</button>
+        <button type="submit" class="btn btn-success" [disabled]="!nadomescanjeForm.form.valid">Potrdi nadomeščanje</button>
+      </div>
+    </form>
+  </div>
+</div>

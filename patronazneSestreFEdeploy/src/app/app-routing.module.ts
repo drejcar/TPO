@@ -32,6 +32,10 @@ import {DelovniNalogGuard} from "./_guard/delovniNalog.guard";
 import { IzpisDNGuard } from './_guard/izpisDN.guard';
 import { preusmeriComponent } from './delovniNalog/preusmeri.component';
 import {PlaniranjeObiskovComponent} from "./planiranjeObiskov/planiranjeObiskov.component";
+import {SeznamObiskovPacientComponent} from "./SeznamObiskovPacient/seznamObiskovPacient.component";
+import {UporabniskiProfilComponent} from "./UporabniskiProfil/uporabniskiProfil.component";
+import {PozabljenoGesloComponent} from "./PozabljenoGeslo/pozabljenoGeslo.component";
+import { pozabilGesloComponent } from "./PozabljenoGeslo/pozabilGeslo.component";
 
 const routes: Routes = [
   { path: 'dashboard',/* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: DashboardComponent },
@@ -54,6 +58,10 @@ const routes: Routes = [
   { path: 'uspeh',component: preusmeriComponent,canActivate:[DelovniNalogGuard]},
   { path: 'seznamObiskov',component: seznamObiskovComponent,canActivate:[IzpisDNGuard]},
   { path: 'planiranjeObiskov',component:PlaniranjeObiskovComponent,canActivate:[PatronaznaSestraGuard] },
+  { path: 'seznamObiskovPacient',component:SeznamObiskovPacientComponent,canActivate:[PacientGuard]},
+  { path: 'uporabniskiProfil',component:UporabniskiProfilComponent,canActivate:[PacientGuard]},
+  { path: 'PozabljenoGeslo', component:PozabljenoGesloComponent},
+  { path: 'pozabilGeslo/:id', component: pozabilGesloComponent},
   //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

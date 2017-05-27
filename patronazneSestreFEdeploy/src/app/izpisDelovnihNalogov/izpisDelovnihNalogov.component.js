@@ -20,10 +20,10 @@ var izpisDelovnihNalogovComponent = (function () {
         this.DNService = DNService;
         this.restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
         this.aliObstaja = false;
-        this.izdajatelji = [{ 'sifra': '', 'id': 0 }];
+        this.izdajatelji = [{ 'ime': '', 'sifra': '', 'id': 0 }];
         this.obiski = [{ 'name': '', 'id': 0 }];
         this.pacienti = [{ 'ime': '', 'priimek': '', 'id': 0 }];
-        this.sestre = [{ 'sifra': '', 'id': 0 }];
+        this.sestre = [{ 'ime': '', 'sifra': '', 'id': 0 }];
         this.izbraniIzdajatelj = this.izdajatelji[0];
         this.izbraniObisk = this.obiski[0];
         this.izbraniPacient = this.pacienti[0];
@@ -47,17 +47,19 @@ var izpisDelovnihNalogovComponent = (function () {
             localStorage.setItem('idIzv', dobiZd.izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev);
             //preverimo kdo želi videti svoje delovne naloge
             if (localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba') {
+                _this.izdajatelji[0].ime = dobiZd.ime + ' ' + dobiZd.priimek;
                 _this.izdajatelji[0].sifra = dobiZd.sifra;
                 _this.izdajatelji[0].id = dobiZd.idzdravstveniDelavec;
             }
             else if (localStorage['vloga'] == 'PatronaznaSestra') {
+                _this.sestre[0].ime = dobiZd.ime + ' ' + dobiZd.priimek;
                 _this.sestre[0].sifra = dobiZd.sifra;
                 _this.sestre[0].id = dobiZd.idzdravstveniDelavec;
             }
         });
         setTimeout(function () {
             //TODO rest klic za pridobivanje delovnega naloga
-            if (localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba') {
+            if (localStorage['vloga'] == 'PatronaznaSluzba') {
                 _this.DNService.getDelovneNalogePrekIzv(Number(localStorage.getItem('idIzv'))).subscribe(function (res) {
                     _this.delovniNalogiVsi = res;
                     var i = 0; //stevec za delovneNaloge
@@ -114,7 +116,7 @@ var izpisDelovnihNalogovComponent = (function () {
                             var zdr = _j[_h];
                             _this.aliObstaja = false;
                             if (zdr.okolis != null) {
-                                delovniN.patronaznaSestra = zdr.sifra + " " + delovniN.patronaznaSestra;
+                                delovniN.patronaznaSestra = zdr.ime + " " + zdr.priimek + " [" + zdr.sifra + "] " + delovniN.patronaznaSestra;
                                 //pregled Sester
                                 for (var _k = 0, _l = _this.sestre; _k < _l.length; _k++) {
                                     var ses = _l[_k];
@@ -124,7 +126,8 @@ var izpisDelovnihNalogovComponent = (function () {
                                     }
                                 }
                                 if (_this.aliObstaja == false) {
-                                    var novaS = ({ sifra: '', id: 0 });
+                                    var novaS = ({ ime: '', sifra: '', id: 0 });
+                                    novaS.ime = zdr.ime + ' ' + zdr.priimek;
                                     novaS.sifra = zdr.sifra;
                                     novaS.id = zdr.idzdravstveniDelavec;
                                     _this.sestre[m] = novaS;
@@ -141,13 +144,14 @@ var izpisDelovnihNalogovComponent = (function () {
                                     }
                                 }
                                 if (_this.aliObstaja == false) {
-                                    var novZd = ({ sifra: '', id: 0 });
+                                    var novZd = ({ ime: '', sifra: '', id: 0 });
+                                    novZd.ime = zdr.ime + ' ' + zdr.priimek;
                                     novZd.sifra = zdr.sifra;
                                     novZd.id = zdr.idzdravstveniDelavec;
                                     _this.izdajatelji[n] = novZd;
                                     n = n + 1;
                                 }
-                                delovniN.izdajatelj = zdr.sifra;
+                                delovniN.izdajatelj = zdr.ime + " " + zdr.priimek + " [" + zdr.sifra + "]";
                             }
                         }
                         delovniN.datumIzdaje = dn.datumIzdaje;
@@ -159,7 +163,7 @@ var izpisDelovnihNalogovComponent = (function () {
                     _this.Onsubmit();
                 });
             }
-            else if (localStorage['vloga'] == 'PatronaznaSestra') {
+            else if (localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSestra') {
                 _this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca')), 0).subscribe(function (res) {
                     _this.delovniNalogiVsi = res;
                     var i = 0; //stevec za delovneNaloge
@@ -215,23 +219,41 @@ var izpisDelovnihNalogovComponent = (function () {
                             var zdr = _j[_h];
                             _this.aliObstaja = false;
                             if (zdr.okolis != null) {
-                                delovniN.patronaznaSestra = zdr.sifra + " " + delovniN.patronaznaSestra;
+                                delovniN.patronaznaSestra = zdr.ime + ' ' + zdr.priimek + ' [' + zdr.sifra + "] " + delovniN.patronaznaSestra;
+                                //pregled Sester
+                                for (var _k = 0, _l = _this.sestre; _k < _l.length; _k++) {
+                                    var ses = _l[_k];
+                                    if (ses.id == zdr.idzdravstveniDelavec) {
+                                        _this.aliObstaja = true;
+                                        break;
+                                    }
+                                }
+                                if (_this.aliObstaja == false) {
+                                    var novaS = ({ ime: '', sifra: '', id: 0 });
+                                    novaS.ime = zdr.ime + ' ' + zdr.priimek;
+                                    novaS.sifra = zdr.sifra;
+                                    novaS.id = zdr.idzdravstveniDelavec;
+                                    _this.sestre[m] = novaS;
+                                    m = m + 1;
+                                }
                             }
                             else {
-                                for (var _k = 0, _l = _this.izdajatelji; _k < _l.length; _k++) {
-                                    var zd = _l[_k];
+                                _this.aliObstaja = false;
+                                for (var _m = 0, _o = _this.izdajatelji; _m < _o.length; _m++) {
+                                    var zd = _o[_m];
                                     if (zd.id == zdr.idzdravstveniDelavec) {
                                         _this.aliObstaja = true;
                                     }
                                 }
                                 if (_this.aliObstaja == false) {
-                                    var noviZdr = ({ sifra: '', id: 0 });
+                                    var noviZdr = ({ ime: '', sifra: '', id: 0 });
+                                    noviZdr.ime = zdr.ime + ' ' + zdr.priimek;
                                     noviZdr.sifra = zdr.sifra;
                                     noviZdr.id = zdr.idzdravstveniDelavec;
                                     _this.izdajatelji[m] = noviZdr;
                                     m = m + 1;
                                 }
-                                delovniN.izdajatelj = zdr.sifra;
+                                delovniN.izdajatelj = zdr.ime + ' ' + zdr.priimek + ' [' + zdr.sifra + ']';
                             }
                         }
                         delovniN.datumIzdaje = dn.datumIzdaje;
@@ -242,7 +264,7 @@ var izpisDelovnihNalogovComponent = (function () {
                     _this.delovniNalogiVsi = _this.delovniNalogi;
                 });
             }
-        }, 1000);
+        }, 1200);
     };
     izpisDelovnihNalogovComponent.prototype.Onsubmit = function () {
         var i = 0;
@@ -267,7 +289,7 @@ var izpisDelovnihNalogovComponent = (function () {
             if (delovni.vrstaObiska == this.izbraniObisk.name || this.izbraniObisk.name == '' || this.izbraniObisk.name == undefined) {
                 tabelaIfov[0] = true;
             }
-            if (delovni.izdajatelj == this.izbraniIzdajatelj.sifra || this.izbraniIzdajatelj.sifra == '' || this.izbraniIzdajatelj.sifra == undefined) {
+            if (delovni.izdajatelj.indexOf(this.izbraniIzdajatelj.sifra) >= 0 || this.izbraniIzdajatelj.sifra == '' || this.izbraniIzdajatelj.sifra == undefined) {
                 tabelaIfov[1] = true;
             }
             if (delovni.pacienti.indexOf(this.izbraniPacient.ime + " " + this.izbraniPacient.priimek) >= 0 || this.izbraniPacient.ime == '' || this.izbraniPacient.ime == undefined) {

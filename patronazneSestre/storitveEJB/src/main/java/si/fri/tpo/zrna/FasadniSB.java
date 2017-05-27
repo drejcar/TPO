@@ -846,8 +846,8 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 
 	@Override
 	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
-	public List<Obisk> getObiskiByMaticna(int idMaticna, Date ood, Date doo){
-		return obisk.getObisksDN(idMaticna,ood,doo);
+	public List<Obisk> getObiskiByMaticna(int idMaticna, Date ood, Date doo,ZdravstveniDelavec nadomestna){
+		return obisk.getObisksDN(idMaticna,ood,doo,nadomestna);
 	}
 	
 	@Override

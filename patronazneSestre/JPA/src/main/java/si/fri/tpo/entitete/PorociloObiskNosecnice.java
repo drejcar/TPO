@@ -4,7 +4,7 @@ import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -18,67 +18,94 @@ public class PorociloObiskNosecnice implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idporocilo_obisk_nosecnice")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idporocilo_obisk_nosecnice", unique=true, nullable=false)
 	private int idporociloObiskNosecnice;
 
+	@Column(length=1024)
 	private String akt10;
 
+	@Column(length=1024)
 	private String akt100;
 
+	@Column(length=1024)
 	private String akt110;
 
+	@Column(length=1024)
 	private String akt120;
 
+	@Column(length=1024)
 	private String akt130;
 
 	@Temporal(TemporalType.DATE)
 	private Date akt140;
 
+	@Column(nullable=false, length=1024)
 	private String akt150;
 
+	@Column(nullable=false, length=1024)
 	private String akt160;
 
+	@Column(nullable=false, length=45)
 	private String akt170a;
 
+	@Column(length=1024)
 	private String akt170b;
 
+	@Column(nullable=false, length=45)
 	private String akt180a;
 
+	@Column(length=1024)
 	private String akt180b;
 
+	@Column(nullable=false, precision=10)
 	private BigDecimal akt190a;
 
+	@Column(nullable=false, precision=10)
 	private BigDecimal akt190b;
 
+	@Column(length=1024)
 	private String akt20;
 
+	@Column(nullable=false)
 	private int akt200;
 
+	@Column(nullable=false)
 	private int akt210;
 
+	@Column(nullable=false, precision=10)
 	private BigDecimal akt220;
 
+	@Column(nullable=false)
 	private int akt230;
 
+	@Column(nullable=false)
 	private int akt240;
 
+	@Column(length=1024)
 	private String akt30;
 
+	@Column(length=1024)
 	private String akt40;
 
+	@Column(length=1024)
 	private String akt50;
 
+	@Column(length=1024)
 	private String akt60;
 
+	@Column(length=1024)
 	private String akt70;
 
+	@Column(length=1024)
 	private String akt80;
 
+	@Column(length=1024)
 	private String akt90;
 
 	//bi-directional many-to-one association to Obisk
 	@OneToMany(mappedBy="porociloObiskNosecnice")
-	private List<Obisk> obisks;
+	private Set<Obisk> obisks;
 
 	public PorociloObiskNosecnice() {
 	}
@@ -306,12 +333,12 @@ public class PorociloObiskNosecnice implements Serializable {
 	public void setAkt90(String akt90) {
 		this.akt90 = akt90;
 	}
-/*
-	public List<Obisk> getObisks() {
+
+	public Set<Obisk> getObisks() {
 		return this.obisks;
 	}
 
-	public void setObisks(List<Obisk> obisks) {
+	public void setObisks(Set<Obisk> obisks) {
 		this.obisks = obisks;
 	}
 
@@ -328,5 +355,5 @@ public class PorociloObiskNosecnice implements Serializable {
 
 		return obisk;
 	}
-*/
+
 }

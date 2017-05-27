@@ -23,8 +23,7 @@ var PatronaznaSestraDashComponent = (function () {
 PatronaznaSestraDashComponent = __decorate([
     core_1.Component({
         selector: 'patronaznasestra-dash',
-        template: "<p>Prijavljeni ste kot patrona\u017Ena sestra, datum zadnje prijave: {{neki}}</p>\n              ",
-        styleUrls: []
+        template: "<p>Prijavljeni ste kot patrona\u017Ena sestra, datum zadnje prijave: {{neki}}</p>\n              "
     }),
     __metadata("design:paramtypes", [app_component_1.AppComponent])
 ], PatronaznaSestraDashComponent);

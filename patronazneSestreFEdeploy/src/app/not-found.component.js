@@ -14,8 +14,7 @@ var PageNotFoundComponent = (function () {
 PageNotFoundComponent = __decorate([
     core_1.Component({
         selector: 'not-found',
-        template: "<div id=\"404\">\n             <h1>Error 404:</h1>\n             <h2>This is not the page you are looking for</h2>\n             <p>Ups, izgleda da ste za\u0161li na neveljavno oziroma nedostopno stran</p>\n             </div>\n              ",
-        styleUrls: []
+        template: "<div id=\"404\">\n             <h1>Error 404:</h1>\n             <h2>This is not the page you are looking for</h2>\n             <p>Ups, izgleda da ste za\u0161li na neveljavno oziroma nedostopno stran</p>\n             </div>\n              "
     })
 ], PageNotFoundComponent);
 exports.PageNotFoundComponent = PageNotFoundComponent;

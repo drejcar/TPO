@@ -3,7 +3,7 @@ package si.fri.tpo.entitete;
 import java.io.Serializable;
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
+import java.util.Set;
 
 
 /**
@@ -17,40 +17,55 @@ public class PorociloKontrolaZdravstvenegaStanja implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name="idporocilo_kontrola_zdravstvenega_stanja")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="idporocilo_kontrola_zdravstvenega_stanja", unique=true, nullable=false)
 	private int idporociloKontrolaZdravstvenegaStanja;
 
+	@Column(length=1024)
 	private String akt10;
 
+	@Column(length=1024)
 	private String akt100;
 
+	@Column(length=1024)
 	private String akt110;
 
+	@Column(nullable=false, precision=10)
 	private BigDecimal akt20a;
 
+	@Column(nullable=false, precision=10)
 	private BigDecimal akt20b;
 
+	@Column(nullable=false)
 	private int akt30;
 
+	@Column(nullable=false)
 	private int akt40;
 
+	@Column(nullable=false, precision=10)
 	private BigDecimal akt50;
 
+	@Column(nullable=false, precision=10)
 	private BigDecimal akt60a;
 
+	@Column(length=1024)
 	private String akt60b;
 
+	@Column(nullable=false)
 	private int akt70;
 
+	@Column(nullable=false, length=45)
 	private String akt80a;
 
+	@Column(length=1024)
 	private String akt80b;
 
+	@Column(length=1024)
 	private String akt90;
 
 	//bi-directional many-to-one association to Obisk
 	@OneToMany(mappedBy="porociloKontrolaZdravstvenegaStanja")
-	private List<Obisk> obisks;
+	private Set<Obisk> obisks;
 
 	public PorociloKontrolaZdravstvenegaStanja() {
 	}
@@ -174,12 +189,12 @@ public class PorociloKontrolaZdravstvenegaStanja implements Serializable {
 	public void setAkt90(String akt90) {
 		this.akt90 = akt90;
 	}
-/*
-	public List<Obisk> getObisks() {
+
+	public Set<Obisk> getObisks() {
 		return this.obisks;
 	}
 
-	public void setObisks(List<Obisk> obisks) {
+	public void setObisks(Set<Obisk> obisks) {
 		this.obisks = obisks;
 	}
 
@@ -196,5 +211,5 @@ public class PorociloKontrolaZdravstvenegaStanja implements Serializable {
 
 		return obisk;
 	}
-*/
+
 }

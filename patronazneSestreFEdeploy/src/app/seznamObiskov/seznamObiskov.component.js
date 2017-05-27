@@ -22,8 +22,8 @@ var seznamObiskovComponent = (function () {
         this.aliObstaja = false;
         this.obiski = [{ 'name': '', 'id': 0 }];
         this.pacienti = [{ 'ime': '', 'priimek': '', 'id': 0 }];
-        this.sestre = [{ 'sifra': '', 'id': 0 }];
-        this.izdajatelji = [{ 'sifra': '', 'id': 0 }];
+        this.sestre = [{ 'ime': '', 'sifra': '', 'id': 0 }];
+        this.izdajatelji = [{ 'ime': '', 'sifra': '', 'id': 0 }];
         this.opravljenost = [{ 'opravljenost': '' }, { 'opravljenost': 'Opravljen' }, { 'opravljenost': 'Neopravljen' }];
         this.izbraniPredvideniDatumOd = '';
         this.izbraniPredvideniDatumDo = '';
@@ -48,10 +48,12 @@ var seznamObiskovComponent = (function () {
             localStorage.setItem('idZdravstvenegaDelavca', dobiZd.idzdravstveniDelavec.toString());
             localStorage.setItem('idIzv', dobiZd.izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev);
             if (localStorage['vloga'] == 'Zdravnik' || localStorage['vloga'] == 'PatronaznaSluzba') {
+                _this.izdajatelji[0].ime = dobiZd.ime + " " + dobiZd.priimek;
                 _this.izdajatelji[0].sifra = dobiZd.sifra;
                 _this.izdajatelji[0].id = dobiZd.idzdravstveniDelavec;
             }
             else if (localStorage['vloga'] == 'PatronaznaSestra') {
+                _this.sestre[0].ime = dobiZd.ime + " " + dobiZd.priimek;
                 _this.sestre[0].sifra = dobiZd.sifra;
                 _this.sestre[0].id = dobiZd.idzdravstveniDelavec;
             }
@@ -145,7 +147,7 @@ var seznamObiskovComponent = (function () {
                     this.tabelaDejanskiObiskov = this.bubbleSort(this.tabelaDejanskiObiskov);
                     this.tabelaObiskovVsi = this.tabelaDejanskiObiskov;
                 });*/
-            if (localStorage['vloga'] == 'PatronaznaSestra') {
+            if (localStorage['vloga'] == 'PatronaznaSestra' || localStorage['vloga'] == 'Zdravnik') {
                 _this.DNService.getDelovneNaloge(Number(localStorage.getItem('idZdravstvenegaDelavca')), 0).subscribe(function (res) {
                     _this.tabelaObiskovVsi = res;
                     var i = 0; //stevec za obiske
@@ -172,24 +174,41 @@ var seznamObiskovComponent = (function () {
                                 var zdr = _e[_d];
                                 _this.aliObstaja = false;
                                 if (zdr.okolis != null) {
-                                    obisk.patronaznaSestra = zdr.sifra + " " + obisk.patronaznaSestra;
+                                    obisk.patronaznaSestra = zdr.ime + ' ' + zdr.priimek + ' [' + zdr.sifra + "] " + obisk.patronaznaSestra;
+                                    //pregled Sester
+                                    for (var _f = 0, _g = _this.sestre; _f < _g.length; _f++) {
+                                        var ses = _g[_f];
+                                        if (ses.id == zdr.idzdravstveniDelavec) {
+                                            _this.aliObstaja = true;
+                                            break;
+                                        }
+                                    }
+                                    if (_this.aliObstaja == false) {
+                                        var novaS = ({ ime: '', sifra: '', id: 0 });
+                                        novaS.ime = zdr.ime + ' ' + zdr.priimek;
+                                        novaS.sifra = zdr.sifra;
+                                        novaS.id = zdr.idzdravstveniDelavec;
+                                        _this.sestre[m] = novaS;
+                                        m = m + 1;
+                                    }
                                 }
                                 else {
-                                    for (var _f = 0, _g = _this.izdajatelji; _f < _g.length; _f++) {
-                                        var zdravnik = _g[_f];
+                                    for (var _h = 0, _j = _this.izdajatelji; _h < _j.length; _h++) {
+                                        var zdravnik = _j[_h];
                                         if (zdravnik.id == zdr.idzdravstveniDelavec) {
                                             _this.aliObstaja = true;
                                             break;
                                         }
                                     }
                                     if (_this.aliObstaja == false) {
-                                        var noviZdr = ({ sifra: '', id: 0 });
+                                        var noviZdr = ({ ime: '', sifra: '', id: 0 });
+                                        noviZdr.ime = zdr.ime + ' ' + zdr.priimek;
                                         noviZdr.sifra = zdr.sifra;
                                         noviZdr.id = zdr.idzdravstveniDelavec;
                                         _this.izdajatelji[m] = noviZdr;
                                         m = m + 1;
                                     }
-                                    obisk.izdajatelj = zdr.sifra;
+                                    obisk.izdajatelj = zdr.ime + " " + zdr.priimek + " [" + zdr.sifra + "]";
                                 }
                             }
                             //datumi
@@ -201,8 +220,8 @@ var seznamObiskovComponent = (function () {
                         }
                         _this.aliObstaja = false;
                         //dodaj v subseznam obiskov
-                        for (var _h = 0, _j = _this.obiski; _h < _j.length; _h++) {
-                            var vrsta = _j[_h];
+                        for (var _k = 0, _l = _this.obiski; _k < _l.length; _k++) {
+                            var vrsta = _l[_k];
                             if (vrsta.id == dn.vrstaObiska.idvrstaObiska) {
                                 _this.aliObstaja = true;
                                 break;
@@ -217,8 +236,9 @@ var seznamObiskovComponent = (function () {
                         }
                         //dodaj v subseznam pacientov
                         _this.aliObstaja = false;
-                        for (var _k = 0, _l = _this.pacienti; _k < _l.length; _k++) {
-                            var pacient = _l[_k];
+                        for (var _m = 0, _o = _this.pacienti; _m < _o.length; _m++) {
+                            var pacient = _o[_m];
+                            _this.aliObstaja = false;
                             if (pacient.id == dn.pacients[0].idpacient) {
                                 _this.aliObstaja = true;
                                 break;
@@ -238,7 +258,7 @@ var seznamObiskovComponent = (function () {
                     _this.Onsubmit();
                 });
             }
-            else if (localStorage['vloga'] == 'PatronaznaSluzba' || localStorage['vloga'] == 'Zdravnik') {
+            else if (localStorage['vloga'] == 'PatronaznaSluzba') {
                 _this.DNService.getDelovneNalogePrekIzv2(Number(localStorage.getItem('idIzv')), 0).subscribe(function (res) {
                     _this.tabelaObiskovVsi = res;
                     var i = 0; //stevec za obiske
@@ -266,7 +286,7 @@ var seznamObiskovComponent = (function () {
                                 var zdr = _e[_d];
                                 _this.aliObstaja = false;
                                 if (zdr.okolis != null) {
-                                    obisk.patronaznaSestra = zdr.sifra + " " + obisk.patronaznaSestra;
+                                    obisk.patronaznaSestra = zdr.ime + " " + zdr.priimek + " [" + zdr.sifra + "] " + obisk.patronaznaSestra;
                                     //pregled Sester
                                     for (var _f = 0, _g = _this.sestre; _f < _g.length; _f++) {
                                         var ses = _g[_f];
@@ -276,7 +296,8 @@ var seznamObiskovComponent = (function () {
                                         }
                                     }
                                     if (_this.aliObstaja == false) {
-                                        var novaS = ({ sifra: '', id: 0 });
+                                        var novaS = ({ ime: '', sifra: '', id: 0 });
+                                        novaS.ime = zdr.ime + " " + zdr.priimek;
                                         novaS.sifra = zdr.sifra;
                                         novaS.id = zdr.idzdravstveniDelavec;
                                         _this.sestre[m] = novaS;
@@ -293,13 +314,14 @@ var seznamObiskovComponent = (function () {
                                         }
                                     }
                                     if (_this.aliObstaja == false) {
-                                        var noviZdr = ({ sifra: '', id: 0 });
+                                        var noviZdr = ({ ime: '', sifra: '', id: 0 });
+                                        noviZdr.ime = zdr.ime + " " + zdr.priimek;
                                         noviZdr.sifra = zdr.sifra;
                                         noviZdr.id = zdr.idzdravstveniDelavec;
                                         _this.izdajatelji[n] = noviZdr;
                                         n = n + 1;
                                     }
-                                    obisk.izdajatelj = zdr.sifra;
+                                    obisk.izdajatelj = zdr.ime + " " + zdr.priimek + " [" + zdr.sifra + "]";
                                 }
                             }
                             //datumi
@@ -402,7 +424,7 @@ var seznamObiskovComponent = (function () {
             if (ob.vrstaObiska == this.izbraniObisk.name || this.izbraniObisk.name == '' || this.izbraniObisk.name == undefined) {
                 tabelaIfov[0] = true;
             }
-            if (ob.izdajatelj == this.izbraniIzdajatelj.sifra || this.izbraniIzdajatelj.sifra == '' || this.izbraniIzdajatelj.sifra == undefined) {
+            if (ob.izdajatelj.indexOf(this.izbraniIzdajatelj.sifra) >= 0 || this.izbraniIzdajatelj.sifra == '' || this.izbraniIzdajatelj.sifra == undefined) {
                 tabelaIfov[1] = true;
             }
             if (ob.pacienti.indexOf(this.izbraniPacient.ime + " " + this.izbraniPacient.priimek) >= 0 || this.izbraniPacient.ime == '' || this.izbraniPacient.ime == undefined) {
