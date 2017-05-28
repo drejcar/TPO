@@ -7,7 +7,81 @@
 
         </div>
         <div ngIf="kontrolaZdravstvenegaStanja">
-
+          <div class="form-group">
+            <label>Anamneza</label>
+            <input type="text" class="form-control" name="akt10">
+          </div>
+          <div class="form-group">
+            <label>Krvni Pritisk: sistolični, diastolični</label>
+            <div class="form-group">
+              <label>Sistolični (mm Hg):</label>
+              <input type="text" class="form-control" name="akt20a" required>
+            </div>
+            <div class="form-group">
+              <label>Diastolični (mm Hg):</label>
+              <input type="text" class="form-control" name="akt20b" required>
+            </div>
+            </div>
+          <div class="form-group">
+            <label>Srčni utrip</label>
+            <input type="text" class="form-control" name="akt30" required>
+          </div>
+          <div class="form-group">
+            <label>dihanje</label>
+            <input type="text" class="form-control" name="akt40" required>
+          </div>
+          <div class="form-group">
+            <label>Telesna temperatura (°C)</label>
+            <input type="text" class="form-control" name="akt50" required>
+          </div>
+          <div class="form-group">
+            <label>Krvni sladkor:</label>
+            <div class="form-group">
+              <label>mmol/L</label>
+              <input type="text" class="form-control" name="akt60a" required>
+            </div>
+            <div class="form-group">
+              <label>Opombe:</label>
+              <textarea class="form-control" name="akt60b" cols="3">
+              </textarea>
+            </div>
+            </div>
+          <div class="form-group">
+            <label>Oksigenacija SpO2</label>
+            <input type="text" class="form-control" name="akt70" required>
+          </div>
+          <div class="form-group">
+            <label>Upoštevanje terapije</label>
+            <div class="form-group">
+              <input type="radio" class="form-control" name="akt80a" value="Da" required>Da<br>
+              <input type="radio" class="form-control" name="akt80a" value="Delno" required>Delno<br>
+              <input type="radio" class="form-control" name="akt80a" value="Ne" required>Ne
+            </div>
+            <div class="form-group">
+              <label>Opombe:</label>
+              <textarea class="form-control" name="akt80b" cols="3">
+              </textarea>
+            </div>
+            </div>
+          <div class="form-group">
+            <label>Pregled terapije</label>
+            <textarea class="form-control" name="akt90" cols="3">
+              </textarea>
+          </div>
+          <div class="form-group">
+            <label>Navodila za terapijo do naslednjega obiska</label>
+            <textarea class="form-control" name="akt100" cols="3">
+              </textarea>
+          </div>
+          <div class="form-group">
+            <label>Pogovor, nasvet in vzpodbuda</label>
+            <textarea class="form-control" name="akt110" cols="3">
+            </textarea>
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="">
+          </div>
         </div>
         <div ngIf="obiskNosecnice">
 
