@@ -106,6 +106,8 @@ public interface FasadniSBLocal {
 		public List<ZdravstveniDelavec> returnZdravstveniDelavecs(); //vracanje liste zdravstvenih delavcev
 		void updateZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec); // update zdravstvenih delavcev
 		void createZdravstveniDelavec(ZdravstveniDelavec zdravstveniDelavec); // kreiranje novega zdravstvenega delavca
+		public List<ZdravstveniDelavec> returnPatronazneSestrePoIzv(int id); //vracanje PS glede na id izvajalcaZdravstvenih storitev
+		public ZdravstveniDelavec najdiPravegaZdr(int id); //vrni zdr po id zdr
 		
 		//klici za paciente
 		public Pacient returnPacient(int id); // vracanje specificnega pacienta

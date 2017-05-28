@@ -106,5 +106,25 @@ public class ZdravstveniDelavecSB implements ZdravstveniDelavecSBRemote, Zdravst
 
 		return (ZdravstveniDelavec) em.createNamedQuery("ZdravstveniDelavec.findPatronaznaSluzba").setParameter("id", izvajalec).getSingleResult();
 	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.ZdravstveniDelavecSBLocal#returnPatronazneSestrePoIzv(int)
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<ZdravstveniDelavec> returnPatronazneSestrePoIzv(int id) {
+		return  em.createNamedQuery("ZdravstveniDelavec.findByIzv").setParameter("id", id).getResultList();
+		
+	}
+	/*
+	 * (non-Javadoc)
+	 * @see si.fri.tpo.vmesnikiSB.ZdravstveniDelavecSBLocal#najdiPravega(int)
+	 */
+
+	@Override
+	public ZdravstveniDelavec najdiPravega(int id) {
+		return (ZdravstveniDelavec) em.createNamedQuery("ZdravstveniDelavec.findPravi").setParameter("id", id).getSingleResult();
+	}
 
 }

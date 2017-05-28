@@ -35,7 +35,7 @@ public class ObiskiStoritve implements ObiskiREST {
 		LocalDate oood = LocalDate.parse(ood);
 		LocalDate dooo = LocalDate.parse(doo);
 		
-		ZdravstveniDelavec nadomestnaSestra = fasada.returnZdravstveniDelavec(idNadomestna);
+		ZdravstveniDelavec nadomestnaSestra = fasada.najdiPravegaZdr(idNadomestna);
 		
 		List<Obisk> maticniObiski = fasada.getObiskiByMaticna(idMaticna,oood.toDate(),dooo.toDate(),nadomestnaSestra);
 		

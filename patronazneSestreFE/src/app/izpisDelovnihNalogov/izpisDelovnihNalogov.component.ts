@@ -274,7 +274,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 			});
 
 		}
-		},1200);
+		},2000);
 
 	}
 	Onsubmit(){
