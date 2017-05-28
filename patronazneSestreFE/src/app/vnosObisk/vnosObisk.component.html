@@ -438,125 +438,150 @@
         <div ngIf="odvzemKrvi">
           <div class="form-group">
             <label></label>
-            <input type="text" class="form-control" name="akt">
+            <input type="number" class="form-control" name="akt10modra">
           </div>
           <div class="form-group">
             <label></label>
-            <input type="text" class="form-control" name="akt">
+            <input type="number" class="form-control" name="akt10rdeca">
           </div>
           <div class="form-group">
             <label></label>
-            <input type="text" class="form-control" name="akt">
+            <input type="number" class="form-control" name="akt10rumena">
           </div>
           <div class="form-group">
             <label></label>
-            <input type="text" class="form-control" name="akt">
+            <input type="number" class="form-control" name="akt10zelena">
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Pogovor, nasvet, vzpodbuda</label>
+            <textarea class="form-control" name="akt20" cols="3">
+            </textarea>
           </div>
         </div>
         <div ngIf="preventivaStarostnika">
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Anamneza</label>
+            <textarea class="form-control" name="akt10" cols="6" required>
+            </textarea>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Družinska anamneza</label>
+            <textarea class="form-control" name="akt20" cols="6" required>
+            </textarea>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Krvni pritisk</label>
+            <div class="form-group">
+              <label>Sistolični (mm Hg):</label>
+              <input type="text" class="form-control" name="akt30a" required>
+            </div>
+            <div class="form-group">
+              <label>Diastolični (mm Hg):</label>
+              <input type="text" class="form-control" name="akt30b" required>
+            </div>
+            </div>
+          <div class="form-group">
+            <label>Srčni utrip (udarci na minuto)</label>
+            <input type="number" class="form-control" name="akt40" required>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Dihanje (vdihi na minuto)</label>
+            <input type="number" class="form-control" name="akt50" required>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Telesna temperatura (v °C)</label>
+            <input type="number" class="form-control" name="akt60" required>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Telesna teža (v kg)</label>
+            <input type="text" class="form-control" name="akt70" required>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Osebna higiena</label>
+            <input type="text" class="form-control" name="akt80">
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Prehranjevanje in pitje</label>
+            <input type="text" class="form-control" name="akt90">
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Izločanje in odvajanje</label>
+            <div class="form-group">
+              <label>Urin:</label>
+              <input type="text" class="form-control" name="akt100a">
+            </div>
+            <div class="form-group">
+              <label>Blato:</label>
+              <input type="text" class="form-control" name="akt100b">
+            </div>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Gibanje</label>
+            <input type="text" class="form-control" name="akt110">
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Čutila in občutki</label>
+            <div class="form-group">
+              <label>Vid:</label>
+              <textarea class="form-control" name="akt120a" cols="3">
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label>Vonj:</label>
+              <textarea class="form-control" name="akt120b" cols="3">
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label>Sluh:</label>
+              <textarea class="form-control" name="akt120c" cols="3">
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label>Okus:</label>
+              <textarea class="form-control" name="akt120d" cols="3">
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label>Otip:</label>
+              <textarea class="form-control" name="akt120e" cols="3">
+              </textarea>
+            </div>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Spanje in počitek</label>
+            <textarea class="form-control" name="akt130" cols="3">
+            </textarea>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Duševno stanje: izražanje čustev in potreb, komunikacija</label>
+            <textarea class="form-control" name="akt140" cols="3">
+            </textarea>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Stanje neodvisnosti:</label>
+            <div class="form-group">
+              <label></label>
+              <input type="text" class="form-control" name="akt150a">
+            </div>
+            <div class="form-group">
+              <label></label>
+              <input type="text" class="form-control" name="akt150b">
+            </div>
+            <div class="form-group">
+              <label></label>
+              <textarea class="form-control" name="akt150b" cols="3">
+              </textarea>
+            </div>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Pregled predpisanih terapij</label>
+            <textarea class="form-control" name="akt160" cols="3">
+            </textarea>
           </div>
           <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
-          </div>
-          <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
-          </div>
-          <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
-          </div>
-          <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
-          </div>
-          <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
-          </div>
-          <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
-          </div>
-          <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
-          </div>
-          <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
-          </div>
-          <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
-          </div>
-          <div class="form-group">
-            <label></label>
-            <input type="text" class="form-control" name="akt">
+            <label>Pogovor, nasvet, vzpodbuda</label>
+            <textarea class="form-control" name="akt170" cols="3">
+            </textarea>
           </div>
         </div>
         <button type="submit" class="btn btn-info">Dodaj nadomestno sestro</button>

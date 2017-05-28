@@ -5,6 +5,6 @@ export class porociloOdvzemKrvi{
     public akt10rdeca:number,
     public akt10rumena:number,
     public akt10zelena:number,
-    public akt200:String,
+    public akt20:String,
   ){}
 }
