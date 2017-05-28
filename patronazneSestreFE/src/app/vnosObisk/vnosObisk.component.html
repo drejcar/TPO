@@ -1,7 +1,7 @@
 <div class="container">
   <div [hidden]="submitted">
     <h1>Obisk: vnos</h1>
-    <form (ngSubmit)="onSubmit()" #nadomescanjaForm="ngForm">
+    <form (ngSubmit)="onSubmit()" #obiskForm="ngForm">
       <div class="form-group">
         <div ngIf="aplikacijaInjekcije">
 
@@ -295,16 +295,272 @@
           </div>
         </div>
         <div ngIf="obiskOtrocnice">
-
+          <div class="form-group">
+            <label>Pregled materinske knjižice in odpustnice iz porodnišnice</label>
+            <div class="form-group">
+              <label>Datum rojstva otroka</label>
+              <input type="date" class="form-control" name="akt10a" required>
+            </div>
+            <div class="form-group">
+              <label>Porodna teža Otroka (v gramih)</label>
+              <input type="number" class="form-control" name="akt10b" required>
+            </div>
+            <div class="form-group">
+              <label>Porodna višina otroka (v cm)</label>
+              <input type="number" class="form-control" name="akt10c" required>
+            </div>
+            <div class="form-group">
+              <label>Opombe:</label>
+              <textarea class="form-control" name="akt10d" cols="3">
+              </textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Kontrola vitalnih funkcij</label>
+            <input type="text" class="form-control" name="akt20">
+          </div>
+          <div class="form-group">
+            <label>Opazovanje čišče</label>
+            <input type="text" class="form-control" name="akt30">
+          </div>
+          <div class="form-group">
+            <label>Nadzor nad izločanjem blata in urina</label>
+            <input type="text" class="form-control" name="akt40">
+          </div>
+          <div class="form-group">
+            <label>Zdravstveno vzgojno delo glede pravilnega rokovanja z novorojenčkom, učenje tehnike nege novorojenčka</label>
+            <input type="text" class="form-control" name="akt50">
+          </div>
+          <div class="form-group">
+            <label>Motivacija za dojenje. Nadzor in pomoč pri dojenju</label>
+            <input type="text" class="form-control" name="akt60">
+          </div>
+          <div class="form-group">
+            <label>Svetovanje o čustveni podpori s strani partnerja</label>
+            <input type="text" class="form-control" name="akt70">
+          </div>
+          <div class="form-group">
+            <label>Seznanitev o otrokovih potrebah po toplini, nežnosti in varnosti</label>
+            <input type="text" class="form-control" name="akt80">
+          </div>
+          <div class="form-group">
+            <label>Svetovanje o spalnih potrebah otročnice, pravilni negi in higienskem režimu v poporodnem obdobju</label>
+            <input type="text" class="form-control" name="akt90">
+          </div>
+          <div class="form-group">
+            <label>Svetovanje o pravilni prehrani, pitju ustreznih količin tekočin</label>
+            <input type="text" class="form-control" name="akt100">
+          </div>
+          <div class="form-group">
+            <label>Poučitev o poporodni telovadbi</label>
+            <input type="text" class="form-control" name="akt110">
+          </div>
+          <div class="form-group">
+            <label>Seznanitev z nekaterimi obolenji</label>
+            <input type="text" class="form-control" name="akt120">
+          </div>
+          <div class="form-group">
+            <label>Napotitev na poporodni pregled</label>
+            <input type="text" class="form-control" name="akt130">
+          </div>
+          <div class="form-group">
+            <label>Seznanitev z metodami zaščite pred nezaželjeno nosečnostjo</label>
+            <input type="text" class="form-control" name="akt140">
+          </div>
+          <div class="form-group">
+            <label>Svetovanje o normalnem delu, življenju in spolnih odnosih</label>
+            <input type="text" class="form-control" name="akt150">
+          </div>
+          <div class="form-group">
+            <label>Krvni pritisk</label>
+            <div class="form-group">
+              <label>Sistolični (mm Hg)</label>
+              <input type="number" class="form-control" name="akt160a" required>
+            </div>
+            <div class="form-group">
+              <label>Diastolični (mm Hg)</label>
+              <input type="number" class="form-control" name="akt160b" required>
+            </div>
+            </div>
+          <div class="form-group">
+            <label>Srčni utrip (udarci na minuto)</label>
+            <input type="number" class="form-control" name="akt170" required>
+          </div>
+          <div class="form-group">
+            <label>Dihanje (vdihi na minuto)</label>
+            <input type="number" class="form-control" name="akt180" required>
+          </div>
+          <div class="form-group">
+            <label>Telesna temperatura (v °C)</label>
+            <input type="number" class="form-control" name="akt190" required>
+          </div>
+          <div class="form-group">
+            <label>Trenutna telesna teža (v kg)</label>
+            <input type="number" class="form-control" name="akt200" required>
+          </div>
+          <div class="form-group">
+            <label>Anamneza: počutje, telesni znaki nosečnosti</label>
+            <input type="text" class="form-control" name="akt210" required>
+          </div>
+          <div class="form-group">
+            <label>Družinska anamneza: odnosi v družini, odnos družine do okolja, bivalni pogoji, ekonomske razmere,</label>
+            <label>zdravstveno stanje družinskih članov, zdravstvena prosvetljenost in vzgojenost.</label>
+            <input type="text" class="form-control" name="akt220" required>
+          </div>
+          <div class="form-group">
+            <label>Izražanje čustev</label>
+            <div class="form-group">
+              <label></label>
+              <input type="radio" class="form-control" name="akt230a" value="Moteno">Moteno<br>
+              <input type="radio" class="form-control" name="akt230a" value="Ni moteno">Ni moteno
+            </div>
+            <div class="form-group">
+              <label>Opombe:</label>
+              <textarea class="form-control" name="akt230b" cols="3">
+              </textarea>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Fizična obremenjenost</label>
+            <div class="form-group">
+              <label></label>
+              <input type="radio" class="form-control" name="akt240a" value="Nizka">Nizka<br>
+              <input type="radio" class="form-control" name="akt240a" value="Srednja">Srednja<br>
+              <input type="radio" class="form-control" name="akt240a" value="Visoka">Visoka
+            </div>
+            <div class="form-group">
+              <label>Opombe:</label>
+              <textarea class="form-control" name="akt240b" cols="3">
+              </textarea>
+            </div>
+          </div>
         </div>
         <div ngIf="odvzemKrvi">
-
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
         </div>
         <div ngIf="preventivaStarostnika">
-
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
+          <div class="form-group">
+            <label></label>
+            <input type="text" class="form-control" name="akt">
+          </div>
         </div>
         <button type="submit" class="btn btn-info">Dodaj nadomestno sestro</button>
-        <button type="submit" class="btn btn-success" [disabled]="!nadomescanjeForm.form.valid">Potrdi nadomeščanje</button>
+        <button type="submit" class="btn btn-success" [disabled]="!obiskForm.form.valid">Vnesi obisk</button>
       </div>
     </form>
   </div>
