@@ -15,6 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 			<a [hidden]="!mojiDelovniNalog" routerLink="/seznamObiskov" routerLinkActive="active">Seznam obiskov</a>
 			<a [hidden]="!patronaznaSestra" routerLink="/planiranjeObiskov" routerLinkActive="active">Planiranje obiskov</a>
 			<a [hidden]="!aliJePacient" routerLink="/uporabniskiProfil" routerLinkActive="active">Moj profil</a>
+			<a [hidden]="!patronaznaSluzba" routerLink="/nadomescanje" routerLinkActive="active">Nadomescanje</a>
 		</nav>
 		<div id="userProf">{{opis}}</div>
 		<div id="zadnjaPrijava">{{opis2}}</div>
@@ -40,6 +41,7 @@ export class AppComponent implements OnInit {
   admin: boolean = false;
   patronaznaSestra: boolean = false;
   dovoljenjeKreirat: boolean = false;
+  patronaznaSluzba: boolean = false;
   aliJeLoginan: boolean = false;
   aliJePacient: boolean = false;
   constructor(private http:Http ,private usr:UserService){
@@ -70,6 +72,7 @@ export class AppComponent implements OnInit {
 		}else{
 			this.admin = false;
 			this.patronaznaSestra=false;
+			this.patronaznaSluzba = false;
 			this.dovoljenjeKreirat = false;
 			this.opis = '';
 			this.opis2 = '';
@@ -92,6 +95,9 @@ export class AppComponent implements OnInit {
 		if(this.vloga == 'Pacient'){
 			this.aliJePacient = true;
 		}
+		if(this.vloga == 'PatronaznaSluzba'){
+			this.patronaznaSluzba = true;
+		}
 
 	  }
   }
@@ -109,6 +115,7 @@ export class AppComponent implements OnInit {
 			this.prjava2 = 'odjava';
 			this.aliJeLoginan = true;
 		}else{
+			this.patronaznaSluzba = false;
 			this.aliJePacient = false;
 			this.dovoljenjeKreirat = false;
 			this.opis = '';
@@ -134,6 +141,9 @@ export class AppComponent implements OnInit {
 		}
 		if(this.vloga == 'Pacient'){
 			this.aliJePacient = true;
+		}
+		if(this.vloga == 'PatronaznaSluzba'){
+			this.patronaznaSluzba = true;
 		}
 	  }
   }

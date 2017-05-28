@@ -39,7 +39,7 @@ export class seznamObiskovComponent implements OnInit{
 	izbranaSestra = this.sestre[0];
 
 	tabelaObiskovVsi: any[];
-	tabelaDejanskiObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''}]
+	tabelaDejanskiObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'','nadomestna':''}]
 	izvajalecZdravstvenihStoritev:number= 0;
 
 	ngOnInit(){
@@ -163,10 +163,11 @@ export class seznamObiskovComponent implements OnInit{
 
 				for(let dn of this.tabelaObiskovVsi){
 					for(let ob of dn.obisks){
-						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''});
+						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',nadomestna:''});
 						this.aliObstaja = false;
 						obisk.idObiska = ob.idobisk;
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
+						obisk.nadomestna = ob.nadomestnaSestra.ime+" "+ob.nadomestnaSestra.priimek+" ["+ob.nadomestnaSestra.sifra+"]";
 						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
@@ -174,7 +175,7 @@ export class seznamObiskovComponent implements OnInit{
 							obisk.opravljenost = 'Opravljen';
 						}
 						//setanje patronaznih sester
-
+					
 						for(let zdr of dn.zdravstveniDelavecs){
 							this.aliObstaja = false;
 							if(zdr.okolis != null){
@@ -275,10 +276,11 @@ export class seznamObiskovComponent implements OnInit{
 				let n = 1;
 				for(let dn of this.tabelaObiskovVsi){
 					for(let ob of dn.obisks){
-						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''});
+						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',nadomestna:''});
 						this.aliObstaja = false;
 						obisk.idObiska = ob.idobisk;
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
+						obisk.nadomestna = ob.nadomestnaSestra.ime+" "+ob.nadomestnaSestra.priimek+" ["+ob.nadomestnaSestra.sifra+"]";
 						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
