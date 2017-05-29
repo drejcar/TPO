@@ -130,6 +130,10 @@
 					<th class="obiski">Opravljenost</th>
 					<td class="obiski" *ngFor="let s of obiskiDatumi" >{{s.opravljen}}</td>
 				</tr>
+				<tr>
+					<th class="obiski">Nadomeščanje</th>
+					<td class="obiski" *ngFor="let s of obiskiDatumi">{{s.nadomescanje}}</td>
+				</tr>
 			</table>
 		</div>
 		<div [hidden]="!aliJeInjekcija" class="miniNaslovi2">

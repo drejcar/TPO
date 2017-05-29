@@ -631,6 +631,15 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 		zdravstveniDelavc.odstraniZrno();
 		return nov;
 	}
+	
+	@Override
+	@RolesAllowed({"PatronaznaSluzba"})
+	public List<ZdravstveniDelavec> returnPatronazneSestrePoIzv(int id) {
+		List<ZdravstveniDelavec> list = zdravstveniDelavc.returnPatronazneSestrePoIzv(id);
+		zdravstveniDelavc.odstraniZrno();
+		return list;
+		
+	}
 
 	// *** klici za Pacient ***
 
@@ -861,4 +870,10 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	public void updObisk(Obisk ob){
 		obisk.updateObisk(ob);
 	}
+
+	@Override
+	public ZdravstveniDelavec najdiPravegaZdr(int id) {
+		return zdravstveniDelavc.najdiPravega(id);
+	}
+
 }

@@ -2,6 +2,8 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.Set;
@@ -14,6 +16,7 @@ import java.util.Set;
 @Entity
 @Table(name="porocilo_obisk_nosecnice")
 @NamedQuery(name="PorociloObiskNosecnice.findAll", query="SELECT p FROM PorociloObiskNosecnice p")
+@XmlRootElement
 public class PorociloObiskNosecnice implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -333,7 +336,7 @@ public class PorociloObiskNosecnice implements Serializable {
 	public void setAkt90(String akt90) {
 		this.akt90 = akt90;
 	}
-
+/*
 	public Set<Obisk> getObisks() {
 		return this.obisks;
 	}
@@ -355,5 +358,5 @@ public class PorociloObiskNosecnice implements Serializable {
 
 		return obisk;
 	}
-
+*/
 }

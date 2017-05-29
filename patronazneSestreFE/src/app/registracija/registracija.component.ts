@@ -63,6 +63,7 @@ export class RegistracijaFormComponent implements OnInit{
 	//kreiranje novega modela
 	this.model.okolis = this.okolisi[0];
 	this.kontakt.krazmerje = this.krazmerja[0];
+	
 	this.uporabnikService.save(this.model,this.dodaj,this.kontakt).subscribe(
             (r: Response) => {console.log('success');}
           );

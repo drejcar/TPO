@@ -49,7 +49,7 @@ export class podrobnostiDNComponent implements OnInit{
 	pacTelefon2='';
 	pacPosta2='';
 	
-	obiskiDatumi= [{'datumObiska':'','fiksniDatum':'','opravljen':'','dejanskiDatum':''}];
+	obiskiDatumi= [{'datumObiska':'','fiksniDatum':'','opravljen':'','dejanskiDatum':'','nadomescanje':''}];
 	obiskVrstaStoritve='';
 	obiskBolezen='';
 	
@@ -63,7 +63,7 @@ export class podrobnostiDNComponent implements OnInit{
 		this.route.params
 		.switchMap((params: Params) =>this.DNService.getDelovniNalog(Number(+params['id']))).subscribe(
 		response => {this.delovniNalog = response;
-			
+			console.log(this.delovniNalog);
 			this.idDelovnegaNaloga = this.delovniNalog.iddelovniNalog;
 			//izvajalec zdravstvenih storitev
 			this.izvNaziv = this.delovniNalog.izvajalecZdravstvenihStoritev.naziv;
@@ -77,10 +77,14 @@ export class podrobnostiDNComponent implements OnInit{
 					this.izdIme = i.ime;
 					this.izdPriimek = i.priimek;
 				}else if(i.okolis != null){
-					this.sestraSifra = i.sifra;
-					this.sestraOkolis = i.okolis.opis;
-					this.sestraIme = i.ime;
-					this.sestraPriimek = i.priimek;
+					for(let b of this.delovniNalog.obisks){
+						if(b.nadomestnaSestra.idzdravstveniDelavec != i.idzdravstveniDelavec){
+							this.sestraSifra = i.sifra;
+							this.sestraOkolis = i.okolis.opis;
+							this.sestraIme = i.ime;
+							this.sestraPriimek = i.priimek;
+						}
+					}
 				}
 			}
 			
@@ -117,8 +121,8 @@ export class podrobnostiDNComponent implements OnInit{
 			//obiski
 			let j = 0;
 			for(let i of this.delovniNalog.obisks){
-				let novObisk = <any> ({'datumObiska':'','fiksniDatum':'','opravljen':'','dejanskiDatum':''});
-				
+				let novObisk = <any> ({'datumObiska':'','fiksniDatum':'','opravljen':'','dejanskiDatum':'','nadomescanje':''});
+				novObisk.nadomescanje = i.nadomestnaSestra.ime+" "+i.nadomestnaSestra.priimek+" ["+i.nadomestnaSestra.sifra+"]";
 				novObisk.datumObiska = i.datumObiska;
 				novObisk.dejanskiDatum = i.dejanskiDatumObiska;
 				if(i.opravljen == 0){
@@ -131,6 +135,7 @@ export class podrobnostiDNComponent implements OnInit{
 				}else{
 					novObisk.fiksniDatum = 'Da';
 				}
+				//novObisk.
 				this.obiskiDatumi[j] = novObisk;
 				j = j+1;
 			}

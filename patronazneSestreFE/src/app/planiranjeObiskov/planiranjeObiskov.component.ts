@@ -53,10 +53,14 @@ export class PlaniranjeObiskovComponent implements OnInit{
 					var datum = this.izbraniDatum;
 					for(let dn of this.tabelaObiskovVsi){
 						for(let ob of dn.obisks){
-
-							let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0});
+							console.log(ob.nadomestnaSestra.idzdravstveniDelavec);
+							console.log(localStorage.getItem('idZdravstvenegaDelavca'));
+							if(ob.nadomestnaSestra.idzdravstveniDelavec != localStorage.getItem('idZdravstvenegaDelavca')){
+								continue;
+							}
+							let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0,nadomescanje:''});
 							obisk.idDelovniNalog = dn.iddelovniNalog;
-
+							
 							obisk.idObiska = ob.idobisk;
 							obisk.vrstaObiska = dn.vrstaObiska.opis;
 							obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;

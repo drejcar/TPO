@@ -2,6 +2,8 @@ package si.fri.tpo.entitete;
 
 import java.io.Serializable;
 import javax.persistence.*;
+import javax.xml.bind.annotation.XmlRootElement;
+
 import java.math.BigDecimal;
 import java.util.Set;
 
@@ -13,6 +15,7 @@ import java.util.Set;
 @Entity
 @Table(name="porocilo_preventiva_starostnika")
 @NamedQuery(name="PorociloPreventivaStarostnika.findAll", query="SELECT p FROM PorociloPreventivaStarostnika p")
+@XmlRootElement
 public class PorociloPreventivaStarostnika implements Serializable {
 	private static final long serialVersionUID = 1L;
 
