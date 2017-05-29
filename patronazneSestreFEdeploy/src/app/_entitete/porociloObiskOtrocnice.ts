@@ -8,6 +8,8 @@ export class porociloObiskOtrocnice{
     public akt10d:String,
     public akt110:String,
     public akt120:String,
+	public akt130:String,
+	public akt140:String,
     public akt150:String,
     public akt160a:number,//double
     public akt160b:number,//double

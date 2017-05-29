@@ -9,36 +9,37 @@
         <div ngIf="kontrolaZdravstvenegaStanja">
           <div class="form-group">
             <label>Anamneza</label>
-            <input type="text" class="form-control" name="akt10">
+            <textarea class="form-control" name="akt10" cols="6">
+            </textarea>
           </div>
           <div class="form-group">
             <label>Krvni Pritisk: sistolični, diastolični</label>
             <div class="form-group">
               <label>Sistolični (mm Hg):</label>
-              <input type="text" class="form-control" name="akt20a" required>
+              <input type="number" class="form-control" name="akt20a" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg):</label>
-              <input type="text" class="form-control" name="akt20b" required>
+              <input type="number" class="form-control" name="akt20b" required>
             </div>
             </div>
           <div class="form-group">
-            <label>Srčni utrip</label>
-            <input type="text" class="form-control" name="akt30" required>
+            <label>Srčni utrip (udarci na minuto)</label>
+            <input type="number" class="form-control" name="akt30" required>
           </div>
           <div class="form-group">
-            <label>dihanje</label>
-            <input type="text" class="form-control" name="akt40" required>
+            <label>dihanje (vdihi na minuto)</label>
+            <input type="number" class="form-control" name="akt40" required>
           </div>
           <div class="form-group">
             <label>Telesna temperatura (°C)</label>
-            <input type="text" class="form-control" name="akt50" required>
+            <input type="number" class="form-control" name="akt50" required>
           </div>
           <div class="form-group">
             <label>Krvni sladkor:</label>
             <div class="form-group">
               <label>mmol/L</label>
-              <input type="text" class="form-control" name="akt60a" required>
+              <input type="number" class="form-control" name="akt60a" required>
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -48,7 +49,7 @@
             </div>
           <div class="form-group">
             <label>Oksigenacija SpO2</label>
-            <input type="text" class="form-control" name="akt70" required>
+            <input type="number" class="form-control" name="akt70" required>
           </div>
           <div class="form-group">
             <label>Upoštevanje terapije</label>
@@ -65,12 +66,12 @@
             </div>
           <div class="form-group">
             <label>Pregled terapije</label>
-            <textarea class="form-control" name="akt90" cols="3">
+            <textarea class="form-control" name="akt90" cols="6">
               </textarea>
           </div>
           <div class="form-group">
             <label>Navodila za terapijo do naslednjega obiska</label>
-            <textarea class="form-control" name="akt100" cols="3">
+            <textarea class="form-control" name="akt100" cols="6">
               </textarea>
           </div>
           <div class="form-group">
@@ -142,13 +143,13 @@
           </div>
           <div class="form-group">
             <label>Anamneza: počutje, telesni znaki nosečnosti</label>
-            <textarea class="form-control" name="akt150" cols="5" required>
+            <textarea class="form-control" name="akt150" cols="6" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Družinska anamneza: Odnosi v družini, odnos družine do okolja, bivalni pogoji, ekonomske</label>
             <label>razmere, zdravstveno stanje družinskih članov, zdravstvena prosvetljenost in vzgojenost.</label>
-            <textarea class="form-control" name="akt160" cols="5" required>
+            <textarea class="form-control" name="akt160" cols="6" required>
             </textarea>
           </div>
           <div class="form-group">
@@ -182,11 +183,11 @@
             <label>Krvni Pritisk:</label>
             <div class="form-group">
               <label>Sistolični (mm HG):</label>
-              <input type="text" class="form-control" name="akt190a" required>
+              <input type="number" class="form-control" name="akt190a" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg):</label>
-              <input type="text" class="form-control" name="akt190b" required>
+              <input type="number" class="form-control" name="akt190b" required>
             </div>
           </div>
           <div class="form-group">
@@ -279,19 +280,23 @@
           </div>
           <div class="form-group">
             <label>Ritem spanja</label>
-            <input type="text" class="form-control" name="akt110" required>
+            <textarea class="form-control" name="akt110" cols="3" required>
+            </textarea>
           </div>
           <div class="form-group">
             <label>Povišanje bilirubina (zlatenica)</label>
-            <input type="text" class="form-control" name="akt120" required>
+            <textarea class="form-control" name="akt120" cols="3" required>
+            </textarea>
           </div>
           <div class="form-group">
             <label>Kolki</label>
-            <input type="text" class="form-control" name="akt130" required>
+            <textarea class="form-control" name="akt130" cols="3" required>
+            </textarea>
           </div>
           <div class="form-group">
             <label>Posebnosti</label>
-            <input type="text" class="form-control" name="akt140">
+            <textarea class="form-control" name="akt140" cols="3">
+            </textarea>
           </div>
         </div>
         <div ngIf="obiskOtrocnice">
@@ -400,12 +405,14 @@
           </div>
           <div class="form-group">
             <label>Anamneza: počutje, telesni znaki nosečnosti</label>
-            <input type="text" class="form-control" name="akt210" required>
+            <textarea class="form-control" name="akt210" cols="6">
+            </textarea>
           </div>
           <div class="form-group">
             <label>Družinska anamneza: odnosi v družini, odnos družine do okolja, bivalni pogoji, ekonomske razmere,</label>
             <label>zdravstveno stanje družinskih članov, zdravstvena prosvetljenost in vzgojenost.</label>
-            <input type="text" class="form-control" name="akt220" required>
+            <textarea class="form-control" name="akt220" cols="3">
+            </textarea>
           </div>
           <div class="form-group">
             <label>Izražanje čustev</label>
@@ -498,26 +505,31 @@
           </div>
           <div class="form-group">
             <label>Osebna higiena</label>
-            <input type="text" class="form-control" name="akt80">
+            <textarea class="form-control" name="akt80" cols="3">
+            </textarea>
           </div>
           <div class="form-group">
             <label>Prehranjevanje in pitje</label>
-            <input type="text" class="form-control" name="akt90">
+            <textarea class="form-control" name="akt90" cols="3">
+            </textarea>
           </div>
           <div class="form-group">
             <label>Izločanje in odvajanje</label>
             <div class="form-group">
               <label>Urin:</label>
-              <input type="text" class="form-control" name="akt100a">
+              <textarea class="form-control" name="akt100a" cols="3">
+              </textarea>
             </div>
             <div class="form-group">
               <label>Blato:</label>
-              <input type="text" class="form-control" name="akt100b">
+              <textarea class="form-control" name="akt100a" cols="3">
+              </textarea>
             </div>
           </div>
           <div class="form-group">
             <label>Gibanje</label>
-            <input type="text" class="form-control" name="akt110">
+            <textarea class="form-control" name="akt110" cols="3">
+            </textarea>
           </div>
           <div class="form-group">
             <label>Čutila in občutki</label>
@@ -561,11 +573,14 @@
             <label>Stanje neodvisnosti:</label>
             <div class="form-group">
               <label></label>
-              <input type="text" class="form-control" name="akt150a">
+              <input type="radio" class="form-control" name="akt150a" value="Samostojen">Samostojen/samostojna<br>
+              <input type="radio" class="form-control" name="akt150a" value="Delno odvisen">Delno odvisen/odvisna<br>
+              <input type="radio" class="form-control" name="akt150a" value="Popolnoma odvisen">Popolnoma odvisen/odvisna
             </div>
             <div class="form-group">
-              <label></label>
-              <input type="text" class="form-control" name="akt150b">
+              <label>Pomoč:</label>
+              <input type="radio" class="form-control" name="akt150b" value="Svojci">Svojci<br>
+              <input type="radio" class="form-control" name="akt150b" value="Drugi">Drugi
             </div>
             <div class="form-group">
               <label></label>
