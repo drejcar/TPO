@@ -5,7 +5,7 @@ export class PorociloObiskNosecnice{
     public akt110:String,
     public akt120:String,
     public akt130:String,
-    public akt140:Date,
+    public akt140:String,
     public akt150:String,
     public akt160:String,
     public akt170a:String,
