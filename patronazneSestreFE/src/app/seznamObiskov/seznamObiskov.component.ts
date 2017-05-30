@@ -15,6 +15,7 @@ export class seznamObiskovComponent implements OnInit{
 	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http, private DNService: izpisDNService){}
 
+	nadomestne: any[] = [{'sifra':0}];
 	res:any;
 	aliObstaja: boolean = false;
 	obiski = [{'name': '','id':0}];
@@ -58,6 +59,7 @@ export class seznamObiskovComponent implements OnInit{
 				this.izdajatelji[0].sifra = dobiZd.sifra;
 				this.izdajatelji[0].id = dobiZd.idzdravstveniDelavec;
 			}else if(localStorage['vloga'] == 'PatronaznaSestra'){
+			
 				this.sestre[0].ime = dobiZd.ime+" "+dobiZd.priimek;
 				this.sestre[0].sifra = dobiZd.sifra;
 				this.sestre[0].id = dobiZd.idzdravstveniDelavec;
@@ -159,15 +161,23 @@ export class seznamObiskovComponent implements OnInit{
 				let d = 0; //stevec za paciente
 				let j = 0; //stevec za vrste obiskov
 				let m = 0; //stevec za zdravstvene delavce
-
-
+				let n = 0;
+				
+				console.log(this.tabelaObiskovVsi);
 				for(let dn of this.tabelaObiskovVsi){
 					for(let ob of dn.obisks){
 						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',nadomestna:''});
 						this.aliObstaja = false;
 						obisk.idObiska = ob.idobisk;
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
-						obisk.nadomestna = ob.nadomestnaSestra.ime+" "+ob.nadomestnaSestra.priimek+" ["+ob.nadomestnaSestra.sifra+"]";
+						if(ob.nadomestnaSestra != null){
+							if(localStorage.getItem('idZdravstvenegaDelavca') != ob.nadomestnaSestra.idzdravstveniDelavec){
+								continue;
+							}
+							obisk.nadomestna = ob.nadomestnaSestra.ime+" "+ob.nadomestnaSestra.priimek+" ["+ob.nadomestnaSestra.sifra+"]";
+						}else{
+							obisk.nadomestna = 'ni nadomeščanja';
+						}
 						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
@@ -175,15 +185,53 @@ export class seznamObiskovComponent implements OnInit{
 							obisk.opravljenost = 'Opravljen';
 						}
 						//setanje patronaznih sester
-					
+						if(localStorage['vloga'] == 'PatronaznaSestra'){
+							m = 1;
+						}else{
+							n = 1;
+						}
+						var nd = 0;
+						for(let b of dn.obisks){
+							if(b.nadomestnaSestra != null){
+								let nov: any = ({'sifra':0});
+								nov.sifra = b.nadomestnaSestra.sifra;
+								this.nadomestne[nd] = nov;
+								nd = nd+1;
+							}
+						}
 						for(let zdr of dn.zdravstveniDelavecs){
 							this.aliObstaja = false;
 							if(zdr.okolis != null){
-								obisk.patronaznaSestra =zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+obisk.patronaznaSestra;
+								if(obisk.nadomestna != 'ni nadomeščanja'){
+									
+									if(zdr.sifra == ob.nadomestnaSestra.sifra){
+										obisk.patronaznaSestra =zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+obisk.patronaznaSestra;
+									}
+								}
+								var nekBool = false;
+								for(let b of this.nadomestne){
+									if(zdr.sifra == b.sifra){
+										nekBool = true;
+										break;
+										
+									}
+								}
+								if(nekBool == false){
+									obisk.patronaznaSestra =zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+obisk.patronaznaSestra;
+								}
 								
 								//pregled Sester
+								console.log(this.sestre);
 								for(let ses of this.sestre){
-									if(ses.id == zdr.idzdravstveniDelavec){
+									
+									if(obisk.nadomestna != 'ni nadomeščanja'){
+										if((nekBool == true && zdr.sifra != ob.nadomestnaSestra.sifra)){
+											console.log(ob.nadomestnaSestra);
+											this.aliObstaja = true;
+											
+										}
+									}
+									if(ses.id == zdr.idzdravstveniDelavec || this.aliObstaja == true){
 										this.aliObstaja = true;
 										break;
 									}
@@ -209,11 +257,13 @@ export class seznamObiskovComponent implements OnInit{
 									noviZdr.ime = zdr.ime+' '+zdr.priimek;
 									noviZdr.sifra = zdr.sifra;
 									noviZdr.id = zdr.idzdravstveniDelavec;
-									this.izdajatelji[m] = noviZdr;
-									m = m+1;
+									console.log(this.izdajatelji);
+									this.izdajatelji[n] = noviZdr;
+									n = n+1;
 								}
-
+								
 								obisk.izdajatelj = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"]";
+								
 							}
 						}
 
@@ -280,7 +330,11 @@ export class seznamObiskovComponent implements OnInit{
 						this.aliObstaja = false;
 						obisk.idObiska = ob.idobisk;
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
-						obisk.nadomestna = ob.nadomestnaSestra.ime+" "+ob.nadomestnaSestra.priimek+" ["+ob.nadomestnaSestra.sifra+"]";
+						if(ob.nadomestnaSestra != null){
+							obisk.nadomestna = ob.nadomestnaSestra.ime+" "+ob.nadomestnaSestra.priimek+" ["+ob.nadomestnaSestra.sifra+"]";
+						}else{
+							obisk.nadomestna = 'ni nadomeščanja';
+						}
 						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
@@ -288,15 +342,45 @@ export class seznamObiskovComponent implements OnInit{
 							obisk.opravljenost = 'Opravljen';
 						}
 						//setanje patronaznih sester
-
+						var nd = 0;
+						for(let b of dn.obisks){
+							if(b.nadomestnaSestra != null){
+								let nov: any = ({'sifra':0});
+								nov.sifra = b.nadomestnaSestra.sifra;
+								this.nadomestne[nd] = nov;
+								nd = nd+1;
+							}
+						}
 						for(let zdr of dn.zdravstveniDelavecs){
 							this.aliObstaja = false;
 							if(zdr.okolis != null){
-								obisk.patronaznaSestra = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"] "+obisk.patronaznaSestra;
+								if(obisk.nadomestna != 'ni nadomeščanja'){
+									if(zdr.sifra == ob.nadomestnaSestra.sifra){
+										obisk.patronaznaSestra = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"] "+obisk.patronaznaSestra;
+									}
+								}
+									
+								var nekBool = false;
+								for(let b of this.nadomestne){
+									if(zdr.sifra == b.sifra){
+										nekBool = true;
+										break;
+										
+									}
+								}
+								if(nekBool == false){
+									obisk.patronaznaSestra =zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+obisk.patronaznaSestra;
+								}
 
 								//pregled Sester
 								for(let ses of this.sestre){
-									if(ses.id == zdr.idzdravstveniDelavec){
+									if(obisk.nadomestna != 'ni nadomeščanja'){
+										if((nekBool == true && zdr.sifra != ob.nadomestnaSestra.sifra)){
+											this.aliObstaja = true;
+											
+										}
+									}
+									if((ses.id == zdr.idzdravstveniDelavec) || (this.aliObstaja == true)){
 										this.aliObstaja = true;
 										break;
 									}

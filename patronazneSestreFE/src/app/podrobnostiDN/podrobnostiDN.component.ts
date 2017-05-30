@@ -78,11 +78,18 @@ export class podrobnostiDNComponent implements OnInit{
 					this.izdPriimek = i.priimek;
 				}else if(i.okolis != null){
 					for(let b of this.delovniNalog.obisks){
-						if(b.nadomestnaSestra.idzdravstveniDelavec != i.idzdravstveniDelavec){
-							this.sestraSifra = i.sifra;
-							this.sestraOkolis = i.okolis.opis;
-							this.sestraIme = i.ime;
-							this.sestraPriimek = i.priimek;
+						if(b.nadomestnaSestra != null){
+							if(b.nadomestnaSestra.idzdravstveniDelavec != i.idzdravstveniDelavec){
+								this.sestraSifra = i.sifra;
+								this.sestraOkolis = i.okolis.opis;
+								this.sestraIme = i.ime;
+								this.sestraPriimek = i.priimek;
+							}
+						}else{
+								this.sestraSifra = i.sifra;
+								this.sestraOkolis = i.okolis.opis;
+								this.sestraIme = i.ime;
+								this.sestraPriimek = i.priimek;
 						}
 					}
 				}
@@ -122,7 +129,11 @@ export class podrobnostiDNComponent implements OnInit{
 			let j = 0;
 			for(let i of this.delovniNalog.obisks){
 				let novObisk = <any> ({'datumObiska':'','fiksniDatum':'','opravljen':'','dejanskiDatum':'','nadomescanje':''});
-				novObisk.nadomescanje = i.nadomestnaSestra.ime+" "+i.nadomestnaSestra.priimek+" ["+i.nadomestnaSestra.sifra+"]";
+				if(i.nadomestnaSestra != null){
+					novObisk.nadomescanje = i.nadomestnaSestra.ime+" "+i.nadomestnaSestra.priimek+" ["+i.nadomestnaSestra.sifra+"]";
+				}else{
+					novObisk.nadomescanje = 'ni nadomeščanja';
+				}
 				novObisk.datumObiska = i.datumObiska;
 				novObisk.dejanskiDatum = i.dejanskiDatumObiska;
 				if(i.opravljen == 0){
