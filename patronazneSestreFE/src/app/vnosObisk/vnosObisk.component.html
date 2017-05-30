@@ -4,7 +4,15 @@
     <form (ngSubmit)="onSubmit()" #obiskForm="ngForm">
       <div class="form-group">
         <div ngIf="aplikacijaInjekcije">
-
+          <div class="form-group">
+            <label>Aplikacija Injekcije</label>
+            <input type="checkbox" class="form-control" name="akt10">
+          </div>
+          <div class="form-group">
+            <label>Pogovor, nasvet in vzpodbuda</label>
+            <textarea class="form-control" name="akt20" cols="6">
+            </textarea>
+          </div>
         </div>
         <div ngIf="kontrolaZdravstvenegaStanja">
           <div class="form-group">
@@ -599,7 +607,7 @@
             </textarea>
           </div>
         </div>
-        <button type="submit" class="btn btn-info">Dodaj nadomestno sestro</button>
+        <button type="submit" class="btn btn-info">Gumbek</button>
         <button type="submit" class="btn btn-success" [disabled]="!obiskForm.form.valid">Vnesi obisk</button>
       </div>
     </form>
