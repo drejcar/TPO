@@ -1,175 +1,178 @@
 <div class="container">
   <div [hidden]="submitted">
-    <h1>Obisk: vnos</h1>
+    <h1>Obisk: {{idObiska}}</h1>
+	<h3>Pacient: {{pacient}}</h3>
+	<div id="linija"></div>
+	
     <form (ngSubmit)="onSubmit()" #obiskForm="ngForm">
       <div class="form-group">
         <div *ngIf="aplikacijaInjekcije">
           <div class="form-group">
             <label>Aplikacija Injekcije</label>
-            <input [(ngModel)]="porociloAplikacijaInjekcijeA.akt10" type="checkbox" class="form-control" name="akt10">
+            <input [(ngModel)]="porociloAplikacijaInjekcijeA.akt10" disabled={{dis}} type="checkbox" class="form-control" name="akt10">
           </div>
           <div class="form-group">
             <label>Pogovor, nasvet in vzpodbuda</label>
-            <textarea [(ngModel)]="porociloAplikacijaInjekcijeA.akt20" class="form-control" name="akt20" cols="6">
+            <textarea [(ngModel)]="porociloAplikacijaInjekcijeA.akt20" disabled={{dis}} class="form-control" name="akt20" cols="6">
             </textarea>
           </div>
         </div>
         <div *ngIf="kontrolaZdravstvenegaStanja">
           <div class="form-group">
             <label>Anamneza</label>
-            <textarea class="form-control" name="akt10" cols="6">
+            <textarea [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt10" disabled={{dis}} class="form-control" name="akt10" cols="6">
             </textarea>
           </div>
           <div class="form-group">
             <label>Krvni Pritisk: sistolični, diastolični</label>
             <div class="form-group">
               <label>Sistolični (mm Hg):</label>
-              <input type="number" class="form-control" name="akt20a" required>
+              <input type="number" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt20a" disabled={{dis}} class="form-control" name="akt20a" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg):</label>
-              <input type="number" class="form-control" name="akt20b" required>
+              <input type="number" class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt20b" disabled={{dis}} name="akt20b" required>
             </div>
             </div>
           <div class="form-group">
             <label>Srčni utrip (udarci na minuto)</label>
-            <input type="number" class="form-control" name="akt30" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt30" name="akt30" disabled={{dis}} required>
           </div>
           <div class="form-group">
             <label>dihanje (vdihi na minuto)</label>
-            <input type="number" class="form-control" name="akt40" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt40" name="akt40" disabled={{dis}} required>
           </div>
           <div class="form-group">
             <label>Telesna temperatura (°C)</label>
-            <input type="number" class="form-control" name="akt50" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt50" name="akt50" disabled={{dis}} required>
           </div>
           <div class="form-group">
             <label>Krvni sladkor:</label>
             <div class="form-group">
               <label>mmol/L</label>
-              <input type="number" class="form-control" name="akt60a" required>
+              <input type="number" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt60a" class="form-control" name="akt60a" disabled={{dis}} required>
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt60b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt60b" name="akt60b" disabled={{dis}} cols="3">
               </textarea>
             </div>
             </div>
           <div class="form-group">
             <label>Oksigenacija SpO2</label>
-            <input type="number" class="form-control" name="akt70" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt70" name="akt70" disabled={{dis}} required>
           </div>
           <div class="form-group">
             <label>Upoštevanje terapije</label>
             <div class="form-group">
-              <input type="radio" class="form-control" name="akt80a" value="Da" required>Da<br>
-              <input type="radio" class="form-control" name="akt80a" value="Delno" required>Delno<br>
-              <input type="radio" class="form-control" name="akt80a" value="Ne" required>Ne
+              <input type="radio" class="form-control" name="akt80a" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80a" disabled={{dis}} value="Da" required><option>Da</option>
+			  <input type="radio" class="form-control" name="akt80a" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80a" disabled={{dis}} value="Delno" required>Delno<br>
+              <input type="radio" class="form-control" name="akt80a"  [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80a" disabled={{dis}} value="Ne" required>Ne
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt80b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80b" disabled={{dis}} name="akt80b" cols="3">
               </textarea>
             </div>
             </div>
           <div class="form-group">
             <label>Pregled terapije</label>
-            <textarea class="form-control" name="akt90" cols="6">
+            <textarea class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt90" disabled={{dis}} name="akt90" cols="6">
               </textarea>
           </div>
           <div class="form-group">
             <label>Navodila za terapijo do naslednjega obiska</label>
-            <textarea class="form-control" name="akt100" cols="6">
+            <textarea class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt100" disabled={{dis}} name="akt100" cols="6">
               </textarea>
           </div>
           <div class="form-group">
             <label>Pogovor, nasvet in vzpodbuda</label>
-            <textarea class="form-control" name="akt110" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt110" disabled={{dis}} name="akt110" cols="3">
             </textarea>
           </div>
         </div>
         <div *ngIf="obiskNosecnice">
           <div class="form-group">
             <label>Seznanitev nosečnice o normalnem poteku nosečnosti in o spremembah na telesu.</label>
-            <input type="text" class="form-control" name="akt10">
+            <input type="text" [(ngModel)]="porociloObiskNosecnice.akt10" class="form-control" disabled={{dis}} name="akt10">
           </div>
           <div class="form-group">
             <label>Povabilo v šolo za starše</label>
-            <input type="text" class="form-control" name="akt20">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt20" disabled={{dis}} name="akt20">
           </div>
           <div class="form-group">
             <label>Seznanitev o rednih ginekoloških pregledih</label>
-            <input type="text" class="form-control" name="akt30">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt30" disabled={{dis}} name="akt30">
           </div>
           <div class="form-group">
             <label>Seznanitev z bližajočim se porodom in pravočasnim odhodom v porodnišnico. </label>
-            <input type="text" class="form-control" name="akt40">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt40" disabled={{dis}} name="akt40">
           </div>
           <div class="form-group">
             <label>Pogovor in vključevanje partnerja v nosečnost in porod ter po prihodu domov. </label>
-            <input type="text" class="form-control" name="akt50">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt50" disabled={{dis}} name="akt50">
           </div>
           <div class="form-group">
             <label>Svetovanje o pripomočkih, ki jih bo potrebovala v porodnišnici. </label>
-            <input type="text" class="form-control" name="akt60">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt60" disabled={{dis}} name="akt60">
           </div>
           <div class="form-group">
             <label>Seznanitev nosečnice o štetju in beleženju plodovih gibov. </label>
-            <input type="text" class="form-control" name="akt70">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt70" disabled={{dis}} name="akt70">
           </div>
           <div class="form-group">
             <label>Svetovanje glede opreme za novorojenca in primerno ležišče. </label>
-            <input type="text" class="form-control" name="akt80">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt80" disabled={{dis}} name="akt80">
           </div>
           <div class="form-group">
             <label>Svetovanje o pravilni prehrani, ustrezni izbiri obleke in obutve.</label>
-            <input type="text" class="form-control" name="akt90">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt90" disabled={{dis}} name="akt90">
           </div>
           <div class="form-group">
             <label>Svetovanje o primernem režim življenja, telesne vaje, gibanje na svežem zraku.</label>
-            <input type="text" class="form-control" name="akt100">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt100" disabled={{dis}} name="akt100">
           </div>
           <div class="form-group">
             <label>Odsvetovanje razvad kot so uživanje alkohola, kajenje, uživanje zdravil in drog. </label>
-            <input type="text" class="form-control" name="akt110">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt110" disabled={{dis}} name="akt110">
           </div>
           <div class="form-group">
             <label>Seznanitev nosočnice z nevšečnostmi in svetovanje glede lajšanja težav zaradi nevšečnosti</label>
             <label>(slabosti, bruhanja, zaprtja, pogostih mikcij, nespečnosti, zgage, ...).</label>
-            <input type="text" class="form-control" name="akt120">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt120" disabled={{dis}} name="akt120">
           </div>
           <div class="form-group">
             <label>Seznanitev nosečnice s pravicami do starševskega dopusta (porodniški dopust, pravica do dopusta</label>
             <label> za nego in varstvo otroka, pravica do očetovskega dopusta) in o uveljavljanju</label>
             <label>pravic povezanih z rojstvom otroka (pravica do paketa, otroški dodatek,</label>
             <label>zdravstveno zavarovanje, rojstni list, ureditev očetovstva).</label>
-            <input type="text" class="form-control" name="akt130">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt130" disabled={{dis}} name="akt130">
           </div>
           <div class="form-group">
             <label>Pričakovan datum poroda</label>
-            <input type="date" class="form-control" name="akt140" required>
+            <input type="date" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt140" disabled={{dis}} name="akt140" required>
           </div>
           <div class="form-group">
             <label>Anamneza: počutje, telesni znaki nosečnosti</label>
-            <textarea class="form-control" name="akt150" cols="6" required>
+            <textarea class="form-control" [(ngModel)]="porociloObiskNosecnice.akt150" disabled={{dis}} name="akt150" cols="6" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Družinska anamneza: Odnosi v družini, odnos družine do okolja, bivalni pogoji, ekonomske</label>
             <label>razmere, zdravstveno stanje družinskih članov, zdravstvena prosvetljenost in vzgojenost.</label>
-            <textarea class="form-control" name="akt160" cols="6" required>
+            <textarea class="form-control" [(ngModel)]="porociloObiskNosecnice.akt160" disabled={{dis}} name="akt160" cols="6" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Anamneza: počutje, telesni znaki nosečnosti</label>
             <div class="form-group">
               <label><label>Izražanje Čustev</label></label>
-              <input type="radio" class="form-control" name="akt170a" value="Moteno">Moteno<br>
-              <input type="radio" class="form-control" name="akt170a" value="Ni moteno">Ni moteno
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt170a" disabled={{dis}} name="akt170a" value="Moteno">Moteno<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt170a" disabled={{dis}} name="akt170a" value="Ni moteno">Ni moteno
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt170b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloObiskNosecnice.akt170b" disabled={{dis}} name="akt170b" cols="3">
               </textarea>
             </div>
           </div>
@@ -177,13 +180,13 @@
             <label>Fizična obremenjenost</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" name="akt180a" value="Nizka">Nizka<br>
-              <input type="radio" class="form-control" name="akt180a" value="Srednja">Srednja<br>
-              <input type="radio" class="form-control" name="akt180a" value="Visoka">Visoka
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180a" disabled={{dis}} name="akt180a" value="Nizka">Nizka<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180a" disabled={{dis}} name="akt180a" value="Srednja">Srednja<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180a" disabled={{dis}} name="akt180a" value="Visoka">Visoka
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt180b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180b" disabled={{dis}} name="akt180b" cols="3">
               </textarea>
             </div>
           </div>
@@ -191,73 +194,73 @@
             <label>Krvni Pritisk:</label>
             <div class="form-group">
               <label>Sistolični (mm HG):</label>
-              <input type="number" class="form-control" name="akt190a" required>
+              <input type="number" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt190a" disabled={{dis}} name="akt190a" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg):</label>
-              <input type="number" class="form-control" name="akt190b" required>
+              <input type="number" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt190b" disabled={{dis}} name="akt190b" required>
             </div>
           </div>
           <div class="form-group">
             <label>Srčni utrip (udarci na minuto)</label>
-            <input type="number" class="form-control" name="akt200" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt200" disabled={{dis}} name="akt200" required>
           </div>
           <div class="form-group">
             <label>Dihanje(vdihi na minuto)</label>
-            <input type="number" class="form-control" name="akt210" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt210" disabled={{dis}} name="akt210" required>
           </div>
           <div class="form-group">
             <label>Telesna Temperatura (v °C)</label>
-            <input type="number" class="form-control" name="akt220" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt220" disabled={{dis}} name="akt220" required>
           </div>
           <div class="form-group">
             <label>Telesna teža pred nosečnostjo(v kg)</label>
-            <input type="number" class="form-control" name="akt230" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt230" disabled={{dis}} name="akt230" required>
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža (v kg)</label>
-            <input type="number" class="form-control" name="akt240" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt240" disabled={{dis}} name="akt240" required>
           </div>
         </div>
         <div *ngIf="obiskNovorojencka">
           <div class="form-group">
             <label>Prikaz nege dojenčka</label>
-            <input type="text" class="form-control" name="akt10">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt10" disabled={{dis}} name="akt10">
           </div>
           <div class="form-group">
             <label>Nega popkovne rane</label>
-            <input type="text" class="form-control" name="akt20">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt20" disabled={{dis}} name="akt20">
           </div>
           <div class="form-group">
             <label>Nudenje pomoči pri dojenju in seznanitev s tehnikami dojenja</label>
-            <input type="text" class="form-control" name="akt30">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt30" disabled={{dis}} name="akt30">
           </div>
           <div class="form-group">
             <label>Ureditev ležišča</label>
-            <input type="text" class="form-control" name="akt40">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt40" disabled={{dis}} name="akt40">
           </div>
           <div class="form-group">
             <label>Svetovanje o povijanju, oblačenju, slačenju</label>
-            <input type="text" class="form-control" name="akt50">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt50" disabled={{dis}} name="akt50">
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža(v gramih)</label>
-            <input type="number" class="form-control" name="akt60" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt60" disabled={{dis}} name="akt60" required>
           </div>
           <div class="form-group">
             <label>Trenutna telesna višina (v cm)</label>
-            <input type="number" class="form-control" name="akt70" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt70" disabled={{dis}} name="akt70" required>
           </div>
           <div class="form-group">
             <label>Dojenje</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" name="akt80a" value="Da">Da<br>
-              <input type="radio" class="form-control" name="akt80a" value="Ne">Ne
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt80a" disabled={{dis}} name="akt80a" value="Da">Da<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt80a" disabled={{dis}} name="akt80a" value="Ne">Ne
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt80b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt80b" disabled={{dis}} name="akt80b" cols="3">
               </textarea>
             </div>
           </div>
@@ -265,12 +268,12 @@
             <label>Dodajanje adaptiranega mleka</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" name="akt90a" value="Da">Da<br>
-              <input type="radio" class="form-control" name="akt90a" value="Ne">Ne
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt90a" disabled={{dis}} name="akt90a" value="Da">Da<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt90a" disabled={{dis}} name="akt90a" value="Ne">Ne
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt90b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt90b" disabled={{dis}} name="akt90b" cols="3">
               </textarea>
             </div>
           </div>
@@ -278,32 +281,32 @@
             <label>Izločanje in odvajanje</label>
             <div class="form-group">
               <label></label>
-              <input type="text" class="form-control" name="akt100a">
+              <input type="text" class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt100a" disabled={{dis}} name="akt100a">
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt100b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt100b" disabled={{dis}} name="akt100b" cols="3">
               </textarea>
             </div>
           </div>
           <div class="form-group">
             <label>Ritem spanja</label>
-            <textarea class="form-control" name="akt110" cols="3" required>
+            <textarea class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt110" disabled={{dis}} name="akt110" cols="3" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Povišanje bilirubina (zlatenica)</label>
-            <textarea class="form-control" name="akt120" cols="3" required>
+            <textarea class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt120" disabled={{dis}} name="akt120" cols="3" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Kolki</label>
-            <textarea class="form-control" name="akt130" cols="3" required>
+            <textarea class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt130" disabled={{dis}} name="akt130" cols="3" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Posebnosti</label>
-            <textarea class="form-control" name="akt140" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloObiskNovorojencka.akt140" disabled={{dis}} name="akt140" cols="3">
             </textarea>
           </div>
         </div>
@@ -312,126 +315,126 @@
             <label>Pregled materinske knjižice in odpustnice iz porodnišnice</label>
             <div class="form-group">
               <label>Datum rojstva otroka</label>
-              <input type="date" class="form-control" name="akt10a" required>
+              <input type="date" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10a" disabled={{dis}} name="akt10a" required>
             </div>
             <div class="form-group">
               <label>Porodna teža Otroka (v gramih)</label>
-              <input type="number" class="form-control" name="akt10b" required>
+              <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10b" disabled={{dis}} name="akt10b" required>
             </div>
             <div class="form-group">
               <label>Porodna višina otroka (v cm)</label>
-              <input type="number" class="form-control" name="akt10c" required>
+              <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10c" disabled={{dis}} name="akt10c" required>
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt10d" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10d" disabled={{dis}} name="akt10d" cols="3">
               </textarea>
             </div>
           </div>
           <div class="form-group">
             <label>Kontrola vitalnih funkcij</label>
-            <input type="text" class="form-control" name="akt20">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt20" disabled={{dis}} name="akt20">
           </div>
           <div class="form-group">
             <label>Opazovanje čišče</label>
-            <input type="text" class="form-control" name="akt30">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt30" disabled={{dis}} name="akt30">
           </div>
           <div class="form-group">
             <label>Nadzor nad izločanjem blata in urina</label>
-            <input type="text" class="form-control" name="akt40">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt40" disabled={{dis}} name="akt40">
           </div>
           <div class="form-group">
             <label>Zdravstveno vzgojno delo glede pravilnega rokovanja z novorojenčkom, učenje tehnike nege novorojenčka</label>
-            <input type="text" class="form-control" name="akt50">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt50" disabled={{dis}} name="akt50">
           </div>
           <div class="form-group">
             <label>Motivacija za dojenje. Nadzor in pomoč pri dojenju</label>
-            <input type="text" class="form-control" name="akt60">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt60" disabled={{dis}} name="akt60">
           </div>
           <div class="form-group">
             <label>Svetovanje o čustveni podpori s strani partnerja</label>
-            <input type="text" class="form-control" name="akt70">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt70" disabled={{dis}} name="akt70">
           </div>
           <div class="form-group">
             <label>Seznanitev o otrokovih potrebah po toplini, nežnosti in varnosti</label>
-            <input type="text" class="form-control" name="akt80">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt80" disabled={{dis}} name="akt80">
           </div>
           <div class="form-group">
             <label>Svetovanje o spalnih potrebah otročnice, pravilni negi in higienskem režimu v poporodnem obdobju</label>
-            <input type="text" class="form-control" name="akt90">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt90" disabled={{dis}} name="akt90">
           </div>
           <div class="form-group">
             <label>Svetovanje o pravilni prehrani, pitju ustreznih količin tekočin</label>
-            <input type="text" class="form-control" name="akt100">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt100" disabled={{dis}} name="akt100">
           </div>
           <div class="form-group">
             <label>Poučitev o poporodni telovadbi</label>
-            <input type="text" class="form-control" name="akt110">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt110" disabled={{dis}} name="akt110">
           </div>
           <div class="form-group">
             <label>Seznanitev z nekaterimi obolenji</label>
-            <input type="text" class="form-control" name="akt120">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt120" disabled={{dis}} name="akt120">
           </div>
           <div class="form-group">
             <label>Napotitev na poporodni pregled</label>
-            <input type="text" class="form-control" name="akt130">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt130" disabled={{dis}} name="akt130">
           </div>
           <div class="form-group">
             <label>Seznanitev z metodami zaščite pred nezaželjeno nosečnostjo</label>
-            <input type="text" class="form-control" name="akt140">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt140" disabled={{dis}} name="akt140">
           </div>
           <div class="form-group">
             <label>Svetovanje o normalnem delu, življenju in spolnih odnosih</label>
-            <input type="text" class="form-control" name="akt150">
+            <input type="text" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt150" disabled={{dis}} name="akt150">
           </div>
           <div class="form-group">
             <label>Krvni pritisk</label>
             <div class="form-group">
               <label>Sistolični (mm Hg)</label>
-              <input type="number" class="form-control" name="akt160a" required>
+              <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt160a" disabled={{dis}} name="akt160a" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg)</label>
-              <input type="number" class="form-control" name="akt160b" required>
+              <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt160b" disabled={{dis}} name="akt160b" required>
             </div>
             </div>
           <div class="form-group">
             <label>Srčni utrip (udarci na minuto)</label>
-            <input type="number" class="form-control" name="akt170" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt170" disabled={{dis}} name="akt170" required>
           </div>
           <div class="form-group">
             <label>Dihanje (vdihi na minuto)</label>
-            <input type="number" class="form-control" name="akt180" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt180" disabled={{dis}} name="akt180" required>
           </div>
           <div class="form-group">
             <label>Telesna temperatura (v °C)</label>
-            <input type="number" class="form-control" name="akt190" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt190" disabled={{dis}} name="akt190" required>
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža (v kg)</label>
-            <input type="number" class="form-control" name="akt200" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt200" disabled={{dis}} name="akt200" required>
           </div>
           <div class="form-group">
             <label>Anamneza: počutje, telesni znaki nosečnosti</label>
-            <textarea class="form-control" name="akt210" cols="6">
+            <textarea class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt210" disabled={{dis}} name="akt210" cols="6">
             </textarea>
           </div>
           <div class="form-group">
             <label>Družinska anamneza: odnosi v družini, odnos družine do okolja, bivalni pogoji, ekonomske razmere,</label>
             <label>zdravstveno stanje družinskih članov, zdravstvena prosvetljenost in vzgojenost.</label>
-            <textarea class="form-control" name="akt220" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt220" disabled={{dis}} name="akt220" cols="3">
             </textarea>
           </div>
           <div class="form-group">
             <label>Izražanje čustev</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" name="akt230a" value="Moteno">Moteno<br>
-              <input type="radio" class="form-control" name="akt230a" value="Ni moteno">Ni moteno
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt230a" disabled={{dis}} name="akt230a" value="Moteno">Moteno<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt230a" disabled={{dis}} name="akt230a" value="Ni moteno">Ni moteno
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt230b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt230b" disabled={{dis}} name="akt230b" cols="3">
               </textarea>
             </div>
           </div>
@@ -439,13 +442,13 @@
             <label>Fizična obremenjenost</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" name="akt240a" value="Nizka">Nizka<br>
-              <input type="radio" class="form-control" name="akt240a" value="Srednja">Srednja<br>
-              <input type="radio" class="form-control" name="akt240a" value="Visoka">Visoka
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240a" disabled={{dis}} name="akt240a" value="Nizka">Nizka<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240a" disabled={{dis}} name="akt240a" value="Srednja">Srednja<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240a" disabled={{dis}} name="akt240a" value="Visoka">Visoka
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" name="akt240b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240b" disabled={{dis}} name="akt240b" cols="3">
               </textarea>
             </div>
           </div>
@@ -453,162 +456,166 @@
         <div *ngIf="odvzemKrvi">
           <div class="form-group">
             <label></label>
-            <input type="number" class="form-control" name="akt10modra">
+            <input type="number" class="form-control" [(ngModel)]="porociloOdvzemKrvi.akt10modra" disabled={{dis}} name="akt10modra">
           </div>
           <div class="form-group">
             <label></label>
-            <input type="number" class="form-control" name="akt10rdeca">
+            <input type="number" class="form-control" [(ngModel)]="porociloOdvzemKrvi.akt10rdeca" disabled={{dis}} name="akt10rdeca">
           </div>
           <div class="form-group">
             <label></label>
-            <input type="number" class="form-control" name="akt10rumena">
+            <input type="number" class="form-control" [(ngModel)]="porociloOdvzemKrvi.akt10rumena" disabled={{dis}} name="akt10rumena">
           </div>
           <div class="form-group">
             <label></label>
-            <input type="number" class="form-control" name="akt10zelena">
+            <input type="number" class="form-control" [(ngModel)]="porociloOdvzemKrvi.akt10zelena" disabled={{dis}} name="akt10zelena">
           </div>
           <div class="form-group">
             <label>Pogovor, nasvet, vzpodbuda</label>
-            <textarea class="form-control" name="akt20" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloOdvzemKrvi.akt20" disabled={{dis}} name="akt20" cols="3">
             </textarea>
           </div>
         </div>
         <div *ngIf="preventivaStarostnika">
           <div class="form-group">
             <label>Anamneza</label>
-            <textarea class="form-control" name="akt10" cols="6" required>
+            <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt10" disabled={{dis}} name="akt10" cols="6" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Družinska anamneza</label>
-            <textarea class="form-control" name="akt20" cols="6" required>
+            <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt20" disabled={{dis}} name="akt20" cols="6" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Krvni pritisk</label>
             <div class="form-group">
               <label>Sistolični (mm Hg):</label>
-              <input type="text" class="form-control" name="akt30a" required>
+              <input type="text" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt30a" disabled={{dis}} name="akt30a" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg):</label>
-              <input type="text" class="form-control" name="akt30b" required>
+              <input type="text" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt30b" disabled={{dis}} name="akt30b" required>
             </div>
             </div>
           <div class="form-group">
             <label>Srčni utrip (udarci na minuto)</label>
-            <input type="number" class="form-control" name="akt40" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt40" disabled={{dis}} name="akt40" required>
           </div>
           <div class="form-group">
             <label>Dihanje (vdihi na minuto)</label>
-            <input type="number" class="form-control" name="akt50" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt50" disabled={{dis}} name="akt50" required>
           </div>
           <div class="form-group">
             <label>Telesna temperatura (v °C)</label>
-            <input type="number" class="form-control" name="akt60" required>
+            <input type="number" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt60" disabled={{dis}} name="akt60" required>
           </div>
           <div class="form-group">
             <label>Telesna teža (v kg)</label>
-            <input type="text" class="form-control" name="akt70" required>
+            <input type="text" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt70" disabled={{dis}} name="akt70" required>
           </div>
           <div class="form-group">
             <label>Osebna higiena</label>
-            <textarea class="form-control" name="akt80" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt80" disabled={{dis}} name="akt80" cols="3">
             </textarea>
           </div>
           <div class="form-group">
             <label>Prehranjevanje in pitje</label>
-            <textarea class="form-control" name="akt90" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt90" disabled={{dis}} name="akt90" cols="3">
             </textarea>
           </div>
           <div class="form-group">
             <label>Izločanje in odvajanje</label>
             <div class="form-group">
               <label>Urin:</label>
-              <textarea class="form-control" name="akt100a" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt100a" disabled={{dis}} name="akt100a" cols="3">
               </textarea>
             </div>
             <div class="form-group">
               <label>Blato:</label>
-              <textarea class="form-control" name="akt100a" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt100b" disabled={{dis}} name="akt100b" cols="3">
               </textarea>
             </div>
           </div>
           <div class="form-group">
             <label>Gibanje</label>
-            <textarea class="form-control" name="akt110" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt110" disabled={{dis}} name="akt110" cols="3">
             </textarea>
           </div>
           <div class="form-group">
             <label>Čutila in občutki</label>
             <div class="form-group">
               <label>Vid:</label>
-              <textarea class="form-control" name="akt120a" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt120a" disabled={{dis}} name="akt120a" cols="3">
               </textarea>
             </div>
             <div class="form-group">
               <label>Vonj:</label>
-              <textarea class="form-control" name="akt120b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt120b" disabled={{dis}} name="akt120b" cols="3">
               </textarea>
             </div>
             <div class="form-group">
               <label>Sluh:</label>
-              <textarea class="form-control" name="akt120c" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt120c" disabled={{dis}} name="akt120c" cols="3">
               </textarea>
             </div>
             <div class="form-group">
               <label>Okus:</label>
-              <textarea class="form-control" name="akt120d" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt120d" disabled={{dis}} name="akt120d" cols="3">
               </textarea>
             </div>
             <div class="form-group">
               <label>Otip:</label>
-              <textarea class="form-control" name="akt120e" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt120e" disabled={{dis}} name="akt120e" cols="3">
               </textarea>
             </div>
           </div>
           <div class="form-group">
             <label>Spanje in počitek</label>
-            <textarea class="form-control" name="akt130" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt130" disabled={{dis}} name="akt130" cols="3">
             </textarea>
           </div>
           <div class="form-group">
             <label>Duševno stanje: izražanje čustev in potreb, komunikacija</label>
-            <textarea class="form-control" name="akt140" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt140" disabled={{dis}} name="akt140" cols="3">
             </textarea>
           </div>
           <div class="form-group">
             <label>Stanje neodvisnosti:</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" name="akt150a" value="Samostojen">Samostojen/samostojna<br>
-              <input type="radio" class="form-control" name="akt150a" value="Delno odvisen">Delno odvisen/odvisna<br>
-              <input type="radio" class="form-control" name="akt150a" value="Popolnoma odvisen">Popolnoma odvisen/odvisna
+              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150a" disabled={{dis}} name="akt150a" value="Samostojen">Samostojen/samostojna<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150a" disabled={{dis}} name="akt150a" value="Delno odvisen">Delno odvisen/odvisna<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150a" disabled={{dis}} name="akt150a" value="Popolnoma odvisen">Popolnoma odvisen/odvisna
             </div>
             <div class="form-group">
               <label>Pomoč:</label>
-              <input type="radio" class="form-control" name="akt150b" value="Svojci">Svojci<br>
-              <input type="radio" class="form-control" name="akt150b" value="Drugi">Drugi
+              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150b" disabled={{dis}} name="akt150b" value="Svojci">Svojci<br>
+              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150b" disabled={{dis}} name="akt150b" value="Drugi">Drugi
             </div>
             <div class="form-group">
               <label></label>
-              <textarea class="form-control" name="akt150b" cols="3">
+              <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150c" disabled={{dis}} name="akt150c" cols="3">
               </textarea>
             </div>
           </div>
           <div class="form-group">
             <label>Pregled predpisanih terapij</label>
-            <textarea class="form-control" name="akt160" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt160" disabled={{dis}} name="akt160" cols="3">
             </textarea>
           </div>
           <div class="form-group">
             <label>Pogovor, nasvet, vzpodbuda</label>
-            <textarea class="form-control" name="akt170" cols="3">
+            <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt170" disabled={{dis}} name="akt170" cols="3">
             </textarea>
           </div>
         </div>
-        <button type="submit" class="btn btn-info">Gumbek</button>
-        <button type="submit" class="btn btn-success" [disabled]="!obiskForm.form.valid">Vnesi obisk</button>
+		<div [hidden]="!spremeni">
+			<button type="button" class="btn btn-info" disabled={{dis}} (click)="sprememba()">Posodobi</button>
+		</div>
+		<div [hidden]="spremeni">
+			<button type="submit" class="btn btn-success" disabled={{dis}} [disabled]="!obiskForm.form.valid">Vnesi obisk</button>
+		</div>
       </div>
     </form>
   </div>

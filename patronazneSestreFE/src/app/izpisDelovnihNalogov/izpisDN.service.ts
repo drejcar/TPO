@@ -19,6 +19,12 @@ export class izpisDNService{
 	private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
 	constructor(private http: Http){}
 
+	getObisk(idObiska:number): Observable<any> {
+		return this.http.get(`${this.baseUrl}/obiski/${idObiska}`,{headers: this.headers}).map((response: Response) => response.json());
+	}
+	posodobiObisk(obisk:any): Observable<any>{
+		return this.http.put(`${this.baseUrl}/delovniNalog/obisk`,JSON.stringify(obisk),{headers:this.headers});
+	}	
 	getDelovneNaloge(idZD: number,idStart:number) : Observable<any> {
 
 		var date = new Date();

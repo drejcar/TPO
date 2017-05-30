@@ -34,7 +34,7 @@ export class seznamObiskovComponent implements OnInit{
 
 
 	sekundarnaTabelaObiskovVsi: any[];
-	sekundarnaTabelaObiskovDejanski: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''}]
+	sekundarnaTabelaObiskovDejanski: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',porocilo:'',kaksno:''}]
 	izbranaOpravljenost = this.opravljenost[0];
 	izbraniIzdajatelj = this.izdajatelji[0];
 	izbraniObisk = this.obiski[0];
@@ -42,7 +42,7 @@ export class seznamObiskovComponent implements OnInit{
 	izbranaSestra = this.sestre[0];
 
 	tabelaObiskovVsi: any[];
-	tabelaDejanskiObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'','nadomestna':''}]
+	tabelaDejanskiObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'','nadomestna':'',porocilo:'',kaksno:''}]
 	izvajalecZdravstvenihStoritev:number= 0;
 
 	ngOnInit(){
@@ -187,9 +187,24 @@ export class seznamObiskovComponent implements OnInit{
 						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
+							if(localStorage.getItem('vloga') == 'Zdravnik'){
+								obisk.kaksno = 'Ni poročila';
+								obisk.porocilo = '*';
+							}else{
+								obisk.porocilo = '/vnosObisk/'+ob.idobisk+"/"+dn.iddelovniNalog;
+								obisk.kaksno = 'Dodaj poročilo'
+							}
 						}else{
 							obisk.opravljenost = 'Opravljen';
+							
+							obisk.porocilo = '/vnosObisk/'+ob.idobisk+"/"+dn.iddelovniNalog;
+							if(localStorage.getItem('vloga') == 'Zdravnik'){
+								obisk.kaksno = 'Podrobnosti poročila'
+							}else{
+								obisk.kaksno = 'Podrobnosti/Popravki poročila'
+							}
 						}
+							
 						//setanje patronaznih sester
 						if(localStorage['vloga'] == 'PatronaznaSestra'){
 							m = 1;
@@ -343,8 +358,12 @@ export class seznamObiskovComponent implements OnInit{
 						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
+							obisk.kaksno = 'Ni poročila';
+							obisk.porocilo = '*';
 						}else{
 							obisk.opravljenost = 'Opravljen';
+							obisk.porocilo = '/vnosObisk/'+ob.idobisk+"/"+dn.iddelovniNalog;
+							obisk.kaksno = 'Podrobnosti poročila';
 						}
 						//setanje patronaznih sester
 						var nd = 0;

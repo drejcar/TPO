@@ -22,18 +22,18 @@
 			<th class="prva">Id obiska</th>
 			<th class="prva">Predvideni datum obiska</th>
 			<th class="prva">Dejanski datum obiska</th>
-			<th class="prva">Nadomeščanje</th>
 			<th class="prva">Fiksni datum</th>
 			<th class="prva">Delovni nalog</th>
+			<th class="prva">Poročilo</th>
 			<th class="prva">Odstranjevanje</th>
 		</tr>
 		<tr *ngFor="let s of tabelaDejanskiObiskovFixenDat">
 			<td class="prva" [hidden] ="!aliJeVecji">{{s.idObiska}}</td>
 			<td class="prva" [hidden] ="!aliJeVecji">{{s.predvideniDatumObiska}}</td>
 			<td class="prva" [hidden] ="!aliJeVecji">{{s.dejanskiDatumObiska}}</td>
-			<td class="prva" [hidden] ="!aliJeVecji">{{s.nadomescanje}}</td>
 			<td class="prva" [hidden] ="!aliJeVecji">{{s.fiksniDatum}}</td>
 			<td class="prva" [hidden] ="!aliJeVecji"><a routerLink="/podrobnosti/{{s.idDelovniNalog}}" routerLinkActive="active">Delovni nalog</a></td>
+			<td class="prva" [hidden] ="!aliJeVecji"><a routerLink="{{s.porocilo}}" routerLinkActive="active">Dodaj poročilo</a></td>
 			<td class="prva" [hidden] ="!aliJeVecji"><input *ngIf="(s.fiksniDatum === 'NE')" type="button" class="btn-link" [(ngModel)]="s.dodaj" (click)="odstraniIzDneva(s.idObiska)" value="{{s.dodaj}}"></td>
 		</tr>
 	</table>

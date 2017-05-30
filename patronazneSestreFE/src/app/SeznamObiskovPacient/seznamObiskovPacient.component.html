@@ -27,7 +27,7 @@
 			<th>Patronažna sestra</th>
 			<th>Pacienti</th>
 			<th>Dejanski datum obiska</th>
-			<th>Podrobno</th>
+			<th>Podrobnosti poročila</th>
 		</tr>
 		<tr *ngFor="let s of tabelaDejanskiObiskov">
 			<td>{{s.idObiska}}</td>
@@ -36,7 +36,7 @@
 			<td>{{s.patronaznaSestra}}</td>
 			<td>{{s.pacienti}}</td>
 			<td>{{s.dejanskiDatumObiska}}</td>
-			<td><a>{{s.podrobno}}</a></td>
+			<td><a routerLink="{{s.porocilo}}" routerLinkActive="active">Podrobnosti poročila</a></td>
 		</tr>
 	</table>
 		

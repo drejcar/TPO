@@ -43,7 +43,7 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 	@Override
 	public Obisk returnObisk(int id) {
 
-		return (Obisk) em.createNamedQuery("Obisk.findOne").setParameter("id", id);
+		return (Obisk) em.createNamedQuery("Obisk.findOne").setParameter("id", id).getSingleResult();
 		
 	}
 
