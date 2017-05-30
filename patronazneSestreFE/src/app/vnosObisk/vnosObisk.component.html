@@ -3,18 +3,18 @@
     <h1>Obisk: vnos</h1>
     <form (ngSubmit)="onSubmit()" #obiskForm="ngForm">
       <div class="form-group">
-        <div ngIf="aplikacijaInjekcije">
+        <div *ngIf="aplikacijaInjekcije">
           <div class="form-group">
             <label>Aplikacija Injekcije</label>
-            <input type="checkbox" class="form-control" name="akt10">
+            <input [(ngModel)]="porociloAplikacijaInjekcijeA.akt10" type="checkbox" class="form-control" name="akt10">
           </div>
           <div class="form-group">
             <label>Pogovor, nasvet in vzpodbuda</label>
-            <textarea class="form-control" name="akt20" cols="6">
+            <textarea [(ngModel)]="porociloAplikacijaInjekcijeA.akt20" class="form-control" name="akt20" cols="6">
             </textarea>
           </div>
         </div>
-        <div ngIf="kontrolaZdravstvenegaStanja">
+        <div *ngIf="kontrolaZdravstvenegaStanja">
           <div class="form-group">
             <label>Anamneza</label>
             <textarea class="form-control" name="akt10" cols="6">
@@ -88,7 +88,7 @@
             </textarea>
           </div>
         </div>
-        <div ngIf="obiskNosecnice">
+        <div *ngIf="obiskNosecnice">
           <div class="form-group">
             <label>Seznanitev nosečnice o normalnem poteku nosečnosti in o spremembah na telesu.</label>
             <input type="text" class="form-control" name="akt10">
@@ -219,7 +219,7 @@
             <input type="number" class="form-control" name="akt240" required>
           </div>
         </div>
-        <div ngIf="obiskNovorojencka">
+        <div *ngIf="obiskNovorojencka">
           <div class="form-group">
             <label>Prikaz nege dojenčka</label>
             <input type="text" class="form-control" name="akt10">
@@ -307,7 +307,7 @@
             </textarea>
           </div>
         </div>
-        <div ngIf="obiskOtrocnice">
+        <div *ngIf="obiskOtrocnice">
           <div class="form-group">
             <label>Pregled materinske knjižice in odpustnice iz porodnišnice</label>
             <div class="form-group">
@@ -450,7 +450,7 @@
             </div>
           </div>
         </div>
-        <div ngIf="odvzemKrvi">
+        <div *ngIf="odvzemKrvi">
           <div class="form-group">
             <label></label>
             <input type="number" class="form-control" name="akt10modra">
@@ -473,7 +473,7 @@
             </textarea>
           </div>
         </div>
-        <div ngIf="preventivaStarostnika">
+        <div *ngIf="preventivaStarostnika">
           <div class="form-group">
             <label>Anamneza</label>
             <textarea class="form-control" name="akt10" cols="6" required>
