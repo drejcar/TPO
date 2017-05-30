@@ -24,30 +24,30 @@
             <label>Krvni Pritisk: sistolični, diastolični</label>
             <div class="form-group">
               <label>Sistolični (mm Hg):</label>
-              <input type="number" class="form-control" name="akt20a" required>
+              <input type="number" class="form-control" name="akt20a" min="50" max="400" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg):</label>
-              <input type="number" class="form-control" name="akt20b" required>
+              <input type="number" class="form-control" name="akt20b" min="30" max="250"  required>
             </div>
             </div>
           <div class="form-group">
             <label>Srčni utrip (udarci na minuto)</label>
-            <input type="number" class="form-control" name="akt30" required>
+            <input type="number" class="form-control" name="akt30" min="0" max="220" required>
           </div>
           <div class="form-group">
             <label>dihanje (vdihi na minuto)</label>
-            <input type="number" class="form-control" name="akt40" required>
+            <input type="number" class="form-control" name="akt40" min="0" max="60" required>
           </div>
           <div class="form-group">
             <label>Telesna temperatura (°C)</label>
-            <input type="number" class="form-control" name="akt50" required>
+            <input type="number" class="form-control" name="akt50" min="0" max="75" required>
           </div>
           <div class="form-group">
             <label>Krvni sladkor:</label>
             <div class="form-group">
               <label>mmol/L</label>
-              <input type="number" class="form-control" name="akt60a" required>
+              <input type="number" class="form-control" name="akt60a" min="0" max="150" required>
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -56,8 +56,8 @@
             </div>
             </div>
           <div class="form-group">
-            <label>Oksigenacija SpO2</label>
-            <input type="number" class="form-control" name="akt70" required>
+            <label>Oksigenacija SpO2 ( v %)</label>
+            <input type="number" class="form-control" name="akt70" min="0" max="100" required>
           </div>
           <div class="form-group">
             <label>Upoštevanje terapije</label>
@@ -147,7 +147,7 @@
           </div>
           <div class="form-group">
             <label>Pričakovan datum poroda</label>
-            <input type="date" class="form-control" name="akt140" required>
+            <input type="date" class="form-control" name="akt140" min="2017-06-02" max="2018-06-02" required>
           </div>
           <div class="form-group">
             <label>Anamneza: počutje, telesni znaki nosečnosti</label>
@@ -191,32 +191,32 @@
             <label>Krvni Pritisk:</label>
             <div class="form-group">
               <label>Sistolični (mm HG):</label>
-              <input type="number" class="form-control" name="akt190a" required>
+              <input type="number" class="form-control" name="akt190a" min="50" max="400" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg):</label>
-              <input type="number" class="form-control" name="akt190b" required>
+              <input type="number" class="form-control" name="akt190b" min="30" max="250" required>
             </div>
           </div>
           <div class="form-group">
             <label>Srčni utrip (udarci na minuto)</label>
-            <input type="number" class="form-control" name="akt200" required>
+            <input type="number" class="form-control" name="akt200" min="0" max="220" required>
           </div>
           <div class="form-group">
             <label>Dihanje(vdihi na minuto)</label>
-            <input type="number" class="form-control" name="akt210" required>
+            <input type="number" class="form-control" name="akt210" min="0" max="60" required>
           </div>
           <div class="form-group">
             <label>Telesna Temperatura (v °C)</label>
-            <input type="number" class="form-control" name="akt220" required>
+            <input type="number" class="form-control" name="akt220" min="0" max="75" required>
           </div>
           <div class="form-group">
             <label>Telesna teža pred nosečnostjo(v kg)</label>
-            <input type="number" class="form-control" name="akt230" required>
+            <input type="number" class="form-control" name="akt230" min="30" max="650" required>
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža (v kg)</label>
-            <input type="number" class="form-control" name="akt240" required>
+            <input type="number" class="form-control" name="akt240" min="30" max="650" required>
           </div>
         </div>
         <div ngIf="obiskNovorojencka">
@@ -242,11 +242,11 @@
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža(v gramih)</label>
-            <input type="number" class="form-control" name="akt60" required>
+            <input type="number" class="form-control" name="akt60"min="200" max="15000" required>
           </div>
           <div class="form-group">
             <label>Trenutna telesna višina (v cm)</label>
-            <input type="number" class="form-control" name="akt70" required>
+            <input type="number" class="form-control" name="akt70" min="20"  max="100" required>
           </div>
           <div class="form-group">
             <label>Dojenje</label>
@@ -312,15 +312,15 @@
             <label>Pregled materinske knjižice in odpustnice iz porodnišnice</label>
             <div class="form-group">
               <label>Datum rojstva otroka</label>
-              <input type="date" class="form-control" name="akt10a" required>
+              <input type="date" class="form-control" name="akt10a" min="1900-01-01" max="2017-06-02" required>
             </div>
             <div class="form-group">
               <label>Porodna teža Otroka (v gramih)</label>
-              <input type="number" class="form-control" name="akt10b" required>
+              <input type="number" class="form-control" name="akt10b" min="200" max="12000" required>
             </div>
             <div class="form-group">
               <label>Porodna višina otroka (v cm)</label>
-              <input type="number" class="form-control" name="akt10c" required>
+              <input type="number" class="form-control" name="akt10c" min="20" max="80" required>
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -388,28 +388,28 @@
             <label>Krvni pritisk</label>
             <div class="form-group">
               <label>Sistolični (mm Hg)</label>
-              <input type="number" class="form-control" name="akt160a" required>
+              <input type="number" class="form-control" name="akt160a" min="50" max="400" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg)</label>
-              <input type="number" class="form-control" name="akt160b" required>
+              <input type="number" class="form-control" name="akt160b" min="30" max="250" required>
             </div>
             </div>
           <div class="form-group">
             <label>Srčni utrip (udarci na minuto)</label>
-            <input type="number" class="form-control" name="akt170" required>
+            <input type="number" class="form-control" name="akt170" min="0" max="220" required>
           </div>
           <div class="form-group">
             <label>Dihanje (vdihi na minuto)</label>
-            <input type="number" class="form-control" name="akt180" required>
+            <input type="number" class="form-control" name="akt180" min="0" max="60" required>
           </div>
           <div class="form-group">
             <label>Telesna temperatura (v °C)</label>
-            <input type="number" class="form-control" name="akt190" required>
+            <input type="number" class="form-control" name="akt190" min="0" max="75" required>
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža (v kg)</label>
-            <input type="number" class="form-control" name="akt200" required>
+            <input type="number" class="form-control" name="akt200" min="30" max="650" required>
           </div>
           <div class="form-group">
             <label>Anamneza: počutje, telesni znaki nosečnosti</label>
@@ -488,28 +488,28 @@
             <label>Krvni pritisk</label>
             <div class="form-group">
               <label>Sistolični (mm Hg):</label>
-              <input type="text" class="form-control" name="akt30a" required>
+              <input type="text" class="form-control" name="akt30a" min="50" max="400" required>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg):</label>
-              <input type="text" class="form-control" name="akt30b" required>
+              <input type="text" class="form-control" name="akt30b" min="30" max="250" required>
             </div>
             </div>
           <div class="form-group">
             <label>Srčni utrip (udarci na minuto)</label>
-            <input type="number" class="form-control" name="akt40" required>
+            <input type="number" class="form-control" name="akt40" min="0" max="220" required>
           </div>
           <div class="form-group">
             <label>Dihanje (vdihi na minuto)</label>
-            <input type="number" class="form-control" name="akt50" required>
+            <input type="number" class="form-control" name="akt50" min="0" max="60" required>
           </div>
           <div class="form-group">
             <label>Telesna temperatura (v °C)</label>
-            <input type="number" class="form-control" name="akt60" required>
+            <input type="number" class="form-control" name="akt60" min="0" max="75" required>
           </div>
           <div class="form-group">
             <label>Telesna teža (v kg)</label>
-            <input type="text" class="form-control" name="akt70" required>
+            <input type="text" class="form-control" name="akt70" min="30" max="650" required>
           </div>
           <div class="form-group">
             <label>Osebna higiena</label>
