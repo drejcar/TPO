@@ -12,30 +12,48 @@
 					<option *ngFor="let s of obiski" [ngValue]="s">{{s.name}}</option>
 				</select>
 			</div>
-			
-			<div class="enObDrugem">
-				<label>Izdajatelj:</label>
-				<select [(ngModel)]="izbraniIzdajatelj" class="form-control" name="Poizdajatelj">
-					<option></option>
-					<option *ngFor="let s of izdajatelji" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
-				</select>
+			<div *ngIf="!aliJeLockanZD">
+				<div class="enObDrugem">
+					<label>Izdajatelj:</label>
+					<select [(ngModel)]="izbraniIzdajatelj" class="form-control" name="Poizdajatelj">
+						<option></option>
+						<option *ngFor="let s of izdajatelji" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
+					</select>
+				</div>
 			</div>
-			
+			<div *ngIf="aliJeLockanZD">
+				<div class="enObDrugem">
+					<label>Izdajatelj:</label>
+					<select [(ngModel)]="izbraniIzdajatelj" class="form-control" disabled name="Poizdajatelj">
+						<option></option>
+						<option *ngFor="let s of izdajatelji" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
+					</select>
+				</div>
+			</div>
 			<div class="enObDrugem">
 				<label>Pacient:</label>
 				<select [(ngModel)]="izbraniPacient" class="form-control" name="poPacientu">
 					<option></option>
 					<option *ngFor="let s of pacienti" [ngValue]="s">{{s.ime+" "+s.priimek}}</option>
-					
 				</select>
 			</div>
-			
-			<div class="enObDrugem">
-				<label>Patronažna sestra:</label>
-				<select [(ngModel)]="izbranaSestra" class="form-control" name="poSestri">
-					<option></option>
-					<option *ngFor="let s of sestre" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
-				</select>
+			<div [hidden]="aliJeLockanMS">
+				<div class="enObDrugem">
+					<label>Patronažna sestra:</label>
+					<select [(ngModel)]="izbranaSestra" class="form-control" name="poSestri">
+						<option></option>
+						<option *ngFor="let s of sestre" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
+					</select>
+				</div>
+			</div>
+			<div [hidden]="!aliJeLockanMS">
+				<div class="enObDrugem">
+					<label>Patronažna sestra:</label>
+					<select [(ngModel)]="izbranaSestra" disabled class="form-control" name="poSestri">
+						<option></option>
+						<option *ngFor="let s of sestre" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
+					</select>
+				</div>
 			</div>
 			<div class="enObDrugem">
 				<label>Opravljen</label>

@@ -14,7 +14,9 @@ import { izpisDNService } from '../izpisDelovnihNalogov/izpisDN.service';
 export class seznamObiskovComponent implements OnInit{
 	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http, private DNService: izpisDNService){}
-
+	
+	aliJeLockanZD = false;
+	aliJeLockanMS = false;
 	nadomestne: any[] = [{'sifra':0}];
 	res:any;
 	aliObstaja: boolean = false;
@@ -162,7 +164,11 @@ export class seznamObiskovComponent implements OnInit{
 				let j = 0; //stevec za vrste obiskov
 				let m = 0; //stevec za zdravstvene delavce
 				let n = 0;
-				
+				if(localStorage['vloga'] == 'PatronaznaSestra'){
+					this.aliJeLockanMS = true;
+				}else{
+					this.aliJeLockanZD = true;
+				}
 				console.log(this.tabelaObiskovVsi);
 				for(let dn of this.tabelaObiskovVsi){
 					for(let ob of dn.obisks){
@@ -226,7 +232,6 @@ export class seznamObiskovComponent implements OnInit{
 									
 									if(obisk.nadomestna != 'ni nadomeščanja'){
 										if((nekBool == true && zdr.sifra != ob.nadomestnaSestra.sifra)){
-											console.log(ob.nadomestnaSestra);
 											this.aliObstaja = true;
 											
 										}
