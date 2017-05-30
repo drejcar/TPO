@@ -2,7 +2,7 @@ export class PorociloObiskOtrocnice{
   constructor(
     //public idporociloObiskOtrocnice:number,
     public akt100:String,
-    public akt10a:Date,
+    public akt10a:String,
     public akt10b:number,//double
     public akt10c:number,//double
     public akt10d:String,
