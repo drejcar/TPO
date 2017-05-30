@@ -48,6 +48,12 @@ public class PorociloObiskOtrocnice implements Serializable {
 	private String akt120;
 
 	@Column(length=1024)
+	private String akt130;
+	
+	@Column(length=1024)
+	private String akt140;
+	
+	@Column(length=1024)
 	private String akt150;
 
 	@Column(nullable=false, precision=10)
@@ -217,6 +223,22 @@ public class PorociloObiskOtrocnice implements Serializable {
 		return this.akt180;
 	}
 
+	public void setAkt130(String akt130) {
+		this.akt130 = akt130;
+	}
+
+	public String getAkt130() {
+		return this.akt130;
+	}
+	
+	public void setAkt140(String akt140) {
+		this.akt140 = akt140;
+	}
+
+	public String getAkt140() {
+		return this.akt140;
+	}
+	
 	public void setAkt180(int akt180) {
 		this.akt180 = akt180;
 	}
