@@ -1,4 +1,4 @@
-export class porociloObiskOtrocnice{
+export class PorociloObiskOtrocnice{
   constructor(
     //public idporociloObiskOtrocnice:number,
     public akt100:String,

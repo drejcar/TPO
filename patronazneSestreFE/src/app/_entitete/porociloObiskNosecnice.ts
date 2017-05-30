@@ -1,4 +1,4 @@
-export class porociloObiskNosecnice{
+export class PorociloObiskNosecnice{
   constructor(
     public akt10:String,
     public akt100:String,

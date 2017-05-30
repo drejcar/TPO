@@ -1,4 +1,4 @@
-export class porociloOdvzemKrvi{
+export class PorociloOdvzemKrvi{
   constructor(
     //public idporociloOdvzemKrvi:number,
     public akt10modra:number,
