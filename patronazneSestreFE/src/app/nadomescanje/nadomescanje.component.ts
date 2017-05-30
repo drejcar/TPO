@@ -85,7 +85,7 @@ export class NadomescanjeComponent implements OnInit{
 					parts = datum2.split('-');
 					var datum2Izb = parts[0]+parts[1]+parts[2];
 					datum1 = izbrane.od;
-					datum2 = izbr.do;
+					datum2 = izbrane.do;
 					parts = datum1.split('-');
 					var datum1Druge = parts[0]+parts[1]+parts[2];
 					parts = datum2.split('-');
