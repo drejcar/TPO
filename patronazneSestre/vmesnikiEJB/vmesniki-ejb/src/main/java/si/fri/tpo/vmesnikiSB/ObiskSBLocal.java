@@ -16,4 +16,5 @@ public interface ObiskSBLocal {
 	void deleteObisk(int id);
 	List<Obisk> getObisksNadomescanja(int idMaticna, Date ood, Date doo);
 	List<Obisk> getObisksDN(int idMaticna, Date ood, Date doo, ZdravstveniDelavec nadomestna);
+	void endNadomescanje(int id);
 }

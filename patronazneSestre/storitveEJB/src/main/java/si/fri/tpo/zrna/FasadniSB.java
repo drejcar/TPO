@@ -881,4 +881,10 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	public Obisk vrniObisk(int id){
 		return obisk.returnObisk(id);
 	}
+
+	@Override
+	@RolesAllowed({"PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
+	public void endNadomescanje(int id) {
+		obisk.endNadomescanje(id);
+	}
 }
