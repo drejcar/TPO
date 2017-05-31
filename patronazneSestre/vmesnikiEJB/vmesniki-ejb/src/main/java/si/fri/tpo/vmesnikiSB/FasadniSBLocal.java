@@ -146,4 +146,5 @@ public interface FasadniSBLocal {
 		List<Obisk> getObiskiNadomescanja(int idMaticna, Date ood, Date doo);
 		List<Obisk> getObiskiByMaticna(int idMaticna, Date ood, Date doo, ZdravstveniDelavec nadomestna);
 		Obisk vrniObisk(int id);
+		public void endNadomescanje(int id);
 }

@@ -67,4 +67,9 @@ public class ObiskiStoritve implements ObiskiREST {
 		}
 		*/
 	}
+	@GET
+	@Path("/nadomescanjekonec/{id}")
+	public void endNadomescanje(@PathParam("id") int id){
+		fasada.endNadomescanje(id);
+	}
 }

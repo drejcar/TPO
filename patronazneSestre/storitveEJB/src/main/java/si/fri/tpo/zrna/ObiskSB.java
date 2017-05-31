@@ -103,5 +103,52 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 		return (List<Obisk>) em.createNamedQuery("Obisk.getByNadomestna").setParameter("id",idMaticna).setParameter("startDate", ood).setParameter("endDate", doo).getResultList();
 
 	}
-	
+
+	@Override
+	public void endNadomescanje(int id) {
+		
+		List<DelovniNalog> dn = em.createNamedQuery("DelovniNalog.findSpecificAll").setParameter("id", id).getResultList();
+		
+		for(int i = 0; i < dn.size(); i++){
+			//preglej en delovni nalog
+			DelovniNalog d = dn.get(i);
+			
+			Set<Obisk> ob = d.getObisks();
+			
+			//iterator za obiske na delovnem nalogu
+			Iterator<Obisk> iter = ob.iterator();
+			
+			boolean dnPopravljen = false;
+			
+			while(iter.hasNext()){
+			
+				Obisk obisk = iter.next();
+				
+				if(obisk.getNadomestnaSestra() != null && obisk.getOpravljen() == 0){
+					
+					obisk.setNadomestnaSestra(null);
+					em.merge(obisk);
+					
+					//odstrani nadonescanje se z delovnega naloga
+					if(!dnPopravljen){
+						
+						//dobi zdravstvene delavce
+						
+						Set<ZdravstveniDelavec> zdDelavec = d.getZdravstveniDelavecs();
+						
+						Iterator<ZdravstveniDelavec> zdr = zdDelavec.iterator();
+						
+						while(zdr.hasNext()){
+							ZdravstveniDelavec z = zdr.next();
+							if(z.getIdzdravstveniDelavec() != id && z.getOkolis() != null){
+								d.getZdravstveniDelavecs().remove(z);
+							}
+						}
+						em.merge(zdr);
+						dnPopravljen = true;
+					}
+				}
+			}
+		}
+	}
 }
