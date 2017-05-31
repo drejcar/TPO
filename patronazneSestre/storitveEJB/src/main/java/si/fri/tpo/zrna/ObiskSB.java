@@ -114,60 +114,36 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 			DelovniNalog d = dn.get(i);
 			
 			Set<Obisk> ob = d.getObisks();
+			Set<ZdravstveniDelavec> delavec = d.getZdravstveniDelavecs();
 			
 			//iterator za obiske na delovnem nalogu
-			Iterator<Obisk> iter = ob.iterator();
+			Iterator<Obisk> iterObisk = ob.iterator();
+			Iterator<ZdravstveniDelavec> iterDelavec = delavec.iterator();
 			
-			boolean dnPopravljen = false;
+			boolean popraviDelavce = false;
 			
-			while(iter.hasNext()){
+			while(iterObisk.hasNext()){
 			
-				Obisk obisk = iter.next();
+				Obisk obisk = iterObisk.next();
 				
 				if(obisk.getNadomestnaSestra() != null && obisk.getOpravljen() == 0){
 					
 					obisk.setNadomestnaSestra(null);
 					em.merge(obisk);
+					popraviDelavce = true;
 					
-					Set<ZdravstveniDelavec> delavci = d.getZdravstveniDelavecs();
+				}
+			}
+			if(popraviDelavce){
+				while(iterDelavec.hasNext()){
 					
-					Iterator<ZdravstveniDelavec> itr = delavci.iterator();
-					
-					if(!dnPopravljen){
-						
-<<<<<<< HEAD
-						while(itr.hasNext()){
-							
-							ZdravstveniDelavec del = itr.next();
-							
-							if(del.getIdzdravstveniDelavec() != id && del.getOkolis() != null){
-								itr.remove();
-							}
-						}
-						
-						d.setZdravstveniDelavecs(delavci);
-					
-						em.merge(d);
-						
-=======
-						//dobi zdravstvene delavce
-						
-						Set<ZdravstveniDelavec> zdDelavec = d.getZdravstveniDelavecs();
-						
-						Iterator<ZdravstveniDelavec> zdr = zdDelavec.iterator();
-						
-						while(zdr.hasNext()){
-							ZdravstveniDelavec z = zdr.next();
-							if(z.getIdzdravstveniDelavec() != id && z.getOkolis() != null){
-								zdr.remove();
-							}
-						}
-						em.merge(d);
->>>>>>> df2c9ae0c302ac7b8cb5bebb6176896654ca212a
-						dnPopravljen = true;
-						
+					ZdravstveniDelavec del = iterDelavec.next();
+					if(del.getOkolis() != null && del.getIdzdravstveniDelavec() != id){
+						iterDelavec.remove();
 					}
 				}
+				d.setZdravstveniDelavecs(delavec);
+				em.merge(d);
 			}
 		}
 	}
