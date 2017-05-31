@@ -24,6 +24,12 @@ public class ObiskiStoritve implements ObiskiREST {
 	private FasadniSBLocal fasada;
 	
 	@GET
+	@Path("/{id}")
+	public Obisk vrniObisk(@PathParam("id") int id){
+		return fasada.vrniObisk(id);
+		
+	}
+	@GET
 	@Path("/nadomescanje/{idMaticna}/{idNadomestna}")
 	public void doNadomescanje(	@PathParam("idMaticna") int idMaticna, 
 								@PathParam("idNadomestna") int idNadomestna,

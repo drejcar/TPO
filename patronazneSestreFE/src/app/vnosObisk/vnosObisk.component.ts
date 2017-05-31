@@ -3,6 +3,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { Http, Response, Headers} from '@angular/http';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Location } from '@angular/common';
+import { izpisDNService} from '../izpisDelovnihNalogov/izpisDN.service';
 import { PorociloPreventivaStarostnika } from '../_entitete/porociloPreventivaStarostnika';
 import { PorociloOdvzemKrvi } from '../_entitete/porociloOdvzemKrvi';
 import { PorociloObiskOtrocnice } from '../_entitete/porociloObiskOtrocnice';
@@ -17,9 +19,23 @@ import { PorociloObiskNovorojencka } from '../_entitete/porociloObiskNovorojenck
   styleUrls: ['./vnosObisk.component.css']
 })
 
-export class VnosObiskComponent{
-  constructor(private http: Http,private router:Router) {}
-
+export class VnosObiskComponent implements OnInit{
+	idObiska = 0;
+	aplikacijaInjekcije = false;
+	kontrolaZdravstvenegaStanja = false;
+	obiskNosecnice = false;
+	obiskNovorojencka =false;
+	obiskOtrocnice = false;
+	odvzemKrvi = false;
+	preventivaStarostnika = false;
+	dis = false;
+	spremeni = false;
+  constructor(private http: Http,private router:Router, private route: ActivatedRoute,private location: Location,private dnService:izpisDNService) {}
+	res: any;
+	obisk: any;
+	
+	porociloAplikacijaInjekcijeA: PorociloAplikacijaInjekcije = ({'akt20':'','akt10':''});
+	
   porociloPreventivaStarostnika:PorociloPreventivaStarostnika=({
     'akt10': '',
     'akt20': '',
@@ -150,5 +166,174 @@ export class VnosObiskComponent{
     'akt100':'',
     'akt110':'',
   });
-
+	dn: any;
+	vrstaObiska = 0;
+	pacient = '';
+	idDn = 0;
+  ngOnInit(){
+	this.route.params.switchMap((params:Params) => this.dnService.getDelovniNalog(Number(+params['id2']))).subscribe(res => {this.dn = res;
+		this.vrstaObiska = this.dn.vrstaObiska.idvrstaObiska;
+		this.pacient = this.dn.pacients[0].ime+" "+this.dn.pacients[0].priimek;
+		this.idDn = this.dn.iddelovniNalog;
+		this.route.params.switchMap((params: Params) => this.dnService.getObisk(Number(+params['id']))).subscribe(res => {this.obisk = res;
+			this.idObiska = this.obisk.idobisk;
+			
+			var date = new Date();
+			console.log(date.getFullYear());
+			var mesec = date.getMonth()+1;
+			var dni = date.getDate();
+			var praviMesec = ''
+			var praviDan = '';
+			if(mesec < 10){
+				praviMesec ='0'+mesec.toString(); 
+			}if(dni < 10){
+				praviDan = '0'+dni.toString();
+			}if(mesec >= 10){
+				praviMesec = mesec.toString();
+			}if(dni >= 10){
+				praviDan = dni.toString();
+			} 
+			var datum = (date.getFullYear().toString())+praviMesec+praviDan;
+			
+			this.dis = false;
+			var parts:any[] = this.obisk.dejanskiDatumObiska.split('-')
+			var prvi = parts[0]+parts[1]+parts[2];
+			console.log(prvi);
+			console.log(datum);
+			console.log(this.vrstaObiska);
+			if(((Number(datum)-Number(prvi)) > 1) || localStorage.getItem('vloga') == 'Pacient' ){
+				this.dis = true;
+			}
+			if(localStorage.getItem('vloga')=='PatronaznaSluzba' || localStorage.getItem('vloga')=='Zdravnik' || localStorage.getItem('vloga')=='Pacient'){
+				this.dis = true;
+			}
+			
+			if(this.vrstaObiska == 10){
+				if(this.obisk.porociloObiskNosecnice == null){ //ce se ne obstaja
+					this.obiskNosecnice = true;
+				}else{ //ce ze obstaja
+					this.obiskNosecnice = true;
+					this.spremeni = true;
+					this.porociloObiskNosecnice = this.obisk.porociloObiskNosecnice;
+				}
+			
+			}else if(this.vrstaObiska == 20){
+				if(this.obisk.porociloObiskOtrocnice == null){
+					this.obiskOtrocnice = true;
+				}else{
+					this.obiskOtrocnice = true;
+					this.spremeni = true;
+					this.porociloObiskOtrocnice = this.obisk.porociloObiskOtrocnice;
+				}
+				
+			}else if(this.vrstaObiska == 30){
+				if(this.obisk.porociloObiskNovorojencka == null){
+					this.obiskNovorojencka = true;
+				}else{
+					this.obiskNovorojencka = true;
+					this.spremeni = true;
+					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojencka;
+				}
+			
+			}else if(this.vrstaObiska == 40){
+				if(this.obisk.porociloPreventivaStarostnika == null){
+					this.preventivaStarostnika = true;
+				}else{
+					this.preventivaStarostnika = true;
+					this.spremeni = true;
+					this.porociloPreventivaStarostnika = this.obisk.porociloPreventivaStarostnika;
+				}
+				
+			}else if(this.vrstaObiska == 50){
+				if(this.obisk.porociloAplikacijaInjekcije == null){
+					this.aplikacijaInjekcije = true;
+				}else{
+					this.aplikacijaInjekcije = true;
+					this.spremeni = true;
+					this.porociloAplikacijaInjekcijeA = this.obisk.porociloAplikacijaInjekcije;
+				}
+			
+			}else if(this.vrstaObiska == 60){
+				if(this.obisk.porociloOdvzemKrvi == null){
+					this.odvzemKrvi = true;
+				}else{
+					this.odvzemKrvi = true;
+					this.spremeni = true;
+					this.porociloOdvzemKrvi = this.obisk.porociloOdvzemKrvi;
+				}
+			
+			}else if(this.vrstaObiska == 70){
+				if(this.obisk.porociloKontrolaZdravstvenegaStanja == null){
+					this.kontrolaZdravstvenegaStanja = true;
+				}else{
+					this.kontrolaZdravstvenegaStanja = true;
+					this.spremeni = true;
+					this.porociloKontrolaZdravstvenegaStanja = this.obisk.porociloKontrolaZdravstvenegaStanja;
+					
+					
+				}
+			}
+		});
+	});
+	
+  }
+  onSubmit(){
+	if(this.vrstaObiska == 10){
+		this.obisk.porociloObiskNosecnice = this.porociloObiskNosecnice;
+	}else if(this.vrstaObiska == 20){
+		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
+	}else if(this.vrstaObiska == 30){
+		this.obisk.porociloObiskNovorojencka = this.porociloObiskNovorojencka;
+	}else if(this.vrstaObiska == 40){
+		this.obisk.porociloPreventivaStarostnika = this.porociloPreventivaStarostnika;
+	}else if(this.vrstaObiska == 50){
+		this.obisk.porociloAplikacijaInjekcije = this.porociloAplikacijaInjekcijeA;
+	}else if(this.vrstaObiska == 60){
+		this.obisk.porociloOdvzemKrvi = this.porociloOdvzemKrvi;
+	}else if(this.vrstaObiska == 70){
+		this.obisk.porociloKontrolaZdravstvenegaStanja = this.porociloKontrolaZdravstvenegaStanja;
+	}
+	this.obisk.opravljen = 1;
+	var date = new Date();
+		console.log(date.getFullYear());
+		var mesec = date.getMonth()+1;
+		var dni = date.getDate();
+		var praviMesec = ''
+		var praviDan = '';
+		if(mesec < 10){
+			praviMesec ='0'+mesec.toString(); 
+		}if(dni < 10){
+			praviDan = '0'+dni.toString();
+		}if(mesec >= 10){
+			praviMesec = mesec.toString();
+		}if(dni >= 10){
+			praviDan = dni.toString();
+		} 
+		var datum = (date.getFullYear().toString())+"-"+praviMesec+"-"+praviDan;
+		this.obisk.dejanskiDatumObiska = datum;
+		var novi = <any> ({
+			iddelovniNalog: this.idDn,
+		});
+		this.obisk.delovniNalog = novi;
+		console.log(this.obisk);
+	this.dnService.posodobiObisk(this.obisk).subscribe(res =>{console.log("success");});
+  }
+  sprememba(){
+	if(this.vrstaObiska == 10){
+		this.obisk.porociloObiskNosecnice = this.porociloObiskNosecnice;
+	}else if(this.vrstaObiska == 20){
+		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
+	}else if(this.vrstaObiska == 30){
+		this.obisk.porociloObiskNovorojencka = this.porociloObiskNovorojencka;
+	}else if(this.vrstaObiska == 40){
+		this.obisk.porociloPreventivaStarostnika = this.porociloPreventivaStarostnika;
+	}else if(this.vrstaObiska == 50){
+		this.obisk.porociloAplikacijaInjekcije = this.porociloAplikacijaInjekcijeA;
+	}else if(this.vrstaObiska == 60){
+		this.obisk.porociloOdvzemKrvi = this.porociloOdvzemKrvi;
+	}else if(this.vrstaObiska == 70){
+		this.obisk.porociloKontrolaZdravstvenegaStanja = this.porociloKontrolaZdravstvenegaStanja;
+	}
+	this.dnService.posodobiObisk(this.obisk).subscribe(res =>{console.log("success");});
+  }
 }

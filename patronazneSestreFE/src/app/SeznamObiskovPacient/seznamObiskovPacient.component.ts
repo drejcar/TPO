@@ -22,7 +22,7 @@ export class SeznamObiskovPacientComponent implements OnInit{
 	vecJihJe: boolean = false;
 	
 	tabelaObiskovVsi: any[];
-	tabelaDejanskiObiskov: any[] = [{idObiska:undefined,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',podrobno:''}]
+	tabelaDejanskiObiskov: any[] = [{idObiska:undefined,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',podrobno:'',porocilo:''}]
 	
 	ngOnInit(){
 		
@@ -65,7 +65,7 @@ export class SeznamObiskovPacientComponent implements OnInit{
 						}
 						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',podrobno:''});
 						obisk.idObiska = ob.idobisk;
-						obisk.podrobno = 'Podrobnosti';
+						obisk.porocilo = '/vnosObisk/'+ob.idobisk+'/'+dn.iddelovniNalog;
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
 						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						for(let zdr of dn.zdravstveniDelavecs){
@@ -101,8 +101,10 @@ export class SeznamObiskovPacientComponent implements OnInit{
 						if(ob.opravljen == 0){
 							continue;
 						}
-						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:''});
+						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',porocilo:''});
 						obisk.idObiska = ob.idobisk;
+						obisk.porocilo = '/vnosObisk/'+ob.idobisk+'/'+dn.iddelovniNalog;
+						
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
 						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						for(let zdr of dn.zdravstveniDelavecs){

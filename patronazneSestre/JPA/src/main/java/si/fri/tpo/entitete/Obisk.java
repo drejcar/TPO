@@ -57,32 +57,32 @@ public class Obisk implements Serializable {
 	private int opravljen;
 
 	//bi-directional many-to-one association to PorociloAplikacijaInjekcije
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idporocilo_aplikacija_injekcije")
 	private PorociloAplikacijaInjekcije porociloAplikacijaInjekcije;
 
 	//bi-directional many-to-one association to PorociloKontrolaZdravstvenegaStanja
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idporocilo_kontrola_zdravstvenega_stanja")
 	private PorociloKontrolaZdravstvenegaStanja porociloKontrolaZdravstvenegaStanja;
 
 	//bi-directional many-to-one association to PorociloObiskNosecnice
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idporocilo_obisk_nosecnice")
 	private PorociloObiskNosecnice porociloObiskNosecnice;
 
 	//bi-directional many-to-one association to PorociloObiskOtrocnice
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idobiskotrocnice")
 	private PorociloObiskOtrocnice porociloObiskOtrocnice;
 
 	//bi-directional many-to-one association to PorociloOdvzemKrvi
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idporocilo_odvzem_krvi")
 	private PorociloOdvzemKrvi porociloOdvzemKrvi;
 
 	//bi-directional many-to-one association to PorociloPreventivaStarostnika
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name="idporocilo_preventiva_starostnika")
 	private PorociloPreventivaStarostnika porociloPreventivaStarostnika;
 

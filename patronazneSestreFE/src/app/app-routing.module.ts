@@ -65,7 +65,7 @@ const routes: Routes = [
   { path: 'PozabljenoGeslo', component:PozabljenoGesloComponent},
   { path: 'pozabilGeslo/:id', component: pozabilGesloComponent},
   { path: 'nadomescanje', component: NadomescanjeComponent,canActivate:[PatronaznaSluzbaGuard]},
-  { path: 'obisk', component:VnosObiskComponent},
+  { path: 'vnosObisk/:id/:id2', component:VnosObiskComponent},
   //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

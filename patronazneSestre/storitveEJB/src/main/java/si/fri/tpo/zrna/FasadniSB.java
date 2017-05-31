@@ -132,7 +132,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	// *** klici za delovni nalog ***
 
 	@Override
-	@RolesAllowed({"Zdravnik","PatronaznaSluzba","Administrator","PatronaznaSestra"})
+	@RolesAllowed({"Zdravnik","PatronaznaSluzba","Administrator","PatronaznaSestra","Pacient"})
 	public DelovniNalog vrniDelovniNalog(int id) {
 		DelovniNalog nov = delovniNalog.vrniDelovniNalog(id);
 		delovniNalog.odstraniZrno();
@@ -872,8 +872,13 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
+	@RolesAllowed({"PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
 	public ZdravstveniDelavec najdiPravegaZdr(int id) {
 		return zdravstveniDelavc.najdiPravega(id);
 	}
-
+	@Override
+	@RolesAllowed({"PatronaznaSestra","PatronaznaSluzba","Zdravnik","Pacient"})
+	public Obisk vrniObisk(int id){
+		return obisk.returnObisk(id);
+	}
 }

@@ -10,8 +10,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 	  <header>
 		<nav>
 			<a routerLink="/dashboard" routerLinkActive="active">Domov</a>
-			<a [hidden]="!admin" routerLink="/registracijazd" routerLinkActive="active">regZd</a>	
-			<a [hidden]="!aliJeLoginan" routerLink="/spremembaGesla" routerLinkActive="active">sprGesla</a>	
+			<a [hidden]="!admin" routerLink="/registracijazd" routerLinkActive="active">Registracija zdravstvenega delavca</a>	
+			<a [hidden]="!aliJeLoginan" routerLink="/spremembaGesla" routerLinkActive="active">Sprememba gesla</a>	
 			<a [hidden]="!mojiDelovniNalog" routerLink="/seznamObiskov" routerLinkActive="active">Seznam obiskov</a>
 			<a [hidden]="!patronaznaSestra" routerLink="/planiranjeObiskov" routerLinkActive="active">Planiranje obiskov</a>
 			<a [hidden]="!aliJePacient" routerLink="/uporabniskiProfil" routerLinkActive="active">Moj profil</a>

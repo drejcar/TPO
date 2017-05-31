@@ -60,7 +60,7 @@ import {VnosObiskComponent} from "./vnosObisk/vnosObisk.component";
                   PatronaznaSestraDashComponent,PatronaznaSluzbaDashComponent,SodelavecIzsDashComponent,
                   ZdravnikDashComponent,AktivacijaComponent,OdjavaComponent,izpisDelovnihNalogovComponent,podrobnostiDNComponent,
 				          preusmeriComponent,seznamObiskovComponent,PlaniranjeObiskovComponent,SeznamObiskovPacientComponent,PozabljenoGesloComponent,
-                  UporabniskiProfilComponent,pozabilGesloComponent,NadomescanjeComponent,VnosObiskComponent
+                  UporabniskiProfilComponent,pozabilGesloComponent,NadomescanjeComponent,VnosObiskComponent,
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,GuestGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,
