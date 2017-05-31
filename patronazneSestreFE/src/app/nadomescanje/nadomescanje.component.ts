@@ -19,6 +19,8 @@ export class NadomescanjeComponent implements OnInit{
 	aliJeVec = false;
 	Allsestre:any[];
 	res:any;
+	konecNadomescanja = false;
+	izbranaVrnitev: any = ({'sestra':this.sestra,'sestre':this.sestre});
 	sestre: any[] = [{'idSestre':0,'ime':'','priimek':'','sifra':0}];
 	sestra:any = ({'idSestre':0,'ime':'','priimek':'','sifra':0});
 	nadSestra:any = ({'idSestre':0,'ime':'','priimek':'','sifra':0});
@@ -53,6 +55,8 @@ export class NadomescanjeComponent implements OnInit{
 		this.model.sestre = this.sestre;
 		this.model2[0].nadomestnaSestra = this.sestra;
 		this.model2[0].sestre = this.sestre;
+		this.izbranaVrnitev.sestre = this.sestre;
+		//this.izbranaVrnitev.sestra = null;
 	}
 	dodajNadomescanje(){
 		let nov: any = ({'nadomestnaSestra':this.sestra,'sestre':this.sestre,'od':'','do':'','error':false,'sporocilo':''})
@@ -130,4 +134,11 @@ export class NadomescanjeComponent implements OnInit{
 		
 		
 	}
+	prekiniNadomescanje(){
+		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
+		console.log(this.izbranaVrnitev.sestra.idSestre);
+		
+		this.http.get(`${this.restUrl}/obiski/nadomescanjekonec/${this.izbranaVrnitev.sestra.idSestre}`,{headers: headers3}).subscribe(res => {this.konecNadomescanja = true;});
+	}
+	
 }

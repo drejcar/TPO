@@ -135,6 +135,7 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 					
 					if(!dnPopravljen){
 						
+<<<<<<< HEAD
 						while(itr.hasNext()){
 							
 							ZdravstveniDelavec del = itr.next();
@@ -148,6 +149,21 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 					
 						em.merge(d);
 						
+=======
+						//dobi zdravstvene delavce
+						
+						Set<ZdravstveniDelavec> zdDelavec = d.getZdravstveniDelavecs();
+						
+						Iterator<ZdravstveniDelavec> zdr = zdDelavec.iterator();
+						
+						while(zdr.hasNext()){
+							ZdravstveniDelavec z = zdr.next();
+							if(z.getIdzdravstveniDelavec() != id && z.getOkolis() != null){
+								zdr.remove();
+							}
+						}
+						em.merge(d);
+>>>>>>> df2c9ae0c302ac7b8cb5bebb6176896654ca212a
 						dnPopravljen = true;
 						
 					}

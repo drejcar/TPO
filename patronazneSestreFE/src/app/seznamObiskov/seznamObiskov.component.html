@@ -40,7 +40,7 @@
 			<div [hidden]="aliJeLockanMS">
 				<div class="enObDrugem">
 					<label>Patronažna sestra:</label>
-					<select [(ngModel)]="izbranaSestra" class="form-control" name="poSestri">
+					<select [(ngModel)]="izbranaSestra" class="form-control" name="pSestri">
 						<option></option>
 						<option *ngFor="let s of sestre" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
 					</select>

@@ -1,6 +1,7 @@
 <div class="container">
   <div [hidden]="submitted">
     <h1>Nadomeščanje</h1>
+	<div id="linija2"></div>
     <form (ngSubmit)="onSubmit()" #nadomescanjaForm="ngForm">
         <label>Odsotna sestra:</label>
         <div class="form-group">
@@ -57,4 +58,19 @@
   <div [hidden]="!submitted">
 	<h3>Nadomeščanje nastavljeno</h3>
   </div>
+  <h1>Predčasna vrnitev in konec nadomeščanja</h1>
+  <div id="linija2"></div>
+  <form (ngSubmit)="prekiniNadomescanje()" #konecNadomescanje="ngForm">
+  <label>Odsotna sestra, ki se je predčasno vrnila:</label>
+        <div class="form-group">
+          <select [(ngModel)]="izbranaVrnitev.sestra" required id="Sestra" class="form-control" name="Sestra" #Sestra="ngModel">
+		  <option></option>
+            <option *ngFor="let s of izbranaVrnitev.sestre" [ngValue]="s">{{s.ime+" "+s.priimek+"["+s.sifra+"]"}}</option>
+          </select>
+		  <div [hidden]="Sestra.valid|| Sestra.pristine"
+		  class="alert alert-danger">Izberite sestro, ki je prišla iz nadomeščanja</div>
+        </div>
+	<button type="submit" [disabled]="!konecNadomescanje.form.valid" class="btn btn-success">Prekini nadomescanje</button>
+  </form>
+  <div [hidden]="!konecNadomescanja"><h3>Uspešno ste zaključili nadomeščanja {{izbranaVrnitev.sestra}}</h3></div>
 </div>
