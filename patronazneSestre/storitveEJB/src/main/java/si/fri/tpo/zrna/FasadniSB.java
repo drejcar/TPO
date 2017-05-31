@@ -883,7 +883,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
-	@RolesAllowed({"PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
+	@RolesAllowed({"PatronaznaSluzba"})
 	public void endNadomescanje(int id) {
 		obisk.endNadomescanje(id);
 	}
