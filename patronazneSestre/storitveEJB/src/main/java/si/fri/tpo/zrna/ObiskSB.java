@@ -114,24 +114,41 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 			DelovniNalog d = dn.get(i);
 			
 			Set<Obisk> ob = d.getObisks();
+			Set<ZdravstveniDelavec> delavec = d.getZdravstveniDelavecs();
 			
 			//iterator za obiske na delovnem nalogu
-			Iterator<Obisk> iter = ob.iterator();
+			Iterator<Obisk> iterObisk = ob.iterator();
+			Iterator<ZdravstveniDelavec> iterDelavec = delavec.iterator();
 			
-			boolean dnPopravljen = false;
+			boolean popraviDelavce = false;
 			
-			while(iter.hasNext()){
+			while(iterObisk.hasNext()){
 			
-				Obisk obisk = iter.next();
+				Obisk obisk = iterObisk.next();
 				
 				if(obisk.getNadomestnaSestra() != null && obisk.getOpravljen() == 0){
 					
 					obisk.setNadomestnaSestra(null);
 					em.merge(obisk);
+					popraviDelavce = true;
 					
+<<<<<<< HEAD
 					//odstrani nadonescanje se z delovnega naloga
 					
+=======
 				}
+			}
+			if(popraviDelavce){
+				while(iterDelavec.hasNext()){
+					
+					ZdravstveniDelavec del = iterDelavec.next();
+					if(del.getOkolis() != null && del.getIdzdravstveniDelavec() != id){
+						iterDelavec.remove();
+					}
+>>>>>>> 36dd9501f0a17f7d8b05b9230edcfafe5e62b299
+				}
+				d.setZdravstveniDelavecs(delavec);
+				em.merge(d);
 			}
 		}
 	}
