@@ -130,23 +130,7 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 					em.merge(obisk);
 					
 					//odstrani nadonescanje se z delovnega naloga
-					if(!dnPopravljen){
-						
-						//dobi zdravstvene delavce
-						
-						Set<ZdravstveniDelavec> zdDelavec = d.getZdravstveniDelavecs();
-						
-						Iterator<ZdravstveniDelavec> zdr = zdDelavec.iterator();
-						
-						while(zdr.hasNext()){
-							ZdravstveniDelavec z = zdr.next();
-							if(z.getIdzdravstveniDelavec() != id && z.getOkolis() != null){
-								zdr.remove();
-							}
-						}
-						em.merge(d);
-						dnPopravljen = true;
-					}
+					
 				}
 			}
 		}
