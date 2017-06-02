@@ -192,15 +192,15 @@ public class PorociloKontrolaZdravstvenegaStanja implements Serializable {
 	public void setAkt90(String akt90) {
 		this.akt90 = akt90;
 	}
-
+/*
 	public Set<Obisk> getObisks() {
 		return this.obisks;
 	}
-
+*/
 	public void setObisks(Set<Obisk> obisks) {
 		this.obisks = obisks;
 	}
-
+/*
 	public Obisk addObisk(Obisk obisk) {
 		getObisks().add(obisk);
 		obisk.setPorociloKontrolaZdravstvenegaStanja(this);
@@ -214,5 +214,5 @@ public class PorociloKontrolaZdravstvenegaStanja implements Serializable {
 
 		return obisk;
 	}
-
+*/
 }

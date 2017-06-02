@@ -59,15 +59,15 @@ public class PorociloAplikacijaInjekcije implements Serializable {
 	public void setAkt20(String akt20) {
 		this.akt20 = akt20;
 	}
-
+/*
 	public Set<Obisk> getObisks() {
 		return this.obisks;
 	}
-
+*/
 	public void setObisks(Set<Obisk> obisks) {
 		this.obisks = obisks;
 	}
-
+/*
 	public Obisk addObisk(Obisk obisk) {
 		getObisks().add(obisk);
 		obisk.setPorociloAplikacijaInjekcije(this);
@@ -81,5 +81,5 @@ public class PorociloAplikacijaInjekcije implements Serializable {
 
 		return obisk;
 	}
-
+*/
 }

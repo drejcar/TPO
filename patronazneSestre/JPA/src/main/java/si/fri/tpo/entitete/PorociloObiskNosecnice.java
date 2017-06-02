@@ -340,11 +340,11 @@ public class PorociloObiskNosecnice implements Serializable {
 	public Set<Obisk> getObisks() {
 		return this.obisks;
 	}
-
+*/
 	public void setObisks(Set<Obisk> obisks) {
 		this.obisks = obisks;
 	}
-
+/*
 	public Obisk addObisk(Obisk obisk) {
 		getObisks().add(obisk);
 		obisk.setPorociloObiskNosecnice(this);

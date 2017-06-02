@@ -141,7 +141,7 @@ export class DelovniNalogComponent implements OnInit{
 			this.izbranaStoritev = this.storitve[0];
 		}
 
-		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
+		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 
 		this.http.get(`${this.restUrl}/zdravstveniDelavec/${localStorage['iduporabnik']}`, {headers: headers3}).subscribe(data1 => {
 

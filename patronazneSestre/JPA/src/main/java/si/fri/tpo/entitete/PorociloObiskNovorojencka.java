@@ -256,11 +256,11 @@ public class PorociloObiskNovorojencka implements Serializable {
 	public void setStevilkaZdravstvenegaZavarovanja(String stevilkaZdravstvenegaZavarovanja) {
 		this.stevilkaZdravstvenegaZavarovanja = stevilkaZdravstvenegaZavarovanja;
 	}
-
+/*
 	public Obisk getObisk() {
 		return this.obisk;
 	}
-
+*/
 	public void setObisk(Obisk obisk) {
 		this.obisk = obisk;
 	}
