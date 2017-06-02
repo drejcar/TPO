@@ -1,9 +1,10 @@
 <div class="container">
   <div [hidden]="submitted">
     <h1>Obisk: {{idObiska}}</h1>
-	<h3>Pacient: {{pacient}}</h3>
+	<div>
+		<h3 *ngFor="let s of pacient">Pacient/i: {{s.pacient}},</h3>
+	</div>
 	<div id="linija"></div>
-
     <form (ngSubmit)="onSubmit()" #obiskForm="ngForm">
       <div class="form-group">
         <div *ngIf="aplikacijaInjekcije">
@@ -228,7 +229,7 @@
           </div>
           <div class="form-group">
             <label>Telesna teža pred nosečnostjo(v kg)</label>
-            <input type="number" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt230" min="30" max="650" disabled={{dis}} name="akt230" required>
+            <input type="number" disabled={{prviZeOpravljen}} class="form-control" [(ngModel)]="porociloObiskNosecnice.akt230" min="30" max="650" disabled={{dis}} name="akt230" required>
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža (v kg)</label>
@@ -338,15 +339,15 @@
             <label>Pregled materinske knjižice in odpustnice iz porodnišnice</label>
             <div class="form-group">
               <label>Datum rojstva otroka</label>
-              <input type="date" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10a" min="1900-01-01" max="2017-06-02" disabled={{dis}} name="akt10a" required>
+              <input type="date" class="form-control" disabled={{prviZeOpravljen}} [(ngModel)]="porociloObiskOtrocnice.akt10a" min="1900-01-01" max="2017-06-02" disabled={{dis}} name="akt10a" required>
             </div>
             <div class="form-group">
               <label>Porodna teža Otroka (v gramih)</label>
-              <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10b" min="200" max="12000" disabled={{dis}} name="akt10b" required>
+              <input type="number" disabled={{prviZeOpravljen}} class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10b" min="200" max="12000" disabled={{dis}} name="akt10b" required>
             </div>
             <div class="form-group">
               <label>Porodna višina otroka (v cm)</label>
-              <input type="number" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10c" min="20" max="80" disabled={{dis}} name="akt10c" required>
+              <input type="number" disabled={{prviZeOpravljen}} class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10c" min="20" max="80" disabled={{dis}} name="akt10c" required>
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -356,8 +357,8 @@
           </div>
           <div class="form-group">
             <label>Kontrola vitalnih funkcij</label>
-            <texarea class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt20" disabled={{dis}} name="akt20" cols="5">
-            </texarea>
+            <textarea class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt20" disabled={{dis}} name="akt20" cols="5">
+            </textarea>
           </div>
           <div class="form-group">
             <label>Opazovanje čišče</label>

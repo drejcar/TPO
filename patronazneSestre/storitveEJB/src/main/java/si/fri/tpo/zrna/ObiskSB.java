@@ -132,10 +132,10 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 					em.merge(obisk);
 					popraviDelavce = true;
 					
-<<<<<<< HEAD
+
 					//odstrani nadonescanje se z delovnega naloga
 					
-=======
+
 				}
 			}
 			if(popraviDelavce){
@@ -145,7 +145,6 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 					if(del.getOkolis() != null && del.getIdzdravstveniDelavec() != id){
 						iterDelavec.remove();
 					}
->>>>>>> 36dd9501f0a17f7d8b05b9230edcfafe5e62b299
 				}
 				d.setZdravstveniDelavecs(delavec);
 				em.merge(d);

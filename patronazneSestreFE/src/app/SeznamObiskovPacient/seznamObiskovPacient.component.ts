@@ -23,7 +23,7 @@ export class SeznamObiskovPacientComponent implements OnInit{
 	
 	tabelaObiskovVsi: any[];
 	tabelaDejanskiObiskov: any[] = [{idObiska:undefined,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',podrobno:'',porocilo:''}]
-	
+	aliSoObiski = false;
 	ngOnInit(){
 		
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
@@ -85,6 +85,9 @@ export class SeznamObiskovPacientComponent implements OnInit{
 					
 				}
 			});
+			if(this.tabelaDejanskiObiskov[0].idObiska != undefined){
+				this.aliSoObiski = true;
+			}
 		},1500);
 	}
 	

@@ -75,30 +75,27 @@
 			</label>
 		</div>
 		<div [hidden]="!aliJePraviObisk" class="miniNaslovi">
-			<label  class="levo">4b - Zavarovana oseba</label>
+			<label  class="levo">4b - Dodatne zavarovane osebe</label>
 		</div>
-		<div [hidden]="!aliJePraviObisk" class="enObDrugem">
-			<label class="parametri">Ime pacienta:
-				<label class="text">{{pacIme2}}</label>
-			</label>
-			<label class="parametri">Priimek pacienta:
-				<label class="text">{{pacPriimek2}}</label>
-			</label>
-			<label class="parametri">Številka zdravstvenega zavarovanja:
-				<label class="text">{{pacSZZ2}}</label>
-			</label>
-			<label class="parametri">Naslov:
-				<label class="text">{{pacNaslov2}}</label>
-			</label>
-			<label class="parametri">Datum rojstva:
-				<label class="text">{{pacDatumRojstva2}}</label>
-			</label>
-			<label class="parametri">Telefonska številka:
-				<label class="text">{{pacTelefon2}}</label>
-			</label>
-			<label class="parametri">e-pošta:
-				<label class="text">{{pacPosta2}}</label>
-			</label>
+		<div *ngFor="let s of otroci">
+			<div [hidden]="!aliJePraviObisk" class="enObDrugem">
+				<label class="parametri">Ime pacienta:
+					<label class="text">{{s.ime}}</label>
+				</label>
+				<label class="parametri">Priimek pacienta:
+					<label class="text">{{s.priimek}}</label>
+				</label>
+				<label class="parametri">Številka zdravstvenega zavarovanja:
+					<label class="text">{{s.zz}}</label>
+				</label>
+				<label class="parametri">Naslov:
+					<label class="text">{{s.naslov}}</label>
+				</label>
+				<label class="parametri">Datum rojstva:
+					<label class="text">{{s.datumRojstva}}</label>
+				</label>
+			</div>
+			
 		</div>
 		
 		<div class="miniNaslovi">

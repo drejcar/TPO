@@ -168,12 +168,31 @@ export class VnosObiskComponent implements OnInit{
   });
 	dn: any;
 	vrstaObiska = 0;
-	pacient = '';
+	pacient:any=[{'pacient':''}];
 	idDn = 0;
+	prviZeOpravljen = false;
   ngOnInit(){
 	this.route.params.switchMap((params:Params) => this.dnService.getDelovniNalog(Number(+params['id2']))).subscribe(res => {this.dn = res;
 		this.vrstaObiska = this.dn.vrstaObiska.idvrstaObiska;
-		this.pacient = this.dn.pacients[0].ime+" "+this.dn.pacients[0].priimek;
+		let stevec = 0;
+		for(let obiski of this.dn.obisks){
+			if(obiski.opravljen == 1){
+				this.prviZeOpravljen = true;
+				break;
+			}
+		}
+		
+		if(this.vrstaObiska == 20 || this.vrstaObiska == 30){
+			for(let pacients of this.dn.pacients){
+				console.log(pacients);
+				let nov = <any>({'pacient':''});
+				this.pacient[stevec] = nov;
+				this.pacient[stevec].pacient = pacients.ime+" "+pacients.priimek;
+				stevec = stevec+1;
+			}
+		}else{
+			this.pacient[0].pacient = this.dn.pacients[0].ime+" "+this.dn.pacients[0].priimek;
+		}
 		this.idDn = this.dn.iddelovniNalog;
 		this.route.params.switchMap((params: Params) => this.dnService.getObisk(Number(+params['id']))).subscribe(res => {this.obisk = res;
 			this.idObiska = this.obisk.idobisk;

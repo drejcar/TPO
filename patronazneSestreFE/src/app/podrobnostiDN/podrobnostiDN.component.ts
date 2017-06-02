@@ -49,6 +49,7 @@ export class podrobnostiDNComponent implements OnInit{
 	pacTelefon2='';
 	pacPosta2='';
 	
+	otroci:any = [{'ime':'','priimek':'','zz':'','datumRojstva':'','naslov':''}];
 	obiskiDatumi= [{'datumObiska':'','fiksniDatum':'','opravljen':'','dejanskiDatum':'','nadomescanje':''}];
 	obiskVrstaStoritve='';
 	obiskBolezen='';
@@ -99,22 +100,40 @@ export class podrobnostiDNComponent implements OnInit{
 			if(this.delovniNalog.vrstaObiska.idvrstaObiska == 20 || this.delovniNalog.vrstaObiska.idvrstaObiska == 30){
 				this.aliJePraviObisk = true;
 				//prvi pacient
-				this.pacIme = this.delovniNalog.pacients[0].ime
-				this.pacPriimek = this.delovniNalog.pacients[0].priimek
-				this.pacSZZ = this.delovniNalog.pacients[0].stevilkaZdravstvenegaZavarovanja;
-				this.pacNaslov = this.delovniNalog.pacients[0].ulica+" "+this.delovniNalog.pacients[0].hisnaStevilka;
-				this.pacDatumRojstva = this.delovniNalog.pacients[0].datumRojstva;
-				this.pacTelefon = this.delovniNalog.pacients[0].telefonskaStevilka;
-				this.pacPosta = this.delovniNalog.pacients[0].uporabnik.email;
+				let stevec = 0;
+				for(let pacients of this.delovniNalog.pacients){
+					console.log(pacients);
+					console.log(pacients.telefonskaStevilka);
+					if(pacients.uporabnik != null){
+						console.log("test");
+						this.pacIme = pacients.ime
+						this.pacPriimek = pacients.priimek
+						this.pacSZZ = pacients.stevilkaZdravstvenegaZavarovanja;
+						this.pacNaslov = pacients.ulica+" "+pacients.hisnaStevilka;
+						this.pacDatumRojstva = pacients.datumRojstva;
+						this.pacTelefon = pacients.telefonskaStevilka;
+						this.pacPosta = pacients.uporabnik.email;
+					}else{
+						this.otroci[stevec].ime = pacients.ime;
+						this.otroci[stevec].priimek = pacients.priimek;
+						this.otroci[stevec].datumRojstva = pacients.datumRojstva;
+						this.otroci[stevec].zz = pacients.stevilkaZdravstvenegaZavarovanja;
+						this.otroci[stevec].naslov = pacients.ulica+" "+pacients.hisnaStevilka;
+						stevec = stevec+1;
+					}
 				//drugi pacient
-				this.pacIme2 = this.delovniNalog.pacients[1].ime
+				/*this.pacIme2 = this.delovniNalog.pacients[1].ime
 				this.pacPriimek2 = this.delovniNalog.pacients[1].priimek
 				this.pacSZZ2 = this.delovniNalog.pacients[1].stevilkaZdravstvenegaZavarovanja;
 				this.pacDatumRojstva2 = this.delovniNalog.pacients[1].datumRojstva;
 				this.pacTelefon2 = this.delovniNalog.pacients[1].telefonskaStevilka;
 				this.pacNaslov2 = this.delovniNalog.pacients[1].posta.idposta+" "+this.delovniNalog.pacients[1].posta.opis;
-				this.pacPosta2 = this.delovniNalog.pacients[1].uporabnik.email;
+				this.pacPosta2 = this.delovniNalog.pacients[1].uporabnik.email;*/
+				
+					
+				}
 			}else{
+				console.log("hello");
 				this.aliJePraviObisk = false;
 				this.pacIme = this.delovniNalog.pacients[0].ime
 				this.pacPriimek = this.delovniNalog.pacients[0].priimek

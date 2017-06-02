@@ -321,7 +321,7 @@ export class UporabniskiProfilComponent implements OnInit{
 		this.kontakt.krazmerje = this.izbranoRazmerje;
 		console.log(this.model[0]);
 		this.uporabnikService.update(this.model[0],this.dodaj,this.kontakt).subscribe(
-            (r: Response) => {console.log('success');},
+            (r: Response) => {this.submitted = true;},
 			err => {console.log(err);}
           );
 	}
