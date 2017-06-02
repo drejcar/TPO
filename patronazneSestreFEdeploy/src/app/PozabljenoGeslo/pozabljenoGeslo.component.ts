@@ -18,11 +18,15 @@ export class PozabljenoGesloComponent{
 	mail2='';
 	model = ({'mail': this.mail, 'mail2': this.mail2});
 	submitted:boolean = false;
+	aliJeSloCez = true;
 	onSubmit(){
 		var headers = new Headers({'Content-Type': 'application/json'});
 		this.http.post(`${this.restUrl}/uporabnik/pozabuGeslo/${this.model.mail}`,{headers: headers}).subscribe(res => {
 			this.submitted = true;
+			this.aliJeSloCez = true;
 
-		});
+		},
+		err => {this.aliJeSloCez = false;}
+		);
 	}
 }

@@ -50,6 +50,7 @@ var pozabljenoGeslo_component_1 = require("./PozabljenoGeslo/pozabljenoGeslo.com
 var uporabniskiProfil_component_1 = require("./UporabniskiProfil/uporabniskiProfil.component");
 var seznamObiskovPacient_component_1 = require("./SeznamObiskovPacient/seznamObiskovPacient.component");
 var pozabilGeslo_component_1 = require("./PozabljenoGeslo/pozabilGeslo.component");
+var nadomescanje_component_1 = require("./nadomescanje/nadomescanje.component");
 var AppModule = (function () {
     function AppModule() {
     }
@@ -64,7 +65,7 @@ AppModule = __decorate([
             patronaznasestradash_component_1.PatronaznaSestraDashComponent, patronaznasluzbadash_component_1.PatronaznaSluzbaDashComponent, sodelavecizsdash_component_1.SodelavecIzsDashComponent,
             zdravnikdash_component_1.ZdravnikDashComponent, aktivacija_component_1.AktivacijaComponent, odjava_component_1.OdjavaComponent, izpisDelovnihNalogov_component_1.izpisDelovnihNalogovComponent, podrobnostiDN_component_1.podrobnostiDNComponent,
             preusmeri_component_1.preusmeriComponent, seznamObiskov_component_1.seznamObiskovComponent, planiranjeObiskov_component_1.PlaniranjeObiskovComponent, seznamObiskovPacient_component_1.SeznamObiskovPacientComponent, pozabljenoGeslo_component_1.PozabljenoGesloComponent,
-            uporabniskiProfil_component_1.UporabniskiProfilComponent, pozabilGeslo_component_1.pozabilGesloComponent,
+            uporabniskiProfil_component_1.UporabniskiProfilComponent, pozabilGeslo_component_1.pozabilGesloComponent, nadomescanje_component_1.NadomescanjeComponent,
         ],
         providers: [user_service_1.UserService, pacient_guard_1.PacientGuard, zdravnik_guard_1.ZdravnikGuard, patronaznasluzba_guard_1.PatronaznaSluzbaGuard, guest_guard_1.GuestGuard,
             patronaznasestra_guard_1.PatronaznaSestraGuard, administrator_guard_1.AdministratorGuard, sodelavecizs_guard_1.SodelavecIZSGuard, uporabnik_service_1.UporabnikService, zdravstveniDelavec_service_1.zdravstveniDelavecService,

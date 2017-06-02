@@ -19,11 +19,11 @@ export class PlaniranjeObiskovComponent implements OnInit{
 	res: any;
 	izbraniDatum='';
 	aliJeVecji: boolean = false;
-	tabelaDejanskiObiskovFixenDat: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:undefined}];
+	tabelaDejanskiObiskovFixenDat: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:undefined,porocilo:''}];
 	tabelaObiskovVsi: any[];
-	tabelaObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0}];
-	tabelaObiskovFix: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0}];
-	tabelaDejanskiObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0}];
+	tabelaObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0,porocilo:''}];
+	tabelaObiskovFix: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0,porocilo:''}];
+	tabelaDejanskiObiskov: any[] = [{idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0,porocilo:''}];
 
 	tabelaDelovnihNalogov: any[];
 	delovniNalog: any;
@@ -54,12 +54,19 @@ export class PlaniranjeObiskovComponent implements OnInit{
 					for(let dn of this.tabelaObiskovVsi){
 						for(let ob of dn.obisks){
 
-							let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0});
+
+							if(ob.nadomestnaSestra != null){
+								if(ob.nadomestnaSestra.idzdravstveniDelavec != localStorage.getItem('idZdravstvenegaDelavca')){
+									continue;
+								}
+							}
+							let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0,nadomescanje:''});
 							obisk.idDelovniNalog = dn.iddelovniNalog;
 
 							obisk.idObiska = ob.idobisk;
 							obisk.vrstaObiska = dn.vrstaObiska.opis;
 							obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
+							obisk.porocilo = '/vnosObisk/'+ob.idobisk+'/'+obisk.idDelovniNalog;
 							if(ob.opravljen == 0){
 								obisk.opravljenost = 'Neopravljen';
 							}else{

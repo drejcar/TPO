@@ -36,6 +36,8 @@ import {SeznamObiskovPacientComponent} from "./SeznamObiskovPacient/seznamObisko
 import {UporabniskiProfilComponent} from "./UporabniskiProfil/uporabniskiProfil.component";
 import {PozabljenoGesloComponent} from "./PozabljenoGeslo/pozabljenoGeslo.component";
 import { pozabilGesloComponent } from "./PozabljenoGeslo/pozabilGeslo.component";
+import { NadomescanjeComponent } from "./nadomescanje/nadomescanje.component";
+import {VnosObiskComponent} from "./vnosObisk/vnosObisk.component";
 
 const routes: Routes = [
   { path: 'dashboard',/* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: DashboardComponent },
@@ -62,6 +64,8 @@ const routes: Routes = [
   { path: 'uporabniskiProfil',component:UporabniskiProfilComponent,canActivate:[PacientGuard]},
   { path: 'PozabljenoGeslo', component:PozabljenoGesloComponent},
   { path: 'pozabilGeslo/:id', component: pozabilGesloComponent},
+  { path: 'nadomescanje', component: NadomescanjeComponent,canActivate:[PatronaznaSluzbaGuard]},
+  { path: 'vnosObisk/:id/:id2', component:VnosObiskComponent},
   //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

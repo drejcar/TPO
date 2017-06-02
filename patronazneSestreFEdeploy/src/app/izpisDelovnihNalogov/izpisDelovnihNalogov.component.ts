@@ -17,6 +17,8 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 	constructor(private router:Router, private http: Http,private DNService: izpisDNService){}
 	res: any;
 	aliObstaja: boolean = false;
+	aliJeLockanMS = false;
+	aliJeLockanZD = false;
 	izdajatelji= [{'ime':'','sifra':'','id':0}];
 	obiski = [{'name': '','id':0}];
 	pacienti = [{'ime':'','priimek':'','id':0}];
@@ -174,7 +176,15 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 				let d = 0; //stevec za paciente
 				let j = 0; //stevec za vrste obiskov
 				let m = 0; //stevec za zdravstvene delavce
+				let n = 0;
 
+				if(localStorage['vloga'] == 'Zdravnik'){
+					this.aliJeLockanZD = true;
+					n = 1;
+				}else{
+					this.aliJeLockanMS = true;
+					m = 1;
+				}
 				//setanje izpisa delovnih nalogov ob initializaciji
 				for(let dn of this.delovniNalogiVsi){
 					let delovniN = <any> ({idDelovnegaNaloga:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',datumIzdaje:''});
@@ -255,8 +265,8 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 								noviZdr.ime = zdr.ime+' '+zdr.priimek;
 								noviZdr.sifra = zdr.sifra;
 								noviZdr.id = zdr.idzdravstveniDelavec;
-								this.izdajatelji[m] = noviZdr;
-								m = m+1;
+								this.izdajatelji[n] = noviZdr;
+								n = n+1;
 							}
 
 							delovniN.izdajatelj = zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+']';
@@ -274,7 +284,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 			});
 
 		}
-		},1200);
+		},2000);
 
 	}
 	Onsubmit(){

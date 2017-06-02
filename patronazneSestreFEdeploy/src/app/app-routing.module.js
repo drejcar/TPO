@@ -39,6 +39,7 @@ var seznamObiskovPacient_component_1 = require("./SeznamObiskovPacient/seznamObi
 var uporabniskiProfil_component_1 = require("./UporabniskiProfil/uporabniskiProfil.component");
 var pozabljenoGeslo_component_1 = require("./PozabljenoGeslo/pozabljenoGeslo.component");
 var pozabilGeslo_component_1 = require("./PozabljenoGeslo/pozabilGeslo.component");
+var nadomescanje_component_1 = require("./nadomescanje/nadomescanje.component");
 var routes = [
     { path: 'dashboard', /* redirectTo:'/'+localStorage.getItem('vloga'),pathMatch:'full',*/ component: dashboard_component_1.DashboardComponent },
     { path: 'prijava', component: prijava_component_1.PrijavaComponent /*, canActivate: [GuestGuard] */ },
@@ -64,6 +65,7 @@ var routes = [
     { path: 'uporabniskiProfil', component: uporabniskiProfil_component_1.UporabniskiProfilComponent, canActivate: [pacient_guard_1.PacientGuard] },
     { path: 'PozabljenoGeslo', component: pozabljenoGeslo_component_1.PozabljenoGesloComponent },
     { path: 'pozabilGeslo/:id', component: pozabilGeslo_component_1.pozabilGesloComponent },
+    { path: 'nadomescanje', component: nadomescanje_component_1.NadomescanjeComponent, canActivate: [patronaznasluzba_guard_1.PatronaznaSluzbaGuard] },
     //{ path: '', redirectTo: '/prijava', pathMatch: 'full' },
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: '**', component: not_found_component_1.PageNotFoundComponent },

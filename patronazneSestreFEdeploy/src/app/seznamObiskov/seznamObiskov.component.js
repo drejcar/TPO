@@ -35,7 +35,7 @@ var seznamObiskovComponent = (function () {
         this.izbraniObisk = this.obiski[0];
         this.izbraniPacient = this.pacienti[0];
         this.izbranaSestra = this.sestre[0];
-        this.tabelaDejanskiObiskov = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '' }];
+        this.tabelaDejanskiObiskov = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', 'nadomestna': '' }];
         this.izvajalecZdravstvenihStoritev = 0;
     }
     seznamObiskovComponent.prototype.ngOnInit = function () {
@@ -158,10 +158,11 @@ var seznamObiskovComponent = (function () {
                         var dn = _a[_i];
                         for (var _b = 0, _c = dn.obisks; _b < _c.length; _b++) {
                             var ob = _c[_b];
-                            var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '' });
+                            var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', nadomestna: '' });
                             _this.aliObstaja = false;
                             obisk.idObiska = ob.idobisk;
                             obisk.vrstaObiska = dn.vrstaObiska.opis;
+                            obisk.nadomestna = ob.nadomestnaSestra.ime + " " + ob.nadomestnaSestra.priimek + " [" + ob.nadomestnaSestra.sifra + "]";
                             obisk.pacienti = dn.pacients[0].ime + ' ' + dn.pacients[0].priimek;
                             if (ob.opravljen == 0) {
                                 obisk.opravljenost = 'Neopravljen';
@@ -270,10 +271,11 @@ var seznamObiskovComponent = (function () {
                         var dn = _a[_i];
                         for (var _b = 0, _c = dn.obisks; _b < _c.length; _b++) {
                             var ob = _c[_b];
-                            var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '' });
+                            var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', nadomestna: '' });
                             _this.aliObstaja = false;
                             obisk.idObiska = ob.idobisk;
                             obisk.vrstaObiska = dn.vrstaObiska.opis;
+                            obisk.nadomestna = ob.nadomestnaSestra.ime + " " + ob.nadomestnaSestra.priimek + " [" + ob.nadomestnaSestra.sifra + "]";
                             obisk.pacienti = dn.pacients[0].ime + ' ' + dn.pacients[0].priimek;
                             if (ob.opravljen == 0) {
                                 obisk.opravljenost = 'Neopravljen';

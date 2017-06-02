@@ -23,13 +23,15 @@ var PozabljenoGesloComponent = (function () {
         this.mail2 = '';
         this.model = ({ 'mail': this.mail, 'mail2': this.mail2 });
         this.submitted = false;
+        this.aliJeSloCez = true;
     }
     PozabljenoGesloComponent.prototype.onSubmit = function () {
         var _this = this;
         var headers = new http_1.Headers({ 'Content-Type': 'application/json' });
         this.http.post(this.restUrl + "/uporabnik/pozabuGeslo/" + this.model.mail, { headers: headers }).subscribe(function (res) {
             _this.submitted = true;
-        });
+            _this.aliJeSloCez = true;
+        }, function (err) { _this.aliJeSloCez = false; });
     };
     return PozabljenoGesloComponent;
 }());

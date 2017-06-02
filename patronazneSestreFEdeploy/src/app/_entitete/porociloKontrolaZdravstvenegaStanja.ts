@@ -1,4 +1,4 @@
-export class porociloKontrolaZdravstvenegaStanja{
+export class PorociloKontrolaZdravstvenegaStanja{
   constructor(
     //public idporociloKontrolaZdravstvenegaStanja:number,
     public akt10:String,

@@ -49,6 +49,8 @@ import {PozabljenoGesloComponent} from "./PozabljenoGeslo/pozabljenoGeslo.compon
 import {UporabniskiProfilComponent} from "./UporabniskiProfil/uporabniskiProfil.component";
 import {SeznamObiskovPacientComponent} from "./SeznamObiskovPacient/seznamObiskovPacient.component";
 import { pozabilGesloComponent } from "./PozabljenoGeslo/pozabilGeslo.component";
+import { NadomescanjeComponent } from "./nadomescanje/nadomescanje.component";
+import {VnosObiskComponent} from "./vnosObisk/vnosObisk.component";
 
 @NgModule({
   imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule],
@@ -58,7 +60,7 @@ import { pozabilGesloComponent } from "./PozabljenoGeslo/pozabilGeslo.component"
                   PatronaznaSestraDashComponent,PatronaznaSluzbaDashComponent,SodelavecIzsDashComponent,
                   ZdravnikDashComponent,AktivacijaComponent,OdjavaComponent,izpisDelovnihNalogovComponent,podrobnostiDNComponent,
 				          preusmeriComponent,seznamObiskovComponent,PlaniranjeObiskovComponent,SeznamObiskovPacientComponent,PozabljenoGesloComponent,
-                  UporabniskiProfilComponent,pozabilGesloComponent,
+                  UporabniskiProfilComponent,pozabilGesloComponent,NadomescanjeComponent,VnosObiskComponent,
                 ],
   providers:    [ UserService,PacientGuard,ZdravnikGuard,PatronaznaSluzbaGuard,GuestGuard,
                   PatronaznaSestraGuard,AdministratorGuard,SodelavecIZSGuard,UporabnikService,zdravstveniDelavecService,

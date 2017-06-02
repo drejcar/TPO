@@ -4,7 +4,7 @@ var porociloObiskOtrocnice = (function () {
         //public idporociloObiskOtrocnice:number,
         akt100, akt10a, akt10b, //double
         akt10c, //double
-        akt10d, akt110, akt120, akt150, akt160a, //double
+        akt10d, akt110, akt120, akt130, akt140, akt150, akt160a, //double
         akt160b, //double
         akt170, akt180, akt190, //double
         akt20, akt200, //double
@@ -16,6 +16,8 @@ var porociloObiskOtrocnice = (function () {
         this.akt10d = akt10d;
         this.akt110 = akt110;
         this.akt120 = akt120;
+        this.akt130 = akt130;
+        this.akt140 = akt140;
         this.akt150 = akt150;
         this.akt160a = akt160a;
         this.akt160b = akt160b;

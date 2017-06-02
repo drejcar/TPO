@@ -1,48 +1,76 @@
 <div class="container">
   <div [hidden]="submitted">
     <h1>Nadomeščanje</h1>
+	<div id="linija2"></div>
     <form (ngSubmit)="onSubmit()" #nadomescanjaForm="ngForm">
-      <div class="form-group">
         <label>Odsotna sestra:</label>
         <div class="form-group">
-          <select [(ngModel)]="izbranaSestra" class="form-control" name="poSestri">
-            <option></option>
-            <option *ngFor="let s of sestre" [ngValue]="s">{{s.ime+" ["+s.sifra+"]"}}</option>
+          <select [(ngModel)]="model.sestra" class="form-control" name="poSestri">
+            <option *ngFor="let s of model.sestre" [ngValue]="s">{{s.ime+" "+s.priimek+"["+s.sifra+"]"}}</option>
           </select>
         </div>
-        <label>Nadomestna sestra:</label>
-        <div class="form-group">
-          <select [(ngModel)]="nadomestnaSestra" class="form-control" name="nadomestnaSestra">
-            <option></option>
-            <option *ngFor="let n of nadsestre" [ngValue]="n">{{n.ime+" ["+n.sifra+"]"}}</option>
+        <div id="linija"></div>
+		<div *ngFor = "let nad of model2">
+		<label>Nadomestna sestra:</label>
+        <div class="form-group" id="enObDrugem">
+          <select [(ngModel)]="nad.nadomestnaSestra" class="form-control" name="nadomestnaSestra">
+            <option *ngFor="let n of nad.sestre" [ngValue]="n">{{n.ime+" "+n.priimek+"["+n.sifra+"]"}}</option>
           </select>
         </div>
-        <label>Interval nadomeščanja:</label>
-        <div class="enObDrugem">
+		<div id="poln">
+			<label >Interval nadomeščanja:</label>
+		</div>
+		<div id="poln2">
+        <div class="enObDrugemDatumi">
+			
           <label for="od">OD</label>
           <input type="date" class="form-control" id="od"
                  placeholder="02-06-2017" min="2017-06-02" required
-                 [(ngModel)]="model.od" name="od"
+                 [(ngModel)]="nad.od" name="od"
                  #od="ngModel">
           <div [hidden]="od.valid || od.pristine"
                class="alert alert-danger">
             Vnesite datum začetka nadomeščanja!
           </div>
         </div>
-        <div class="enObDrugem">
+        <div class="enObDrugemDatumi">
           <label for="do">DO</label>
           <input type="date" class="form-control" id="do"
                  placeholder="02-06-2017" min="2017-06-02" required
-                 [(ngModel)]="model.do" name="do"
+                 [(ngModel)]="nad.do" name="do"
                  #do="ngModel">
           <div [hidden]="do.valid || do.pristine"
                class="alert alert-danger">
             Vnesite datum konca nadomeščanja!
           </div>
+		</div>
         </div>
-        <button type="submit" class="btn btn-info">Dodaj nadomestno sestro</button>
-        <button type="submit" class="btn btn-success" [disabled]="!nadomescanjeForm.form.valid">Potrdi nadomeščanje</button>
-      </div>
+		<div [hidden]="!nad.error">{{nad.sporocilo}}</div>
+		</div>
+		<div id="flt">
+        <button type="button" (click)="dodajNadomescanje()" class="btn btn-info">Dodaj nadomestno sestro</button>
+		<button  type="button" (click)="odstraniNadomescanje()"[disabled]="!aliJeVec" class="btn btn-info">Odstrani nadomestno sestro</button>
+        <button type="submit" class="btn btn-success" [disabled]="!nadomescanjaForm.form.valid">Potrdi nadomeščanje</button>
+		</div>
+		<div [hidden]="!error">{{sporocilo}}</div>
     </form>
   </div>
+  <div [hidden]="!submitted">
+	<h3>Nadomeščanje nastavljeno</h3>
+  </div>
+  <h1>Predčasna vrnitev in konec nadomeščanja</h1>
+  <div id="linija2"></div>
+  <form (ngSubmit)="prekiniNadomescanje()" #konecNadomescanje="ngForm">
+  <label>Odsotna sestra, ki se je predčasno vrnila:</label>
+        <div class="form-group">
+          <select [(ngModel)]="izbranaVrnitev.sestra" required id="Sestra" class="form-control" name="Sestra" #Sestra="ngModel">
+		  <option></option>
+            <option *ngFor="let s of izbranaVrnitev.sestre" [ngValue]="s">{{s.ime+" "+s.priimek+"["+s.sifra+"]"}}</option>
+          </select>
+		  <div [hidden]="Sestra.valid|| Sestra.pristine"
+		  class="alert alert-danger">Izberite sestro, ki je prišla iz nadomeščanja</div>
+        </div>
+	<button type="submit" [disabled]="!konecNadomescanje.form.valid" class="btn btn-success">Prekini nadomescanje</button>
+  </form>
+  <div [hidden]="!konecNadomescanja"><h3>Uspešno ste zaključili nadomeščanja</h3></div>
 </div>

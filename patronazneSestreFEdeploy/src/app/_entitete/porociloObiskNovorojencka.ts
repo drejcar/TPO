@@ -1,4 +1,4 @@
-export class porociloObiskNovorojencka{
+export class PorociloObiskNovorojencka{
   constructor(
     //public idporociloObiskNovorojencka:number,
     public akt10:String,
@@ -14,9 +14,12 @@ export class porociloObiskNovorojencka{
     public akt50:String,
     public akt60:number,
     public akt70:number,
-    public akt80a:String,
+    public akt80:String,
     public akt80b:String,
     public akt90a:String,
-    public akt90b:String
+    public akt90b:String,
+	public ime:String,
+	public priimek:String,
+	public stevilkaZdravstvenegaZavarovanja:String,
   ){}
 }

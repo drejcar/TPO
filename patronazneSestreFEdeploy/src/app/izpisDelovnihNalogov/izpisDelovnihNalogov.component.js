@@ -264,7 +264,7 @@ var izpisDelovnihNalogovComponent = (function () {
                     _this.delovniNalogiVsi = _this.delovniNalogi;
                 });
             }
-        }, 1200);
+        }, 2000);
     };
     izpisDelovnihNalogovComponent.prototype.Onsubmit = function () {
         var i = 0;

@@ -49,7 +49,7 @@ var podrobnostiDNComponent = (function () {
         this.pacDatumRojstva2 = '';
         this.pacTelefon2 = '';
         this.pacPosta2 = '';
-        this.obiskiDatumi = [{ 'datumObiska': '', 'fiksniDatum': '', 'opravljen': '', 'dejanskiDatum': '' }];
+        this.obiskiDatumi = [{ 'datumObiska': '', 'fiksniDatum': '', 'opravljen': '', 'dejanskiDatum': '', 'nadomescanje': '' }];
         this.obiskVrstaStoritve = '';
         this.obiskBolezen = '';
         this.zdravila = [{ 'idZdravila': 0, 'tipZdravila': '' }];
@@ -60,6 +60,7 @@ var podrobnostiDNComponent = (function () {
         this.route.params
             .switchMap(function (params) { return _this.DNService.getDelovniNalog(Number(+params['id'])); }).subscribe(function (response) {
             _this.delovniNalog = response;
+            console.log(_this.delovniNalog);
             _this.idDelovnegaNaloga = _this.delovniNalog.iddelovniNalog;
             //izvajalec zdravstvenih storitev
             _this.izvNaziv = _this.delovniNalog.izvajalecZdravstvenihStoritev.naziv;
@@ -74,10 +75,15 @@ var podrobnostiDNComponent = (function () {
                     _this.izdPriimek = i_1.priimek;
                 }
                 else if (i_1.okolis != null) {
-                    _this.sestraSifra = i_1.sifra;
-                    _this.sestraOkolis = i_1.okolis.opis;
-                    _this.sestraIme = i_1.ime;
-                    _this.sestraPriimek = i_1.priimek;
+                    for (var _b = 0, _c = _this.delovniNalog.obisks; _b < _c.length; _b++) {
+                        var b = _c[_b];
+                        if (b.nadomestnaSestra.idzdravstveniDelavec != i_1.idzdravstveniDelavec) {
+                            _this.sestraSifra = i_1.sifra;
+                            _this.sestraOkolis = i_1.okolis.opis;
+                            _this.sestraIme = i_1.ime;
+                            _this.sestraPriimek = i_1.priimek;
+                        }
+                    }
                 }
             }
             //pacient
@@ -112,9 +118,10 @@ var podrobnostiDNComponent = (function () {
             }
             //obiski
             var j = 0;
-            for (var _b = 0, _c = _this.delovniNalog.obisks; _b < _c.length; _b++) {
-                var i_2 = _c[_b];
-                var novObisk = ({ 'datumObiska': '', 'fiksniDatum': '', 'opravljen': '', 'dejanskiDatum': '' });
+            for (var _d = 0, _e = _this.delovniNalog.obisks; _d < _e.length; _d++) {
+                var i_2 = _e[_d];
+                var novObisk = ({ 'datumObiska': '', 'fiksniDatum': '', 'opravljen': '', 'dejanskiDatum': '', 'nadomescanje': '' });
+                novObisk.nadomescanje = i_2.nadomestnaSestra.ime + " " + i_2.nadomestnaSestra.priimek + " [" + i_2.nadomestnaSestra.sifra + "]";
                 novObisk.datumObiska = i_2.datumObiska;
                 novObisk.dejanskiDatum = i_2.dejanskiDatumObiska;
                 if (i_2.opravljen == 0) {
@@ -129,6 +136,7 @@ var podrobnostiDNComponent = (function () {
                 else {
                     novObisk.fiksniDatum = 'Da';
                 }
+                //novObisk.
                 _this.obiskiDatumi[j] = novObisk;
                 j = j + 1;
             }
@@ -151,8 +159,8 @@ var podrobnostiDNComponent = (function () {
             if (_this.delovniNalog.vrstaObiska.idvrstaObiska == 60) {
                 j = 0;
                 _this.aliJeOdvzemKrvi = true;
-                for (var _d = 0, _e = _this.delovniNalog.materials; _d < _e.length; _d++) {
-                    var i_3 = _e[_d];
+                for (var _f = 0, _g = _this.delovniNalog.materials; _f < _g.length; _f++) {
+                    var i_3 = _g[_f];
                     var novMaterial = ({ 'tipMateriala': '', 'kolicina': 0 });
                     novMaterial.tipMateriala = i_3.opis;
                     novMaterial.kolicina = _this.delovniNalog.steviloEpruvet;
@@ -164,8 +172,8 @@ var podrobnostiDNComponent = (function () {
                 j = 0;
                 _this.aliJeInjekcija = true;
                 _this.obiskBolezen = _this.delovniNalog.bolezen.opis;
-                for (var _f = 0, _g = _this.delovniNalog.zdravilos; _f < _g.length; _f++) {
-                    var i_4 = _g[_f];
+                for (var _h = 0, _j = _this.delovniNalog.zdravilos; _h < _j.length; _h++) {
+                    var i_4 = _j[_h];
                     var novZdravilo = ({ 'idZdravila': 0, 'tipZdravila': '' });
                     novZdravilo.idZdravila = i_4.idzdravilo;
                     novZdravilo.tipZdravila = i_4.opis;
