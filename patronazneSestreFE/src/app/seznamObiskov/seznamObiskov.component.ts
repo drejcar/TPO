@@ -12,9 +12,9 @@ import { izpisDNService } from '../izpisDelovnihNalogov/izpisDN.service';
 })
 
 export class seznamObiskovComponent implements OnInit{
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http, private DNService: izpisDNService){}
-	
+
 	aliJeLockanZD = false;
 	aliJeLockanMS = false;
 	nadomestne: any[] = [{'sifra':0}];
@@ -61,7 +61,7 @@ export class seznamObiskovComponent implements OnInit{
 				this.izdajatelji[0].sifra = dobiZd.sifra;
 				this.izdajatelji[0].id = dobiZd.idzdravstveniDelavec;
 			}else if(localStorage['vloga'] == 'PatronaznaSestra'){
-			
+
 				this.sestre[0].ime = dobiZd.ime+" "+dobiZd.priimek;
 				this.sestre[0].sifra = dobiZd.sifra;
 				this.sestre[0].id = dobiZd.idzdravstveniDelavec;
@@ -196,7 +196,7 @@ export class seznamObiskovComponent implements OnInit{
 							}
 						}else{
 							obisk.opravljenost = 'Opravljen';
-							
+
 							obisk.porocilo = '/vnosObisk/'+ob.idobisk+"/"+dn.iddelovniNalog;
 							if(localStorage.getItem('vloga') == 'Zdravnik'){
 								obisk.kaksno = 'Podrobnosti poročila'
@@ -204,7 +204,7 @@ export class seznamObiskovComponent implements OnInit{
 								obisk.kaksno = 'Podrobnosti/Popravki poročila'
 							}
 						}
-							
+
 						//setanje patronaznih sester
 						if(localStorage['vloga'] == 'PatronaznaSestra'){
 							m = 1;
@@ -224,7 +224,7 @@ export class seznamObiskovComponent implements OnInit{
 							this.aliObstaja = false;
 							if(zdr.okolis != null){
 								if(obisk.nadomestna != 'ni nadomeščanja'){
-									
+
 									if(zdr.sifra == ob.nadomestnaSestra.sifra){
 										obisk.patronaznaSestra =zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+obisk.patronaznaSestra;
 									}
@@ -234,21 +234,21 @@ export class seznamObiskovComponent implements OnInit{
 									if(zdr.sifra == b.sifra){
 										nekBool = true;
 										break;
-										
+
 									}
 								}
 								if(nekBool == false){
 									obisk.patronaznaSestra =zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+obisk.patronaznaSestra;
 								}
-								
+
 								//pregled Sester
 								console.log(this.sestre);
 								for(let ses of this.sestre){
-									
+
 									if(obisk.nadomestna != 'ni nadomeščanja'){
 										if((nekBool == true && zdr.sifra != ob.nadomestnaSestra.sifra)){
 											this.aliObstaja = true;
-											
+
 										}
 									}
 									if(ses.id == zdr.idzdravstveniDelavec || this.aliObstaja == true){
@@ -264,7 +264,7 @@ export class seznamObiskovComponent implements OnInit{
 									this.sestre[m] = novaS
 									m = m+1;
 								}
-								
+
 							}else{
 								for(let zdravnik of this.izdajatelji){
 									if(zdravnik.id == zdr.idzdravstveniDelavec){
@@ -281,9 +281,9 @@ export class seznamObiskovComponent implements OnInit{
 									this.izdajatelji[n] = noviZdr;
 									n = n+1;
 								}
-								
+
 								obisk.izdajatelj = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"]";
-								
+
 							}
 						}
 
@@ -315,7 +315,7 @@ export class seznamObiskovComponent implements OnInit{
 					for(let s of dn.pacients){
 						this.aliObstaja = false;
 						for(let pacient of this.pacienti){
-						
+
 							if(pacient.id == s.idpacient){
 								this.aliObstaja = true;
 								break;
@@ -388,13 +388,13 @@ export class seznamObiskovComponent implements OnInit{
 										obisk.patronaznaSestra = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"] "+obisk.patronaznaSestra;
 									}
 								}
-									
+
 								var nekBool = false;
 								for(let b of this.nadomestne){
 									if(zdr.sifra == b.sifra){
 										nekBool = true;
 										break;
-										
+
 									}
 								}
 								if(nekBool == false){
@@ -406,7 +406,7 @@ export class seznamObiskovComponent implements OnInit{
 									if(obisk.nadomestna != 'ni nadomeščanja'){
 										if((nekBool == true && zdr.sifra != ob.nadomestnaSestra.sifra)){
 											this.aliObstaja = true;
-											
+
 										}
 									}
 									if((ses.id == zdr.idzdravstveniDelavec) || (this.aliObstaja == true)){
@@ -469,7 +469,7 @@ export class seznamObiskovComponent implements OnInit{
 					for(let s of dn.pacients){
 						this.aliObstaja = false;
 						for(let pacient of this.pacienti){
-						
+
 							if(pacient.id == s.idpacient){
 								this.aliObstaja = true;
 								break;
@@ -484,7 +484,7 @@ export class seznamObiskovComponent implements OnInit{
 							d = d+1;
 						}
 					}
-					
+
 
 
 				}

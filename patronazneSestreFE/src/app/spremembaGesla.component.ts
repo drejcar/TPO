@@ -23,15 +23,15 @@ export class SpremembaGeslaComponent{
 
   pwd:String='';
   pwd2:String='';
-  
-  
+
+
   model = ({'pwd': this.pwd, 'pwd2': this.pwd2});
   submitted=false;
   fail= false;
   onSubmit(){
 	  this.fail = false;
 	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
-	var baseUrl: String = 'http://localhost:8080/patronazneSestre/v1/uporabnik';
+	var baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/uporabnik';
     let vlog = <Vlog>({
 		idvloga: Number(localStorage.getItem('idvloga')),
 		opis: localStorage.getItem('vloga'),

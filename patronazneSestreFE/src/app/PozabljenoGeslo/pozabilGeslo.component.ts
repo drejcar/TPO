@@ -15,7 +15,7 @@ import { Location } from '@angular/common';
 })
 
 export class pozabilGesloComponent implements OnInit{
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
   constructor(private router:Router,private http: Http,private route: ActivatedRoute,private location: Location){}
 
   res: any;
@@ -27,15 +27,15 @@ export class pozabilGesloComponent implements OnInit{
   datumZadnjePrijave:String = '';
   iduporabnika:number = 0;
   idvloga: number = 0;
-  
-  
+
+
   model = ({'pwd': this.pwd, 'pwd2': this.pwd2});
   submitted=false;
   fail= false;
   onSubmit(){
-	
+
 	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
-	var baseUrl: String = 'http://localhost:8080/patronazneSestre/v1/uporabnik';
+	var baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/uporabnik';
     let vlog = <Vlog>({
 		idvloga: this.idvloga,
 		opis: this.vloga,

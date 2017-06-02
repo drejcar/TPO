@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 })
 
 export class PlaniranjeObiskovComponent implements OnInit{
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private router:Router, private http:Http,private DNService: izpisDNService,private datePipe: DatePipe){}
 
 	res: any;
@@ -53,8 +53,8 @@ export class PlaniranjeObiskovComponent implements OnInit{
 					var datum = this.izbraniDatum;
 					for(let dn of this.tabelaObiskovVsi){
 						for(let ob of dn.obisks){
-							
-							
+
+
 							if(ob.nadomestnaSestra != null){
 								if(ob.nadomestnaSestra.idzdravstveniDelavec != localStorage.getItem('idZdravstvenegaDelavca')){
 									continue;
@@ -62,7 +62,7 @@ export class PlaniranjeObiskovComponent implements OnInit{
 							}
 							let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',dodaj:'',fiksniDatum:'',idDelovniNalog:0,nadomescanje:''});
 							obisk.idDelovniNalog = dn.iddelovniNalog;
-							
+
 							obisk.idObiska = ob.idobisk;
 							obisk.vrstaObiska = dn.vrstaObiska.opis;
 							obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;

@@ -85,9 +85,9 @@ export class DelovniNalogComponent implements OnInit{
 	veljavnostNalogaFiksniDatum: boolean = false;
 	veljavnostNalogaInterval: number = 0;
 	veljavnostNalogaSteviloObiskov: number = 1;
-	
+
 	stevecOtrok = 0;
-	
+
 	data : any;
 	data1 : any;
 	data2 : any;
@@ -99,7 +99,7 @@ export class DelovniNalogComponent implements OnInit{
 	sifraUporabnika: string = "";
 	urlParametri: string = "";
 
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 
 	stevilkaIzvajalca : string = "rest ocitno ni uspel";
 	nazivIzvajalca : string = "naziv izvajalca";
@@ -246,9 +246,9 @@ export class DelovniNalogComponent implements OnInit{
 			console.log("id okolisa: " + this.idOkolisa);
 			console.log(test.pacients);
 			if(test.pacients != null){
-				
+
 				this.IzbrOtroci[0].otroci = test.pacients;
-				
+
 				this.kolikoOtrok = test.pacients;
 			}
 			console.log(this.kolikoOtrok);
@@ -400,7 +400,7 @@ export class DelovniNalogComponent implements OnInit{
 
 		var pacient1 = new Pacient();
 		pacient1.idpacient = this.idPacient1;
-		
+
 		var material = new Material();
 		material.idmaterial = this.izbraniMaterial.idmaterial;
 
@@ -432,14 +432,14 @@ export class DelovniNalogComponent implements OnInit{
 		var dn = new delovniNalog();
 		dn.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
 		dn.zdravstveniDelavecs = [zdravstveniDelavec, sestra];
-		
+
 		//ne smeta biti 2 enaka objekta
 		if(this.izbranaStoritev.id == 20 || this.izbranaStoritev.id == 30) {
 		dn.pacients = [pacient]
 			for(let s of this.IzbrOtroci){
 				dn.pacients.push(s.izbraniOtrok);
 			}
-			
+
 		} else {
 			dn.pacients = [pacient];
 		}

@@ -174,7 +174,7 @@ we configured Protractor to find them.
 
 Thereafter, run them with `npm run e2e`.
 
-That command first compiles, then simultaneously starts the `lite-server` at `localhost:8080`
+That command first compiles, then simultaneously starts the `lite-server` at `rogla.fri1.uni-lj.si/rest`
 and launches Protractor.  
 
 The pass/fail test results appear at the bottom of the terminal window.

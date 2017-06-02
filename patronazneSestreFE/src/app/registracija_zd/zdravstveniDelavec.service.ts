@@ -9,7 +9,7 @@ import { UporabnikZd } from '../ZdravstveniDelavec';
 
 @Injectable()
 export class zdravstveniDelavecService{
- private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
+ private baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 
  private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
  constructor(private http : Http){}

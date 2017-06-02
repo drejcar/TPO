@@ -5,7 +5,7 @@
 //
 // AND THEN EVERYTIME ...
 //   1. Compile with `tsc`
-//   2. Make sure the test server (e.g., lite-server: localhost:8080) is running.
+//   2. Make sure the test server (e.g., lite-server: rogla.fri1.uni-lj.si/rest) is running.
 //   3. ./node_modules/.bin/protractor protractor.config.js
 //
 //   To do all steps, try:  `npm run e2e`
@@ -34,7 +34,7 @@ exports.config = {
   useAllAngular2AppRoots: true,
 
   // Base URL for application server
-  baseUrl: 'http://localhost:8080',
+  baseUrl: 'http://rogla.fri1.uni-lj.si/rest',
 
   // doesn't seem to work.
   // resultJsonOutputFile: "foo.json",

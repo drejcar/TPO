@@ -12,7 +12,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./pozabljenoGeslo.component.css']
 })
 export class PozabljenoGesloComponent{
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http, private DNService: izpisDNService){}
 	mail='';
 	mail2='';
@@ -24,7 +24,7 @@ export class PozabljenoGesloComponent{
 		this.http.post(`${this.restUrl}/uporabnik/pozabuGeslo/${this.model.mail}`,{headers: headers}).subscribe(res => {
 			this.submitted = true;
 			this.aliJeSloCez = true;
-		
+
 		},
 		err => {this.aliJeSloCez = false;}
 		);

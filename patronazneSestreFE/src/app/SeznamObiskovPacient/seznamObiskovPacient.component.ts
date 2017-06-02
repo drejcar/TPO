@@ -13,19 +13,19 @@ import { DatePipe } from '@angular/common';
 })
 
 export class SeznamObiskovPacientComponent implements OnInit{
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http, private DNService: izpisDNService){}
 	res:any;
 	aliObstaja: boolean = false;
 	pacienti = [{'ime':'','priimek':'','sifra':'','id':0}];
 	izbraniPacient = this.pacienti[0];
 	vecJihJe: boolean = false;
-	
+
 	tabelaObiskovVsi: any[];
 	tabelaDejanskiObiskov: any[] = [{idObiska:undefined,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',podrobno:'',porocilo:''}]
 	aliSoObiski = false;
 	ngOnInit(){
-		
+
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 		this.http.get(`${this.restUrl}/pacient/uporabnikId/${localStorage['iduporabnik']}`,{headers: headers}).subscribe(res => {
 		this.res = res.json();
@@ -36,10 +36,10 @@ export class SeznamObiskovPacientComponent implements OnInit{
 		this.pacienti[0].priimek = dobiPacienta.priimek;
 		this.pacienti[0].sifra = dobiPacienta.stevilkaZdravstvenegaZavarovanja;
 		this.pacienti[0].id = dobiPacienta.idpacient;
-		
+
 		let j = 1; //stevec za paciente
 		for(let pacient of dobiPacienta.pacients){
-		
+
 			let pacien = <any>({idpacient:0,ime:'',priimek:''});
 			pacien.id = pacient.idpacient;
 			pacien.ime = pacient.ime;
@@ -71,8 +71,8 @@ export class SeznamObiskovPacientComponent implements OnInit{
 						for(let zdr of dn.zdravstveniDelavecs){
 							if(zdr.okolis != null){
 								obisk.patronaznaSestra =zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+obisk.patronaznaSestra;
-				
-										
+
+
 							}else{
 								obisk.izdajatelj = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"]";
 							}
@@ -83,16 +83,16 @@ export class SeznamObiskovPacientComponent implements OnInit{
 						this.tabelaDejanskiObiskov[i] = obisk;
 						i = i+1;
 					}
-					
+
 				}
 				if(stevecObiskov > 0){
 					this.aliSoObiski = true;
 				}
 			});
-		
+
 		},1500);
 	}
-	
+
 	Onsubmit(){
 		console.log(this.izbraniPacient);
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
@@ -109,14 +109,14 @@ export class SeznamObiskovPacientComponent implements OnInit{
 						let obisk = <any> ({idObiska:0,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',porocilo:''});
 						obisk.idObiska = ob.idobisk;
 						obisk.porocilo = '/vnosObisk/'+ob.idobisk+'/'+dn.iddelovniNalog;
-						
+
 						obisk.vrstaObiska = dn.vrstaObiska.opis;
 						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
 						for(let zdr of dn.zdravstveniDelavecs){
 							if(zdr.okolis != null){
 								obisk.patronaznaSestra =zdr.ime+' '+zdr.priimek+' ['+zdr.sifra+"] "+obisk.patronaznaSestra;
-				
-										
+
+
 							}else{
 								obisk.izdajatelj = zdr.ime+" "+zdr.priimek+" ["+zdr.sifra+"]";
 							}
@@ -126,7 +126,7 @@ export class SeznamObiskovPacientComponent implements OnInit{
 						this.tabelaDejanskiObiskov[i] = obisk;
 						i = i+1;
 					}
-					
+
 				}
 			});
 		},1500);

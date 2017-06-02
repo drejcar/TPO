@@ -15,7 +15,7 @@ import { Kontakts } from "../Pacient";
 
 @Injectable()
 export class UporabnikService{
- private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
+ private baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
  private headers = new Headers({'Content-Type': 'application/json'});
  constructor(private http : Http){}
 
@@ -51,8 +51,8 @@ export class UporabnikService{
 		vloga: vloga
 	});
 	console.log(dodaj+"\n");
-	
-	
+
+
 		var devided2 = kontaktnov.kpostnaStevilka.split(' ');
 		let posta2 = <Posta>({
 			idposta: Number(devided2[0]),
@@ -69,10 +69,10 @@ export class UporabnikService{
 			sorodstvenoRazmerje: kontaktnov.krazmerje,
 		});
 	if(dodaj == false){
-	
+
 		kontakt = null;
 	}
-	
+
 	//filamo json pacient
 
 	let pacient = <Pacient>({
@@ -91,10 +91,10 @@ export class UporabnikService{
 	});
 
 	return this.http.post(`${this.baseUrl}/registracija`,JSON.stringify(pacient), {headers: this.headers});
- }	
+ }
  update(upr:any,dodaj:boolean,kontaktnov: Kontakt): Observable<Response>{
-	
-	
+
+
 	var devided = upr.posta.split(' ');
 	let posta = <Posta>({
 		idposta: Number(devided[0]),
@@ -110,7 +110,7 @@ export class UporabnikService{
 			opis: devided3[1],
 		});
 		console.log(kontaktnov.krazmerje);
-		kontakt = <Kontakts> ({ 
+		kontakt = <Kontakts> ({
 			ime: kontaktnov.kime,
 			priimek: kontaktnov.kpriimek,
 			telefonskaStevilka: kontaktnov.ktel,
@@ -119,18 +119,18 @@ export class UporabnikService{
 			posta: posta2,
 			sorodstvenoRazmerje: kontaktnov.krazmerje,
 		});
-	
-	}	
+
+	}
 	console.log(kontakt);
 	if(dodaj == true){
 		upr.kontakt = kontakt;
 	}
 	console.log(upr);
 	console.log(JSON.stringify(upr));
-	
+
 	var headers2 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 	return this.http.put(`${this.baseUrl}/pacient`,JSON.stringify(upr), {headers: headers2});
-	
+
  }
  getPoste(): Observable<Posta[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/posta`, {headers: this.headers}).map((response: Response) => response.json());

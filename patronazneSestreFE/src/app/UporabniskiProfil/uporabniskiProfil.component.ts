@@ -19,7 +19,7 @@ import { sorodstvenoRazmerje } from "../registracija/kontakt";
 })
 
 export class UporabniskiProfilComponent implements OnInit{
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private http: Http, private router: Router,private uporabnikService: UporabnikService){}
 	dodaj = false;
 	res:any;
@@ -33,7 +33,7 @@ export class UporabniskiProfilComponent implements OnInit{
 	subNiPravi = true;
 	spoli:any = [{'idspol':0,'opis':''}];
 	submitted = false;
-	
+
 	izbranoRazmerje: sorodstvenoRazmerje = ({idsorodstvenoRazmerje:0,opis:''});
 	okolisi: Okolis[] = [{'idokolis': 1,'opis': '','idposta':1000}];
 	okolisis: Okolis[] = [{'idokolis': 1,'opis': '','idposta':1000}];
@@ -48,7 +48,7 @@ export class UporabniskiProfilComponent implements OnInit{
 	devided = '';
 	krazmerja: any[] = [{}];
 	glavni = 0;
-	
+
 	kontakts: Kontakts = null;
 	posta = ({'idposta':0,'opis':''});
 	kontakt:any = ({'kime':this.kime,'kpriimek':this.kpriimek,'ktel':this.ktel,'kulica':this.kulica,'khisnaStevilka':this.khisnaStevilka,'kpostnaStevilka':this.kpostneStevilke[0],'krazmerje':this.krazmerja[0]});
@@ -61,23 +61,23 @@ export class UporabniskiProfilComponent implements OnInit{
 	postneStevilke: any[] = [{}];
 	model2:any[] = [{'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakt,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':'','uporabnik':this.uporabnik}];
 	model3:any[] = [{}]; /*= [{'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakt,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':this.okolis,'uporabnik':this.uporabnik}];*/
-	
+
 	ngOnInit(){
-	
+
 		console.log(localStorage['iduporabnik']);
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 		this.model[0] = ({'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakts,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':this.okolis,'uporabnik':this.uporabnik});
 		this.http.get(`${this.restUrl}/pacient/uporabnikId/${localStorage['iduporabnik']}`, {headers: headers}).map((response: Response) => response.json()).subscribe(res => {this.res = res;
 		var vmesna = JSON.stringify(this.res);
 		var dobiUporabnika = JSON.parse(vmesna);
-		console.log(dobiUporabnika);	
+		console.log(dobiUporabnika);
 		this.model[0] = dobiUporabnika;
 		this.postSt = dobiUporabnika.posta.idposta.toString()+" "+dobiUporabnika.posta.opis.toString();
 		this.izbrOkolis = dobiUporabnika.okolis;
 		this.devided = dobiUporabnika.posta.idposta;
 		console.log(dobiUporabnika.idpacient);
 		this.glavni = dobiUporabnika.idpacient;
-		
+
 		this.uporabnikService.getRazmerje().subscribe(data => {this.razmerjas = data;
         let i = 0;
 
@@ -103,22 +103,22 @@ export class UporabniskiProfilComponent implements OnInit{
 	err => {console.log(err);});
 	this.uporabnikService.getSpol().subscribe(data => {this.spoln = data;
 	let i = 0;
-	
+
 	for(let entry of this.spoln){
-		
+
 		this.spoli[i] = ({'idspol':entry[0],'opis':entry[1]});
 		console.log(this.spoli[i]);
 		i = i+1;
 	}
 	},
 	err => {console.log(err);});
-	
+
 	console.log(this.devided);
 	  this.uporabnikService.getOkolisByPosta(Number(this.devided)).subscribe(data => {this.okoliss = data;
 	  let i = 0;
-	  
+
 	  for(let entry of this.okoliss){
-		
+
 		  this.okolisi[i] = entry;
 
 		  i = i+1;
@@ -135,7 +135,7 @@ export class UporabniskiProfilComponent implements OnInit{
 		console.log(dobiUporabnika.kontakt.sorodstvenoRazmerje.opis);
 		this.izbranoRazmerje = dobiUporabnika.kontakt.sorodstvenoRazmerje;
 	  }
-	  
+
 	  if(dobiUporabnika.pacients.length > 0){
 		let d = 0;
 		console.log(dobiUporabnika.pacients);
@@ -149,14 +149,14 @@ export class UporabniskiProfilComponent implements OnInit{
 			tabela = this.najdiOkolise(njegovi.posta.idposta);
 			console.log(novi.okolis.opis);
 			novi.oko = tabela;
-			this.model2[d] = novi;	
+			this.model2[d] = novi;
 			d = d+1;
 		}
 	  }
 	});
-	
+
 	}
-	
+
 	najdiOkolise(postnaSt: number): Okolis[]{
 		var tabela: Okolis[] = [{'idokolis': 0,'opis': 'iscem okolise','idposta':1000}];
 		setTimeout(() => {
@@ -166,7 +166,7 @@ export class UporabniskiProfilComponent implements OnInit{
 				tabela[i] = entry;
 				i = i+1;
 			}
-			
+
 		});
 		},500);
 		return tabela;
@@ -193,7 +193,7 @@ export class UporabniskiProfilComponent implements OnInit{
 	  }
 	  });
 
-	  
+
 	}
 	onChangePostnaStevilka2(sprememba: String,ime: String){
 	  var devided = sprememba.split(' ');
@@ -202,7 +202,7 @@ export class UporabniskiProfilComponent implements OnInit{
 				b.oko = this.najdiOkolise(Number(devided[0]));
 				break;
 			}
-		} 
+		}
 	}
 	dodajPacienta(){
 		console.log(this.spoli[0].opis);
@@ -227,21 +227,21 @@ export class UporabniskiProfilComponent implements OnInit{
 		if(this.dodajPac == true){
 			length = this.model3.length;
 			for(let nk of this.model3){
-				
+
 				if(nk.ime==undefined || nk.okolis == undefined){
 					this.subNiPravi = false;
 					break;
 				}
-				
+
 			}
 		}else{
 			this.subNiPravi = true;
 		}
-		
+
 		this.model[0].posta = this.postSt;
 		this.model[0].okolis = this.izbrOkolis;
-		
-		
+
+
 		this.model[0].pacients = [];
 		if(this.model2[0].ime != ""){
 			for(let n of this.model2){
@@ -253,23 +253,23 @@ export class UporabniskiProfilComponent implements OnInit{
 						idposta: Number(devided1[0]),
 						opis: devided1[1],
 					});
-					
+
 					n.posta = posta;
 				}
 				if(typeof n.okolis != 'object'){
 					var devided2= n.okolis.split(' ');
-								
-					
+
+
 					let okolis = <Okolis>({
 						idokolis: Number(devided2[1]),
 						opis: devided2[0].toString(),
 						posta: posta
 					});
-					
+
 					n.okolis = okolis;
 				}
 				this.model[0].pacients.push(n);
-				
+
 			}
 		}
 		console.log(this.model3[0]);
@@ -293,8 +293,8 @@ export class UporabniskiProfilComponent implements OnInit{
 						});
 						console.log(nk.okolis.opis);
 						/*var devided2= nk.okolis.split(' ');
-						
-						
+
+
 						let okolis = <Okolis>({
 							idokolis: Number(devided2[1]),
 							opis: devided2[0].toString(),
@@ -303,7 +303,7 @@ export class UporabniskiProfilComponent implements OnInit{
 						nk.posta = posta;
 						nk.spol = spol;
 						//nk.okolis = okolis;
-					for(let raz of this.krazmerja){				
+					for(let raz of this.krazmerja){
 						if(nk.sorodstvenoRazmerje == raz.opis){
 							console.log("NAJDU");
 							let nov = <any>({
@@ -314,7 +314,7 @@ export class UporabniskiProfilComponent implements OnInit{
 						}
 					}
 				this.model[0].pacients.push(nk);
-				
+
 			}
 		}
 		console.log(this.dodaj);

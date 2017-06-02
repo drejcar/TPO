@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 })
 
 export class NadomescanjeComponent implements OnInit{
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private router: Router, private http: Http){}
 	stevec = 1;
 	aliJeVec = false;
@@ -36,15 +36,15 @@ export class NadomescanjeComponent implements OnInit{
 			var vmesna = JSON.stringify(this.res);
 			var dobiZd = JSON.parse(vmesna);
 			localStorage.setItem('idIzv',dobiZd.izvajalecZdravstvenihStoritev.idizvajalecZdravstvenihStoritev);
-			
-		
+
+
 			this.http.get(`${this.restUrl}/zdravstveniDelavec/byIzv/${localStorage['idIzv']}`, {headers: headers3}).map((response: Response) => response.json()).subscribe(res =>{
 				this.Allsestre = res;
 				console.log(this.Allsestre);
 				let i = 0;
 				for(let ses of this.Allsestre){
 					if(ses.okolis != null){
-						
+
 						let nov: any = ({'idSestre':ses.idzdravstveniDelavec,'ime':ses.ime,'priimek':ses.priimek,'sifra':ses.sifra});
 						this.sestre[i] = nov;
 						i = i+1;
@@ -76,7 +76,7 @@ export class NadomescanjeComponent implements OnInit{
 		var vecKEna = 0;
 		this.error = false;
 		this.sporocilo = "";
-		
+
 		for(let izbrane of this.model2){
 			vecKEna = 0;
 			console.log(izbrane);
@@ -89,7 +89,7 @@ export class NadomescanjeComponent implements OnInit{
 					break;
 				}
 				if(izbr.nadomestnaSestra.idSestre != izbrane.nadomestnaSestra.idSestre){
-					
+
 					var datum1 = izbr.od;
 					var datum2 = izbr.do;
 					var parts: any[] = datum1.split('-');
@@ -102,7 +102,7 @@ export class NadomescanjeComponent implements OnInit{
 					var datum1Druge = parts[0]+parts[1]+parts[2];
 					parts = datum2.split('-');
 					var datum2Druge = parts[0]+parts[1]+parts[2];
-					
+
 					console.log(datum1Izb+"-"+datum2Izb);
 					console.log(datum1Druge+"-"+datum2Druge);
 					if((datum2Izb >= datum1Druge && datum1Druge >= datum1Izb  )|| (datum2Druge >= datum1Izb && datum2Druge <=datum2Izb)){
@@ -113,7 +113,7 @@ export class NadomescanjeComponent implements OnInit{
 						izbrane.sporocilo = "Prislo je do konflikta intervalov";
 						break;
 					}
-					
+
 				}else{
 					vecKEna = vecKEna+1;
 				}
@@ -141,18 +141,18 @@ export class NadomescanjeComponent implements OnInit{
 					this.error = false;
 				});
 			}
-			
-			
-			
+
+
+
 		}
-		
-		
+
+
 	}
 	prekiniNadomescanje(){
 		var headers3 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 		console.log(this.izbranaVrnitev.sestra.idSestre);
-		
+
 		this.http.get(`${this.restUrl}/obiski/nadomescanjekonec/${this.izbranaVrnitev.sestra.idSestre}`,{headers: headers3}).subscribe(res => {this.konecNadomescanja = true;});
 	}
-	
+
 }

@@ -13,7 +13,7 @@ import { izpisDNService } from './izpisDN.service';
 })
 
 export class izpisDelovnihNalogovComponent implements OnInit{
-	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
+	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http,private DNService: izpisDNService){}
 	res: any;
 	aliObstaja: boolean = false;
@@ -148,7 +148,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 
 							if(this.aliObstaja == false){
 								let novZd = <any> ({ime:'',sifra:'',id:0});
-								novZd.ime = zdr.ime+' '+zdr.priimek; 
+								novZd.ime = zdr.ime+' '+zdr.priimek;
 								novZd.sifra = zdr.sifra;
 								novZd.id = zdr.idzdravstveniDelavec;
 								this.izdajatelji[n] = novZd;
@@ -177,7 +177,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 				let j = 0; //stevec za vrste obiskov
 				let m = 0; //stevec za zdravstvene delavce
 				let n = 0;
-				
+
 				if(localStorage['vloga'] == 'Zdravnik'){
 					this.aliJeLockanZD = true;
 					n = 1;
@@ -252,7 +252,7 @@ export class izpisDelovnihNalogovComponent implements OnInit{
 								this.sestre[m] = novaS
 								m = m+1;
 							}
-							
+
 						}else{
 							this.aliObstaja = false;
 							for(let zd of this.izdajatelji){
