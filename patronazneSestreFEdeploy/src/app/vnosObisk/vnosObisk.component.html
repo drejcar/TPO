@@ -167,7 +167,7 @@
         <div *ngIf="aplikacijaInjekcije">
           <div class="form-group">
             <label>Aplikacija Injekcije</label>
-            <input [(ngModel)]="porociloAplikacijaInjekcijeA.akt10" disabled={{dis}} type="checkbox" class="form-control" name="akt10">
+            <textarea [(ngModel)]="porociloAplikacijaInjekcijeA.akt10" disabled={{dis}}  class="form-control" name="akt10" cols="3"></textarea>
           </div>
           <div class="form-group">
             <label>Pogovor, nasvet in vzpodbuda</label>
@@ -423,7 +423,7 @@
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža(v gramih)</label>
-            <input type="number" class="form-control" [(ngModel)]="s.akt60" min="200" max="15000" disabled={{dis}} name="akt60" required>
+            <input type="number" class="form-control" [(ngModel)]="s.akt60" min="200" max="15000" name="akt60" required>
           </div>
           <div class="form-group">
             <label>Trenutna telesna višina (v cm)</label>
@@ -654,12 +654,15 @@
           </div>
         </div>
 		<div [hidden]="!spremeni">
-			<button type="button" class="btn btn-info" disabled={{dis}} (click)="sprememba()">Posodobi</button>
+			<button type="button" class="btn btn-info" name="btnForSuc"  [disabled]="dis" (click)="sprememba()">Posodobi</button>
 		</div>
 		<div [hidden]="spremeni">
-			<button type="submit" class="btn btn-success" disabled={{dis}} [disabled]="!obiskForm.form.valid">Vnesi obisk</button>
+			<button type="submit" class="btn btn-success" [disabled]="!obiskForm.form.valid || dis">Vnesi obisk</button>
 		</div>
       </div>
     </form>
+  </div>
+  <div [hidden]="!submitted">
+	<h3>Uspešno ste končali/posodobili poročilo</h3>
   </div>
 </div>
