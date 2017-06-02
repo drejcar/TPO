@@ -32,6 +32,7 @@ export class UporabniskiProfilComponent implements OnInit{
 	dodajPac = false;
 	subNiPravi = true;
 	spoli:any = [{'idspol':0,'opis':''}];
+	submitted = false;
 	
 	izbranoRazmerje: sorodstvenoRazmerje = ({idsorodstvenoRazmerje:0,opis:''});
 	okolisi: Okolis[] = [{'idokolis': 1,'opis': '','idposta':1000}];

@@ -87,7 +87,7 @@ public class Obisk implements Serializable {
 	private PorociloPreventivaStarostnika porociloPreventivaStarostnika;
 
 	//bi-directional many-to-one association to PorociloObiskNovorojencka
-	@OneToMany(mappedBy="obisk",fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="obisk",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	private Set<PorociloObiskNovorojencka> porociloObiskNovorojenckas;
 
 	public Obisk() {

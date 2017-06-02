@@ -76,10 +76,18 @@ export class NadomescanjeComponent implements OnInit{
 		var vecKEna = 0;
 		this.error = false;
 		this.sporocilo = "";
+		
 		for(let izbrane of this.model2){
+			vecKEna = 0;
 			console.log(izbrane);
 			for(let izbr of this.model2){
 				console.log(izbr);
+				console.log(izbr.nadomestnaSestra.idSestre+" je "+this.model.sestra.idSestre);
+				if(izbr.nadomestnaSestra.idSestre == this.model.sestra.idSestre){
+					this.sporocilo = "izbrali ste vec istih sester";
+					this.error = true;
+					break;
+				}
 				if(izbr.nadomestnaSestra.idSestre != izbrane.nadomestnaSestra.idSestre){
 					
 					var datum1 = izbr.od;
@@ -122,6 +130,12 @@ export class NadomescanjeComponent implements OnInit{
 			for(let sestre of this.model2){
 				console.log(this.model.sestra.idSestre);
 				console.log(sestre.nadomestnaSestra.idSestre);
+				var parts: any[] = sestre.od.split('-');
+				parts[2] = Number(parts[2])-1;
+				sestre.od = parts[0]+"-"+parts[1]+"-"+parts[2].toString();
+				parts = sestre.do.split('-');
+				parts[2] = Number(parts[2])+1;
+				sestre.do = parts[0]+"-"+parts[1]+"-"+parts[2].toString();
 				this.http.get(`${this.restUrl}/obiski/nadomescanje/${this.model.sestra.idSestre}/${sestre.nadomestnaSestra.idSestre}?od=${sestre.od}&do=${sestre.do}`, {headers: headers3}).subscribe(res => {
 					this.submitted = true;
 					this.error = false;

@@ -102,7 +102,8 @@ export class VnosObiskComponent implements OnInit{
     'akt240a': '',
     'akt240b': ''
   });
-  porociloObiskNovorojencka:PorociloObiskNovorojencka=({
+  stevec = 0;
+  porociloObiskNovorojencka:PorociloObiskNovorojencka[]=[{
     'akt10':'',
     'akt20':'',
     'akt30':'',
@@ -110,7 +111,7 @@ export class VnosObiskComponent implements OnInit{
     'akt50':'',
     'akt60':0,
     'akt70':0,
-    'akt80a':'',
+    'akt80':'',
     'akt80b':'',
     'akt90a':'',
     'akt90b':'',
@@ -119,8 +120,11 @@ export class VnosObiskComponent implements OnInit{
     'akt110':'',
     'akt120':'',
     'akt130':'',
-    'akt140':''
-  });
+    'akt140':'',
+	'ime':'',
+	'priimek':'',
+	'stevilkaZdravstvenegaZavarovanja':'',
+  }];
   porociloObiskNosecnice:PorociloObiskNosecnice=({
     'akt10':'',
     'akt20':'',
@@ -168,30 +172,47 @@ export class VnosObiskComponent implements OnInit{
   });
 	dn: any;
 	vrstaObiska = 0;
-	pacient:any=[{'pacient':''}];
+	pacienta =({'ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':''});
+	pacient:any[]=[{'pacient':this.pacienta}];
 	idDn = 0;
 	prviZeOpravljen = false;
+	mt: any;
+	datumRojstva = '';
+	porodnaTeža = 0;
+	porodnaVisina = 0;
   ngOnInit(){
 	this.route.params.switchMap((params:Params) => this.dnService.getDelovniNalog(Number(+params['id2']))).subscribe(res => {this.dn = res;
 		this.vrstaObiska = this.dn.vrstaObiska.idvrstaObiska;
-		let stevec = 0;
+		let stevec = 1;
 		for(let obiski of this.dn.obisks){
 			if(obiski.opravljen == 1){
 				this.prviZeOpravljen = true;
+				
+				
 				break;
 			}
 		}
 		
 		if(this.vrstaObiska == 20 || this.vrstaObiska == 30){
+			console.log(this.dn.pacients);
 			for(let pacients of this.dn.pacients){
 				console.log(pacients);
-				let nov = <any>({'pacient':''});
-				this.pacient[stevec] = nov;
-				this.pacient[stevec].pacient = pacients.ime+" "+pacients.priimek;
-				stevec = stevec+1;
+				if(pacients.uporabnik == null){
+					console.log(pacients);
+					let nov = <any>({'pacient':this.pacienta});
+					this.pacient[this.stevec] = nov;
+					this.pacient[this.stevec].pacient.ime = pacients.ime;
+					this.pacient[this.stevec].pacient.priimek= pacients.priimek;
+					this.pacient[this.stevec].pacient.stevilkaZdravstvenegaZavarovanja = pacients.stevilkaZdravstvenegaZavarovanja;
+					this.stevec = this.stevec+1;
+				}else{
+					let nov = <any>({'pacient':''});
+					this.mt = nov;
+					this.mt = pacients.ime+" "+pacients.priimek;
+				}
 			}
 		}else{
-			this.pacient[0].pacient = this.dn.pacients[0].ime+" "+this.dn.pacients[0].priimek;
+			this.mt = this.dn.pacients[0].ime+" "+this.dn.pacients[0].priimek;
 		}
 		this.idDn = this.dn.iddelovniNalog;
 		this.route.params.switchMap((params: Params) => this.dnService.getObisk(Number(+params['id']))).subscribe(res => {this.obisk = res;
@@ -239,19 +260,107 @@ export class VnosObiskComponent implements OnInit{
 			}else if(this.vrstaObiska == 20){
 				if(this.obisk.porociloObiskOtrocnice == null){
 					this.obiskOtrocnice = true;
+					this.obiskNovorojencka = true;
+					console.log(this.pacient)
+					this.stevec = 0;
+					for(let obiski of this.dn.obisks){
+							if(obiski.opravljen == 1){
+								
+								this.porociloObiskOtrocnice.akt10a = obiski.porociloObiskOtrocnice.akt10a;
+								this.porociloObiskOtrocnice.akt10b = obiski.porociloObiskOtrocnice.akt10b;
+								this.porociloObiskOtrocnice.akt10c = obiski.porociloObiskOtrocnice.akt10c;
+							}
+						}
+					for(let steviloOtrok of this.pacient){
+						console.log(steviloOtrok);
+						let novi = ({'idobisk':this.idObiska});
+						let nov = <PorociloObiskNovorojencka> ({
+						'akt10':'',
+						'akt20':'',
+						'akt30':'',
+						'akt40':'',
+						'akt50':'',
+						'akt60':0,
+						'akt70':0,
+						'akt80':'',
+						'akt80b':'',
+						'akt90a':'',
+						'akt90b':'',
+						'akt100a':'',
+						'akt100b':'',
+						'akt110':'',
+						'akt120':'',
+						'akt130':'',
+						'akt140':'',
+						'ime':steviloOtrok.pacient.ime,
+						'priimek':steviloOtrok.pacient.priimek,
+						'stevilkaZdravstvenegaZavarovanja':steviloOtrok.pacient.stevilkaZdravstvenegaZavarovanja,
+						'obisk':novi,
+						});
+						this.porociloObiskNovorojencka[this.stevec] = nov;
+						this.stevec = this.stevec+1;
+					}
 				}else{
 					this.obiskOtrocnice = true;
+					this.obiskNovorojencka = true;
 					this.spremeni = true;
+					
+					
+					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojenckas;
+					console.log(this.porociloObiskNovorojencka);
+					
 					this.porociloObiskOtrocnice = this.obisk.porociloObiskOtrocnice;
 				}
 				
 			}else if(this.vrstaObiska == 30){
 				if(this.obisk.porociloObiskNovorojencka == null){
+					this.obiskOtrocnice = true;
 					this.obiskNovorojencka = true;
+					this.stevec = 0;
+					for(let obiski of this.dn.obisks){
+							if(obiski.opravljen == 1){
+								
+								this.porociloObiskOtrocnice.akt10a = obiski.porociloObiskOtrocnice.akt10a;
+								this.porociloObiskOtrocnice.akt10b = obiski.porociloObiskOtrocnice.akt10b;
+								this.porociloObiskOtrocnice.akt10c = obiski.porociloObiskOtrocnice.akt10c;
+							}
+						}
+					
+					for(let steviloOtrok of this.pacient){
+						let novi = ({'idobisk':this.idObiska});
+						let nov = <PorociloObiskNovorojencka> ({
+						'akt10':'',
+						'akt20':'',
+						'akt30':'',
+						'akt40':'',
+						'akt50':'',
+						'akt60':0,
+						'akt70':0,
+						'akt80':'',
+						'akt80b':'',
+						'akt90a':'',
+						'akt90b':'',
+						'akt100a':'',
+						'akt100b':'',
+						'akt110':'',
+						'akt120':'',
+						'akt130':'',
+						'akt140':'',
+						'ime':steviloOtrok.pacient.ime,
+						'priimek':steviloOtrok.pacient.priimek,
+						'stevilkaZdravstvenegaZavarovanja':steviloOtrok.pacient.stevilkaZdravstvenegaZavarovanja,
+						'obisk':novi,
+						});
+						this.porociloObiskNovorojencka[this.stevec] = nov;
+						this.stevec = this.stevec+1;
+					}
 				}else{
 					this.obiskNovorojencka = true;
-					this.spremeni = true;
-					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojencka;
+					this.obiskOtrocnice = true;
+					this.spremeni = true;				
+					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojenckas;
+					console.log(this.porociloObiskNovorojencka);
+					this.porociloObiskOtrocnice = this.obisk.porociloObiskOtrocnice;
 				}
 			
 			}else if(this.vrstaObiska == 40){
@@ -301,8 +410,10 @@ export class VnosObiskComponent implements OnInit{
 		this.obisk.porociloObiskNosecnice = this.porociloObiskNosecnice;
 	}else if(this.vrstaObiska == 20){
 		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
+		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
 	}else if(this.vrstaObiska == 30){
-		this.obisk.porociloObiskNovorojencka = this.porociloObiskNovorojencka;
+		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
+		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
 	}else if(this.vrstaObiska == 40){
 		this.obisk.porociloPreventivaStarostnika = this.porociloPreventivaStarostnika;
 	}else if(this.vrstaObiska == 50){
@@ -342,8 +453,10 @@ export class VnosObiskComponent implements OnInit{
 		this.obisk.porociloObiskNosecnice = this.porociloObiskNosecnice;
 	}else if(this.vrstaObiska == 20){
 		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
+		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
 	}else if(this.vrstaObiska == 30){
-		this.obisk.porociloObiskNovorojencka = this.porociloObiskNovorojencka;
+		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
+		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
 	}else if(this.vrstaObiska == 40){
 		this.obisk.porociloPreventivaStarostnika = this.porociloPreventivaStarostnika;
 	}else if(this.vrstaObiska == 50){

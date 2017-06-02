@@ -371,15 +371,15 @@ public class PorociloObiskOtrocnice implements Serializable {
 		this.akt90 = akt90;
 	}
 
-	public Set<Obisk> getObisks() {
+	/*public Set<Obisk> getObisks() {
 		return this.obisks;
-	}
+	}*/
 
 	public void setObisks(Set<Obisk> obisks) {
 		this.obisks = obisks;
 	}
 
-	public Obisk addObisk(Obisk obisk) {
+	/*public Obisk addObisk(Obisk obisk) {
 		getObisks().add(obisk);
 		obisk.setPorociloObiskOtrocnice(this);
 
@@ -391,6 +391,6 @@ public class PorociloObiskOtrocnice implements Serializable {
 		obisk.setPorociloObiskOtrocnice(null);
 
 		return obisk;
-	}
+	}*/
 
 }
