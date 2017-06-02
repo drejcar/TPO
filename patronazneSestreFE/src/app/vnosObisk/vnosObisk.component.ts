@@ -30,12 +30,13 @@ export class VnosObiskComponent implements OnInit{
 	preventivaStarostnika = false;
 	dis = false;
 	spremeni = false;
+  checkboxvalid=false;
   constructor(private http: Http,private router:Router, private route: ActivatedRoute,private location: Location,private dnService:izpisDNService) {}
 	res: any;
 	obisk: any;
-	
+
 	porociloAplikacijaInjekcijeA: PorociloAplikacijaInjekcije = ({'akt20':'','akt10':''});
-	
+
   porociloPreventivaStarostnika:PorociloPreventivaStarostnika=({
     'akt10': '',
     'akt20': '',
@@ -114,7 +115,7 @@ export class VnosObiskComponent implements OnInit{
     'akt80b':'',
     'akt90a':'',
     'akt90b':'',
-    'akt100a':'',
+    'akt100a':'',// checkboxhandlanje
     'akt100b':'',
     'akt110':'',
     'akt120':'',
@@ -177,7 +178,7 @@ export class VnosObiskComponent implements OnInit{
 		this.idDn = this.dn.iddelovniNalog;
 		this.route.params.switchMap((params: Params) => this.dnService.getObisk(Number(+params['id']))).subscribe(res => {this.obisk = res;
 			this.idObiska = this.obisk.idobisk;
-			
+
 			var date = new Date();
 			console.log(date.getFullYear());
 			var mesec = date.getMonth()+1;
@@ -185,16 +186,16 @@ export class VnosObiskComponent implements OnInit{
 			var praviMesec = ''
 			var praviDan = '';
 			if(mesec < 10){
-				praviMesec ='0'+mesec.toString(); 
+				praviMesec ='0'+mesec.toString();
 			}if(dni < 10){
 				praviDan = '0'+dni.toString();
 			}if(mesec >= 10){
 				praviMesec = mesec.toString();
 			}if(dni >= 10){
 				praviDan = dni.toString();
-			} 
+			}
 			var datum = (date.getFullYear().toString())+praviMesec+praviDan;
-			
+
 			this.dis = false;
 			var parts:any[] = this.obisk.dejanskiDatumObiska.split('-')
 			var prvi = parts[0]+parts[1]+parts[2];
@@ -207,7 +208,7 @@ export class VnosObiskComponent implements OnInit{
 			if(localStorage.getItem('vloga')=='PatronaznaSluzba' || localStorage.getItem('vloga')=='Zdravnik' || localStorage.getItem('vloga')=='Pacient'){
 				this.dis = true;
 			}
-			
+
 			if(this.vrstaObiska == 10){
 				if(this.obisk.porociloObiskNosecnice == null){ //ce se ne obstaja
 					this.obiskNosecnice = true;
@@ -216,7 +217,7 @@ export class VnosObiskComponent implements OnInit{
 					this.spremeni = true;
 					this.porociloObiskNosecnice = this.obisk.porociloObiskNosecnice;
 				}
-			
+
 			}else if(this.vrstaObiska == 20){
 				if(this.obisk.porociloObiskOtrocnice == null){
 					this.obiskOtrocnice = true;
@@ -225,7 +226,7 @@ export class VnosObiskComponent implements OnInit{
 					this.spremeni = true;
 					this.porociloObiskOtrocnice = this.obisk.porociloObiskOtrocnice;
 				}
-				
+
 			}else if(this.vrstaObiska == 30){
 				if(this.obisk.porociloObiskNovorojencka == null){
 					this.obiskNovorojencka = true;
@@ -234,7 +235,7 @@ export class VnosObiskComponent implements OnInit{
 					this.spremeni = true;
 					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojencka;
 				}
-			
+
 			}else if(this.vrstaObiska == 40){
 				if(this.obisk.porociloPreventivaStarostnika == null){
 					this.preventivaStarostnika = true;
@@ -243,7 +244,7 @@ export class VnosObiskComponent implements OnInit{
 					this.spremeni = true;
 					this.porociloPreventivaStarostnika = this.obisk.porociloPreventivaStarostnika;
 				}
-				
+
 			}else if(this.vrstaObiska == 50){
 				if(this.obisk.porociloAplikacijaInjekcije == null){
 					this.aplikacijaInjekcije = true;
@@ -252,7 +253,7 @@ export class VnosObiskComponent implements OnInit{
 					this.spremeni = true;
 					this.porociloAplikacijaInjekcijeA = this.obisk.porociloAplikacijaInjekcije;
 				}
-			
+
 			}else if(this.vrstaObiska == 60){
 				if(this.obisk.porociloOdvzemKrvi == null){
 					this.odvzemKrvi = true;
@@ -261,7 +262,7 @@ export class VnosObiskComponent implements OnInit{
 					this.spremeni = true;
 					this.porociloOdvzemKrvi = this.obisk.porociloOdvzemKrvi;
 				}
-			
+
 			}else if(this.vrstaObiska == 70){
 				if(this.obisk.porociloKontrolaZdravstvenegaStanja == null){
 					this.kontrolaZdravstvenegaStanja = true;
@@ -269,13 +270,13 @@ export class VnosObiskComponent implements OnInit{
 					this.kontrolaZdravstvenegaStanja = true;
 					this.spremeni = true;
 					this.porociloKontrolaZdravstvenegaStanja = this.obisk.porociloKontrolaZdravstvenegaStanja;
-					
-					
+
+
 				}
 			}
 		});
 	});
-	
+
   }
   onSubmit(){
 	if(this.vrstaObiska == 10){
@@ -301,14 +302,14 @@ export class VnosObiskComponent implements OnInit{
 		var praviMesec = ''
 		var praviDan = '';
 		if(mesec < 10){
-			praviMesec ='0'+mesec.toString(); 
+			praviMesec ='0'+mesec.toString();
 		}if(dni < 10){
 			praviDan = '0'+dni.toString();
 		}if(mesec >= 10){
 			praviMesec = mesec.toString();
 		}if(dni >= 10){
 			praviDan = dni.toString();
-		} 
+		}
 		var datum = (date.getFullYear().toString())+"-"+praviMesec+"-"+praviDan;
 		this.obisk.dejanskiDatumObiska = datum;
 		var novi = <any> ({
