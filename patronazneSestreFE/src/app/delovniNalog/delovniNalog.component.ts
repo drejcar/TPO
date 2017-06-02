@@ -74,16 +74,20 @@ export class DelovniNalogComponent implements OnInit{
 
 	storitve = [{'name': 'Obisk nosečnice', 'id': 10}, {'name': 'Obisk otročnice', 'id': 20}, {'name': 'Obisk novorojenčka', 'id': 30}, {'name': 'Preventiva starostnika', 'id': 40},
 	{'name': 'Aplikacija injekcije', 'id': 50}, {'name': 'Odvzem krvi', 'id': 60}, {'name': 'Kontrola zdravstvenega stanja', 'id': 70}];
-
+	otrok: Pacient;
+	otroci: Pacient[];
     izbranaStoritev = this.storitve[0];
-
+	kolikoOtrok:any[];
+	IzbrOtroci: any = [{'izbraniOtrok':this.otrok,'otroci':this.otroci}]
 	veljavnostNalogaOd: string = "";
 	veljavnostNalogaDo: string = "";
 	veljavnostNalogaVrsta: number = -1;
 	veljavnostNalogaFiksniDatum: boolean = false;
 	veljavnostNalogaInterval: number = 0;
 	veljavnostNalogaSteviloObiskov: number = 1;
-
+	
+	stevecOtrok = 0;
+	
 	data : any;
 	data1 : any;
 	data2 : any;
@@ -240,13 +244,23 @@ export class DelovniNalogComponent implements OnInit{
 			this.idOkolisa = test.okolis.idokolis;
 			this.pridobiSestre(this.idOkolisa);
 			console.log("id okolisa: " + this.idOkolisa);
-
+			console.log(test.pacients);
+			if(test.pacients != null){
+				
+				this.IzbrOtroci[0].otroci = test.pacients;
+				
+				this.kolikoOtrok = test.pacients;
+			}
+			console.log(this.kolikoOtrok);
 		},
 		(err) => {console.log(err);});
 
 
 	}
-
+	dodajOtroka(){
+		this.stevecOtrok++;
+		this.IzbrOtroci[this.stevecOtrok] = ({'otroci':this.kolikoOtrok,'izbraniOtrok':this.otrok});
+	}
 	pridobiPodatkePacienta1(): void {
 
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
@@ -386,7 +400,7 @@ export class DelovniNalogComponent implements OnInit{
 
 		var pacient1 = new Pacient();
 		pacient1.idpacient = this.idPacient1;
-
+		
 		var material = new Material();
 		material.idmaterial = this.izbraniMaterial.idmaterial;
 
@@ -418,10 +432,14 @@ export class DelovniNalogComponent implements OnInit{
 		var dn = new delovniNalog();
 		dn.izvajalecZdravstvenihStoritev = izvajalecZdravstvenihStoritev;
 		dn.zdravstveniDelavecs = [zdravstveniDelavec, sestra];
-
+		
 		//ne smeta biti 2 enaka objekta
 		if(this.izbranaStoritev.id == 20 || this.izbranaStoritev.id == 30) {
-			dn.pacients = [pacient, pacient1];
+		dn.pacients = [pacient]
+			for(let s of this.IzbrOtroci){
+				dn.pacients.push(s.izbraniOtrok);
+			}
+			
 		} else {
 			dn.pacients = [pacient];
 		}

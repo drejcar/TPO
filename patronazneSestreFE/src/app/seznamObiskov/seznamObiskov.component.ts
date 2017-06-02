@@ -312,20 +312,23 @@ export class seznamObiskovComponent implements OnInit{
 
 					//dodaj v subseznam pacientov
 					this.aliObstaja = false;
-					for(let pacient of this.pacienti){
+					for(let s of dn.pacients){
 						this.aliObstaja = false;
-						if(pacient.id == dn.pacients[0].idpacient){
-							this.aliObstaja = true;
-							break;
+						for(let pacient of this.pacienti){
+						
+							if(pacient.id == s.idpacient){
+								this.aliObstaja = true;
+								break;
+							}
 						}
-					}
-					if(this.aliObstaja == false){
-						let pacien = <any>({idpacient:0,ime:'',priimek:''});
-						pacien.id = dn.pacients[0].idpacient;
-						pacien.ime = dn.pacients[0].ime;
-						pacien.priimek = dn.pacients[0].priimek;
-						this.pacienti[d] = pacien;
-						d = d+1;
+						if(this.aliObstaja == false){
+							let pacien = <any>({idpacient:0,ime:'',priimek:''});
+							pacien.id = s.idpacient;
+							pacien.ime = s.ime;
+							pacien.priimek = s.priimek;
+							this.pacienti[d] = pacien;
+							d = d+1;
+						}
 					}
 
 
@@ -355,7 +358,9 @@ export class seznamObiskovComponent implements OnInit{
 						}else{
 							obisk.nadomestna = 'ni nadomeščanja';
 						}
-						obisk.pacienti = dn.pacients[0].ime+' '+dn.pacients[0].priimek;
+						for(let pac of dn.pacients){
+							obisk.pacienti = pac.ime+' '+pac.priimek+','+obisk.pacienti;
+						}
 						if(ob.opravljen == 0){
 							obisk.opravljenost = 'Neopravljen';
 							obisk.kaksno = 'Ni poročila';
@@ -461,20 +466,25 @@ export class seznamObiskovComponent implements OnInit{
 					}
 					//dodaj v subseznam pacientov
 					this.aliObstaja = false;
-					for(let pacient of this.pacienti){
-						if(pacient.id == dn.pacients[0].idpacient){
-							this.aliObstaja = true;
-							break;
+					for(let s of dn.pacients){
+						this.aliObstaja = false;
+						for(let pacient of this.pacienti){
+						
+							if(pacient.id == s.idpacient){
+								this.aliObstaja = true;
+								break;
+							}
+						}
+						if(this.aliObstaja == false){
+							let pacien = <any>({idpacient:0,ime:'',priimek:''});
+							pacien.id = s.idpacient;
+							pacien.ime = s.ime;
+							pacien.priimek = s.priimek;
+							this.pacienti[d] = pacien;
+							d = d+1;
 						}
 					}
-					if(this.aliObstaja == false){
-						let pacien = <any>({idpacient:0,ime:'',priimek:''});
-						pacien.id = dn.pacients[0].idpacient;
-						pacien.ime = dn.pacients[0].ime;
-						pacien.priimek = dn.pacients[0].priimek;
-						this.pacienti[d] = pacien;
-						d = d+1;
-					}
+					
 
 
 				}

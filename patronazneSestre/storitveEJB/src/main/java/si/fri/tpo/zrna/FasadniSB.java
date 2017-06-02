@@ -683,7 +683,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 
 	@Override
-	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSestra"})
+	@RolesAllowed({"Administrator","Zdravnik","PatronaznaSestra","PatronaznaSluzba"})
 	public Pacient returnPacientZZ(String stevilkaZZ) {
 		Pacient nov = pacienti.returnPacientZZ(stevilkaZZ);
 		pacienti.odstraniZrno();
@@ -691,7 +691,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	}
 	
 	@Override
-	@RolesAllowed({"Pacient","Zdravnik","PatronaznaSestra"})
+	@RolesAllowed({"Pacient","Zdravnik","PatronaznaSestra","PatronaznaSluzba"})
 	public Pacient returnPacientPoUporabnikaID(int id) {
 		return pacienti.returnPacientPoUporabniku(id);
 	}

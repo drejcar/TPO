@@ -36,7 +36,8 @@
 			<td>{{s.patronaznaSestra}}</td>
 			<td>{{s.pacienti}}</td>
 			<td>{{s.dejanskiDatumObiska}}</td>
-			<td><a routerLink="{{s.porocilo}}" routerLinkActive="active">Podrobnosti poročila</a></td>
+			<td><a [hidden]="!aliSoObiski" routerLink="{{s.porocilo}}" routerLinkActive="active">Podrobnosti poročila</a>
+			<a [hidden]="aliSoObiski">Ni opravljenih obiskov</a></td>
 		</tr>
 	</table>
 		

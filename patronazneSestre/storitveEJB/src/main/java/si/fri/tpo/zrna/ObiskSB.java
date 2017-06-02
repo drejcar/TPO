@@ -132,6 +132,10 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 					em.merge(obisk);
 					popraviDelavce = true;
 					
+
+					//odstrani nadonescanje se z delovnega naloga
+					
+
 				}
 			}
 			if(popraviDelavce){

@@ -23,7 +23,7 @@ export class SeznamObiskovPacientComponent implements OnInit{
 	
 	tabelaObiskovVsi: any[];
 	tabelaDejanskiObiskov: any[] = [{idObiska:undefined,izdajatelj:'',vrstaObiska:'',patronaznaSestra:'',pacienti:'',predvideniDatumObiska:'',dejanskiDatumObiska:'',opravljenost:'',podrobno:'',porocilo:''}]
-	
+	aliSoObiski = false;
 	ngOnInit(){
 		
 		var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
@@ -55,7 +55,7 @@ export class SeznamObiskovPacientComponent implements OnInit{
 		console.log(localStorage['idPacienta']);
 		setTimeout(() => {
 			this.http.get(`${this.restUrl}/pacient/dn/${localStorage['idPacienta']}`,{headers: headers}).map((response: Response) => response.json()).subscribe(res => {this.tabelaObiskovVsi = res;
-			
+				let stevecObiskov = 0;
 				let i = 0; //stevec za obiske
 				console.log(this.tabelaObiskovVsi);
 				for(let dn of this.tabelaObiskovVsi){
@@ -79,12 +79,17 @@ export class SeznamObiskovPacientComponent implements OnInit{
 						}
 						obisk.predvideniDatumObiska = ob.datumObiska;
 						obisk.dejanskiDatumObiska = ob.dejanskiDatumObiska;
+						stevecObiskov = stevecObiskov+1;
 						this.tabelaDejanskiObiskov[i] = obisk;
 						i = i+1;
 					}
 					
 				}
+				if(stevecObiskov > 0){
+					this.aliSoObiski = true;
+				}
 			});
+		
 		},1500);
 	}
 	
