@@ -78,6 +78,41 @@ var UporabnikService = (function () {
         });
         return this.http.post(this.baseUrl + "/registracija", JSON.stringify(pacient), { headers: this.headers });
     };
+    UporabnikService.prototype.update = function (upr, dodaj, kontaktnov) {
+        var devided = upr.posta.split(' ');
+        var posta = ({
+            idposta: Number(devided[0]),
+            opis: devided[1],
+        });
+        upr.posta = posta;
+        var kontakt = null;
+        console.log(dodaj);
+        if (dodaj == true) {
+            var devided3 = kontaktnov.kpostnaStevilka.split(' ');
+            var posta2 = ({
+                idposta: Number(devided3[0]),
+                opis: devided3[1],
+            });
+            console.log(kontaktnov.krazmerje);
+            kontakt = ({
+                ime: kontaktnov.kime,
+                priimek: kontaktnov.kpriimek,
+                telefonskaStevilka: kontaktnov.ktel,
+                ulica: kontaktnov.kulica,
+                hisnaStevilka: kontaktnov.khisnaStevilka,
+                posta: posta2,
+                sorodstvenoRazmerje: kontaktnov.krazmerje,
+            });
+        }
+        console.log(kontakt);
+        if (dodaj == true) {
+            upr.kontakt = kontakt;
+        }
+        console.log(upr);
+        console.log(JSON.stringify(upr));
+        var headers2 = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
+        return this.http.put(this.baseUrl + "/pacient", JSON.stringify(upr), { headers: headers2 });
+    };
     UporabnikService.prototype.getPoste = function () {
         return this.http.get(this.baseUrl + "/registracija/posta", { headers: this.headers }).map(function (response) { return response.json(); });
     };

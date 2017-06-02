@@ -55,7 +55,12 @@ var PlaniranjeObiskovComponent = (function () {
                     var dn = _a[_i];
                     for (var _b = 0, _c = dn.obisks; _b < _c.length; _b++) {
                         var ob = _c[_b];
-                        var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: 0 });
+                        console.log(ob.nadomestnaSestra.idzdravstveniDelavec);
+                        console.log(localStorage.getItem('idZdravstvenegaDelavca'));
+                        if (ob.nadomestnaSestra.idzdravstveniDelavec != localStorage.getItem('idZdravstvenegaDelavca')) {
+                            continue;
+                        }
+                        var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: 0, nadomescanje: '' });
                         obisk.idDelovniNalog = dn.iddelovniNalog;
                         obisk.idObiska = ob.idobisk;
                         obisk.vrstaObiska = dn.vrstaObiska.opis;

@@ -1,4 +1,4 @@
-export class porociloPreventivaStarostnika{
+export class PorociloPreventivaStarostnika{
   constructor(
     //public idporociloPreventivaStarostnika:number,
     public akt10:String,

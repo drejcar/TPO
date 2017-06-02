@@ -2,7 +2,9 @@
 <div class="container">
   <div [hidden]="submitted">
     <h1>Uporabniški profil</h1>
-    <form (ngSubmit)="onSubmit()" #registracijaForm="ngForm" *ngFor="let s of model">
+	<div id="linija"></div>
+    <form (ngSubmit)="onSubmit()" #registracijaForm="ngForm">
+	<div *ngFor="let s of model">
       <div class="form-group">
         <label for="mail">Elektronska pošta</label>
         <input type="email" class="form-control" id="email"
@@ -62,7 +64,7 @@
                #hisnaStevilka="ngModel">
         <select class="form-control" id="postnaStevilka"
                required
-               [(ngModel)]="s.posta.idposta" (ngModelChange)="onChangePostnaStevilka($event)" name="postnaStevilka"
+               [(ngModel)]="postSt" (ngModelChange)="onChangePostnaStevilka($event)" name="postnaStevilka"
                #postnaStevilka="ngModel">
 			   <option *ngFor="let postnaStevilka of postneStevilke" [value]="postnaStevilka">{{postnaStevilka}}</option>
 		</select>
@@ -90,21 +92,22 @@
                 required
                 [(ngModel)]="s.spol.opis" name="spol"
                 #spol="ngModel">
-          <option *ngFor="let spol of spoli" [value]="spol">{{spol}}</option>
+          <option>{{s.spol.opis}}</option>
         </select>
       </div>
       <div class="form-group">
         <label for="okolis">Okoliš</label>
         <select class="form-control" id="okolis"
                 required
-                [(ngModel)]="s.okolis.opis" name="okolis"
+                [(ngModel)]="izbrOkolis" name="okolis"
                 #okolis="ngModel">
-          <option *ngFor="let okolis of okolisi" [value]="okolis">{{s.okolis.opis}}</option>
+          <option *ngFor="let okolis of okolisi" [value]="okolis">{{okolis.opis}}</option>
         </select>
         <div [hidden]="okolis.valid || okolis.pristine" class="alert alert-danger">
           Izberite okoliš
         </div>
       </div>
+	  </div>
       <button type="button" class="btn btn-info" (click)="dodaj = !dodaj">Dodaj kontakt</button>
       <div *ngIf="dodaj">
         <h3>Podatki o kontaktni osebi</h3>
@@ -138,22 +141,194 @@
                 required
                 [(ngModel)]="kontakt.kpostnaStevilka" name="kpostnaStevilka"
                 #kpostnaStevilka="ngModel">
-          <option *ngFor="let kpostnaStevilka of kpostnestevilke" [value]="kpostnaStevilka">{{kpostnaStevilka}}</option>
+          <option *ngFor="let kpostnaStevilka of kpostneStevilke" [value]="kpostnaStevilka">{{kpostnaStevilka}}</option>
         </select>
         <label for="krazmerje">Sorodstveno razmerje</label>
         <select class="form-control" id="krazmerje"
                 required
-                [(ngModel)]="kontakt.krazmerje" name="krazmerje"
+                [(ngModel)]="izbranoRazmerje" name="krazmerje"
                 #kontaktRazmerje="ngModel">
           <option *ngFor="let krazmerje of krazmerja" [value]="krazmerje">{{krazmerje.opis}}</option>
         </select>
 		<br/>
       </div>
-      <button type="submit" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Popravi podatke</button>
-    </form>
+	  <div *ngIf="vec">
+		<h2>Moji pacienti</h2>
+		<div id="linija"></div>
+		<div id="dodajanjePacienta" *ngFor="let b of model2">
+			<h3>Moj pacient {{b.ime}}</h3>
+			<div id="linija"></div>
+			<div class="form-group">
+			<label for="ime">Ime</label>
+			<input type="text" class="form-control" id="ime"
+				   placeholder="ime" required
+				   [(ngModel)]="b.ime" name="ime" [ngModelOptions]="{standalone: true}"
+				   #ime="ngModel" value={{b.ime}}> 
+		  </div>
+		  <div class="form-group">
+			<label for="priimek">Priimek</label>
+			<input type="text" class="form-control" id="priimek"
+				   placeholder="priimek" required
+				   [(ngModel)]="b.priimek" name="priimek" [ngModelOptions]="{standalone: true}"
+				   #priimek="ngModel" value={{b.priimek}}>
+			
+		  </div>
+		  <div class="form-group">
+			<label for="stKartice">Številka zdravstvene kartice</label>
+			<input type="text" disabled class="form-control" id="stKartice"
+				   placeholder="00000000000" required minlength="11" maxlength="11"
+				   [(ngModel)]="b.stevilkaZdravstvenegaZavarovanja" name="stKartice" [ngModelOptions]="{standalone: true}"
+				   #stKartice="ngModel">
+		  </div>
+		  <div class="form-group">
+			<label>Naslov</label>
+			<input type="text" class="form-control" id="ulica"
+				   placeholder="Ulica" required minlength="2" maxlength="45"
+				   [(ngModel)]="b.ulica" name="ulica" [ngModelOptions]="{standalone: true}"
+				   #ulica="ngModel">
+			<input type="text" class="form-control" id="hisnaStevilka"
+				   placeholder="Hišna Številka" required minlength="1" maxlength="5"
+				   [(ngModel)]="b.hisnaStevilka" name="hisnaStevilka" [ngModelOptions]="{standalone: true}"
+				   #hisnaStevilka="ngModel">
+			<select class="form-control" id="postnaStevilka"
+				   required
+				   [(ngModel)]="b.posta" (ngModelChange)="onChangePostnaStevilkaB($event,b.ime)" name="postnaStevilka"
+				   #postnaStevilka="ngModel" [ngModelOptions]="{standalone: true}">				  
+				   <option *ngFor="let postnaStevilka of postneStevilke" [selected]="postnaStevilka == (b.posta.idposta+' '+b.posta.opis)">{{postnaStevilka}}</option>
+			</select>
+			<div [hidden]="ulica.valid || ulica.pristine ||
+						   hisnaStevilka.valid || hisnaStevilka.pristine ||
+						   postnaStevilka.valid || postnaStevilka.pristine"
+				 class="alert alert-danger">
+			  Vnesite vaš naslov
+			</div>
+		  </div>
+		  <div class="form-group">
+			<label for="datumRojstva">Datum rojstva</label>
+			<input disabled type="date" class="form-control" id="datumRojstva"
+				   placeholder="01-01-1900" min="1900-01-01" max="2017-05-12" required
+				   [(ngModel)]="b.datumRojstva" name="datumRojstva" [ngModelOptions]="{standalone: true}"
+				   #datumRojstva="ngModel">
+			<div [hidden]="datumRojstva.valid || datumRojstva.pristine"
+				 class="alert alert-danger">
+			  Vnesite datum rojstva
+			</div>
+		  </div>
+		  <div class="form-group">
+			<label for="spol">Spol</label>
+			<select disabled class="form-control" id="spol"
+					required
+					[(ngModel)]="b.spol.opis" name="spol" [ngModelOptions]="{standalone: true}"
+					#spol="ngModel">
+			  <option>{{b.spol.opis}}</option>
+			</select>
+		  </div>
+		  <div class="form-group">
+			<label for="okolis">Okoliš</label>
+			<select class="form-control" id="okolis"
+					required
+					[(ngModel)]="b.okolis" name="okolis"
+					#okolis="ngModel" [ngModelOptions]="{standalone: true}">
+			  <option *ngFor="let okolise of b.oko" [selected]="b.okolis.idokolis == okolise.idokolis">{{okolise.opis+" "+okolise.idokolis}}</option>
+			</select>
+			<div [hidden]="okolis.valid || okolis.pristine" class="alert alert-danger">
+			  Izberite okoliš
+			</div>
+		  </div>
+		  </div>
+		  
+		</div>
+		<div *ngIf ="dodajPac">
+		
+			<div *ngFor = "let otrok of model3">
+			<h3>Novi pacient</h3>
+			<div id="linija"></div>
+				<div class="form-group">
+			<label for="ime">Ime</label>
+			<input type="text" class="form-control"
+				   placeholder="ime" required
+				   [(ngModel)]="otrok.ime" 
+				   [ngModelOptions]="{standalone: true}" value={{otrok.ime}}>
+		  </div>
+		  <div class="form-group">
+			<label for="priimek">Priimek</label>
+			<input type="text" class="form-control"
+				   placeholder="priimek" required
+				   [(ngModel)]="otrok.priimek" [ngModelOptions]="{standalone: true}" value={{otrok.priimek}}>
+			
+		  </div>
+		  <div class="form-group">
+			<label for="stKartice">Številka zdravstvene kartice</label>
+			<input type="text" class="form-control"
+				   placeholder="00000000000" required minlength="11" maxlength="11"
+				   [(ngModel)]="otrok.stevilkaZdravstvenegaZavarovanja"
+				   [ngModelOptions]="{standalone: true}"
+				   #stKartice="ngModel">
+		  </div>
+		  <div class="form-group">
+			<label>Naslov</label>
+			<input type="text" class="form-control"
+				   placeholder="Ulica" required minlength="2" maxlength="45"
+				   [(ngModel)]="otrok.ulica"
+				   [ngModelOptions]="{standalone: true}"
+				   #ulica="ngModel">
+			<input type="text" class="form-control"
+				   placeholder="Hišna Številka" required minlength="1" maxlength="5"
+				   [(ngModel)]="otrok.hisnaStevilka" [ngModelOptions]="{standalone: true}">
+			<select class="form-control" 
+				   required
+				   [(ngModel)]="otrok.posta" (ngModelChange)="onChangePostnaStevilka2($event,otrok.ime)"
+				   [ngModelOptions]="{standalone: true}">
+				   <option *ngFor="let postnaStevilka of postneStevilke" [value]="postnaStevilka">{{postnaStevilka}}</option>
+			</select>
+		  </div>
+		  <div class="form-group">
+			<label for="datumRojstva">Datum rojstva</label>
+			<input type="date" class="form-control"
+				   placeholder="01-01-1900" min="1900-01-01" max="2017-05-12" name="datumRojstva" required
+				   [(ngModel)]="otrok.datumRojstva" [ngModelOptions]="{standalone: true}" #datumRojstva="ngModel">
+		  </div>
+		  <div class="form-group">
+			<label for="spol">Spol</label>
+			<select class="form-control" 
+					required
+					[(ngModel)]="otrok.spol" [ngModelOptions]="{standalone: true}">
+			  <option></option>
+			  <option *ngFor="let spol of spoli">{{spol.opis}}</option>
+			</select>
+		  </div>
+		  <div class="form-group">
+			<label for="okolis">Okoliš</label>
+			<select class="form-control" 
+					required
+					[(ngModel)]="otrok.okolis" [ngModelOptions]="{standalone: true}"
+					name="okolis" #okolis="ngModel">
+			  <option *ngFor="let okolis of otrok.oko" [ngValue]="okolis">{{okolis.opis+" "+okolis.idokolis}}</option>
+			</select>
+		  </div>
+		  <label for="krazmerje">Sorodstveno razmerje</label>
+			<select class="form-control" id="krazmerje"
+                required
+                [(ngModel)]="otrok.sorodstvenoRazmerje" name="krazmerje"
+                #kontaktRazmerje="ngModel" [ngModelOptions]="{standalone: true}">
+				<option></option>
+				<option *ngFor="let krazmerje of krazmerja" >{{krazmerje.opis}}</option>
+			</select>
+			</div>
+		
+		</div>
+		<button type="submit" class="btn btn-success" [disabled]="!registracijaForm.form.valid">Popravi podatke</button>  
+			<button type="button"(click)="dodajPacienta()" class="btn btn-info">Dodaj pacienta</button>
+			<button *ngIf="dodajPac" type="button" (click)="odstraniPacienta()" class="btn btn-info">Odstrani pacienta</button>
+		
+		</form>
+		<div [hidden]="subNiPravi">
+			Vsi podatki niso vnešeni, preverite da ste vse podatke vnesli (označeni z rdečo).
+		</div>
+	  
   </div>
   <div [hidden]="!submitted">
-    
+   <h3>Podatki popravljeni</h3>
   </div>
 </div>
 

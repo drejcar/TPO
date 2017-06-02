@@ -7,7 +7,7 @@ div.enObDrugem {
 }
 div.enObDrugemDatumi{
   float:left;
-  width: 15vw;
+  width: 20vw;
   margin-left:2px;
   margin-right:2px;
   margin-bottom:10px;
@@ -26,6 +26,32 @@ div.parametri{
   margin-left:5px;
   margin-right:5px;
   margin-bottom:10px;
+}
+#poln{
+	width:100%;
+	float:left;
+	margin-bottom:10px;
+	
+}
+#poln2{
+	width:100%;
+	float:left;
+	border-bottom-width:1px;
+	border-bottom-style:groove;
+	margin-bottom:5px;
+	
+}
+#linija2{
+	border-bottom-width:2px;
+	border-bottom-style:groove;
+	width:100%;
+	margin-bottom:10px;
+	border-color:#448CFF
+}
+#flt{
+	float:left;
+	width:100%;
+	margin-bottom:70px;
 }
 #naslov{
   margin-left:38%;
