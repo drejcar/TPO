@@ -26,6 +26,13 @@ import si.fri.tpo.entitete.Material;
 import si.fri.tpo.entitete.Obisk;
 import si.fri.tpo.entitete.Okolis;
 import si.fri.tpo.entitete.Pacient;
+import si.fri.tpo.entitete.PorociloAplikacijaInjekcije;
+import si.fri.tpo.entitete.PorociloKontrolaZdravstvenegaStanja;
+import si.fri.tpo.entitete.PorociloObiskNosecnice;
+import si.fri.tpo.entitete.PorociloObiskNovorojencka;
+import si.fri.tpo.entitete.PorociloObiskOtrocnice;
+import si.fri.tpo.entitete.PorociloOdvzemKrvi;
+import si.fri.tpo.entitete.PorociloPreventivaStarostnika;
 import si.fri.tpo.entitete.Posta;
 import si.fri.tpo.entitete.SorodstvenoRazmerje;
 import si.fri.tpo.entitete.Spol;
@@ -821,7 +828,7 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	@Override
 	@RolesAllowed({"Administrator","PatronaznaSestra","PatronaznaSluzba","Zdravnik"})
 	public List<DelovniNalog> vrniDelovneNalogeZdrDelAll(int id, int start, int size) {
-		// TODO Auto-generated method stub
+
 		return delovniNalog.vrniDelovneNalogeZdrDelAll(id,start,size);
 	}
 
@@ -886,5 +893,54 @@ public class FasadniSB implements FasadniSBRemote, FasadniSBLocal {
 	@RolesAllowed({"PatronaznaSluzba"})
 	public void endNadomescanje(int id) {
 		obisk.endNadomescanje(id);
+	}
+
+	@Override
+	public void updPorInek(PorociloAplikacijaInjekcije porocilo) {
+		
+		obisk.updPorInek(porocilo);
+		
+	}
+
+	@Override
+	public void updPorZdrSta(PorociloKontrolaZdravstvenegaStanja porocilo) {
+		
+		obisk.updPorZdrSta(porocilo);
+		
+	}
+
+	@Override
+	public void updPorNov(PorociloObiskNovorojencka porocilo) {
+		
+		obisk.updPorNov(porocilo);
+		
+	}
+
+	@Override
+	public void updPorNos(PorociloObiskNosecnice porocilo) {
+		
+		obisk.updPorNos(porocilo);
+		
+	}
+
+	@Override
+	public void updPorOtr(PorociloObiskOtrocnice porocilo) {
+		
+		obisk.updPorOtr(porocilo);
+		
+	}
+
+	@Override
+	public void updPorKri(PorociloOdvzemKrvi porocilo) {
+		
+		obisk.updPorKri(porocilo);
+		
+	}
+
+	@Override
+	public void updPorStar(PorociloPreventivaStarostnika porocilo) {
+		
+		obisk.updPorStar(porocilo);
+		
 	}
 }

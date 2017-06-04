@@ -13,6 +13,13 @@ import javax.persistence.PersistenceContext;
 
 import si.fri.tpo.entitete.DelovniNalog;
 import si.fri.tpo.entitete.Obisk;
+import si.fri.tpo.entitete.PorociloAplikacijaInjekcije;
+import si.fri.tpo.entitete.PorociloKontrolaZdravstvenegaStanja;
+import si.fri.tpo.entitete.PorociloObiskNosecnice;
+import si.fri.tpo.entitete.PorociloObiskNovorojencka;
+import si.fri.tpo.entitete.PorociloObiskOtrocnice;
+import si.fri.tpo.entitete.PorociloOdvzemKrvi;
+import si.fri.tpo.entitete.PorociloPreventivaStarostnika;
 import si.fri.tpo.entitete.ZdravstveniDelavec;
 import si.fri.tpo.vmesnikiSB.ObiskSBLocal;
 import si.fri.tpo.vmesnikiSB.ObiskSBRemote;
@@ -31,12 +38,12 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
      * Default constructor. 
      */
     public ObiskSB() {
-        // TODO Auto-generated constructor stub
+       
     }
 
 	@Override
 	public void odstraniZrno() {
-		// TODO Auto-generated method stub
+	
 		
 	}
 
@@ -150,5 +157,54 @@ public class ObiskSB implements ObiskSBRemote, ObiskSBLocal {
 				em.merge(d);
 			}
 		}
+	}
+
+	@Override
+	public void updPorInek(PorociloAplikacijaInjekcije porocilo) {
+		
+		em.merge(porocilo);
+		
+	}
+
+	@Override
+	public void updPorZdrSta(PorociloKontrolaZdravstvenegaStanja porocilo) {
+		
+		em.merge(porocilo);
+		
+	}
+
+	@Override
+	public void updPorNov(PorociloObiskNovorojencka porocilo) {
+		
+		em.merge(porocilo);
+		
+	}
+
+	@Override
+	public void updPorNos(PorociloObiskNosecnice porocilo) {
+		
+		em.merge(porocilo);
+		
+	}
+
+	@Override
+	public void updPorOtr(PorociloObiskOtrocnice porocilo) {
+		
+		em.merge(porocilo);
+		
+	}
+
+	@Override
+	public void updPorKri(PorociloOdvzemKrvi porocilo) {
+		
+		em.merge(porocilo);
+		
+	}
+
+	@Override
+	public void updPorStar(PorociloPreventivaStarostnika porocilo) {
+		
+		em.merge(porocilo);
+		
 	}
 }

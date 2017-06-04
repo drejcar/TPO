@@ -458,38 +458,38 @@ export class VnosObiskComponent implements OnInit{
   sprememba(){
 	  let nova = ({'idobisk':this.idObiska});
 	if(this.vrstaObiska == 10){
-		this.porociloObiskNosecnice.obisks = nova;
+		
 		this.obisk.porociloObiskNosecnice = this.porociloObiskNosecnice;
 	}else if(this.vrstaObiska == 20){
-		this.porociloObiskOtrocnice.obisks = nova;
+		
 		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
 		for(let n of this.porociloObiskNovorojencka){
 			let novi = ({'idobisk':this.idObiska});
-			n.obisk = novi;
+			
 			
 		}
 		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
 	}else if(this.vrstaObiska == 30){
-		this.porociloObiskOtrocnice.obisk = nova;
-		this.obisk.porociloObiskOtrocnice.obisks = this.porociloObiskOtrocnice;
+		
+		
 		for(let n of this.porociloObiskNovorojencka){
 			let novi = ({'idobisk':this.idObiska});
 			let den = ({'iddelovniNalog':this.idDelovniNalog});
-			n.obisk = novi;
-			n.delovniNalog = den;
+			
+			
 		}
 		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
 	}else if(this.vrstaObiska == 40){
-		this.porociloPreventivaStarostnika.obisks = nova;
+		
 		this.obisk.porociloPreventivaStarostnika = this.porociloPreventivaStarostnika;
 	}else if(this.vrstaObiska == 50){
-		this.porociloAplikacijaInjekcijeA.obisks = nova;
+		
 		this.obisk.porociloAplikacijaInjekcije = this.porociloAplikacijaInjekcijeA;
 	}else if(this.vrstaObiska == 60){
-		this.porociloOdvzemKrvi.obisks = nova;
+		
 		this.obisk.porociloOdvzemKrvi = this.porociloOdvzemKrvi;
 	}else if(this.vrstaObiska == 70){
-		this.porociloKontrolaZdravstvenegaStanja.obisks = nova;
+		
 		this.obisk.porociloKontrolaZdravstvenegaStanja = this.porociloKontrolaZdravstvenegaStanja;
 	}
 	let den = ({'iddelovniNalog':this.idDelovniNalog});

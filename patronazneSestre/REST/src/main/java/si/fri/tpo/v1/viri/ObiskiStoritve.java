@@ -10,6 +10,13 @@ import javax.ws.rs.core.MediaType;
 import org.joda.time.LocalDate;
 
 import si.fri.tpo.entitete.Obisk;
+import si.fri.tpo.entitete.PorociloAplikacijaInjekcije;
+import si.fri.tpo.entitete.PorociloKontrolaZdravstvenegaStanja;
+import si.fri.tpo.entitete.PorociloObiskNosecnice;
+import si.fri.tpo.entitete.PorociloObiskNovorojencka;
+import si.fri.tpo.entitete.PorociloObiskOtrocnice;
+import si.fri.tpo.entitete.PorociloOdvzemKrvi;
+import si.fri.tpo.entitete.PorociloPreventivaStarostnika;
 import si.fri.tpo.entitete.ZdravstveniDelavec;
 import si.fri.tpo.vmesnikiSB.FasadniSBLocal;
 import si.fri.tpo.vmesniki_ws.ObiskiREST;
@@ -71,5 +78,41 @@ public class ObiskiStoritve implements ObiskiREST {
 	@Path("/nadomescanjekonec/{id}")
 	public void endNadomescanje(@PathParam("id") int id){
 		fasada.endNadomescanje(id);
+	}
+	//-----------------porocila-----------------------
+	@PUT
+	@Path("/porociloaplikacijainjekcije")
+	public void updPorInek(PorociloAplikacijaInjekcije porocilo){
+		fasada.updPorInek(porocilo);
+	}
+	@PUT
+	@Path("/porocilozdrstanja")
+	public void updPorZdrSta(PorociloKontrolaZdravstvenegaStanja porocilo){
+		fasada.updPorZdrSta(porocilo);
+	}
+	@PUT
+	@Path("/porociloobisknosecnice")
+	public void updPorNos(PorociloObiskNosecnice porocilo){
+		fasada.updPorNos(porocilo);
+	}
+	@PUT
+	@Path("/porociloobisknovorojencka")
+	public void updPorNov(PorociloObiskNovorojencka porocilo){
+		fasada.updPorNov(porocilo);
+	}
+	@PUT
+	@Path("/porociloobiskotrocnice")
+	public void updPorOtr(PorociloObiskOtrocnice porocilo){
+		fasada.updPorOtr(porocilo);
+	} 
+	@PUT
+	@Path("/porociloodvzemkrvi")
+	public void updPorKri(PorociloOdvzemKrvi porocilo){
+		fasada.updPorKri(porocilo);
+	}
+	@PUT
+	@Path("/porocilopreventivastarostnika")
+	public void updPorStar(PorociloPreventivaStarostnika porocilo){
+		fasada.updPorStar(porocilo);
 	}
 }
