@@ -19,7 +19,7 @@ import { sorodstvenoRazmerje } from "../registracija/kontakt";
 })
 
 export class UporabniskiProfilComponent implements OnInit{
-	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
 	constructor(private http: Http, private router: Router,private uporabnikService: UporabnikService){}
 	dodaj = false;
 	res:any;
@@ -61,7 +61,8 @@ export class UporabniskiProfilComponent implements OnInit{
 	postneStevilke: any[] = [{}];
 	model2:any[] = [{'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakt,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':'','uporabnik':this.uporabnik}];
 	model3:any[] = [{}]; /*= [{'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakt,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':this.okolis,'uporabnik':this.uporabnik}];*/
-
+	odstranitev = false;
+	odstranjeniPacient = "";
 	ngOnInit(){
 
 		console.log(localStorage['iduporabnik']);
@@ -326,4 +327,117 @@ export class UporabniskiProfilComponent implements OnInit{
 			err => {console.log(err);}
           );
 	}
+	odstraniMojega(stZZ:String){
+		var length = 0;
+		if(this.dodajPac == true){
+			length = this.model3.length;
+			for(let nk of this.model3){
+
+				if(nk.ime==undefined || nk.okolis == undefined){
+					this.subNiPravi = false;
+					break;
+				}
+
+			}
+		}else{
+			this.subNiPravi = true;
+		}
+
+		this.model[0].posta = this.postSt;
+		this.model[0].okolis = this.izbrOkolis;
+
+		this.model[0].pacients = [];
+		if(this.model2[0].ime != ""){
+			for(let n of this.model2){
+				delete n.oko;
+				let posta = n.posta;
+				if(typeof n.posta != 'object'){
+					var devided1 = n.posta.split(' ');
+					posta = <Posta>({
+						idposta: Number(devided1[0]),
+						opis: devided1[1],
+					});
+
+					n.posta = posta;
+				}
+				if(typeof n.okolis != 'object'){
+					var devided2= n.okolis.split(' ');
+
+
+					let okolis = <Okolis>({
+						idokolis: Number(devided2[1]),
+						opis: devided2[0].toString(),
+						posta: posta
+					});
+
+					n.okolis = okolis;
+				}
+				console.log(n.stevilkaZdravstvenegaZavarovanja);
+				console.log(stZZ);
+				if(n.stevilkaZdravstvenegaZavarovanja == stZZ){
+					this.odstranjeniPacient = n.ime+" "+n.priimek;
+					this.uporabnikService.pobrisi(n).subscribe(res => {this.odstranitev = true;
+					this.submitted = true;
+					});
+					continue;
+				}
+				this.model[0].pacients.push(n);
+
+			}
+		}
+		console.log(this.model3[0]);
+		if(this.dodajPac == true){
+			for(let nk of this.model3){
+					delete nk.oko;
+					var devided1 = nk.posta.split(' ');
+						let posta = <Posta>({
+							idposta: Number(devided1[0]),
+							opis: devided1[1],
+						});
+						var sp = 1;
+						if(nk.spol == 'Moški'){
+							sp = 1;
+						}else{
+							sp = 2;
+						}
+						let spol = <Spol>({
+							idspol: sp,
+							opis: nk.spol,
+						});
+						console.log(nk.okolis.opis);
+						/*var devided2= nk.okolis.split(' ');
+
+
+						let okolis = <Okolis>({
+							idokolis: Number(devided2[1]),
+							opis: devided2[0].toString(),
+							posta: posta
+						});*/
+						nk.posta = posta;
+						nk.spol = spol;
+						//nk.okolis = okolis;
+					for(let raz of this.krazmerja){
+						if(nk.sorodstvenoRazmerje == raz.opis){
+							console.log("NAJDU");
+							let nov = <any>({
+								idsorodstvenoRazmerje: raz.idsorodstvenoRazmerje,
+							});
+							nk.sorodstvenoRazmerje = nov;
+							break;
+						}
+					}
+				this.model[0].pacients.push(nk);
+
+			}
+		}
+		console.log(this.dodaj);
+		console.log(this.kontakt);
+		this.kontakt.krazmerje = this.izbranoRazmerje;
+		console.log(this.model[0]);
+		this.uporabnikService.update(this.model[0],this.dodaj,this.kontakt).subscribe(
+            (r: Response) => {console.log("success")},
+			err => {console.log(err);}
+          );
+		
 	}
+}

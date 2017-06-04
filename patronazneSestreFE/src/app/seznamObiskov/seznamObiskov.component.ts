@@ -12,7 +12,7 @@ import { izpisDNService } from '../izpisDelovnihNalogov/izpisDN.service';
 })
 
 export class seznamObiskovComponent implements OnInit{
-	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
 	constructor(private router:Router, private http: Http, private DNService: izpisDNService){}
 
 	aliJeLockanZD = false;

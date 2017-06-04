@@ -11,7 +11,8 @@ import { PorociloObiskOtrocnice } from '../_entitete/porociloObiskOtrocnice';
 import { PorociloObiskNosecnice } from '../_entitete/porociloObiskNosecnice';
 import { PorociloAplikacijaInjekcije } from '../_entitete/porociloAplikacijaInjekcije';
 import { PorociloKontrolaZdravstvenegaStanja } from '../_entitete/porociloKontrolaZdravstvenegaStanja';
-import { PorociloObiskNovorojencka } from '../_entitete/porociloObiskNovorojencka';
+import { PorociloObiskNovorojencka,obiskA } from '../_entitete/porociloObiskNovorojencka';
+
 
 @Component({
   selector: 'vnosObisk',
@@ -31,6 +32,8 @@ export class VnosObiskComponent implements OnInit{
 	dis = false;
 	spremeni = false;
   checkboxvalid=false;
+  private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
+	private baseUrl = 'http://localhost:8080/patronazneSestre/v1';
   constructor(private http: Http,private router:Router, private route: ActivatedRoute,private location: Location,private dnService:izpisDNService) {}
 	res: any;
 	obisk: any;
@@ -104,6 +107,9 @@ export class VnosObiskComponent implements OnInit{
     'akt240b': ''
   });
   stevec = 0;
+  obiskn: obiskA = ({
+	'idobisk':0,
+  });
   porociloObiskNovorojencka:PorociloObiskNovorojencka[]=[{
     'akt10':'',
     'akt20':'',
@@ -125,6 +131,7 @@ export class VnosObiskComponent implements OnInit{
 	'ime':'',
 	'priimek':'',
 	'stevilkaZdravstvenegaZavarovanja':'',
+	'obisk':this.obiskn,
   }];
   porociloObiskNosecnice:PorociloObiskNosecnice=({
     'akt10':'',
@@ -456,44 +463,43 @@ export class VnosObiskComponent implements OnInit{
 	this.dnService.posodobiObisk(this.obisk).subscribe(res =>{this.submitted = true;});
   }
   sprememba(){
+	
 	  let nova = ({'idobisk':this.idObiska});
 	if(this.vrstaObiska == 10){
+		this.http.put(`${this.baseUrl}/obiski/porociloobisknosecnice`,JSON.stringify(this.porociloObiskNosecnice),{headers:this.headers}).subscribe(res => {this.submitted = true;});
 		
-		this.obisk.porociloObiskNosecnice = this.porociloObiskNosecnice;
 	}else if(this.vrstaObiska == 20){
-		
-		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
+		this.http.put(`${this.baseUrl}/obiski/porociloobiskotrocnice`,JSON.stringify(this.porociloObiskOtrocnice),{headers:this.headers}).subscribe(res => {console.log("success");});
+		let nov = <any> ({
+			idobisk:this.idObiska,
+		});
 		for(let n of this.porociloObiskNovorojencka){
-			let novi = ({'idobisk':this.idObiska});
-			
-			
+			n.obisk = nov;
+			this.http.put(`${this.baseUrl}/obiski/porociloobisknovorojencka`,JSON.stringify(n),{headers:this.headers}).subscribe(res => {console.log("success")});
 		}
-		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
+		this.submitted = true;
 	}else if(this.vrstaObiska == 30){
-		
-		
+		this.http.put(`${this.baseUrl}/obiski/porociloobiskotrocnice`,JSON.stringify(this.porociloObiskOtrocnice),{headers:this.headers}).subscribe(res => {console.log("success");});
+		let nov = <any> ({
+			idobisk:this.idObiska,
+		});
 		for(let n of this.porociloObiskNovorojencka){
-			let novi = ({'idobisk':this.idObiska});
-			let den = ({'iddelovniNalog':this.idDelovniNalog});
-			
-			
+			n.obisk = nov;
+			this.http.put(`${this.baseUrl}/obiski/porociloobisknovorojencka`,JSON.stringify(n),{headers:this.headers}).subscribe(res => {console.log("success")});
 		}
-		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
+		this.submitted = true;
 	}else if(this.vrstaObiska == 40){
+		this.http.put(`${this.baseUrl}/obiski/porocilopreventivastarostnika`,JSON.stringify(this.porociloPreventivaStarostnika),{headers:this.headers}).subscribe(res => {this.submitted = true;});
 		
-		this.obisk.porociloPreventivaStarostnika = this.porociloPreventivaStarostnika;
 	}else if(this.vrstaObiska == 50){
+		this.http.put(`${this.baseUrl}/obiski/porociloaplikacijainjekcije`,JSON.stringify(this.porociloAplikacijaInjekcijeA),{headers:this.headers}).subscribe(res => {this.submitted = true;});
 		
-		this.obisk.porociloAplikacijaInjekcije = this.porociloAplikacijaInjekcijeA;
 	}else if(this.vrstaObiska == 60){
+		this.http.put(`${this.baseUrl}/obiski/porociloodvzemkrvi`,JSON.stringify(this.porociloOdvzemKrvi),{headers:this.headers}).subscribe(res => {this.submitted = true;});
 		
-		this.obisk.porociloOdvzemKrvi = this.porociloOdvzemKrvi;
 	}else if(this.vrstaObiska == 70){
-		
-		this.obisk.porociloKontrolaZdravstvenegaStanja = this.porociloKontrolaZdravstvenegaStanja;
+		this.http.put(`${this.baseUrl}/obiski/porocilozdrstanja`,JSON.stringify(this.porociloKontrolaZdravstvenegaStanja),{headers:this.headers}).subscribe(res => {this.submitted = true;});
 	}
-	let den = ({'iddelovniNalog':this.idDelovniNalog});
-	this.obisk.delovniNalog = den;
-	this.dnService.posodobiObisk(this.obisk).subscribe(res =>{this.submitted = true;});
+	
   }
 }
