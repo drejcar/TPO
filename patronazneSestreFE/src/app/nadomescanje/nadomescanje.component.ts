@@ -13,7 +13,7 @@ import { DatePipe } from '@angular/common';
 })
 
 export class NadomescanjeComponent implements OnInit{
-	private restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+	private restUrl = 'http://localhost:8080/patronazneSestre/v1';
 	constructor(private router: Router, private http: Http){}
 	stevec = 1;
 	aliJeVec = false;

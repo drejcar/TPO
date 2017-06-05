@@ -43,12 +43,12 @@ export class VnosObiskComponent implements OnInit{
   porociloPreventivaStarostnika:PorociloPreventivaStarostnika=({
     'akt10': '',
     'akt20': '',
-    'akt30a':0,
-    'akt30b':0,
-    'akt40':0,
-    'akt50':0,
-    'akt60':0,
-    'akt70':0,
+    'akt30a':undefined,
+    'akt30b':undefined,
+    'akt40':undefined,
+    'akt50':undefined,
+    'akt60':undefined,
+    'akt70':undefined,
     'akt80':'',
     'akt90':'',
     'akt100a':'',
@@ -68,16 +68,16 @@ export class VnosObiskComponent implements OnInit{
     'akt170':''
   });
   porociloOdvzemKrvi : PorociloOdvzemKrvi=({
-    'akt10modra':0,
-    'akt10rdeca':0,
-    'akt10rumena':0,
-    'akt10zelena':0,
+    'akt10modra':undefined,
+    'akt10rdeca':undefined,
+    'akt10rumena':undefined,
+    'akt10zelena':undefined,
     'akt20':''
   });
   porociloObiskOtrocnice : PorociloObiskOtrocnice=({
     'akt10a': '',
-    'akt10b': 0,
-    'akt10c': 0,
+    'akt10b': undefined,
+    'akt10c': undefined,
     'akt10d': '',
     'akt20': '',
     'akt30': '',
@@ -93,12 +93,12 @@ export class VnosObiskComponent implements OnInit{
     'akt130': '',
     'akt140': '',
     'akt150': '',
-    'akt160a': 0,
-    'akt160b': 0,
-    'akt170': 0,
-    'akt180': 0,
-    'akt190': 0,
-    'akt200': 0,
+    'akt160a': undefined,
+    'akt160b': undefined,
+    'akt170': undefined,
+    'akt180': undefined,
+    'akt190': undefined,
+    'akt200': undefined,
     'akt210': '',
     'akt220': '',
     'akt230a': '',
@@ -116,8 +116,8 @@ export class VnosObiskComponent implements OnInit{
     'akt30':'',
     'akt40':'',
     'akt50':'',
-    'akt60':0,
-    'akt70':0,
+    'akt60':undefined,
+    'akt70':undefined,
     'akt80':'',
     'akt80b':'',
     'akt90a':'',
@@ -154,24 +154,24 @@ export class VnosObiskComponent implements OnInit{
     'akt170b':'',
     'akt180a':'',
     'akt180b':'',
-    'akt190a':0,
-    'akt190b':0,
+    'akt190a':undefined,
+    'akt190b':undefined,
     'akt200':'',
     'akt210':'',
-    'akt220':0,
-    'akt230':0,
-    'akt240':0,
+    'akt220':undefined,
+    'akt230':undefined,
+    'akt240':undefined,
   });
   porociloKontrolaZdravstvenegaStanja:PorociloKontrolaZdravstvenegaStanja=({
     'akt10':'',
-    'akt20a':0,
-    'akt20b':0,
-    'akt30':0,
-    'akt40':0,
-    'akt50':0,
-    'akt60a':0,
+    'akt20a':undefined,
+    'akt20b':undefined,
+    'akt30':undefined,
+    'akt40':undefined,
+    'akt50':undefined,
+    'akt60a':undefined,
     'akt60b':'',
-    'akt70':0,
+    'akt70':undefined,
     'akt80a':'',
     'akt80b':'',
     'akt90':'',
@@ -195,7 +195,7 @@ export class VnosObiskComponent implements OnInit{
 		this.vrstaObiska = this.dn.vrstaObiska.idvrstaObiska;
 		let stevec = 1;
 		this.idDelovniNalog = this.dn.iddelovniNalog;
-		
+
 		if(this.vrstaObiska == 20 || this.vrstaObiska == 30){
 			console.log(this.dn.pacients);
 			for(let pacients of this.dn.pacients){
@@ -224,10 +224,10 @@ export class VnosObiskComponent implements OnInit{
 			let stvc = 0;
 			for(let obiski of this.dn.obisks){
 				if(obiski.opravljen == 1 && obiski.idobisk != this.idObiska){
-					
+
 					this.prviZeOpravljen = true;
-					
-					
+
+
 					break;
 					}
 			}
@@ -279,7 +279,7 @@ export class VnosObiskComponent implements OnInit{
 					this.stevec = 0;
 					for(let obiski of this.dn.obisks){
 							if(obiski.opravljen == 1){
-								
+
 								this.porociloObiskOtrocnice.akt10a = obiski.porociloObiskOtrocnice.akt10a;
 								this.porociloObiskOtrocnice.akt10b = obiski.porociloObiskOtrocnice.akt10b;
 								this.porociloObiskOtrocnice.akt10c = obiski.porociloObiskOtrocnice.akt10c;
@@ -318,11 +318,11 @@ export class VnosObiskComponent implements OnInit{
 					this.obiskOtrocnice = true;
 					this.obiskNovorojencka = true;
 					this.spremeni = true;
-					
-					
+
+
 					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojenckas;
 					console.log(this.porociloObiskNovorojencka);
-					
+
 					this.porociloObiskOtrocnice = this.obisk.porociloObiskOtrocnice;
 				}
 
@@ -333,13 +333,13 @@ export class VnosObiskComponent implements OnInit{
 					this.stevec = 0;
 					for(let obiski of this.dn.obisks){
 							if(obiski.opravljen == 1){
-								
+
 								this.porociloObiskOtrocnice.akt10a = obiski.porociloObiskOtrocnice.akt10a;
 								this.porociloObiskOtrocnice.akt10b = obiski.porociloObiskOtrocnice.akt10b;
 								this.porociloObiskOtrocnice.akt10c = obiski.porociloObiskOtrocnice.akt10c;
 							}
 						}
-					
+
 					for(let steviloOtrok of this.pacient){
 						let novi = ({'idobisk':this.idObiska});
 						let nov = <PorociloObiskNovorojencka> ({
@@ -371,7 +371,7 @@ export class VnosObiskComponent implements OnInit{
 				}else{
 					this.obiskNovorojencka = true;
 					this.obiskOtrocnice = true;
-					this.spremeni = true;				
+					this.spremeni = true;
 					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojenckas;
 					console.log(this.porociloObiskNovorojencka);
 					this.porociloObiskOtrocnice = this.obisk.porociloObiskOtrocnice;
@@ -463,11 +463,11 @@ export class VnosObiskComponent implements OnInit{
 	this.dnService.posodobiObisk(this.obisk).subscribe(res =>{this.submitted = true;});
   }
   sprememba(){
-	
+
 	  let nova = ({'idobisk':this.idObiska});
 	if(this.vrstaObiska == 10){
 		this.http.put(`${this.baseUrl}/obiski/porociloobisknosecnice`,JSON.stringify(this.porociloObiskNosecnice),{headers:this.headers}).subscribe(res => {this.submitted = true;});
-		
+
 	}else if(this.vrstaObiska == 20){
 		this.http.put(`${this.baseUrl}/obiski/porociloobiskotrocnice`,JSON.stringify(this.porociloObiskOtrocnice),{headers:this.headers}).subscribe(res => {console.log("success");});
 		let nov = <any> ({
@@ -490,16 +490,16 @@ export class VnosObiskComponent implements OnInit{
 		this.submitted = true;
 	}else if(this.vrstaObiska == 40){
 		this.http.put(`${this.baseUrl}/obiski/porocilopreventivastarostnika`,JSON.stringify(this.porociloPreventivaStarostnika),{headers:this.headers}).subscribe(res => {this.submitted = true;});
-		
+
 	}else if(this.vrstaObiska == 50){
 		this.http.put(`${this.baseUrl}/obiski/porociloaplikacijainjekcije`,JSON.stringify(this.porociloAplikacijaInjekcijeA),{headers:this.headers}).subscribe(res => {this.submitted = true;});
-		
+
 	}else if(this.vrstaObiska == 60){
 		this.http.put(`${this.baseUrl}/obiski/porociloodvzemkrvi`,JSON.stringify(this.porociloOdvzemKrvi),{headers:this.headers}).subscribe(res => {this.submitted = true;});
-		
+
 	}else if(this.vrstaObiska == 70){
 		this.http.put(`${this.baseUrl}/obiski/porocilozdrstanja`,JSON.stringify(this.porociloKontrolaZdravstvenegaStanja),{headers:this.headers}).subscribe(res => {this.submitted = true;});
 	}
-	
+
   }
 }
