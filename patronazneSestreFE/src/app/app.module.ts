@@ -1,6 +1,7 @@
 import { NgModule }      from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {FormsModule}   from '@angular/forms'; // <-- NgModel lives here
+
 import { HttpModule }    from '@angular/http';
 
 
@@ -51,9 +52,10 @@ import {SeznamObiskovPacientComponent} from "./SeznamObiskovPacient/seznamObisko
 import { pozabilGesloComponent } from "./PozabljenoGeslo/pozabilGeslo.component";
 import { NadomescanjeComponent } from "./nadomescanje/nadomescanje.component";
 import {VnosObiskComponent} from "./vnosObisk/vnosObisk.component";
+import {CustomFormsModule} from "ng2-validation";
 
 @NgModule({
-  imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule],
+  imports:      [ BrowserModule,FormsModule,HttpModule,AppRoutingModule,CustomFormsModule],
   declarations: [ AppComponent,DashboardComponent,PrijavaComponent,RegistracijaFormComponent,
                   DelovniNalogComponent, EqualValidator,PageNotFoundComponent,Registracija_zdComponent,
                   SpremembaGeslaComponent,AdminDashComponent,PacientDashComponent,
