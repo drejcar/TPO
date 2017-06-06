@@ -203,21 +203,23 @@ export class VnosObiskComponent implements OnInit{
   ngOnInit(){
 	this.route.params.switchMap((params:Params) => this.dnService.getDelovniNalog(Number(+params['id2']))).subscribe(res => {this.dn = res;
 		this.vrstaObiska = this.dn.vrstaObiska.idvrstaObiska;
-		let stevec = 1;
+		let stevec = 0;
 		this.idDelovniNalog = this.dn.iddelovniNalog;
 
 		if(this.vrstaObiska == 20 || this.vrstaObiska == 30){
 			console.log(this.dn.pacients);
 			for(let pacients of this.dn.pacients){
-				console.log(pacients);
+				
 				if(pacients.uporabnik == null){
-					console.log(pacients);
-					let nov = <any>({'pacient':this.pacienta});
-					this.pacient[this.stevec] = nov;
-					this.pacient[this.stevec].pacient.ime = pacients.ime;
-					this.pacient[this.stevec].pacient.priimek= pacients.priimek;
-					this.pacient[this.stevec].pacient.stevilkaZdravstvenegaZavarovanja = pacients.stevilkaZdravstvenegaZavarovanja;
-					this.stevec = this.stevec+1;
+					let pacienta = <any>({'ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':''});
+					let nov = <any>({'pacient':pacienta});
+					this.pacient[stevec] = nov;
+					console.log(this.pacient[stevec]);
+					this.pacient[stevec].pacient.ime = pacients.ime;
+					this.pacient[stevec].pacient.priimek= pacients.priimek;
+					this.pacient[stevec].pacient.stevilkaZdravstvenegaZavarovanja = pacients.stevilkaZdravstvenegaZavarovanja;
+					
+					stevec = stevec+1;
 				}else{
 					let nov = <any>({'pacient':''});
 					this.mt = nov;
@@ -295,9 +297,18 @@ export class VnosObiskComponent implements OnInit{
 								this.porociloObiskOtrocnice.akt10c = obiski.porociloObiskOtrocnice.akt10c;
 							}
 						}
+					
 					for(let steviloOtrok of this.pacient){
 						console.log(steviloOtrok);
 						let novi = ({'idobisk':this.idObiska});
+						let neki: any = ({
+							'niPosebnosti':false,
+							'mikcija':false,
+							'defekacija':false,
+							'napenjanje':false,
+							'kolike':false,
+							'bruhanje':false,
+						  })
 						let nov = <any> ({
 						'akt10':'',
 						'akt20':'',
@@ -320,7 +331,7 @@ export class VnosObiskComponent implements OnInit{
 						'priimek':steviloOtrok.pacient.priimek,
 						'stevilkaZdravstvenegaZavarovanja':steviloOtrok.pacient.stevilkaZdravstvenegaZavarovanja,
 						'obisk':novi,
-						'check':this.neki,
+						'check':neki,
 						});
 						this.porociloObiskNovorojencka[this.stevec] = nov;
 						this.stevec = this.stevec+1;
@@ -334,12 +345,21 @@ export class VnosObiskComponent implements OnInit{
 					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojenckas;
 					console.log(this.porociloObiskNovorojencka);
 					for(let n of this.porociloObiskNovorojencka){
-						n.check = this.neki;
+					let	neki: any = ({
+							'niPosebnosti':false,
+							'mikcija':false,
+							'defekacija':false,
+							'napenjanje':false,
+							'kolike':false,
+							'bruhanje':false,
+						  })
+						n.check = neki;
 						if(n.akt100a == 'Ni posebnosti'){
 							n.check.niPosebnosti = true;
 						}else{
 							var parts:any[] = n.akt100a.split(" ");
 							for(let prt of parts){
+								
 								if(prt == 'Mikcija'){
 									n.check.mikcija = true;
 								}
@@ -377,6 +397,14 @@ export class VnosObiskComponent implements OnInit{
 						}
 
 					for(let steviloOtrok of this.pacient){
+					 let neki: any = ({
+						'niPosebnosti':false,
+						'mikcija':false,
+						'defekacija':false,
+						'napenjanje':false,
+						'kolike':false,
+						'bruhanje':false,
+					  })
 						let novi = ({'idobisk':this.idObiska});
 						let nov = <any> ({
 						'akt10':'',
@@ -400,7 +428,7 @@ export class VnosObiskComponent implements OnInit{
 						'priimek':steviloOtrok.pacient.priimek,
 						'stevilkaZdravstvenegaZavarovanja':steviloOtrok.pacient.stevilkaZdravstvenegaZavarovanja,
 						'obisk':novi,
-						'check':this.neki,
+						'check':neki,
 						});
 						this.porociloObiskNovorojencka[this.stevec] = nov;
 						this.stevec = this.stevec+1;
@@ -412,12 +440,21 @@ export class VnosObiskComponent implements OnInit{
 					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojenckas;
 					//dodajamo k check
 					for(let n of this.porociloObiskNovorojencka){
-						n.check = this.neki;
+						let neki: any = ({
+							'niPosebnosti':false,
+							'mikcija':false,
+							'defekacija':false,
+							'napenjanje':false,
+							'kolike':false,
+							'bruhanje':false,
+						  })
+						n.check = neki;
 						if(n.akt100a == 'Ni posebnosti'){
 							n.check.niPosebnosti = true;
 						}else{
 							var parts:any[] = n.akt100a.split(" ");
 							for(let prt of parts){
+								console.log(prt);
 								if(prt == 'Mikcija'){
 									n.check.mikcija = true;
 								}
@@ -504,7 +541,7 @@ export class VnosObiskComponent implements OnInit{
 							}if(n.check.napenjanje == true){
 								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Napenjanje';
 							}
-							if(n.check.Kolike == true){
+							if(n.check.kolike == true){
 								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Kolike';
 							}
 							if(n.check.bruhanje == true){
@@ -537,7 +574,7 @@ export class VnosObiskComponent implements OnInit{
 							}if(n.check.napenjanje == true){
 								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Napenjanje';
 							}
-							if(n.check.Kolike == true){
+							if(n.check.kolike == true){
 								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Kolike';
 							}
 							if(n.check.bruhanje == true){
@@ -618,7 +655,7 @@ export class VnosObiskComponent implements OnInit{
 							}if(n.check.napenjanje == true){
 								absolutni.akt100a = absolutni.akt100a+' '+'Napenjanje';
 							}
-							if(n.check.Kolike == true){
+							if(n.check.kolike == true){
 								absolutni.akt100a = absolutni.akt100a+' '+'Kolike';
 							}
 							if(n.check.bruhanje == true){
@@ -655,7 +692,7 @@ export class VnosObiskComponent implements OnInit{
 							}if(n.check.napenjanje == true){
 								absolutni.akt100a = absolutni.akt100a+' '+'Napenjanje';
 							}
-							if(n.check.Kolike == true){
+							if(n.check.kolike == true){
 								absolutni.akt100a = absolutni.akt100a+' '+'Kolike';
 							}
 							if(n.check.bruhanje == true){
