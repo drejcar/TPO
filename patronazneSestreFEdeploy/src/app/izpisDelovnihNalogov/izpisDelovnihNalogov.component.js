@@ -20,6 +20,8 @@ var izpisDelovnihNalogovComponent = (function () {
         this.DNService = DNService;
         this.restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
         this.aliObstaja = false;
+        this.aliJeLockanMS = false;
+        this.aliJeLockanZD = false;
         this.izdajatelji = [{ 'ime': '', 'sifra': '', 'id': 0 }];
         this.obiski = [{ 'name': '', 'id': 0 }];
         this.pacienti = [{ 'ime': '', 'priimek': '', 'id': 0 }];
@@ -170,6 +172,15 @@ var izpisDelovnihNalogovComponent = (function () {
                     var d = 0; //stevec za paciente
                     var j = 0; //stevec za vrste obiskov
                     var m = 0; //stevec za zdravstvene delavce
+                    var n = 0;
+                    if (localStorage['vloga'] == 'Zdravnik') {
+                        _this.aliJeLockanZD = true;
+                        n = 1;
+                    }
+                    else {
+                        _this.aliJeLockanMS = true;
+                        m = 1;
+                    }
                     //setanje izpisa delovnih nalogov ob initializaciji
                     for (var _i = 0, _a = _this.delovniNalogiVsi; _i < _a.length; _i++) {
                         var dn = _a[_i];
@@ -250,8 +261,8 @@ var izpisDelovnihNalogovComponent = (function () {
                                     noviZdr.ime = zdr.ime + ' ' + zdr.priimek;
                                     noviZdr.sifra = zdr.sifra;
                                     noviZdr.id = zdr.idzdravstveniDelavec;
-                                    _this.izdajatelji[m] = noviZdr;
-                                    m = m + 1;
+                                    _this.izdajatelji[n] = noviZdr;
+                                    n = n + 1;
                                 }
                                 delovniN.izdajatelj = zdr.ime + ' ' + zdr.priimek + ' [' + zdr.sifra + ']';
                             }

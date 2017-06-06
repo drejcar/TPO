@@ -23,7 +23,8 @@ var SeznamObiskovPacientComponent = (function () {
         this.pacienti = [{ 'ime': '', 'priimek': '', 'sifra': '', 'id': 0 }];
         this.izbraniPacient = this.pacienti[0];
         this.vecJihJe = false;
-        this.tabelaDejanskiObiskov = [{ idObiska: undefined, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', podrobno: '' }];
+        this.tabelaDejanskiObiskov = [{ idObiska: undefined, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', podrobno: '', porocilo: '' }];
+        this.aliSoObiski = false;
     }
     SeznamObiskovPacientComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -56,6 +57,7 @@ var SeznamObiskovPacientComponent = (function () {
         setTimeout(function () {
             _this.http.get(_this.restUrl + "/pacient/dn/" + localStorage['idPacienta'], { headers: headers }).map(function (response) { return response.json(); }).subscribe(function (res) {
                 _this.tabelaObiskovVsi = res;
+                var stevecObiskov = 0;
                 var i = 0; //stevec za obiske
                 console.log(_this.tabelaObiskovVsi);
                 for (var _i = 0, _a = _this.tabelaObiskovVsi; _i < _a.length; _i++) {
@@ -67,7 +69,7 @@ var SeznamObiskovPacientComponent = (function () {
                         }
                         var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', podrobno: '' });
                         obisk.idObiska = ob.idobisk;
-                        obisk.podrobno = 'Podrobnosti';
+                        obisk.porocilo = '/vnosObisk/' + ob.idobisk + '/' + dn.iddelovniNalog;
                         obisk.vrstaObiska = dn.vrstaObiska.opis;
                         obisk.pacienti = dn.pacients[0].ime + ' ' + dn.pacients[0].priimek;
                         for (var _d = 0, _e = dn.zdravstveniDelavecs; _d < _e.length; _d++) {
@@ -81,9 +83,13 @@ var SeznamObiskovPacientComponent = (function () {
                         }
                         obisk.predvideniDatumObiska = ob.datumObiska;
                         obisk.dejanskiDatumObiska = ob.dejanskiDatumObiska;
+                        stevecObiskov = stevecObiskov + 1;
                         _this.tabelaDejanskiObiskov[i] = obisk;
                         i = i + 1;
                     }
+                }
+                if (stevecObiskov > 0) {
+                    _this.aliSoObiski = true;
                 }
             });
         }, 1500);
@@ -105,8 +111,9 @@ var SeznamObiskovPacientComponent = (function () {
                         if (ob.opravljen == 0) {
                             continue;
                         }
-                        var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '' });
+                        var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', porocilo: '' });
                         obisk.idObiska = ob.idobisk;
+                        obisk.porocilo = '/vnosObisk/' + ob.idobisk + '/' + dn.iddelovniNalog;
                         obisk.vrstaObiska = dn.vrstaObiska.opis;
                         obisk.pacienti = dn.pacients[0].ime + ' ' + dn.pacients[0].priimek;
                         for (var _d = 0, _e = dn.zdravstveniDelavecs; _d < _e.length; _d++) {

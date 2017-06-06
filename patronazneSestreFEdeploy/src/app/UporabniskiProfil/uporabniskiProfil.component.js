@@ -26,6 +26,7 @@ var UporabniskiProfilComponent = (function () {
         this.dodajPac = false;
         this.subNiPravi = true;
         this.spoli = [{ 'idspol': 0, 'opis': '' }];
+        this.submitted = false;
         this.izbranoRazmerje = ({ idsorodstvenoRazmerje: 0, opis: '' });
         this.okolisi = [{ 'idokolis': 1, 'opis': '', 'idposta': 1000 }];
         this.okolisis = [{ 'idokolis': 1, 'opis': '', 'idposta': 1000 }];
@@ -52,6 +53,8 @@ var UporabniskiProfilComponent = (function () {
         this.postneStevilke = [{}];
         this.model2 = [{ 'idpacient': 0, 'hisnaStevilka': '', 'ime': '', 'priimek': '', 'stevilkaZdravstvenegaZavarovanja': '', 'telefonskaStevilka': '', 'ulica': '', 'datumRojstva': '', 'kontakt': this.kontakt, 'posta': this.posta, 'sorodstvenoRazmerje': '', 'spol': this.spol, 'okolis': '', 'uporabnik': this.uporabnik }];
         this.model3 = [{}]; /*= [{'idpacient':0,'hisnaStevilka':'','ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':'','telefonskaStevilka':'','ulica':'','datumRojstva':'','kontakt':this.kontakt,'posta':this.posta,'sorodstvenoRazmerje':'','spol':this.spol,'okolis':this.okolis,'uporabnik':this.uporabnik}];*/
+        this.odstranitev = false;
+        this.odstranjeniPacient = "";
     }
     UporabniskiProfilComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -210,6 +213,7 @@ var UporabniskiProfilComponent = (function () {
         console.log(this.model3.length);
     };
     UporabniskiProfilComponent.prototype.onSubmit = function () {
+        var _this = this;
         var length = 0;
         if (this.dodajPac == true) {
             length = this.model3.length;
@@ -303,7 +307,114 @@ var UporabniskiProfilComponent = (function () {
         console.log(this.kontakt);
         this.kontakt.krazmerje = this.izbranoRazmerje;
         console.log(this.model[0]);
-        this.uporabnikService.update(this.model[0], this.dodaj, this.kontakt).subscribe(function (r) { console.log('success'); }, function (err) { console.log(err); });
+        this.uporabnikService.update(this.model[0], this.dodaj, this.kontakt).subscribe(function (r) { _this.submitted = true; }, function (err) { console.log(err); });
+    };
+    UporabniskiProfilComponent.prototype.odstraniMojega = function (stZZ) {
+        var _this = this;
+        var length = 0;
+        if (this.dodajPac == true) {
+            length = this.model3.length;
+            for (var _i = 0, _a = this.model3; _i < _a.length; _i++) {
+                var nk = _a[_i];
+                if (nk.ime == undefined || nk.okolis == undefined) {
+                    this.subNiPravi = false;
+                    break;
+                }
+            }
+        }
+        else {
+            this.subNiPravi = true;
+        }
+        this.model[0].posta = this.postSt;
+        this.model[0].okolis = this.izbrOkolis;
+        this.model[0].pacients = [];
+        if (this.model2[0].ime != "") {
+            for (var _b = 0, _c = this.model2; _b < _c.length; _b++) {
+                var n = _c[_b];
+                delete n.oko;
+                var posta = n.posta;
+                if (typeof n.posta != 'object') {
+                    var devided1 = n.posta.split(' ');
+                    posta = ({
+                        idposta: Number(devided1[0]),
+                        opis: devided1[1],
+                    });
+                    n.posta = posta;
+                }
+                if (typeof n.okolis != 'object') {
+                    var devided2 = n.okolis.split(' ');
+                    var okolis = ({
+                        idokolis: Number(devided2[1]),
+                        opis: devided2[0].toString(),
+                        posta: posta
+                    });
+                    n.okolis = okolis;
+                }
+                console.log(n.stevilkaZdravstvenegaZavarovanja);
+                console.log(stZZ);
+                if (n.stevilkaZdravstvenegaZavarovanja == stZZ) {
+                    this.odstranjeniPacient = n.ime + " " + n.priimek;
+                    this.uporabnikService.pobrisi(n).subscribe(function (res) {
+                        _this.odstranitev = true;
+                        _this.submitted = true;
+                    });
+                    continue;
+                }
+                this.model[0].pacients.push(n);
+            }
+        }
+        console.log(this.model3[0]);
+        if (this.dodajPac == true) {
+            for (var _d = 0, _e = this.model3; _d < _e.length; _d++) {
+                var nk = _e[_d];
+                delete nk.oko;
+                var devided1 = nk.posta.split(' ');
+                var posta = ({
+                    idposta: Number(devided1[0]),
+                    opis: devided1[1],
+                });
+                var sp = 1;
+                if (nk.spol == 'Moški') {
+                    sp = 1;
+                }
+                else {
+                    sp = 2;
+                }
+                var spol = ({
+                    idspol: sp,
+                    opis: nk.spol,
+                });
+                console.log(nk.okolis.opis);
+                /*var devided2= nk.okolis.split(' ');
+
+
+                let okolis = <Okolis>({
+                    idokolis: Number(devided2[1]),
+                    opis: devided2[0].toString(),
+                    posta: posta
+                });*/
+                nk.posta = posta;
+                nk.spol = spol;
+                //nk.okolis = okolis;
+                for (var _f = 0, _g = this.krazmerja; _f < _g.length; _f++) {
+                    var raz = _g[_f];
+                    if (nk.sorodstvenoRazmerje == raz.opis) {
+                        console.log("NAJDU");
+                        var nov = ({
+                            idsorodstvenoRazmerje: raz.idsorodstvenoRazmerje,
+                        });
+                        nk.sorodstvenoRazmerje = nov;
+                        break;
+                    }
+                }
+                this.model[0].pacients.push(nk);
+            }
+        }
+        console.log(this.dodaj);
+        console.log(this.kontakt);
+        this.kontakt.krazmerje = this.izbranoRazmerje;
+        console.log(this.model[0]);
+        this.uporabnikService.update(this.model[0], this.dodaj, this.kontakt).subscribe(function (r) { console.log("success"); }, function (err) { console.log(err); });
     };
     return UporabniskiProfilComponent;
 }());

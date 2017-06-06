@@ -15,7 +15,7 @@ import { Kontakts } from "../Pacient";
 
 @Injectable()
 export class UporabnikService{
- private baseUrl: String = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
+ private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
  private headers = new Headers({'Content-Type': 'application/json'});
  constructor(private http : Http){}
 
@@ -131,6 +131,15 @@ export class UporabnikService{
 	var headers2 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 	return this.http.put(`${this.baseUrl}/pacient`,JSON.stringify(upr), {headers: headers2});
 
+ }
+ 
+ pobrisi(upr:any): Observable<Response> {
+	console.log(upr);
+	
+	upr.pacient = null;
+	
+	var headers2 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
+	return this.http.put(`${this.baseUrl}/pacient`,JSON.stringify(upr), {headers: headers2});
  }
  getPoste(): Observable<Posta[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/posta`, {headers: this.headers}).map((response: Response) => response.json());

@@ -1,6 +1,6 @@
 "use strict";
-var porociloObiskOtrocnice = (function () {
-    function porociloObiskOtrocnice(
+var PorociloObiskOtrocnice = (function () {
+    function PorociloObiskOtrocnice(
         //public idporociloObiskOtrocnice:number,
         akt100, akt10a, akt10b, //double
         akt10c, //double
@@ -40,7 +40,7 @@ var porociloObiskOtrocnice = (function () {
         this.akt80 = akt80;
         this.akt90 = akt90;
     }
-    return porociloObiskOtrocnice;
+    return PorociloObiskOtrocnice;
 }());
-exports.porociloObiskOtrocnice = porociloObiskOtrocnice;
+exports.PorociloObiskOtrocnice = PorociloObiskOtrocnice;
 //# sourceMappingURL=porociloObiskOtrocnice.js.map

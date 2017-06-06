@@ -22,6 +22,12 @@ var izpisDNService = (function () {
         this.headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         this.baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
     }
+    izpisDNService.prototype.getObisk = function (idObiska) {
+        return this.http.get(this.baseUrl + "/obiski/" + idObiska, { headers: this.headers }).map(function (response) { return response.json(); });
+    };
+    izpisDNService.prototype.posodobiObisk = function (obisk) {
+        return this.http.put(this.baseUrl + "/delovniNalog/obisk", JSON.stringify(obisk), { headers: this.headers });
+    };
     izpisDNService.prototype.getDelovneNaloge = function (idZD, idStart) {
         var date = new Date();
         var datum = date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + (date.getDate());

@@ -49,6 +49,7 @@ var podrobnostiDNComponent = (function () {
         this.pacDatumRojstva2 = '';
         this.pacTelefon2 = '';
         this.pacPosta2 = '';
+        this.otroci = [{ 'ime': '', 'priimek': '', 'zz': '', 'datumRojstva': '', 'naslov': '' }];
         this.obiskiDatumi = [{ 'datumObiska': '', 'fiksniDatum': '', 'opravljen': '', 'dejanskiDatum': '', 'nadomescanje': '' }];
         this.obiskVrstaStoritve = '';
         this.obiskBolezen = '';
@@ -77,7 +78,15 @@ var podrobnostiDNComponent = (function () {
                 else if (i_1.okolis != null) {
                     for (var _b = 0, _c = _this.delovniNalog.obisks; _b < _c.length; _b++) {
                         var b = _c[_b];
-                        if (b.nadomestnaSestra.idzdravstveniDelavec != i_1.idzdravstveniDelavec) {
+                        if (b.nadomestnaSestra != null) {
+                            if (b.nadomestnaSestra.idzdravstveniDelavec != i_1.idzdravstveniDelavec) {
+                                _this.sestraSifra = i_1.sifra;
+                                _this.sestraOkolis = i_1.okolis.opis;
+                                _this.sestraIme = i_1.ime;
+                                _this.sestraPriimek = i_1.priimek;
+                            }
+                        }
+                        else {
                             _this.sestraSifra = i_1.sifra;
                             _this.sestraOkolis = i_1.okolis.opis;
                             _this.sestraIme = i_1.ime;
@@ -90,23 +99,33 @@ var podrobnostiDNComponent = (function () {
             if (_this.delovniNalog.vrstaObiska.idvrstaObiska == 20 || _this.delovniNalog.vrstaObiska.idvrstaObiska == 30) {
                 _this.aliJePraviObisk = true;
                 //prvi pacient
-                _this.pacIme = _this.delovniNalog.pacients[0].ime;
-                _this.pacPriimek = _this.delovniNalog.pacients[0].priimek;
-                _this.pacSZZ = _this.delovniNalog.pacients[0].stevilkaZdravstvenegaZavarovanja;
-                _this.pacNaslov = _this.delovniNalog.pacients[0].ulica + " " + _this.delovniNalog.pacients[0].hisnaStevilka;
-                _this.pacDatumRojstva = _this.delovniNalog.pacients[0].datumRojstva;
-                _this.pacTelefon = _this.delovniNalog.pacients[0].telefonskaStevilka;
-                _this.pacPosta = _this.delovniNalog.pacients[0].uporabnik.email;
-                //drugi pacient
-                _this.pacIme2 = _this.delovniNalog.pacients[1].ime;
-                _this.pacPriimek2 = _this.delovniNalog.pacients[1].priimek;
-                _this.pacSZZ2 = _this.delovniNalog.pacients[1].stevilkaZdravstvenegaZavarovanja;
-                _this.pacDatumRojstva2 = _this.delovniNalog.pacients[1].datumRojstva;
-                _this.pacTelefon2 = _this.delovniNalog.pacients[1].telefonskaStevilka;
-                _this.pacNaslov2 = _this.delovniNalog.pacients[1].posta.idposta + " " + _this.delovniNalog.pacients[1].posta.opis;
-                _this.pacPosta2 = _this.delovniNalog.pacients[1].uporabnik.email;
+                var stevec = 0;
+                for (var _d = 0, _e = _this.delovniNalog.pacients; _d < _e.length; _d++) {
+                    var pacients = _e[_d];
+                    console.log(pacients);
+                    console.log(pacients.telefonskaStevilka);
+                    if (pacients.uporabnik != null) {
+                        console.log("test");
+                        _this.pacIme = pacients.ime;
+                        _this.pacPriimek = pacients.priimek;
+                        _this.pacSZZ = pacients.stevilkaZdravstvenegaZavarovanja;
+                        _this.pacNaslov = pacients.ulica + " " + pacients.hisnaStevilka;
+                        _this.pacDatumRojstva = pacients.datumRojstva;
+                        _this.pacTelefon = pacients.telefonskaStevilka;
+                        _this.pacPosta = pacients.uporabnik.email;
+                    }
+                    else {
+                        _this.otroci[stevec].ime = pacients.ime;
+                        _this.otroci[stevec].priimek = pacients.priimek;
+                        _this.otroci[stevec].datumRojstva = pacients.datumRojstva;
+                        _this.otroci[stevec].zz = pacients.stevilkaZdravstvenegaZavarovanja;
+                        _this.otroci[stevec].naslov = pacients.ulica + " " + pacients.hisnaStevilka;
+                        stevec = stevec + 1;
+                    }
+                }
             }
             else {
+                console.log("hello");
                 _this.aliJePraviObisk = false;
                 _this.pacIme = _this.delovniNalog.pacients[0].ime;
                 _this.pacPriimek = _this.delovniNalog.pacients[0].priimek;
@@ -118,10 +137,15 @@ var podrobnostiDNComponent = (function () {
             }
             //obiski
             var j = 0;
-            for (var _d = 0, _e = _this.delovniNalog.obisks; _d < _e.length; _d++) {
-                var i_2 = _e[_d];
+            for (var _f = 0, _g = _this.delovniNalog.obisks; _f < _g.length; _f++) {
+                var i_2 = _g[_f];
                 var novObisk = ({ 'datumObiska': '', 'fiksniDatum': '', 'opravljen': '', 'dejanskiDatum': '', 'nadomescanje': '' });
-                novObisk.nadomescanje = i_2.nadomestnaSestra.ime + " " + i_2.nadomestnaSestra.priimek + " [" + i_2.nadomestnaSestra.sifra + "]";
+                if (i_2.nadomestnaSestra != null) {
+                    novObisk.nadomescanje = i_2.nadomestnaSestra.ime + " " + i_2.nadomestnaSestra.priimek + " [" + i_2.nadomestnaSestra.sifra + "]";
+                }
+                else {
+                    novObisk.nadomescanje = 'ni nadomeščanja';
+                }
                 novObisk.datumObiska = i_2.datumObiska;
                 novObisk.dejanskiDatum = i_2.dejanskiDatumObiska;
                 if (i_2.opravljen == 0) {
@@ -159,8 +183,8 @@ var podrobnostiDNComponent = (function () {
             if (_this.delovniNalog.vrstaObiska.idvrstaObiska == 60) {
                 j = 0;
                 _this.aliJeOdvzemKrvi = true;
-                for (var _f = 0, _g = _this.delovniNalog.materials; _f < _g.length; _f++) {
-                    var i_3 = _g[_f];
+                for (var _h = 0, _j = _this.delovniNalog.materials; _h < _j.length; _h++) {
+                    var i_3 = _j[_h];
                     var novMaterial = ({ 'tipMateriala': '', 'kolicina': 0 });
                     novMaterial.tipMateriala = i_3.opis;
                     novMaterial.kolicina = _this.delovniNalog.steviloEpruvet;
@@ -172,8 +196,8 @@ var podrobnostiDNComponent = (function () {
                 j = 0;
                 _this.aliJeInjekcija = true;
                 _this.obiskBolezen = _this.delovniNalog.bolezen.opis;
-                for (var _h = 0, _j = _this.delovniNalog.zdravilos; _h < _j.length; _h++) {
-                    var i_4 = _j[_h];
+                for (var _k = 0, _l = _this.delovniNalog.zdravilos; _k < _l.length; _k++) {
+                    var i_4 = _l[_k];
                     var novZdravilo = ({ 'idZdravila': 0, 'tipZdravila': '' });
                     novZdravilo.idZdravila = i_4.idzdravilo;
                     novZdravilo.tipZdravila = i_4.opis;
