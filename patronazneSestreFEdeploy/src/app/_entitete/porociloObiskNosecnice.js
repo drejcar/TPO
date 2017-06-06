@@ -1,6 +1,6 @@
 "use strict";
-var porociloObiskNosecnice = (function () {
-    function porociloObiskNosecnice(akt10, akt100, akt110, akt120, akt130, akt140, akt150, akt160, akt170a, akt170b, akt180a, akt180b, akt190a, //double
+var PorociloObiskNosecnice = (function () {
+    function PorociloObiskNosecnice(akt10, akt100, akt110, akt120, akt130, akt140, akt150, akt160, akt170a, akt170b, akt180a, akt180b, akt190a, //double
         akt190b, //double
         akt20, akt200, akt210, akt220, //double
         akt230, akt240, akt30, akt40, akt50, akt60, akt70, akt80, akt90) {
@@ -32,7 +32,7 @@ var porociloObiskNosecnice = (function () {
         this.akt80 = akt80;
         this.akt90 = akt90;
     }
-    return porociloObiskNosecnice;
+    return PorociloObiskNosecnice;
 }());
-exports.porociloObiskNosecnice = porociloObiskNosecnice;
+exports.PorociloObiskNosecnice = PorociloObiskNosecnice;
 //# sourceMappingURL=porociloObiskNosecnice.js.map

@@ -21,5 +21,13 @@ export class PorociloObiskNovorojencka{
 	public ime:String,
 	public priimek:String,
 	public stevilkaZdravstvenegaZavarovanja:String,
+	public obisk:obiskA,
   ){}
 }
+export class obiskA{
+	constructor(
+		idobisk:number,
+	
+	){}
+}
+

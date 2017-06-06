@@ -1,6 +1,6 @@
 "use strict";
-var porociloKontrolaZdravstvenegaStanja = (function () {
-    function porociloKontrolaZdravstvenegaStanja(
+var PorociloKontrolaZdravstvenegaStanja = (function () {
+    function PorociloKontrolaZdravstvenegaStanja(
         //public idporociloKontrolaZdravstvenegaStanja:number,
         akt10, akt100, akt110, akt20a, //double
         akt20b, //double
@@ -22,7 +22,7 @@ var porociloKontrolaZdravstvenegaStanja = (function () {
         this.akt80b = akt80b;
         this.akt90 = akt90;
     }
-    return porociloKontrolaZdravstvenegaStanja;
+    return PorociloKontrolaZdravstvenegaStanja;
 }());
-exports.porociloKontrolaZdravstvenegaStanja = porociloKontrolaZdravstvenegaStanja;
+exports.PorociloKontrolaZdravstvenegaStanja = PorociloKontrolaZdravstvenegaStanja;
 //# sourceMappingURL=porociloKontrolaZdravstvenegaStanja.js.map

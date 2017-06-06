@@ -19,6 +19,8 @@ var NadomescanjeComponent = (function () {
         this.restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
         this.stevec = 1;
         this.aliJeVec = false;
+        this.konecNadomescanja = false;
+        this.izbranaVrnitev = ({ 'sestra': this.sestra, 'sestre': this.sestre });
         this.sestre = [{ 'idSestre': 0, 'ime': '', 'priimek': '', 'sifra': 0 }];
         this.sestra = ({ 'idSestre': 0, 'ime': '', 'priimek': '', 'sifra': 0 });
         this.nadSestra = ({ 'idSestre': 0, 'ime': '', 'priimek': '', 'sifra': 0 });
@@ -53,6 +55,8 @@ var NadomescanjeComponent = (function () {
         this.model.sestre = this.sestre;
         this.model2[0].nadomestnaSestra = this.sestra;
         this.model2[0].sestre = this.sestre;
+        this.izbranaVrnitev.sestre = this.sestre;
+        //this.izbranaVrnitev.sestra = null;
     };
     NadomescanjeComponent.prototype.dodajNadomescanje = function () {
         var nov = ({ 'nadomestnaSestra': this.sestra, 'sestre': this.sestre, 'od': '', 'do': '', 'error': false, 'sporocilo': '' });
@@ -75,10 +79,17 @@ var NadomescanjeComponent = (function () {
         this.sporocilo = "";
         for (var _i = 0, _a = this.model2; _i < _a.length; _i++) {
             var izbrane = _a[_i];
+            vecKEna = 0;
             console.log(izbrane);
             for (var _b = 0, _c = this.model2; _b < _c.length; _b++) {
                 var izbr = _c[_b];
                 console.log(izbr);
+                console.log(izbr.nadomestnaSestra.idSestre + " je " + this.model.sestra.idSestre);
+                if (izbr.nadomestnaSestra.idSestre == this.model.sestra.idSestre) {
+                    this.sporocilo = "izbrali ste vec istih sester";
+                    this.error = true;
+                    break;
+                }
                 if (izbr.nadomestnaSestra.idSestre != izbrane.nadomestnaSestra.idSestre) {
                     var datum1 = izbr.od;
                     var datum2 = izbr.do;
@@ -87,7 +98,7 @@ var NadomescanjeComponent = (function () {
                     parts = datum2.split('-');
                     var datum2Izb = parts[0] + parts[1] + parts[2];
                     datum1 = izbrane.od;
-                    datum2 = izbr.do;
+                    datum2 = izbrane.do;
                     parts = datum1.split('-');
                     var datum1Druge = parts[0] + parts[1] + parts[2];
                     parts = datum2.split('-');
@@ -120,12 +131,24 @@ var NadomescanjeComponent = (function () {
                 var sestre = _e[_d];
                 console.log(this.model.sestra.idSestre);
                 console.log(sestre.nadomestnaSestra.idSestre);
+                var parts = sestre.od.split('-');
+                parts[2] = Number(parts[2]) - 1;
+                sestre.od = parts[0] + "-" + parts[1] + "-" + parts[2].toString();
+                parts = sestre.do.split('-');
+                parts[2] = Number(parts[2]) + 1;
+                sestre.do = parts[0] + "-" + parts[1] + "-" + parts[2].toString();
                 this.http.get(this.restUrl + "/obiski/nadomescanje/" + this.model.sestra.idSestre + "/" + sestre.nadomestnaSestra.idSestre + "?od=" + sestre.od + "&do=" + sestre.do, { headers: headers3 }).subscribe(function (res) {
                     _this.submitted = true;
                     _this.error = false;
                 });
             }
         }
+    };
+    NadomescanjeComponent.prototype.prekiniNadomescanje = function () {
+        var _this = this;
+        var headers3 = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
+        console.log(this.izbranaVrnitev.sestra.idSestre);
+        this.http.get(this.restUrl + "/obiski/nadomescanjekonec/" + this.izbranaVrnitev.sestra.idSestre, { headers: headers3 }).subscribe(function (res) { _this.konecNadomescanja = true; });
     };
     return NadomescanjeComponent;
 }());

@@ -66,12 +66,14 @@ var DelovniNalogComponent = (function () {
         this.storitve = [{ 'name': 'Obisk nosečnice', 'id': 10 }, { 'name': 'Obisk otročnice', 'id': 20 }, { 'name': 'Obisk novorojenčka', 'id': 30 }, { 'name': 'Preventiva starostnika', 'id': 40 },
             { 'name': 'Aplikacija injekcije', 'id': 50 }, { 'name': 'Odvzem krvi', 'id': 60 }, { 'name': 'Kontrola zdravstvenega stanja', 'id': 70 }];
         this.izbranaStoritev = this.storitve[0];
+        this.IzbrOtroci = [{ 'izbraniOtrok': this.otrok, 'otroci': this.otroci }];
         this.veljavnostNalogaOd = "";
         this.veljavnostNalogaDo = "";
         this.veljavnostNalogaVrsta = -1;
         this.veljavnostNalogaFiksniDatum = false;
         this.veljavnostNalogaInterval = 0;
         this.veljavnostNalogaSteviloObiskov = 1;
+        this.stevecOtrok = 0;
         this.stObiskov = 0;
         this.sifraUporabnika = "";
         this.urlParametri = "";
@@ -115,7 +117,7 @@ var DelovniNalogComponent = (function () {
             this.storitve = [{ 'name': 'Obisk nosečnice', 'id': 10 }, { 'name': 'Obisk otročnice', 'id': 20 }, { 'name': 'Obisk novorojenčka', 'id': 30 }, { 'name': 'Preventiva starostnika', 'id': 40 }];
             this.izbranaStoritev = this.storitve[0];
         }
-        var headers3 = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin:admin') });
+        var headers3 = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         this.http.get(this.restUrl + "/zdravstveniDelavec/" + localStorage['iduporabnik'], { headers: headers3 }).subscribe(function (data1) {
             _this.data1 = data1.json();
             var drek1 = JSON.stringify(_this.data1);
@@ -153,7 +155,7 @@ var DelovniNalogComponent = (function () {
         var _this = this;
         console.log("izbrano zdravilo: " + this.izbranoZdravilo.opis);
         console.log("Pridobivam sestro za okolis: " + okolisPacienta);
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin:admin') });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         this.http.get(this.restUrl + "/zdravstveniDelavec/byOkolis/" + okolisPacienta, { headers: headers }).subscribe(function (data3) {
             _this.data3 = data3.json();
             var drek = JSON.stringify(_this.data3);
@@ -166,7 +168,7 @@ var DelovniNalogComponent = (function () {
     };
     DelovniNalogComponent.prototype.pridobiPodatkePacienta = function () {
         var _this = this;
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin:admin') });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         this.http.get(this.restUrl + "/pacient/zz/" + this.post, { headers: headers }).subscribe(function (data) {
             _this.data = data.json();
             var drek = JSON.stringify(_this.data);
@@ -183,11 +185,21 @@ var DelovniNalogComponent = (function () {
             _this.idOkolisa = test.okolis.idokolis;
             _this.pridobiSestre(_this.idOkolisa);
             console.log("id okolisa: " + _this.idOkolisa);
+            console.log(test.pacients);
+            if (test.pacients != null) {
+                _this.IzbrOtroci[0].otroci = test.pacients;
+                _this.kolikoOtrok = test.pacients;
+            }
+            console.log(_this.kolikoOtrok);
         }, function (err) { console.log(err); });
+    };
+    DelovniNalogComponent.prototype.dodajOtroka = function () {
+        this.stevecOtrok++;
+        this.IzbrOtroci[this.stevecOtrok] = ({ 'otroci': this.kolikoOtrok, 'izbraniOtrok': this.otrok });
     };
     DelovniNalogComponent.prototype.pridobiPodatkePacienta1 = function () {
         var _this = this;
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin:admin') });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         this.http.get(this.restUrl + "/pacient/zz/" + this.post1, { headers: headers }).subscribe(function (data2) {
             _this.data2 = data2.json();
             var drek1 = JSON.stringify(_this.data2);
@@ -270,7 +282,7 @@ var DelovniNalogComponent = (function () {
         }
         this.urlParametri = "?fixniDatum=" + fiksniDatum + "&stObiskov=" + this.veljavnostNalogaSteviloObiskov + "&obdobje=" + this.veljavnostNalogaVrsta + "&interval=" + this.veljavnostNalogaInterval + "&od=" + this.veljavnostNalogaOd + "&do=" + this.veljavnostNalogaDo;
         console.log(this.urlParametri);
-        var headers1 = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin:admin') });
+        var headers1 = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         var pacient = new Pacient();
         pacient.idpacient = this.idPacient;
         var pacient1 = new Pacient();
@@ -301,7 +313,11 @@ var DelovniNalogComponent = (function () {
         dn.zdravstveniDelavecs = [zdravstveniDelavec, sestra];
         //ne smeta biti 2 enaka objekta
         if (this.izbranaStoritev.id == 20 || this.izbranaStoritev.id == 30) {
-            dn.pacients = [pacient, pacient1];
+            dn.pacients = [pacient];
+            for (var _i = 0, _a = this.IzbrOtroci; _i < _a.length; _i++) {
+                var s = _a[_i];
+                dn.pacients.push(s.izbraniOtrok);
+            }
         }
         else {
             dn.pacients = [pacient];

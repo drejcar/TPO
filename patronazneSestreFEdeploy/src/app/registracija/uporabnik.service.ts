@@ -132,6 +132,15 @@ export class UporabnikService{
 	return this.http.put(`${this.baseUrl}/pacient`,JSON.stringify(upr), {headers: headers2});
 
  }
+
+ pobrisi(upr:any): Observable<Response> {
+	console.log(upr);
+
+	upr.pacient = null;
+
+	var headers2 = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
+	return this.http.put(`${this.baseUrl}/pacient`,JSON.stringify(upr), {headers: headers2});
+ }
  getPoste(): Observable<Posta[]>{
 	 return this.http.get(`${this.baseUrl}/registracija/posta`, {headers: this.headers}).map((response: Response) => response.json());
 
