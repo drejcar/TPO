@@ -24,7 +24,7 @@ public class PorociloObiskNovorojencka implements Serializable {
 	@Column(length=1024)
 	private String akt10;
 
-	@Column(nullable=false, length=45)
+	@Column(nullable=false, length=1024)
 	private String akt100a;
 
 	@Column(length=1024)
