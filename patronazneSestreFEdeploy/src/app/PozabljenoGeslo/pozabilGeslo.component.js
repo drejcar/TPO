@@ -36,7 +36,7 @@ var pozabilGesloComponent = (function () {
     }
     pozabilGesloComponent.prototype.onSubmit = function () {
         var _this = this;
-        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa('admin:admin') });
+        var headers = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password')) });
         var baseUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1/uporabnik';
         var vlog = ({
             idvloga: this.idvloga,
