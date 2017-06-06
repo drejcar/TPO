@@ -141,7 +141,7 @@ export class VnosObiskComponent implements OnInit{
 	'stevilkaZdravstvenegaZavarovanja':'',
 	'obisk':this.obiskn,
 	'check':this.neki,
-	
+
   }];
   porociloObiskNosecnice:PorociloObiskNosecnice=({
     'akt10':'',
@@ -487,13 +487,14 @@ export class VnosObiskComponent implements OnInit{
 		this.obisk.porociloObiskNosecnice = this.porociloObiskNosecnice;
 	}else if(this.vrstaObiska == 20){
 		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
-			
+
 			let absolutni = <any>[{}];
 			let novStevec = 0;
 			for(let n of this.porociloObiskNovorojencka){
-				absolutni[novStevec] = Object.assign({}, n);
+				//noinspection TypeScriptUnresolvedFunction
+        absolutni[novStevec] = Object.assign({}, n);
 				delete absolutni[novStevec].check;
-				
+
 					if(n.check.niPosebnosti == false){
 							if(n.check.mikcija == true){
 								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Mikcija';
@@ -512,20 +513,21 @@ export class VnosObiskComponent implements OnInit{
 						}else{
 							absolutni[novStevec].akt100a = 'Ni posebnosti';
 						}
-				
+
 				novStevec = novStevec+1;
-				
+
 			}
-			
+
 		this.obisk.porociloObiskNovorojenckas = absolutni;
 	}else if(this.vrstaObiska == 30){
 		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
 		let absolutni = <any>[{}];
 			let novStevec = 0;
 			for(let n of this.porociloObiskNovorojencka){
-				absolutni[novStevec] = Object.assign({}, n);
+				//noinspection TypeScriptUnresolvedFunction
+        absolutni[novStevec] = Object.assign({}, n);
 				delete absolutni[novStevec].check;
-				
+
 					if(n.check.niPosebnosti == false){
 							if(n.check.mikcija == true){
 								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Mikcija';
@@ -544,9 +546,9 @@ export class VnosObiskComponent implements OnInit{
 						}else{
 							absolutni[novStevec].akt100a = 'Ni posebnosti';
 						}
-				
+
 				novStevec = novStevec+1;
-				
+
 			}
 		this.obisk.porociloObiskNovorojenckas = absolutni;
 	}else if(this.vrstaObiska == 40){
@@ -595,14 +597,15 @@ export class VnosObiskComponent implements OnInit{
 			idobisk:this.idObiska,
 		});
 		console.log(this.porociloObiskNovorojencka);
-		
-		
+
+
 			let absolutni = <any>({});
 		for(let n of this.porociloObiskNovorojencka){
 			n.obisk = nov;
-			absolutni = Object.assign({}, n);
-			//for zanka 
-			
+			//noinspection TypeScriptUnresolvedFunction
+      absolutni = Object.assign({}, n);
+			//for zanka
+
 			delete absolutni.check;
 			absolutni.akt100a = '';
 					console.log("hello!");
@@ -624,7 +627,7 @@ export class VnosObiskComponent implements OnInit{
 						}else{
 							absolutni.akt100a = 'Ni posebnosti';
 						}
-				
+
 			console.log("absolutni je:"+absolutni.akt100a);
 			this.http.put(`${this.baseUrl}/obiski/porociloobisknovorojencka`,JSON.stringify(absolutni),{headers:this.headers}).subscribe(res => {console.log("success")});
 		}
@@ -636,10 +639,11 @@ export class VnosObiskComponent implements OnInit{
 			idobisk:this.idObiska,
 		});
 		let absolutni = <any>({});
-		
+
 		for(let n of this.porociloObiskNovorojencka){
 			n.obisk = nov;
-			absolutni = Object.assign({}, n);
+			//noinspection TypeScriptUnresolvedFunction
+      absolutni = Object.assign({}, n);
 			delete absolutni.check;
 			absolutni.akt100a = '';
 					if(n.check.niPosebnosti == false){
@@ -660,7 +664,7 @@ export class VnosObiskComponent implements OnInit{
 					}else{
 						absolutni.akt100a = 'Ni posebnosti';
 					}
-			console.log(absolutni.akt100a);	
+			console.log(absolutni.akt100a);
 			this.http.put(`${this.baseUrl}/obiski/porociloobisknovorojencka`,JSON.stringify(absolutni),{headers:this.headers}).subscribe(res => {console.log("success")});
 		}
 		this.submitted = true;

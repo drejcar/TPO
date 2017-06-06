@@ -148,8 +148,8 @@
             <label>Izražanje čustev</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt230a" disabled={{dis}} name="akt230a" value="Moteno">Moteno<br>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt230a" disabled={{dis}} name="akt230a" value="Ni moteno">Ni moteno
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt230a" disabled={{dis}} name="akt230a" value="Moteno">Moteno<br>
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt230a" disabled={{dis}} name="akt230a" value="Ni moteno">Ni moteno
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -161,9 +161,9 @@
             <label>Fizična obremenjenost</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240a" disabled={{dis}} name="akt240a" value="Nizka">Nizka<br>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240a" disabled={{dis}} name="akt240a" value="Srednja">Srednja<br>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240a" disabled={{dis}} name="akt240a" value="Visoka">Visoka
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240a" disabled={{dis}} name="akt240a" value="Nizka">Nizka<br>
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240a" disabled={{dis}} name="akt240a" value="Srednja">Srednja<br>
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt240a" disabled={{dis}} name="akt240a" value="Visoka">Visoka
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -232,15 +232,15 @@
             </div>
           <div class="form-group">
             <label>Oksigenacija SpO2 (v %)</label>
-            <input type="number" class="form-control" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt70" [range]="[0,100]" name="akt70" disabled={{dis}} required>
+            <input type="number" class="form-control" #akt70="ngModel" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt70" [range]="[0,100]" name="akt70" disabled={{dis}} required>
             <p *ngIf="akt70.errors?.range">vnesli ste neveljavno vrednost!</p>
           </div>
           <div class="form-group">
             <label>Upoštevanje terapije</label>
             <div class="form-group">
-              <input type="radio" class="form-control" name="akt80a" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80a" disabled={{dis}} value="Da" required><option>Da</option>
-			        <input type="radio" class="form-control" name="akt80a" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80a" disabled={{dis}} value="Delno" required>Delno<br>
-              <input type="radio" class="form-control" name="akt80a"  [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80a" disabled={{dis}} value="Ne" required>Ne
+              <input type="radio" required class="form-control" name="akt80a" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80a" disabled={{dis}} value="Da" required><option>Da</option>
+			        <input type="radio" required class="form-control" name="akt80a" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80a" disabled={{dis}} value="Delno" required>Delno<br>
+              <input type="radio" required class="form-control" name="akt80a"  [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt80a" disabled={{dis}} value="Ne" required>Ne
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -353,8 +353,8 @@
             <label>Anamneza: počutje, telesni znaki nosečnosti</label>
             <div class="form-group">
               <label><label>Izražanje Čustev</label></label>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt170a" disabled={{dis}} name="akt170a" value="Moteno">Moteno<br>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt170a" disabled={{dis}} name="akt170a" value="Ni moteno">Ni moteno
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskNosecnice.akt170a" disabled={{dis}} name="akt170a" value="Moteno">Moteno<br>
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskNosecnice.akt170a" disabled={{dis}} name="akt170a" value="Ni moteno">Ni moteno
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -366,9 +366,9 @@
             <label>Fizična obremenjenost</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180a" disabled={{dis}} name="akt180a" value="Nizka">Nizka<br>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180a" disabled={{dis}} name="akt180a" value="Srednja">Srednja<br>
-              <input type="radio" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180a" disabled={{dis}} name="akt180a" value="Visoka">Visoka
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180a" disabled={{dis}} name="akt180a" value="Nizka">Nizka<br>
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180a" disabled={{dis}} name="akt180a" value="Srednja">Srednja<br>
+              <input type="radio" required class="form-control" [(ngModel)]="porociloObiskNosecnice.akt180a" disabled={{dis}} name="akt180a" value="Visoka">Visoka
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -455,8 +455,8 @@
             <label>Dojenje</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" [(ngModel)]="s.akt80" disabled={{dis}} name="akt80E" value="Da">Da<br>
-              <input type="radio" class="form-control" [(ngModel)]="s.akt80" disabled={{dis}} name="akt80E" value="Ne">Ne
+              <input type="radio" required class="form-control" [(ngModel)]="s.akt80" disabled={{dis}} name="akt80E" value="Da">Da<br>
+              <input type="radio" required class="form-control" [(ngModel)]="s.akt80" disabled={{dis}} name="akt80E" value="Ne">Ne
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -468,8 +468,8 @@
             <label>Dodajanje adaptiranega mleka</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" [(ngModel)]="s.akt90a" disabled={{dis}} name="akt90aE" value="Da">Da<br>
-              <input type="radio" class="form-control" [(ngModel)]="s.akt90a" disabled={{dis}} name="akt90aE" value="Ne">Ne
+              <input type="radio" required class="form-control" [(ngModel)]="s.akt90a" disabled={{dis}} name="akt90aE" value="Da">Da<br>
+              <input type="radio" required class="form-control" [(ngModel)]="s.akt90a" disabled={{dis}} name="akt90aE" value="Ne">Ne
             </div>
             <div class="form-group">
               <label>Opombe:</label>
@@ -560,12 +560,12 @@
             <label>Krvni pritisk</label>
             <div class="form-group">
               <label>Sistolični (mm Hg):</label>
-              <input type="text" class="form-control" #akt30a="ngModel" [(ngModel)]="porociloPreventivaStarostnika.akt30a" [range]="[50,400]" disabled={{dis}} name="akt30a" required>
+              <input type="number" class="form-control" #akt30a="ngModel" [(ngModel)]="porociloPreventivaStarostnika.akt30a" [range]="[50,400]" disabled={{dis}} name="akt30a" required>
               <p *ngIf="akt30a.errors?.range">vnesli ste neveljavno vrednost!</p>
             </div>
             <div class="form-group">
               <label>Diastolični (mm Hg):</label>
-              <input type="text" class="form-control" #akt30b="ngModel" [(ngModel)]="porociloPreventivaStarostnika.akt30b" [range]="[30,250]" disabled={{dis}} name="akt30b" required>
+              <input type="number" class="form-control" #akt30b="ngModel" [(ngModel)]="porociloPreventivaStarostnika.akt30b" [range]="[30,250]" disabled={{dis}} name="akt30b" required>
               <p *ngIf="akt30b.errors?.range">vnesli ste neveljavno vrednost!</p>
             </div>
             </div>
@@ -659,14 +659,14 @@
             <label>Stanje neodvisnosti:</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150a" disabled={{dis}} name="akt150a" value="Samostojen">Samostojen/samostojna<br>
-              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150a" disabled={{dis}} name="akt150a" value="Delno odvisen">Delno odvisen/odvisna<br>
-              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150a" disabled={{dis}} name="akt150a" value="Popolnoma odvisen">Popolnoma odvisen/odvisna
+              <input type="radio" required class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150a" disabled={{dis}} name="akt150a" value="Samostojen">Samostojen/samostojna<br>
+              <input type="radio" required class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150a" disabled={{dis}} name="akt150a" value="Delno odvisen">Delno odvisen/odvisna<br>
+              <input type="radio" required class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150a" disabled={{dis}} name="akt150a" value="Popolnoma odvisen">Popolnoma odvisen/odvisna
             </div>
             <div class="form-group">
               <label>Pomoč:</label>
-              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150b" disabled={{dis}} name="akt150b" value="Svojci">Svojci<br>
-              <input type="radio" class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150b" disabled={{dis}} name="akt150b" value="Drugi">Drugi
+              <input type="radio" required class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150b" disabled={{dis}} name="akt150b" value="Svojci">Svojci<br>
+              <input type="radio" required class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150b" disabled={{dis}} name="akt150b" value="Drugi">Drugi
             </div>
             <div class="form-group">
               <label></label>
