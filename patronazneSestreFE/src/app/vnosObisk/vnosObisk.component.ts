@@ -110,7 +110,15 @@ export class VnosObiskComponent implements OnInit{
   obiskn: obiskA = ({
 	'idobisk':0,
   });
-  porociloObiskNovorojencka:PorociloObiskNovorojencka[]=[{
+  neki: any = ({
+	'niPosebnosti':false,
+	'mikcija':false,
+	'defekacija':false,
+	'napenjanje':false,
+	'kolike':false,
+	'bruhanje':false,
+  })
+  porociloObiskNovorojencka:any[]=[{
     'akt10':'',
     'akt20':'',
     'akt30':'',
@@ -132,6 +140,8 @@ export class VnosObiskComponent implements OnInit{
 	'priimek':'',
 	'stevilkaZdravstvenegaZavarovanja':'',
 	'obisk':this.obiskn,
+	'check':this.neki,
+	
   }];
   porociloObiskNosecnice:PorociloObiskNosecnice=({
     'akt10':'',
@@ -288,7 +298,7 @@ export class VnosObiskComponent implements OnInit{
 					for(let steviloOtrok of this.pacient){
 						console.log(steviloOtrok);
 						let novi = ({'idobisk':this.idObiska});
-						let nov = <PorociloObiskNovorojencka> ({
+						let nov = <any> ({
 						'akt10':'',
 						'akt20':'',
 						'akt30':'',
@@ -310,6 +320,7 @@ export class VnosObiskComponent implements OnInit{
 						'priimek':steviloOtrok.pacient.priimek,
 						'stevilkaZdravstvenegaZavarovanja':steviloOtrok.pacient.stevilkaZdravstvenegaZavarovanja,
 						'obisk':novi,
+						'check':this.neki,
 						});
 						this.porociloObiskNovorojencka[this.stevec] = nov;
 						this.stevec = this.stevec+1;
@@ -322,7 +333,32 @@ export class VnosObiskComponent implements OnInit{
 
 					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojenckas;
 					console.log(this.porociloObiskNovorojencka);
-
+					for(let n of this.porociloObiskNovorojencka){
+						n.check = this.neki;
+						if(n.akt100a == 'Ni posebnosti'){
+							n.check.niPosebnosti = true;
+						}else{
+							var parts:any[] = n.akt100a.split(" ");
+							for(let prt of parts){
+								if(prt == 'Mikcija'){
+									n.check.mikcija = true;
+								}
+								if(prt == 'Defekacija'){
+									n.check.defekacija = true;
+								}
+								if(prt == 'Napenjanje'){
+									n.check.napenjanje = true;
+								}
+								if(prt == 'Kolike'){
+									n.check.kolike = true;
+								}
+								if(prt == 'Bruhanje'){
+									n.check.bruhanje = true;
+								}
+							}
+						}
+					}
+					console.log(this.porociloObiskNovorojencka);
 					this.porociloObiskOtrocnice = this.obisk.porociloObiskOtrocnice;
 				}
 
@@ -342,7 +378,7 @@ export class VnosObiskComponent implements OnInit{
 
 					for(let steviloOtrok of this.pacient){
 						let novi = ({'idobisk':this.idObiska});
-						let nov = <PorociloObiskNovorojencka> ({
+						let nov = <any> ({
 						'akt10':'',
 						'akt20':'',
 						'akt30':'',
@@ -364,6 +400,7 @@ export class VnosObiskComponent implements OnInit{
 						'priimek':steviloOtrok.pacient.priimek,
 						'stevilkaZdravstvenegaZavarovanja':steviloOtrok.pacient.stevilkaZdravstvenegaZavarovanja,
 						'obisk':novi,
+						'check':this.neki,
 						});
 						this.porociloObiskNovorojencka[this.stevec] = nov;
 						this.stevec = this.stevec+1;
@@ -373,6 +410,32 @@ export class VnosObiskComponent implements OnInit{
 					this.obiskOtrocnice = true;
 					this.spremeni = true;
 					this.porociloObiskNovorojencka = this.obisk.porociloObiskNovorojenckas;
+					//dodajamo k check
+					for(let n of this.porociloObiskNovorojencka){
+						n.check = this.neki;
+						if(n.akt100a == 'Ni posebnosti'){
+							n.check.niPosebnosti = true;
+						}else{
+							var parts:any[] = n.akt100a.split(" ");
+							for(let prt of parts){
+								if(prt == 'Mikcija'){
+									n.check.mikcija = true;
+								}
+								if(prt == 'Defekacija'){
+									n.check.defekacija = true;
+								}
+								if(prt == 'Napenjanje'){
+									n.check.napenjanje = true;
+								}
+								if(prt == 'Kolike'){
+									n.check.kolike = true;
+								}
+								if(prt == 'Bruhanje'){
+									n.check.bruhanje = true;
+								}
+							}
+						}
+					}
 					console.log(this.porociloObiskNovorojencka);
 					this.porociloObiskOtrocnice = this.obisk.porociloObiskOtrocnice;
 				}
@@ -424,10 +487,68 @@ export class VnosObiskComponent implements OnInit{
 		this.obisk.porociloObiskNosecnice = this.porociloObiskNosecnice;
 	}else if(this.vrstaObiska == 20){
 		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
-		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
+			
+			let absolutni = <any>[{}];
+			let novStevec = 0;
+			for(let n of this.porociloObiskNovorojencka){
+				absolutni[novStevec] = Object.assign({}, n);
+				delete absolutni[novStevec].check;
+				
+					if(n.check.niPosebnosti == false){
+							if(n.check.mikcija == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Mikcija';
+							}
+							if(n.check.defekacija == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Defekacija';
+							}if(n.check.napenjanje == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Napenjanje';
+							}
+							if(n.check.Kolike == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Kolike';
+							}
+							if(n.check.bruhanje == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Bruhanje';
+							}
+						}else{
+							absolutni[novStevec].akt100a = 'Ni posebnosti';
+						}
+				
+				novStevec = novStevec+1;
+				
+			}
+			
+		this.obisk.porociloObiskNovorojenckas = absolutni;
 	}else if(this.vrstaObiska == 30){
 		this.obisk.porociloObiskOtrocnice = this.porociloObiskOtrocnice;
-		this.obisk.porociloObiskNovorojenckas = this.porociloObiskNovorojencka;
+		let absolutni = <any>[{}];
+			let novStevec = 0;
+			for(let n of this.porociloObiskNovorojencka){
+				absolutni[novStevec] = Object.assign({}, n);
+				delete absolutni[novStevec].check;
+				
+					if(n.check.niPosebnosti == false){
+							if(n.check.mikcija == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Mikcija';
+							}
+							if(n.check.defekacija == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Defekacija';
+							}if(n.check.napenjanje == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Napenjanje';
+							}
+							if(n.check.Kolike == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Kolike';
+							}
+							if(n.check.bruhanje == true){
+								absolutni[novStevec].akt100a = absolutni[novStevec].akt100a+' '+'Bruhanje';
+							}
+						}else{
+							absolutni[novStevec].akt100a = 'Ni posebnosti';
+						}
+				
+				novStevec = novStevec+1;
+				
+			}
+		this.obisk.porociloObiskNovorojenckas = absolutni;
 	}else if(this.vrstaObiska == 40){
 		this.obisk.porociloPreventivaStarostnika = this.porociloPreventivaStarostnika;
 	}else if(this.vrstaObiska == 50){
@@ -463,7 +584,7 @@ export class VnosObiskComponent implements OnInit{
 	this.dnService.posodobiObisk(this.obisk).subscribe(res =>{this.submitted = true;});
   }
   sprememba(){
-
+	  console.log(this.porociloObiskNovorojencka);
 	  let nova = ({'idobisk':this.idObiska});
 	if(this.vrstaObiska == 10){
 		this.http.put(`${this.baseUrl}/obiski/porociloobisknosecnice`,JSON.stringify(this.porociloObiskNosecnice),{headers:this.headers}).subscribe(res => {this.submitted = true;});
@@ -473,19 +594,74 @@ export class VnosObiskComponent implements OnInit{
 		let nov = <any> ({
 			idobisk:this.idObiska,
 		});
+		console.log(this.porociloObiskNovorojencka);
+		
+		
+			let absolutni = <any>({});
 		for(let n of this.porociloObiskNovorojencka){
 			n.obisk = nov;
-			this.http.put(`${this.baseUrl}/obiski/porociloobisknovorojencka`,JSON.stringify(n),{headers:this.headers}).subscribe(res => {console.log("success")});
+			absolutni = Object.assign({}, n);
+			//for zanka 
+			
+			delete absolutni.check;
+			absolutni.akt100a = '';
+					console.log("hello!");
+					if(n.check.niPosebnosti == false){
+							if(n.check.mikcija == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Mikcija';
+							}
+							if(n.check.defekacija == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Defekacija';
+							}if(n.check.napenjanje == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Napenjanje';
+							}
+							if(n.check.Kolike == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Kolike';
+							}
+							if(n.check.bruhanje == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Bruhanje';
+							}
+						}else{
+							absolutni.akt100a = 'Ni posebnosti';
+						}
+				
+			console.log("absolutni je:"+absolutni.akt100a);
+			this.http.put(`${this.baseUrl}/obiski/porociloobisknovorojencka`,JSON.stringify(absolutni),{headers:this.headers}).subscribe(res => {console.log("success")});
 		}
 		this.submitted = true;
 	}else if(this.vrstaObiska == 30){
+		console.log(this.porociloObiskNovorojencka);
 		this.http.put(`${this.baseUrl}/obiski/porociloobiskotrocnice`,JSON.stringify(this.porociloObiskOtrocnice),{headers:this.headers}).subscribe(res => {console.log("success");});
 		let nov = <any> ({
 			idobisk:this.idObiska,
 		});
+		let absolutni = <any>({});
+		
 		for(let n of this.porociloObiskNovorojencka){
 			n.obisk = nov;
-			this.http.put(`${this.baseUrl}/obiski/porociloobisknovorojencka`,JSON.stringify(n),{headers:this.headers}).subscribe(res => {console.log("success")});
+			absolutni = Object.assign({}, n);
+			delete absolutni.check;
+			absolutni.akt100a = '';
+					if(n.check.niPosebnosti == false){
+							if(n.check.mikcija == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Mikcija';
+							}
+							if(n.check.defekacija == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Defekacija';
+							}if(n.check.napenjanje == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Napenjanje';
+							}
+							if(n.check.Kolike == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Kolike';
+							}
+							if(n.check.bruhanje == true){
+								absolutni.akt100a = absolutni.akt100a+' '+'Bruhanje';
+							}
+					}else{
+						absolutni.akt100a = 'Ni posebnosti';
+					}
+			console.log(absolutni.akt100a);	
+			this.http.put(`${this.baseUrl}/obiski/porociloobisknovorojencka`,JSON.stringify(absolutni),{headers:this.headers}).subscribe(res => {console.log("success")});
 		}
 		this.submitted = true;
 	}else if(this.vrstaObiska == 40){
@@ -501,5 +677,18 @@ export class VnosObiskComponent implements OnInit{
 		this.http.put(`${this.baseUrl}/obiski/porocilozdrstanja`,JSON.stringify(this.porociloKontrolaZdravstvenegaStanja),{headers:this.headers}).subscribe(res => {this.submitted = true;});
 	}
 
+  }
+  spremen(ime:String){
+	for(let n of this.porociloObiskNovorojencka){
+		if(ime == n.ime){
+			n.check.niPosebnosti = true;
+			n.check.mikcija = false;
+			n.check.defekacija = false;
+			n.check.napenjanje = false;
+			n.check.kolike = false;
+			n.check.bruhanje = false;
+			break;
+		}
+	}
   }
 }

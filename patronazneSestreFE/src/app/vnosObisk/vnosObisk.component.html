@@ -420,47 +420,47 @@
 		<h3>Otrok: {{s.ime+" "+s.priimek+" ["+s.stevilkaZdravstvenegaZavarovanja+"]"}}</h3>
           <div class="form-group">
             <label>Prikaz nege dojenčka</label>
-            <textarea class="form-control" [(ngModel)]="s.akt10" disabled={{dis}} name="akt10" cols="3">
+            <textarea class="form-control" [(ngModel)]="s.akt10" disabled={{dis}} name="akt10E" cols="3">
               </textarea>
           </div>
           <div class="form-group">
             <label>Nega popkovne rane</label>
-            <textarea class="form-control" [(ngModel)]="s.akt20" disabled={{dis}} name="akt20" cols="3">
+            <textarea class="form-control" [(ngModel)]="s.akt20" disabled={{dis}} name="akt20E" cols="3">
               </textarea>
           </div>
           <div class="form-group">
             <label>Nudenje pomoči pri dojenju in seznanitev s tehnikami dojenja</label>
-            <textarea class="form-control" [(ngModel)]="s.akt30" disabled={{dis}} name="akt30" cols="3">
+            <textarea class="form-control" [(ngModel)]="s.akt30" disabled={{dis}} name="akt30E" cols="3">
               </textarea>
           </div>
           <div class="form-group">
             <label>Ureditev ležišča</label>
-            <textarea class="form-control" [(ngModel)]="s.akt40" disabled={{dis}} name="akt40" cols="3">
+            <textarea class="form-control" [(ngModel)]="s.akt40" disabled={{dis}} name="akt40E" cols="3">
               </textarea>
           </div>
           <div class="form-group">
             <label>Svetovanje o povijanju, oblačenju, slačenju</label>
-            <textarea class="form-control" [(ngModel)]="s.akt50" disabled={{dis}} name="akt50" cols="3">
+            <textarea class="form-control" [(ngModel)]="s.akt50" disabled={{dis}} name="akt50E" cols="3">
               </textarea>
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža(v gramih)</label>
-            <input type="number" class="form-control" [(ngModel)]="s.akt60" min="200" max="15000" name="akt60" required>
+            <input type="number" class="form-control" [(ngModel)]="s.akt60" min="200" max="15000" name="akt60aE" required>
           </div>
           <div class="form-group">
             <label>Trenutna telesna višina (v cm)</label>
-            <input type="number" class="form-control" [(ngModel)]="s.akt70" min="20"  max="100" disabled={{dis}} name="akt70" required>
+            <input type="number" class="form-control" [(ngModel)]="s.akt70" min="20"  max="100" disabled={{dis}} name="akt70uE" required>
           </div>
           <div class="form-group">
             <label>Dojenje</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" [(ngModel)]="s.akt80" disabled={{dis}} name="akt80" value="Da">Da<br>
-              <input type="radio" class="form-control" [(ngModel)]="s.akt80" disabled={{dis}} name="akt80" value="Ne">Ne
+              <input type="radio" class="form-control" [(ngModel)]="s.akt80" disabled={{dis}} name="akt80E" value="Da">Da<br>
+              <input type="radio" class="form-control" [(ngModel)]="s.akt80" disabled={{dis}} name="akt80E" value="Ne">Ne
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" [(ngModel)]="s.akt80b" disabled={{dis}} name="akt80b" cols="3">
+              <textarea class="form-control" [(ngModel)]="s.akt80b" disabled={{dis}} name="akt80bE" cols="3">
               </textarea>
             </div>
           </div>
@@ -468,12 +468,12 @@
             <label>Dodajanje adaptiranega mleka</label>
             <div class="form-group">
               <label></label>
-              <input type="radio" class="form-control" [(ngModel)]="s.akt90a" disabled={{dis}} name="akt90a" value="Da">Da<br>
-              <input type="radio" class="form-control" [(ngModel)]="s.akt90a" disabled={{dis}} name="akt90a" value="Ne">Ne
+              <input type="radio" class="form-control" [(ngModel)]="s.akt90a" disabled={{dis}} name="akt90aE" value="Da">Da<br>
+              <input type="radio" class="form-control" [(ngModel)]="s.akt90a" disabled={{dis}} name="akt90aE" value="Ne">Ne
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" [(ngModel)]="s.akt90b" disabled={{dis}} name="akt90b" cols="3">
+              <textarea class="form-control" [(ngModel)]="s.akt90b" disabled={{dis}} name="akt90bE" cols="3">
               </textarea>
             </div>
           </div>
@@ -481,37 +481,37 @@
             <label>Izločanje in odvajanje</label>
             <div class="form-group">
               <label></label>
-              <input type="checkbox" class="form-control" value="niPosebnosti" [(ngModel)]="s.akt100a" disabled={{dis}} name="akt100a" checked>Ni posebnosti<br>
-              <input type="checkbox" class="form-control" value="mikcija" [(ngModel)]="s.akt100a" disabled={{dis}} name="akt100a">Mikcija<br>
-              <input type="checkbox" class="form-control" value="defekacija" [(ngModel)]="s.akt100a" disabled={{dis}} name="akt100a">Defekacija<br>
-              <input type="checkbox" class="form-control" value="napenjanje" [(ngModel)]="s.akt100a" disabled={{dis}} name="akt100a">Napenjanje<br>
-              <input type="checkbox" class="form-control" value="kolike" [(ngModel)]="s.akt100a" disabled={{dis}} name="akt100a">Kolike<br>
-              <input type="checkbox" class="form-control" value="bruhanje" [(ngModel)]="s.akt100a" disabled={{dis}} name="akt100a">Bruhanje<br>
+              <input type="checkbox" class="form-control"  [(ngModel)]="s.check.niPosebnosti" (click)="spremen(s.ime);" disabled={{dis}} name="akt100a0" checked>Ni posebnosti<br>
+              <input type="checkbox" class="form-control"  [(ngModel)]="s.check.mikcija" (change)="s.check.niPosebnosti = false;" [disabled]="dis" name="akt100a1">Mikcija<br>
+              <input type="checkbox" class="form-control"  [(ngModel)]="s.check.defekacija" (change)="s.check.niPosebnosti = false;" [disabled]="dis" name="akt100a2">Defekacija<br>
+              <input type="checkbox" class="form-control"  [(ngModel)]="s.check.napenjanje" (change)="s.check.niPosebnosti = false;" [disabled]="dis" name="akt100a3">Napenjanje<br>
+              <input type="checkbox" class="form-control"  [(ngModel)]="s.check.kolike" (change)="s.check.niPosbenosti = false;"[disabled]="dis" name="akt100a4">Kolike<br>
+              <input type="checkbox" class="form-control"  [(ngModel)]="s.check.bruhanje" (change)="s.check.niPosbenosti = false;"[disabled]="dis" name="akt100a5">Bruhanje<br>
             </div>
             <div class="form-group">
               <label>Opombe:</label>
-              <textarea class="form-control" [(ngModel)]="s.akt100b" disabled={{dis}} name="akt100b" cols="3">
+              <textarea class="form-control" [(ngModel)]="s.akt100b" disabled={{dis}} name="akt100bE" cols="3">
               </textarea>
             </div>
           </div>
           <div class="form-group">
             <label>Ritem spanja</label>
-            <textarea class="form-control" [(ngModel)]="s.akt110" disabled={{dis}} name="akt110" cols="3" required>
+            <textarea class="form-control" [(ngModel)]="s.akt110" disabled={{dis}} name="akt110E" cols="3" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Povišanje bilirubina (zlatenica)</label>
-            <textarea class="form-control" [(ngModel)]="s.akt120" disabled={{dis}} name="akt120" cols="3" required>
+            <textarea class="form-control" [(ngModel)]="s.akt120" disabled={{dis}} name="akt120E" cols="3" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Kolki</label>
-            <textarea class="form-control" [(ngModel)]="s.akt130" disabled={{dis}} name="akt130" cols="3" required>
+            <textarea class="form-control" [(ngModel)]="s.akt130" disabled={{dis}} name="akt130E" cols="3" required>
             </textarea>
           </div>
           <div class="form-group">
             <label>Posebnosti</label>
-            <textarea class="form-control" [(ngModel)]="s.akt140" disabled={{dis}} name="akt140" cols="3">
+            <textarea class="form-control" [(ngModel)]="s.akt140" disabled={{dis}} name="akt140E" cols="3">
             </textarea>
           </div>
 
