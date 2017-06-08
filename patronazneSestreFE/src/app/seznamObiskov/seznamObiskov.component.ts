@@ -194,6 +194,10 @@ export class seznamObiskovComponent implements OnInit{
 								obisk.porocilo = '/vnosObisk/'+ob.idobisk+"/"+dn.iddelovniNalog;
 								obisk.kaksno = 'Dodaj poročilo'
 							}
+							if(ob.fixenDatum == 0){
+								obisk.porocilo = '*';
+								obisk.kaksno = 'Fiksni datum';
+							}
 						}else{
 							obisk.opravljenost = 'Opravljen';
 

@@ -136,7 +136,7 @@ export class DelovniNalogComponent implements OnInit{
 	materials: any[] = [];
 	stEpruvet = 0;
 	dateIsValid = 0;
-
+	aliJeVec = false;
 	ngOnInit() {
 
 		// ce ni zdravnik lahko opravlja samo preventivne obiske
@@ -259,7 +259,16 @@ export class DelovniNalogComponent implements OnInit{
 	}
 	dodajOtroka(){
 		this.stevecOtrok++;
+		this.aliJeVec = true;
 		this.IzbrOtroci[this.stevecOtrok] = ({'otroci':this.kolikoOtrok,'izbraniOtrok':this.otrok});
+	}
+	odstraniOtroka(){
+		this.IzbrOtroci.splice(this.stevecOtrok,1);
+		this.stevecOtrok = this.stevecOtrok-1;
+		if(this.stevecOtrok == 0){
+			this.aliJeVec = false;
+		}		
+		
 	}
 	pridobiPodatkePacienta1(): void {
 
