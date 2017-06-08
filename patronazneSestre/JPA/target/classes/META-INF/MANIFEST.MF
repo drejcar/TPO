@@ -1,10 +1,5 @@
 Manifest-Version: 1.0
-<<<<<<< HEAD
 Built-By: rmodic
 Build-Jdk: 1.8.0_65
-=======
-Built-By: root
-Build-Jdk: 1.8.0_111
->>>>>>> 0f00a6142a2fc501a6c7d22aa20f58248a41973f
 Created-By: Maven Integration for Eclipse
 
