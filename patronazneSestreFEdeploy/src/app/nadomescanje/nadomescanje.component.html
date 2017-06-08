@@ -22,10 +22,10 @@
 		</div>
 		<div id="poln2">
         <div class="enObDrugemDatumi">
-			
+
           <label for="od">OD</label>
           <input type="date" class="form-control" id="od"
-                 placeholder="02-06-2017" min="2017-06-02" required
+                 placeholder="09-06-2017" minDate="2017-06-09" required
                  [(ngModel)]="nad.od" name="od"
                  #od="ngModel">
           <div [hidden]="od.valid || od.pristine"
@@ -36,7 +36,7 @@
         <div class="enObDrugemDatumi">
           <label for="do">DO</label>
           <input type="date" class="form-control" id="do"
-                 placeholder="02-06-2017" min="2017-06-02" required
+                 placeholder="09-06-2017" minDate="2017-06-09" required
                  [(ngModel)]="nad.do" name="do"
                  #do="ngModel">
           <div [hidden]="do.valid || do.pristine"

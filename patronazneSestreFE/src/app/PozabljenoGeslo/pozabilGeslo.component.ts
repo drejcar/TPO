@@ -34,7 +34,7 @@ export class pozabilGesloComponent implements OnInit{
   fail= false;
   onSubmit(){
 
-	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
+	var headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
 	var baseUrl: String = 'http://localhost:8080/patronazneSestre/v1/uporabnik';
     let vlog = <Vlog>({
 		idvloga: this.idvloga,
