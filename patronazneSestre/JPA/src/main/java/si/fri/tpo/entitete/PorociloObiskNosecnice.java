@@ -61,10 +61,10 @@ public class PorociloObiskNosecnice implements Serializable {
 	@Column(length=1024)
 	private String akt180b;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt190a;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt190b;
 
 	@Column(length=1024)
@@ -76,7 +76,7 @@ public class PorociloObiskNosecnice implements Serializable {
 	@Column(nullable=false)
 	private int akt210;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt220;
 
 	@Column(nullable=false)

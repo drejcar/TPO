@@ -33,10 +33,10 @@ public class PorociloKontrolaZdravstvenegaStanja implements Serializable {
 	@Column(length=1024)
 	private String akt110;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt20a;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt20b;
 
 	@Column(nullable=false)
@@ -45,10 +45,10 @@ public class PorociloKontrolaZdravstvenegaStanja implements Serializable {
 	@Column(nullable=false)
 	private int akt40;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt50;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt60a;
 
 	@Column(length=1024)

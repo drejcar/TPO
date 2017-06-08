@@ -32,10 +32,10 @@ public class PorociloObiskOtrocnice implements Serializable {
 	@Column(nullable=false)
 	private Date akt10a;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt10b;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt10c;
 
 	@Column(length=1024)
@@ -56,10 +56,10 @@ public class PorociloObiskOtrocnice implements Serializable {
 	@Column(length=1024)
 	private String akt150;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt160a;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt160b;
 
 	@Column(nullable=false)
@@ -68,13 +68,13 @@ public class PorociloObiskOtrocnice implements Serializable {
 	@Column(nullable=false)
 	private int akt180;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt190;
 
 	@Column(length=1024)
 	private String akt20;
 
-	@Column(nullable=false, precision=10)
+	@Column(nullable=false, precision=10, scale=4)
 	private BigDecimal akt200;
 
 	@Column(nullable=false, length=1024)
