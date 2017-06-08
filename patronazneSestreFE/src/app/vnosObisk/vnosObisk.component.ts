@@ -209,7 +209,7 @@ export class VnosObiskComponent implements OnInit{
 		if(this.vrstaObiska == 20 || this.vrstaObiska == 30){
 			console.log(this.dn.pacients);
 			for(let pacients of this.dn.pacients){
-				
+
 				if(pacients.uporabnik == null){
 					let pacienta = <any>({'ime':'','priimek':'','stevilkaZdravstvenegaZavarovanja':''});
 					let nov = <any>({'pacient':pacienta});
@@ -218,7 +218,7 @@ export class VnosObiskComponent implements OnInit{
 					this.pacient[stevec].pacient.ime = pacients.ime;
 					this.pacient[stevec].pacient.priimek= pacients.priimek;
 					this.pacient[stevec].pacient.stevilkaZdravstvenegaZavarovanja = pacients.stevilkaZdravstvenegaZavarovanja;
-					
+
 					stevec = stevec+1;
 				}else{
 					let nov = <any>({'pacient':''});
@@ -297,7 +297,7 @@ export class VnosObiskComponent implements OnInit{
 								this.porociloObiskOtrocnice.akt10c = obiski.porociloObiskOtrocnice.akt10c;
 							}
 						}
-					
+
 					for(let steviloOtrok of this.pacient){
 						console.log(steviloOtrok);
 						let novi = ({'idobisk':this.idObiska});
@@ -315,8 +315,8 @@ export class VnosObiskComponent implements OnInit{
 						'akt30':'',
 						'akt40':'',
 						'akt50':'',
-						'akt60':0,
-						'akt70':0,
+						'akt60':undefined,
+						'akt70':undefined,
 						'akt80':'',
 						'akt80b':'',
 						'akt90a':'',
@@ -359,7 +359,7 @@ export class VnosObiskComponent implements OnInit{
 						}else{
 							var parts:any[] = n.akt100a.split(" ");
 							for(let prt of parts){
-								
+
 								if(prt == 'Mikcija'){
 									n.check.mikcija = true;
 								}
