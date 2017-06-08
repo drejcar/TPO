@@ -113,6 +113,12 @@ var UporabnikService = (function () {
         var headers2 = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
         return this.http.put(this.baseUrl + "/pacient", JSON.stringify(upr), { headers: headers2 });
     };
+    UporabnikService.prototype.pobrisi = function (upr) {
+        console.log(upr);
+        upr.pacient = null;
+        var headers2 = new http_1.Headers({ 'Content-Type': 'application/json', 'Authorization': 'Basic ' + btoa(localStorage.getItem('email') + ':' + localStorage.getItem('password')) });
+        return this.http.put(this.baseUrl + "/pacient", JSON.stringify(upr), { headers: headers2 });
+    };
     UporabnikService.prototype.getPoste = function () {
         return this.http.get(this.baseUrl + "/registracija/posta", { headers: this.headers }).map(function (response) { return response.json(); });
     };

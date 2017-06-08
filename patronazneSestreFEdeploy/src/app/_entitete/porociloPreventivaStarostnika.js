@@ -1,6 +1,6 @@
 "use strict";
-var porociloPreventivaStarostnika = (function () {
-    function porociloPreventivaStarostnika(
+var PorociloPreventivaStarostnika = (function () {
+    function PorociloPreventivaStarostnika(
         //public idporociloPreventivaStarostnika:number,
         akt10, akt100a, akt100b, akt110, akt120a, akt120b, akt120c, akt120d, akt120e, akt130, akt140, akt150a, akt150b, akt150c, akt160, akt170, akt20, akt30a, //double
         akt30b, //double
@@ -31,7 +31,7 @@ var porociloPreventivaStarostnika = (function () {
         this.akt80 = akt80;
         this.akt90 = akt90;
     }
-    return porociloPreventivaStarostnika;
+    return PorociloPreventivaStarostnika;
 }());
-exports.porociloPreventivaStarostnika = porociloPreventivaStarostnika;
+exports.PorociloPreventivaStarostnika = PorociloPreventivaStarostnika;
 //# sourceMappingURL=porociloPreventivaStarostnika.js.map

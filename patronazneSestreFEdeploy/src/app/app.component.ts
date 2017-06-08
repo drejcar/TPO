@@ -127,7 +127,7 @@ export class AppComponent implements OnInit {
 			this.patronaznaSestra=false;
 			this.aliJeLoginan = false;
 		}
-		
+
 		//kaj se prikaze glede na vlogo
 		if(this.vloga == 'Zdravnik' || this.vloga == 'PatronaznaSestra' || this.vloga == 'PatronaznaSluzba'){
 			this.mojiDelovniNalog = true;

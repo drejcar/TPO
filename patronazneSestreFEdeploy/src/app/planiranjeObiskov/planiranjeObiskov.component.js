@@ -23,10 +23,10 @@ var PlaniranjeObiskovComponent = (function () {
         this.restUrl = 'http://rogla.fri1.uni-lj.si/rest/patronazneSestre/v1';
         this.izbraniDatum = '';
         this.aliJeVecji = false;
-        this.tabelaDejanskiObiskovFixenDat = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: undefined }];
-        this.tabelaObiskov = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: 0 }];
-        this.tabelaObiskovFix = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: 0 }];
-        this.tabelaDejanskiObiskov = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: 0 }];
+        this.tabelaDejanskiObiskovFixenDat = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: undefined, porocilo: '' }];
+        this.tabelaObiskov = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: 0, porocilo: '' }];
+        this.tabelaObiskovFix = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: 0, porocilo: '' }];
+        this.tabelaDejanskiObiskov = [{ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: 0, porocilo: '' }];
     }
     PlaniranjeObiskovComponent.prototype.ngOnInit = function () {
         var _this = this;
@@ -55,16 +55,17 @@ var PlaniranjeObiskovComponent = (function () {
                     var dn = _a[_i];
                     for (var _b = 0, _c = dn.obisks; _b < _c.length; _b++) {
                         var ob = _c[_b];
-                        console.log(ob.nadomestnaSestra.idzdravstveniDelavec);
-                        console.log(localStorage.getItem('idZdravstvenegaDelavca'));
-                        if (ob.nadomestnaSestra.idzdravstveniDelavec != localStorage.getItem('idZdravstvenegaDelavca')) {
-                            continue;
+                        if (ob.nadomestnaSestra != null) {
+                            if (ob.nadomestnaSestra.idzdravstveniDelavec != localStorage.getItem('idZdravstvenegaDelavca')) {
+                                continue;
+                            }
                         }
                         var obisk = ({ idObiska: 0, izdajatelj: '', vrstaObiska: '', patronaznaSestra: '', pacienti: '', predvideniDatumObiska: '', dejanskiDatumObiska: '', opravljenost: '', dodaj: '', fiksniDatum: '', idDelovniNalog: 0, nadomescanje: '' });
                         obisk.idDelovniNalog = dn.iddelovniNalog;
                         obisk.idObiska = ob.idobisk;
                         obisk.vrstaObiska = dn.vrstaObiska.opis;
                         obisk.pacienti = dn.pacients[0].ime + ' ' + dn.pacients[0].priimek;
+                        obisk.porocilo = '/vnosObisk/' + ob.idobisk + '/' + obisk.idDelovniNalog;
                         if (ob.opravljen == 0) {
                             obisk.opravljenost = 'Neopravljen';
                         }
