@@ -73,6 +73,7 @@
 			</select>
 			</div>
 			<input type="button" (click)="dodajOtroka()" value="Dodaj otroka">
+			<input [hidden]="!aliJeVec" type="button" (click)="odstraniOtroka()" value="Odstrani otroka">
 		</div>
 			<label>Patronažna sestra</label>
 			<div id="sestra">

@@ -268,12 +268,17 @@ export class VnosObiskComponent implements OnInit{
 			console.log(this.vrstaObiska);
 			if(((Number(datum)-Number(prvi)) > 1) || localStorage.getItem('vloga') == 'Pacient' ){
 				this.dis = true;
+				this.prviZeOpravljen = true;
 			}
 			if(localStorage.getItem('vloga')=='PatronaznaSluzba' || localStorage.getItem('vloga')=='Zdravnik' || localStorage.getItem('vloga')=='Pacient'){
 				this.dis = true;
 				this.prviZeOpravljen = true;
 			}
-
+				console.log(this.obisk.fixenDatum)
+			if(this.obisk.fixenDatum == 0 && ((Number(datum)-Number(prvi)) != 0)){
+				this.dis = true;
+				this.prviZeOpravljen = true;
+			}
 			if(this.vrstaObiska == 10){
 				if(this.obisk.porociloObiskNosecnice == null){ //ce se ne obstaja
 					this.obiskNosecnice = true;
