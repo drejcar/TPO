@@ -11,7 +11,7 @@ import { UporabnikZd } from '../ZdravstveniDelavec';
 export class zdravstveniDelavecService{
  private baseUrl: String = 'http://localhost:8080/patronazneSestre/v1';
 
- private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa('admin:admin')});
+ private headers = new Headers({'Content-Type': 'application/json','Authorization':'Basic ' + btoa(localStorage.getItem('email')+':'+localStorage.getItem('password'))});
  constructor(private http : Http){}
 
  save(zdravstveniDelavec: ZdravstveniDelavec,check: boolean): Observable<Response>{

@@ -12,7 +12,7 @@
             <label>Pregled materinske knjižice in odpustnice iz porodnišnice</label>
             <div class="form-group">
               <label>Datum rojstva otroka</label>
-              <input type="date" class="form-control" disabled={{prviZeOpravljen}} [(ngModel)]="porociloObiskOtrocnice.akt10a" minDate="1900-01-01" maxDate="2017-06-06" disabled={{dis}} name="akt10a" required>
+              <input type="date" class="form-control" disabled={{prviZeOpravljen}} [(ngModel)]="porociloObiskOtrocnice.akt10a" minDate="1900-01-01" maxDate="2017-06-09" disabled={{dis}} name="akt10a" required>
             </div>
             <div class="form-group">
               <label>Porodna teža Otroka (v gramih)</label>
@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
               <label>Porodna višina otroka (v cm)</label>
-              <input type="number" disabled={{prviZeOpravljen}} #akt10c="ngModel" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10c" [range]="[0,80]" disabled={{dis}} name="akt10c" required>
+              <input type="number" disabled={{prviZeOpravljen}} step="0.1" #akt10c="ngModel" class="form-control" [(ngModel)]="porociloObiskOtrocnice.akt10c" [range]="[0,80]" disabled={{dis}} name="akt10c" required>
               <p *ngIf="akt10c.errors?.range">vnesli ste neveljavno vrednost!</p>
             </div>
             <div class="form-group">
@@ -125,12 +125,12 @@
           </div>
           <div class="form-group">
             <label>Telesna temperatura (v °C)</label>
-            <input type="number" class="form-control" #akt190="ngModel" [(ngModel)]="porociloObiskOtrocnice.akt190" [range]="[0,75]" disabled={{dis}} name="akt190" required>
+            <input type="number" class="form-control" step="0.1" #akt190="ngModel" [(ngModel)]="porociloObiskOtrocnice.akt190" [range]="[0,75]" disabled={{dis}} name="akt190" required>
             <p *ngIf="akt190.errors?.range">vnesli ste neveljavno vrednost!</p>
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža (v kg)</label>
-            <input type="number" class="form-control" #akt200="ngModel" [(ngModel)]="porociloObiskOtrocnice.akt200" [range]="[30,650]" disabled={{dis}} name="akt200" required>
+            <input type="number" class="form-control" step="0.1" #akt200="ngModel" [(ngModel)]="porociloObiskOtrocnice.akt200" [range]="[30,650]" disabled={{dis}} name="akt200" required>
             <p *ngIf="akt200.errors?.range">vnesli ste neveljavno vrednost!</p>
           </div>
           <div class="form-group">
@@ -214,7 +214,7 @@
           </div>
           <div class="form-group">
             <label>Telesna temperatura (°C)</label>
-            <input type="number" class="form-control" #akt50="ngModel" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt50" name="akt50" [range]="[0,75]" disabled={{dis}} required>
+            <input type="number" class="form-control" step="0.1" #akt50="ngModel" [(ngModel)]="porociloKontrolaZdravstvenegaStanja.akt50" name="akt50" [range]="[0,75]" disabled={{dis}} required>
             <p *ngIf="akt50.errors?.range">vnesli ste neveljavno vrednost!</p>
           </div>
           <div class="form-group">
@@ -336,7 +336,7 @@
           </div>
           <div class="form-group">
             <label>Pričakovan datum poroda</label>
-            <input type="date" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt140" minDate="2017-06-06" maxDate="2018-04-02" disabled={{dis}} name="akt140" required>
+            <input type="date" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt140" minDate="2017-06-09" maxDate="2018-04-02" disabled={{dis}} name="akt140" required>
           </div>
           <div class="form-group">
             <label>Anamneza: počutje, telesni znaki nosečnosti</label>
@@ -401,17 +401,17 @@
           </div>
           <div class="form-group">
             <label>Telesna Temperatura (v °C)</label>
-            <input type="number" class="form-control" #akt220="ngModel" [(ngModel)]="porociloObiskNosecnice.akt220" [range]="[0,75]" disabled={{dis}} name="akt220" required>
+            <input type="number" class="form-control" step="0.1" #akt220="ngModel" [(ngModel)]="porociloObiskNosecnice.akt220" [range]="[0,75]" disabled={{dis}} name="akt220" required>
             <p *ngIf="akt220.errors?.range">vnesli ste neveljavno vrednost!</p>
           </div>
           <div class="form-group">
             <label>Telesna teža pred nosečnostjo(v kg)</label>
-            <input type="number" disabled={{prviZeOpravljen}} #akt230="ngModel" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt230" [range]="[30,650]" disabled={{dis}} name="akt230" required>
+            <input type="number" disabled={{prviZeOpravljen}} step="0.1" #akt230="ngModel" class="form-control" [(ngModel)]="porociloObiskNosecnice.akt230" [range]="[30,650]" disabled={{dis}} name="akt230" required>
             <p *ngIf="akt230.errors?.range">vnesli ste neveljavno vrednost!</p>
           </div>
           <div class="form-group">
             <label>Trenutna telesna teža (v kg)</label>
-            <input type="number" class="form-control" #akt240="ngModel" [(ngModel)]="porociloObiskNosecnice.akt240" [range]="[30,650]" disabled={{dis}} name="akt240" required>
+            <input type="number" class="form-control" step="0.1" #akt240="ngModel" [(ngModel)]="porociloObiskNosecnice.akt240" [range]="[30,650]" disabled={{dis}} name="akt240" required>
             <p *ngIf="akt240.errors?.range">vnesli ste neveljavno vrednost!</p>
           </div>
         </div>
@@ -449,7 +449,7 @@
           </div>
           <div class="form-group">
             <label>Trenutna telesna višina (v cm)</label>
-            <input type="number" class="form-control" [(ngModel)]="s.akt70" min="20"  max="100" disabled={{dis}} name="akt70uE{{s.ime}}" required>
+            <input type="number" class="form-control" [(ngModel)]="s.akt70" min="20" step="0.1"  max="100" disabled={{dis}} name="akt70uE{{s.ime}}" required>
           </div>
           <div class="form-group">
             <label>Dojenje</label>
@@ -581,12 +581,12 @@
           </div>
           <div class="form-group">
             <label>Telesna temperatura (v °C)</label>
-            <input type="number" class="form-control" #akt60="ngModel" [(ngModel)]="porociloPreventivaStarostnika.akt60" [range]="[0,75]" disabled={{dis}} name="akt60" required>
+            <input type="number" class="form-control" step="0.1" #akt60="ngModel" [(ngModel)]="porociloPreventivaStarostnika.akt60" [range]="[0,75]" disabled={{dis}} name="akt60" required>
             <p *ngIf="akt60.errors?.range">vnesli ste neveljavno vrednost!</p>
           </div>
           <div class="form-group">
             <label>Telesna teža (v kg)</label>
-            <input type="text" class="form-control" #akt70="ngModel" [(ngModel)]="porociloPreventivaStarostnika.akt70" [range]="[30,650]" disabled={{dis}} name="akt70" required>
+            <input type="text" class="form-control" step="0.1" #akt70="ngModel" [(ngModel)]="porociloPreventivaStarostnika.akt70" [range]="[30,650]" disabled={{dis}} name="akt70" required>
             <p *ngIf="akt70.errors?.range">vnesli ste neveljavno vrednost!</p>
           </div>
           <div class="form-group">
