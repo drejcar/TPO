@@ -30,7 +30,7 @@ export class izpisDNService{
 		var date = new Date();
 		var datum=date.getFullYear()+'-' + (date.getMonth()+1) + '-'+(date.getDate());
 
-		return this.http.get(`${this.baseUrl}/delovniNalog/zdravstveniDelavecId/${idZD}?od=2017-1-1&do=${datum}&start=${idStart}&size=10`, {headers: this.headers}).map((response: Response) => response.json());
+		return this.http.get(`${this.baseUrl}/delovniNalog/zdravstveniDelavecId/${idZD}?od=2017-1-1&do=${datum}&start=${idStart}&size=50`, {headers: this.headers}).map((response: Response) => response.json());
 	}
 	getDelovniNalog(idDN:number): Observable<any> {
 
@@ -39,12 +39,12 @@ export class izpisDNService{
 	getDelovneNalogePrekIzv(izvId:number): Observable<any> {
 		console.log(izvId);
 
-		return this.http.get(`${this.baseUrl}/delovniNalog/izvajalecZdr/${izvId}?start=0&size=10`,{headers: this.headers}).map((response: Response) => response.json());
+		return this.http.get(`${this.baseUrl}/delovniNalog/izvajalecZdr/${izvId}?start=0&size=50`,{headers: this.headers}).map((response: Response) => response.json());
 	}
 	getDelovneNalogePrekIzv2(izvId:number,start:number): Observable<any> {
 		console.log(izvId);
 		console.log(start);
-		return this.http.get(`${this.baseUrl}/delovniNalog/izvajalecZdr/${izvId}?start=${start}&size=10`,{headers: this.headers}).map((response: Response) => response.json());
+		return this.http.get(`${this.baseUrl}/delovniNalog/izvajalecZdr/${izvId}?start=${start}&size=50`,{headers: this.headers}).map((response: Response) => response.json());
 	}
 
 

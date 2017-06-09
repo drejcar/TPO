@@ -520,22 +520,22 @@
 
         <div *ngIf="odvzemKrvi">
           <div class="form-group">
-            <label></label>
+            <label>Število modrih epruvet</label>
             <input type="number" class="form-control" #akt10modra="ngModel" [(ngModel)]="porociloOdvzemKrvi.akt10modra" [range]="[0,10]" disabled={{dis}} name="akt10modra">
             <p *ngIf="akt10modra.errors?.range">najvecje stevilo epruvet je 10!</p>
           </div>
           <div class="form-group">
-            <label></label>
+            <label>Število rdečih epruvet</label>
             <input type="number" class="form-control" #akt10rdeca="ngModel" [(ngModel)]="porociloOdvzemKrvi.akt10rdeca" [range]="[0,10]" disabled={{dis}} name="akt10rdeca">
             <p *ngIf="akt10rdeca.errors?.range">najvecje stevilo epruvet je 10!</p>
           </div>
           <div class="form-group">
-            <label></label>
+            <label>Število rumenih epruvet</label>
             <input type="number" class="form-control" #akt10rumena="ngModel" [(ngModel)]="porociloOdvzemKrvi.akt10rumena" [range]="[0,10]" disabled={{dis}} name="akt10rumena">
             <p *ngIf="akt10rumena.errors?.range">najvecje stevilo epruvet je 10!</p>
           </div>
           <div class="form-group">
-            <label></label>
+            <label>Število zelenih epruvet</label>
             <input type="number" class="form-control" #akt10zelena="ngModel" [(ngModel)]="porociloOdvzemKrvi.akt10zelena" [range]="[0,10]" disabled={{dis}} name="akt10zelena">
             <p *ngIf="akt10zelena.errors?.range">najvecje stevilo epruvet je 10!</p>
           </div>
@@ -669,7 +669,7 @@
               <input type="radio" required class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150b" disabled={{dis}} name="akt150b" value="Drugi">Drugi
             </div>
             <div class="form-group">
-              <label></label>
+              <label>Opombe:</label>
               <textarea class="form-control" [(ngModel)]="porociloPreventivaStarostnika.akt150c" disabled={{dis}} name="akt150c" cols="3">
               </textarea>
             </div>
